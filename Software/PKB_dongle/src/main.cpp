@@ -4,12 +4,15 @@
 #include "USB.h"
 #include "USBHIDKeyboard.h"
 #include "USBMSC.h"
+#include "FirmwareMSC.h"
 
 uint8_t leftKeyboardAddress[] = {0x84, 0xF7, 0x03, 0xF0, 0xEF, 0x72};
 
 USBHIDKeyboard Keyboard;
 USBCDC USBSerial;
 USBMSC MSC;
+FirmwareMSC MSC_Update;
+
 
 #include "MSCHandle.h"
 
@@ -25,6 +28,8 @@ void setup()
 
   USB.onEvent(usbEventCallback);
 
+  MSC_Update.onEvent(usbEventCallback);
+  MSC_Update.begin();
   MSC.vendorID("ESP32");//max 8 chars
   MSC.productID("USB_MSC");//max 16 chars
   MSC.productRevision("1.0");//max 4 chars

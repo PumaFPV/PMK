@@ -2,6 +2,9 @@
 #include "WiFi.h"
 #include "esp_now.h"
 #include "USB.h"
+#include "FirmwareMSC.h"
+
+FirmwareMSC MSC_Update;
 
 USBCDC USBSerial;
 
@@ -45,7 +48,8 @@ void setup()
 {
 
   USB.onEvent(usbEventCallback);
-
+  MSC_Update.onEvent(usbEventCallback);
+  MSC_Update.begin();
   USBSerial.onEvent(usbEventCallback);
   USBSerial.begin();
 
