@@ -5,12 +5,12 @@
 #include "USBHIDKeyboard.h"
 #include "USBMSC.h"
 #include "FirmwareMSC.h"
-
+//84:F7:03:F0:EF:72
 uint8_t leftKeyboardAddress[] = {0x84, 0xF7, 0x03, 0xF0, 0xEF, 0x72};
 
 USBHIDKeyboard Keyboard;
 USBCDC USBSerial;
-USBMSC MSC;
+//USBMSC MSC;
 FirmwareMSC MSC_Update;
 
 
@@ -30,14 +30,14 @@ void setup()
 
   MSC_Update.onEvent(usbEventCallback);
   MSC_Update.begin();
-  MSC.vendorID("ESP32");//max 8 chars
-  MSC.productID("USB_MSC");//max 16 chars
-  MSC.productRevision("1.0");//max 4 chars
-  MSC.onStartStop(onStartStop);
-  MSC.onRead(onRead);
-  MSC.onWrite(onWrite);
-  MSC.mediaPresent(true);
-  MSC.begin(DISK_SECTOR_COUNT, DISK_SECTOR_SIZE);
+  //MSC.vendorID("ESP32");//max 8 chars
+  //MSC.productID("USB_MSC");//max 16 chars
+  //MSC.productRevision("1.0");//max 4 chars
+  //MSC.onStartStop(onStartStop);
+  //MSC.onRead(onRead);
+  //MSC.onWrite(onWrite);
+  //MSC.mediaPresent(true);
+  //MSC.begin(DISK_SECTOR_COUNT, DISK_SECTOR_SIZE);
 
   USBSerial.onEvent(usbEventCallback);
   USBSerial.begin();
@@ -60,7 +60,7 @@ void setup()
   
   // Add peer        
   if (esp_now_add_peer(&peerInfo) != ESP_OK){
-    Serial.println("Failed to add peer");
+    USBSerial.println("Failed to add peer");
     return;
   }
   // Register for a callback function that will be called when data is received

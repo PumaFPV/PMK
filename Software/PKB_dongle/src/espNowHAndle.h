@@ -26,8 +26,10 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   USBSerial.println(len);
   for(uint8_t i = 0; i < 8; i++)
   {
-    USBSerial.println(keyboardPacket[i]);
-    Keyboard.print(keyboardPacket[i]);
-    
+    if(keyboardPacket[i] =! 0)
+    {
+      USBSerial.println(keyboardPacket[i]);
+      Keyboard.print(keyboardPacket[i]);
+    }
   }
 }

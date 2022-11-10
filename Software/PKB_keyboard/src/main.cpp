@@ -9,8 +9,9 @@ FirmwareMSC MSC_Update;
 USBCDC USBSerial;
 
 #include "USBHandle.h"
-
+//84:F7:03:F0:F0:BE
 uint8_t dongleAddress[] = {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xBE};
+uint8_t receivedData[16];
 
 esp_now_peer_info_t peerInfo;
 
@@ -21,8 +22,8 @@ uint8_t keyboardPacket[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 // Callback when data is sent
 void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) 
 {
-  USBSerial.print("\r\nLast Packet Send Status:\t");
-  USBSerial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
+  //USBSerial.print("\r\nLast Packet Send Status:\t");
+  //USBSerial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
   if (status == 0)
   {
     success = "Delivery Success :)";
@@ -32,17 +33,15 @@ void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)
   }
 }
 
-/*
+
 // Callback when data is received
 void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
-  memcpy(&incomingReadings, incomingData, sizeof(incomingReadings));
+  memcpy(&receivedData, incomingData, sizeof(receivedData));
   USBSerial.print("Bytes received: ");
   USBSerial.println(len);
-  incomingTemp = incomingReadings.temp;
-  incomingHum = incomingReadings.hum;
-  incomingPres = incomingReadings.pres;
+
 }
-*/
+
 
 void setup() 
 {
@@ -75,14 +74,20 @@ void setup()
     return;
   }
   // Register for a callback function that will be called when data is received
-  //esp_now_register_recv_cb(OnDataRecv);
+  esp_now_register_recv_cb(OnDataRecv);
+
+  pinMode(0, INPUT_PULLUP);
+  pinMode(15, OUTPUT);
 }
+
+
 
 void loop() 
 {
-
   //Read SPI from shift register
-  uint32_t spiPacket = 0b00000000000000000000000000010000;
+  uint32_t spiPacket = 0b00000000000000000000000000000000;
+  spiPacket = spiPacket | ((!digitalRead(0)) << 5);
+  USBSerial.println(spiPacket);
 
   //Process spiPacket
   uint8_t pos = 0;
@@ -108,17 +113,18 @@ void loop()
    
   if (result == ESP_OK) 
   {
-    USBSerial.println("Sent with success");
+    //USBSerial.println("Sent with success");
   }
   else 
   {
-    USBSerial.println("Error sending the data");
+    //USBSerial.println("Error sending the data");
   }
   //send packet
 
   //Deal with LED
 
   //Deal with other stuff
-  delay(500);
-
+  //USBSerial.println(getXtalFrequencyMhz());
+  //USBSerial.println(getApbFrequency());
+  //USBSerial.println(getCpuFrequencyMhz());
 }
