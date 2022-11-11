@@ -2,7 +2,9 @@
  PKB - Full wireless split keyboard and other fun devices
 
 The goal is to make a suit of wireless devices such as "smart keyboard" (combined mouse and keyboard), LEDs, knobs, display, etc
-The first step is to make a wireless split keyboard, for the rest we will see later.
+/n The first step is to make a wireless split keyboard, for the rest we will see later.
+
+Most up to date informations are on [notion](https://swamp-zydeco-907.notion.site/PumaKeyBoard-b41d42fec8c74b02bc73637fae3648d7)
 
 ## Dongle
 The dongle is master ESP32S2, every other device should be as simple as possible ESP32C3, only sends and receive raw data
