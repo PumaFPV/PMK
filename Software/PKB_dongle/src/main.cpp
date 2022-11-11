@@ -5,8 +5,13 @@
 #include "USBHIDKeyboard.h"
 #include "USBMSC.h"
 #include "FirmwareMSC.h"
-//84:F7:03:F0:EF:72
-uint8_t leftKeyboardAddress[] = {0x84, 0xF7, 0x03, 0xF0, 0xEF, 0x72};
+
+//84:F7:03:F0:F0:BE
+uint8_t leftKeyboardAddress[] =  {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xBE};
+//84:F7:03:F0:F0:B8
+uint8_t rightKeyboardAddress[] = {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xB8};
+
+
 
 USBHIDKeyboard Keyboard;
 USBCDC USBSerial;
@@ -43,6 +48,7 @@ void setup()
   USBSerial.begin();
 
   WiFi.mode(WIFI_STA);
+  USBSerial.println(WiFi.macAddress());
 
   if (esp_now_init() != ESP_OK) {
     USBSerial.println("Error initializing ESP-NOW");

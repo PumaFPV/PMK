@@ -9,8 +9,8 @@ FirmwareMSC MSC_Update;
 USBCDC USBSerial;
 
 #include "USBHandle.h"
-//84:F7:03:F0:F0:BE
-uint8_t dongleAddress[] = {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xBE};
+//84:F7:03:F0:EF:72
+uint8_t dongleAddress[] = {0x84, 0xF7, 0x03, 0xF0, 0xEF, 0x72};
 uint8_t receivedData[16];
 
 esp_now_peer_info_t peerInfo;
@@ -54,6 +54,8 @@ void setup()
 
   WiFi.mode(WIFI_STA);
 
+  USBSerial.println(WiFi.macAddress());
+
   if (esp_now_init() != ESP_OK) {
     USBSerial.println("Error initializing ESP-NOW");
     return;
@@ -84,6 +86,8 @@ void setup()
 
 void loop() 
 {
+  USBSerial.println(WiFi.macAddress());
+
   //Read SPI from shift register
   uint32_t spiPacket = 0b00000000000000000000000000000000;
   spiPacket = spiPacket | ((!digitalRead(0)) << 5);
