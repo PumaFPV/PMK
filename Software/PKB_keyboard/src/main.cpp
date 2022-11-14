@@ -3,45 +3,21 @@
 #include "esp_now.h"
 #include "USB.h"
 #include "FirmwareMSC.h"
+#include "pmk.h"
 
 FirmwareMSC MSC_Update;
 
 USBCDC USBSerial;
 
 #include "USBHandle.h"
+#include "espNowHandle.h"
+
 //84:F7:03:F0:EF:72
 uint8_t dongleAddress[] = {0x84, 0xF7, 0x03, 0xF0, 0xEF, 0x72};
-uint8_t receivedData[16];
 
 esp_now_peer_info_t peerInfo;
 
-String success;
-
-uint8_t keyboardPacket[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-
-// Callback when data is sent
-void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) 
-{
-  //USBSerial.print("\r\nLast Packet Send Status:\t");
-  //USBSerial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
-  if (status == 0)
-  {
-    success = "Delivery Success :)";
-  }
-  else{
-    success = "Delivery Fail :(";
-  }
-}
-
-
-// Callback when data is received
-void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
-  memcpy(&receivedData, incomingData, sizeof(receivedData));
-  USBSerial.print("Bytes received: ");
-  USBSerial.println(len);
-
-}
-
+keyboardStruct keyboardPacket;
 
 void setup() 
 {
@@ -102,7 +78,7 @@ void loop()
     
     if(isKeyPressed && pos < 8)
     {
-      keyboardPacket[pos] = i;
+      keyboardPacket.key[pos] = i;
       pos++;
     }
     if(pos == 8)
