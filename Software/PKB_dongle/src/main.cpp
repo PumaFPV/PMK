@@ -7,6 +7,7 @@
 #include "USBHIDKeyboard.h"
 #include "USBMSC.h"
 #include "FirmwareMSC.h"
+#include "pmk.h"
 
 #include "FS.h"
 #include "LittleFS.h"
