@@ -1,5 +1,11 @@
 #include "Arduino.h"
 
+typedef struct packetStruct {
+    uint8_t deviceID;
+    uint8_t packetType;
+    uint8_t data[16];
+}   packetStruct;
+
 typedef struct keyboardStruct {
     uint8_t deviceID;
     const uint8_t packetType = 1;

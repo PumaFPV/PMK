@@ -116,8 +116,6 @@ void setup(){
 
 void loop()
 {
-  listDir(LittleFS, "/deviceConfig", 1);
-
   //Receive ESP-NOW packet
 
   //Figure out which command it is
@@ -125,5 +123,5 @@ void loop()
   //If special key (ctrl / shift / other) than choose correct kb layout
 
   //if USB command  -> send 
-
+  
 }
