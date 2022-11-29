@@ -52,7 +52,8 @@ gamepadStruct convertPacket2Gamepad(packetStruct packet)
   gamepadPacket.deviceID = packet.deviceID;
   gamepadPacket.x = packet.data[0];
   gamepadPacket.y = packet.data[1];
-  gamepadPacket.
+  gamepadPacket.z = packet.data[2];
+  gamepadPacket.rz = packet.data[3];
 }
 
 ledStruct convertPacket2Led(packetStruct packet)
