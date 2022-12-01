@@ -12,18 +12,18 @@
 #include "FS.h"
 #include "LittleFS.h"
 
-//84:F7:03:F0:F0:BE
-uint8_t leftKeyboardAddress = 1;
-//84:F7:03:F0:F0:B8
-uint8_t rightKeyboardAddress = 2;
+enum devices{
+  leftKeyboard,
+  rightKeyboard,
+};
 
 const uint8_t connectedDevices = 2;
 #define MAC_ADDRESS_SIZE 6
 
 uint8_t deviceAddress[connectedDevices][MAC_ADDRESS_SIZE] = 
 {
-  {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xBE}, //leftKeyboard
-  {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xB8}  //rightKeyboard
+  {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xBE}, //leftKeyboard 84:F7:03:F0:F0:BE
+  {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xB8}  //rightKeyboard 84:F7:03:F0:F0:B8
 };
 
 //FlashUSB dev;
