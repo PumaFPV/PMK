@@ -43,7 +43,7 @@ void setup()
 
   WiFi.mode(WIFI_STA);
 
-#ifdef ESP32S2
+  #ifdef ESP32S2
   USB.onEvent(usbEventCallback);
   MSC_Update.onEvent(usbEventCallback);
   MSC_Update.begin();
@@ -51,7 +51,7 @@ void setup()
   USBSerial.begin();
 
   USBSerial.println(WiFi.macAddress());
-#endif
+  #endif
   Serial.begin(115200);
 
   if(esp_now_init() != ESP_OK) {
@@ -94,26 +94,40 @@ void loop()
   FastLED.show();
   delay(500);
   
-  #endif*/
+  #endif
+  */
 
   if(Serial.available() > 0)
   {
     String command = Serial.readStringUntil('\n');
 
-    if(command == "macaddress")
+    if(command.equalsIgnoreCase("macaddress"))
     {
       Serial.print("Device MAC address is: ");
       Serial.println(WiFi.macAddress());
     }
     else
-    if(command == "id")
+    if(command.equalsIgnoreCase("id"))
     {
       uint32_t chipId = 0;
       for(int i=0; i<17; i=i+8) 
       { chipId |= ((ESP.getEfuseMac() >> (40 - i)) & 0xff) << i;}
-      Serial.printf("ESP32 modèle puce = %s Rev %d\n", ESP.getChipModel(), ESP.getChipRevision());
-	    Serial.printf("Nombre de cœurs %d cœur(s)\n", ESP.getChipCores());
-      Serial.print("Identification puce  ID: "); Serial.println(chipId);
+      Serial.printf("ESP32 model = %s Rev %d\n", ESP.getChipModel(), ESP.getChipRevision());
+	    Serial.printf("Core number %d \n", ESP.getChipCores());
+      Serial.print("Chip ID: "); Serial.println(chipId);
+    }
+    else
+    if(command.equalsIgnoreCase("setDongleMacAddress"))
+    {
+      Serial.println("Send MAC address");
+      while(Serial.available() > 0)
+      {
+        Serial.readBytesUntil('\n', dongleAddress, 6);
+        for(uint8_t i = 0; i < 7; ++i)
+        {
+          Serial.println(dongleAddress[i]);
+        }
+      }
     }
     else
     {
