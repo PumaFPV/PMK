@@ -1,15 +1,30 @@
 #include <Arduino.h>
 #include "WiFi.h"
 #include "esp_now.h"
+
+#ifdef ESP32C3
+#include "FastLED.h"
+
+#define NUM_LEDS 1
+#define DATA_PIN 7
+
+CRGB leds[NUM_LEDS];
+#endif
+
+
+#ifdef ESP32S2
 #include "USB.h"
 #include "FirmwareMSC.h"
-#include "pmk.h"
 
 FirmwareMSC MSC_Update;
 
 USBCDC USBSerial;
 
 #include "USBHandle.h"
+#endif
+
+#include "pmk.h"
+
 #include "espNowHandle.h"
 
 //84:F7:03:F0:EF:72
@@ -21,19 +36,26 @@ keyboardStruct keyboardPacket;
 
 void setup() 
 {
+  #ifdef ESP32C3
+  FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS);
+  FastLED.setBrightness(10);
+  #endif
 
+  WiFi.mode(WIFI_STA);
+
+#ifdef ESP32S2
   USB.onEvent(usbEventCallback);
   MSC_Update.onEvent(usbEventCallback);
   MSC_Update.begin();
   USBSerial.onEvent(usbEventCallback);
   USBSerial.begin();
 
-  WiFi.mode(WIFI_STA);
-
   USBSerial.println(WiFi.macAddress());
+#endif
+  Serial.begin(115200);
 
-  if (esp_now_init() != ESP_OK) {
-    USBSerial.println("Error initializing ESP-NOW");
+  if(esp_now_init() != ESP_OK) {
+    Serial.println("Error initializing ESP-NOW");
     return;
   }
 
@@ -54,20 +76,59 @@ void setup()
   // Register for a callback function that will be called when data is received
   esp_now_register_recv_cb(OnDataRecv);
 
-  pinMode(0, INPUT_PULLUP);
-  pinMode(15, OUTPUT);
+  //pinMode(0, INPUT_PULLUP);
+  //pinMode(15, OUTPUT);
 }
 
 
 
 void loop() 
 {
-  USBSerial.println(WiFi.macAddress());
+  /*
+  #ifdef ESP32C3
+  leds[0] = CRGB::Red;
+  FastLED.show();
+  delay(500);
+  // Now turn the LED off, then pause
+  leds[0] = CRGB::Black;
+  FastLED.show();
+  delay(500);
+  
+  #endif*/
+
+  if(Serial.available() > 0)
+  {
+    String command = Serial.readStringUntil('\n');
+
+    if(command == "macaddress")
+    {
+      Serial.print("Device MAC address is: ");
+      Serial.println(WiFi.macAddress());
+    }
+    else
+    if(command == "id")
+    {
+      uint32_t chipId = 0;
+      for(int i=0; i<17; i=i+8) 
+      { chipId |= ((ESP.getEfuseMac() >> (40 - i)) & 0xff) << i;}
+      Serial.printf("ESP32 modèle puce = %s Rev %d\n", ESP.getChipModel(), ESP.getChipRevision());
+	    Serial.printf("Nombre de cœurs %d cœur(s)\n", ESP.getChipCores());
+      Serial.print("Identification puce  ID: "); Serial.println(chipId);
+    }
+    else
+    {
+      Serial.println("Invalid command");
+    }
+  }
+
+
+  /*
+  Serial.println(WiFi.macAddress());
 
   //Read SPI from shift register
   uint32_t spiPacket = 0b00000000000000000000000000000000;
   spiPacket = spiPacket | ((!digitalRead(0)) << 5);
-  USBSerial.println(spiPacket);
+  Serial.println(spiPacket);
 
   //Process spiPacket
   uint8_t pos = 0;
@@ -83,7 +144,7 @@ void loop()
     }
     if(pos == 8)
     {
-      USBSerial.println("maximum 8 keys pressed");
+      Serial.println("maximum 8 keys pressed");
     }
   }
 
@@ -93,11 +154,11 @@ void loop()
    
   if (result == ESP_OK) 
   {
-    //USBSerial.println("Sent with success");
+    Serial.println("Sent with success");
   }
   else 
   {
-    //USBSerial.println("Error sending the data");
+    Serial.println("Error sending the data");
   }
   //send packet
 
@@ -107,4 +168,13 @@ void loop()
   //USBSerial.println(getXtalFrequencyMhz());
   //USBSerial.println(getApbFrequency());
   //USBSerial.println(getCpuFrequencyMhz());
+
+  while(Serial.available() > 0) 
+  {
+    // read incoming serial data:
+    char inChar = Serial.read();
+    // Type the next ASCII value from what you received:
+    Serial.print(inChar + 1);
+  }
+  */
 }

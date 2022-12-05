@@ -7,16 +7,14 @@
 #include "USBHIDKeyboard.h"
 #include "USBMSC.h"
 #include "FirmwareMSC.h"
+#include "FS.h"
+#include "LittleFS.h"
 
 USBHIDKeyboard Keyboard;
 USBCDC USBSerial;
-USBMSC MSC;
-FirmwareMSC MSC_Update;
+//USBMSC MSC;
+//FirmwareMSC MSC_Update;
 
-#include "pmk.h"
-
-#include "FS.h"
-#include "LittleFS.h"
 
 enum devices{
   leftKeyboard,
@@ -38,11 +36,11 @@ uint8_t deviceAddress[connectedDevices][MAC_ADDRESS_SIZE] =
 //char *l2 = "ffat1";
 
 
-
-#include "MSCHandle.h"
+#include "pmk.h"
+//#include "MSCHandle.h"
 #include "USBHandle.h"
 #include "espNowHandle.h"
-#include "fsHandle.h"
+//#include "fsHandle.h"
 
 
 void setup(){
@@ -61,29 +59,42 @@ void setup(){
   //}
 
 
+  //===========================================
+  //====================USB====================
+  //===========================================
+
   Keyboard.begin();
   USB.begin();
 
   USB.onEvent(usbEventCallback);
 
-  MSC_Update.onEvent(usbEventCallback);
-  MSC_Update.begin();
-  MSC.vendorID("ESP32");//max 8 chars
-  MSC.productID("USB_MSC");//max 16 chars
-  MSC.productRevision("1.0");//max 4 chars
-  MSC.onStartStop(onStartStop);
-  MSC.onRead(onRead);
-  MSC.onWrite(onWrite);
-  MSC.mediaPresent(true);
-  MSC.begin(DISK_SECTOR_COUNT, DISK_SECTOR_SIZE);
+  //MSC_Update.onEvent(usbEventCallback);
+  //MSC_Update.begin();
+  //MSC.vendorID("ESP32");//max 8 chars
+  //MSC.productID("USB_MSC");//max 16 chars
+  //MSC.productRevision("1.0");//max 4 chars
+  //MSC.onStartStop(onStartStop);
+  //MSC.onRead(onRead);
+  //MSC.onWrite(onWrite);
+  //MSC.mediaPresent(true);
+  //MSC.begin(DISK_SECTOR_COUNT, DISK_SECTOR_SIZE);
 
   USBSerial.onEvent(usbEventCallback);
   USBSerial.begin();
 
-  if(!LittleFS.begin(FORMAT_LITTLEFS_IF_FAILED)){
-    USBSerial.println("LITTLEFS Mount Failed");
-    return;
-  }
+
+  //===================================================
+  //====================File System====================
+  //===================================================
+
+  //if(!LittleFS.begin(FORMAT_LITTLEFS_IF_FAILED)){
+  //  USBSerial.println("LITTLEFS Mount Failed");
+  //  return;
+  //}
+
+  //====================================================
+  //====================Wifi/ESP Now====================
+  //====================================================
 
   WiFi.mode(WIFI_STA);
   USBSerial.println(WiFi.macAddress());
@@ -93,15 +104,15 @@ void setup(){
     return;
   }
 
-  // Once ESPNow is successfully Init, we will register for Send CB to
-  // get the status of Trasnmitted packet
   esp_now_register_send_cb(OnDataSent);
+
+  esp_now_register_recv_cb(OnDataRecv);
   
-  // Register peer
+  //Register peer
   peerInfo.channel = 0;  
   peerInfo.encrypt = false;
 
-  // Add peer    
+  //Add peer    
   for(uint8_t i = 0; i < connectedDevices; i++)
   {
     memcpy(peerInfo.peer_addr, deviceAddress[connectedDevices], 6);
@@ -113,8 +124,6 @@ void setup(){
   }
 
 
-  // Register for a callback function that will be called when data is received
-  esp_now_register_recv_cb(OnDataRecv);
 }
 
 void loop()
@@ -126,5 +135,30 @@ void loop()
   //If special key (ctrl / shift / other) than choose correct kb layout
 
   //if USB command  -> send 
+  USBSerial.println("loop");
+  delay(100);
+    while(USBSerial.available() > 0) 
+    {
+      // read incoming serial data:
+      char inChar = USBSerial.read();
+      // Type the next ASCII value from what you received:
+      Keyboard.write(inChar + 1);
+    }
+/*
+  if(USBSerial.available())
+  {
+    char command = USBSerial.read();
+    USBSerial.println(command);
+    
+    if(command == ("macaddress"))
+    {
+      USBSerial.print("Device MAC address is: ");
+      USBSerial.println(WiFi.macAddress());
+    }
+    else
+    {
+      USBSerial.println("Invalid command");
+    }
+  }*/
   
 }

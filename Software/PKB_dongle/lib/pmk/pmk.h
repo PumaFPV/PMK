@@ -214,6 +214,8 @@ void handleReceivedPacket(packetStruct receivedPacket)
                 
             }
         }
-    break;
+        break;
+    case 2: //Mouse
+        break;
     } 
 }
