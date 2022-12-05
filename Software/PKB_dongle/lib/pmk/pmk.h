@@ -82,15 +82,6 @@ typedef struct serialStruct {
     uint8_t packet[8];
 }   serialStruct;
 
-// keyboardStruct  convertPacket2Keyboard(packetStruct packet);
-// mouseStruct     convertPacket2Mouse(packetStruct packet);
-// gamepadStruct   convertPacket2Gamepad(packetStruct packet);
-// ledStruct       convertPacket2Led(packetStruct packet);
-// knobStruct      convertPacket2Knob(packetStruct packet);
-// actuatorStruct  convertPacket2Actuator(packetStruct packet);
-// displayStruct   convertPacket2Display(packetStruct packet);
-// telemetryStruct convertPacket2Telemetry(packetStruct packet);
-// serialStruct    convertPacket2Serial(packetStruct packet);
 
 packetStruct receivedPacket;
 
@@ -104,7 +95,7 @@ displayStruct displayPacket;
 telemetryStruct telemetryPacket;
 serialStruct serialPacket;
 
-keyboardStruct convertPacket2Keyboard(packetStruct packet)
+void convertPacket2Keyboard(packetStruct packet)
 {
     keyboardPacket.deviceID = packet.deviceID;
     keyboardPacket.key[0] = packet.data[0];
@@ -115,10 +106,9 @@ keyboardStruct convertPacket2Keyboard(packetStruct packet)
     keyboardPacket.key[5] = packet.data[5];
     keyboardPacket.key[6] = packet.data[6];
     keyboardPacket.key[7] = packet.data[7];
-    return keyboardPacket;
 }
 
-mouseStruct convertPacket2Mouse(packetStruct packet)
+void convertPacket2Mouse(packetStruct packet)
 {
     mousePacket.deviceID = packet.deviceID;
     mousePacket.x = packet.data[0];
@@ -126,10 +116,9 @@ mouseStruct convertPacket2Mouse(packetStruct packet)
     mousePacket.w = packet.data[2];
     mousePacket.p = packet.data[3];
     mousePacket.k = packet.data[4];
-    return mousePacket;
 }
 
-gamepadStruct convertPacket2Gamepad(packetStruct packet)
+void convertPacket2Gamepad(packetStruct packet)
 {
     gamepadPacket.deviceID = packet.deviceID;
     gamepadPacket.x = packet.data[0];
@@ -144,64 +133,87 @@ gamepadStruct convertPacket2Gamepad(packetStruct packet)
     {
         gamepadPacket.buttons[i] = packet.data[7+i];
     }
-    return gamepadPacket;
 }
 
-ledStruct convertPacket2Led(packetStruct packet)
+void convertPacket2Led(packetStruct packet)
 {
     ledPacket.deviceID = packet.deviceID;
     ledPacket.function = packet.data[0];
     ledPacket.red = packet.data[1];
     ledPacket.green = packet.data[2];
     ledPacket.blue = packet.data[3];
-    return ledPacket;
 }
 
-knobStruct convertPacket2Knob(packetStruct packet)
+void convertPacket2Knob(packetStruct packet)
 {
     knobPacket.deviceID = packet.deviceID;  
     for(uint8_t i = 0; i < 7; ++i)
     {
       knobPacket.knob[i] = packet.data[i];
     }
-    return knobPacket;
 }
 
-actuatorStruct convertPacket2Actuator(packetStruct packet)
+void convertPacket2Actuator(packetStruct packet)
 {
     actuatorPacket.deviceID = packet.deviceID;
     actuatorPacket.function = packet.data[0];
     actuatorPacket.position = packet.data[1];
     actuatorPacket.command = packet.data[2];
-    return actuatorPacket;
 }
 
-displayStruct convertPacket2Display(packetStruct packet)
+void convertPacket2Display(packetStruct packet)
 {
     displayPacket.deviceID = packet.deviceID;
     displayPacket.image = packet.data[0];
     displayPacket.x = packet.data[1];
     displayPacket.y = packet.data[2];
     displayPacket.brightness = packet.data[3];
-    return displayPacket;
 }
 
-telemetryStruct convertPacket2Telemetry(packetStruct packet)
+void convertPacket2Telemetry(packetStruct packet)
 {
     telemetryPacket.deviceID = packet.deviceID;
     telemetryPacket.battery = packet.data[0];
     telemetryPacket.temperature = packet.data[1];
     telemetryPacket.macAddress = packet.data[2];
     telemetryPacket.error = packet.data[3];
-    return telemetryPacket;
 }   
 
-serialStruct convertPacket2Serial(packetStruct packet)
+void convertPacket2Serial(packetStruct packet)
 {
     serialPacket.deviceID = packet.deviceID;
     for(uint8_t i = 0; i < 7; ++i)
     {
       serialPacket.packet[i] = packet.data[i];
     }
-    return serialPacket;
+}
+
+uint8_t packet2key(uint8_t deviceID, uint8_t key[8])
+{
+    /*
+    if(modifierKeyIsPressed)
+    */
+}
+
+void handleReceivedPacket(packetStruct receivedPacket)
+{
+    switch(receivedPacket.packetType)
+    {
+    case 0:
+        USBSerial.println("Non existant packetType");
+        break;
+    case 1: //Keyboard
+        convertPacket2Keyboard(receivedPacket);
+        for(uint8_t i = 0; i < 8; i++)
+        {
+            if(keyboardPacket.key[i] =! 0)
+            {
+                //packet2key(keyboardPacket.deviceID, keyboardPacket.key);
+                USBSerial.println(keyboardPacket.key[i]);
+                Keyboard.print(keyboardPacket.key[i]);
+                
+            }
+        }
+    break;
+    } 
 }

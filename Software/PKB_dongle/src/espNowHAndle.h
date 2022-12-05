@@ -1,4 +1,4 @@
-#include "pmk.h"
+#include "Arduino.h"
 
 esp_now_peer_info_t peerInfo;
 
@@ -24,25 +24,11 @@ void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)
 void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   memcpy(&receivedPacket, incomingData, sizeof(receivedPacket));
   
-  switch(receivedPacket.packetType)
-  {
-    case 0:
-      USBSerial.println("Error on packetType");
-      break;
-    case 1: //Keyboard
-      convertPacket2Keyboard();
-      for(uint8_t i = 0; i < 8; i++)
-      {
-        if(keyboardPacket.key[i] =! 0)
-        {
-          //USBSerial.println(keyboardPacket[i]);
-          //Keyboard.print(keyboardPacket[i]);
-        }
-      }
-      break;
-  }
+  handleReceivedPacket(receivedPacket);
+
   
   //USBSerial.print("Bytes received: ");
   //USBSerial.println(len);
 
 }
+

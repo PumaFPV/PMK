@@ -7,6 +7,12 @@
 #include "USBHIDKeyboard.h"
 #include "USBMSC.h"
 #include "FirmwareMSC.h"
+
+USBHIDKeyboard Keyboard;
+USBCDC USBSerial;
+USBMSC MSC;
+FirmwareMSC MSC_Update;
+
 #include "pmk.h"
 
 #include "FS.h"
@@ -31,10 +37,7 @@ uint8_t deviceAddress[connectedDevices][MAC_ADDRESS_SIZE] =
 //char *l1 = "ffat";
 //char *l2 = "ffat1";
 
-USBHIDKeyboard Keyboard;
-USBCDC USBSerial;
-USBMSC MSC;
-FirmwareMSC MSC_Update;
+
 
 #include "MSCHandle.h"
 #include "USBHandle.h"
