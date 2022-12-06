@@ -117,17 +117,20 @@ void loop()
       Serial.print("Chip ID: "); Serial.println(chipId);
     }
     else
-    if(command.equalsIgnoreCase("setDongleMacAddress"))
+    if(command.indexOf("setDongleMacAddress") >= 0)
     {
-      Serial.println("Send MAC address");
-      while(Serial.available() > 0)
+      //Expected command: setDongleMacAddress=84:F7:03:F0:EF:72
+      uint8_t macAddressStart = command.indexOf("=");
+      Serial.println(macAddressStart); //should return 19
+      uint8_t columnStart = command.indexOf(":");
+      Serial.println(columnStart); //should return 22
+      
+      for(uint8_t i = 0; i < 5; ++i)
       {
-        Serial.readBytesUntil('\n', dongleAddress, 6);
-        for(uint8_t i = 0; i < 7; ++i)
-        {
-          Serial.println(dongleAddress[i]);
-        }
+        String macSubAddress = command.substring(macAddressStart + i, columnStart + i);
+        dongleAddress[i] = macSubAddress.toInt();
       }
+
     }
     else
     {
