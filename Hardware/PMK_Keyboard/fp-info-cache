@@ -1,4 +1,4 @@
-20446015599350008
+20478591853195207
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -6663,6 +6663,13 @@ Transistor
 0
 6
 6
+Component_lib
+pmk-v1
+
+
+0
+0
+0
 Component_lib
 puma_logo
 
@@ -51107,6 +51114,20 @@ Diode SOD923
 2
 2
 Diode_SMD
+D_SOT-23_ANK
+SOT-23, Single Diode
+SOT-23
+0
+3
+2
+Diode_SMD
+D_SOT-23_NKA
+SOT-23, Single Diode
+SOT-23
+0
+3
+2
+Diode_SMD
 D_TUMD2
 ROHM - TUMD2
 TUMD2
@@ -57035,6 +57056,139 @@ solder jumper open
 0
 5
 3
+Keyswitch
+Kailh_socket_MX
+MX-style keyswitch with Kailh socket mount
+MX,cherry,gateron,kailh,pg1511,socket
+0
+2
+2
+Keyswitch
+Kailh_socket_MX_optional
+MX-style keyswitch with support for optional Kailh socket
+MX,cherry,gateron,kailh,pg1511,socket
+0
+4
+2
+Keyswitch
+Kailh_socket_MX_optional_platemount
+MX-style keyswitch with support for optional Kailh socket
+MX,cherry,gateron,kailh,pg1511,socket
+0
+4
+2
+Keyswitch
+Kailh_socket_MX_optional_reversible
+MX-style keyswitch with support for reversible optional Kailh socket
+MX,cherry,gateron,kailh,pg1511,socket
+0
+8
+2
+Keyswitch
+Kailh_socket_MX_optional_reversible_platemount
+MX-style keyswitch with support for reversible optional Kailh socket
+MX,cherry,gateron,kailh,pg1511,socket
+0
+8
+2
+Keyswitch
+Kailh_socket_MX_platemount
+MX-style keyswitch with Kailh socket mount
+MX,cherry,gateron,kailh,pg1511,socket
+0
+2
+2
+Keyswitch
+Kailh_socket_MX_reversible
+MX-style keyswitch with reversible Kailh socket mount
+MX,cherry,gateron,kailh,pg1511,socket
+0
+4
+2
+Keyswitch
+Kailh_socket_MX_reversible_platemount
+MX-style keyswitch with reversible Kailh socket mount
+MX,cherry,gateron,kailh,pg1511,socket
+0
+4
+2
+Keyswitch
+Kailh_socket_PG1350
+Kailh "Choc" PG1350 keyswitch socket mount
+kailh,choc
+0
+2
+2
+Keyswitch
+Kailh_socket_PG1350_optional
+Kailh "Choc" PG1350 keyswitch with optional socket mount
+kailh,choc
+0
+4
+2
+Keyswitch
+Kailh_socket_PG1350_optional_reversible
+Kailh "Choc" PG1350 keyswitch with optional socket mount, reversible
+kailh,choc
+0
+7
+2
+Keyswitch
+Kailh_socket_PG1350_reversible
+Kailh "Choc" PG1350 keyswitch reversible socket mount
+kailh,choc
+0
+4
+2
+Keyswitch
+SW_MX
+MX-style keyswitch
+MX,cherry,gateron,kailh
+0
+2
+2
+Keyswitch
+SW_MX_reversible
+MX-style keyswitch, reversible
+MX,cherry,gateron,kailh
+0
+4
+2
+Keyswitch
+SW_MX_reversible_minimal
+MX-style keyswitch, reversible, without pcb-mount holes
+MX,cherry,gateron,kailh
+0
+4
+2
+Keyswitch
+SW_PG1350
+Kailh "Choc" PG1350 keyswitch
+kailh,choc
+0
+2
+2
+Keyswitch
+SW_PG1350_reversible
+Kailh "Choc" PG1350 keyswitch, able to be mounted on front or back of PCB
+kailh,choc
+0
+3
+2
+Keyswitch
+SW_PG1350_reversible_rotatable
+Kailh "Choc" PG1350 keyswitch, able to be mounted on front or back of PCB and/or rotated 90 degrees (see README)
+kailh,choc
+0
+6
+2
+Keyswitch
+Stabilizer_MX_2u
+MX-style stabilizer mount
+MX,cherry,gateron,kailh,pg1511,stabilizer,stab
+0
+0
+0
 LED_SMD
 LED-APA102-2020
 http://www.led-color.com/upload/201604/APA102-2020%20SMD%20LED.pdf
@@ -75508,27 +75662,6 @@ TO-264-5 Vertical RM 3.81mm
 0
 5
 5
-PiHAT
-MountingHole_2.7mm_M2.5_uHAT_RPi
-Mounting Hole 2.7mm, no annular, M2.5
-mounting hole 2.7mm no annular m2.5
-0
-0
-0
-PiHAT
-MountingHole_2.75mm
-
-mounting hole 2.75mm no annular
-0
-0
-0
-PiHAT
-PinSocket_2x20_P2.54mm_Vertical_Centered_Anchor
-Through hole straight socket strip, 2x20, 2.54mm pitch, double cols (from Kicad 4.0.7), script generated
-Through hole socket strip THT 2x20 2.54mm double row
-0
-40
-40
 Potentiometer_SMD
 Potentiometer_ACP_CA6-VSMD_Vertical
 Potentiometer, vertical, ACP CA6-VSMD, http://www.acptechnologies.com/wp-content/uploads/2017/06/01-ACP-CA6.pdf
