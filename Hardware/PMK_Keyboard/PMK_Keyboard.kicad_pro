@@ -384,7 +384,7 @@
       "idf": "",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "PMK_Keyboard.step",
+      "step": "../../Mecha/PMK_Keyboard.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""
