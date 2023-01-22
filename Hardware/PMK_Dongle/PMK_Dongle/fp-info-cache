@@ -1,4 +1,4 @@
-20449204165462704
+20454234492021712
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -6349,6 +6349,13 @@ Integrated Circuit
 49
 49
 Component_lib
+EXB2HV_1
+EXB2HV_1
+Resistor Network
+0
+16
+16
+Component_lib
 FH12-12S-0.5SH_55_
 FH12-12S-0.5SH(55)
 Connector
@@ -6469,7 +6476,7 @@ Integrated Circuit
 57
 Component_lib
 QFN50P300X300X100-17N-D
-BQ24075RGTR
+LP5912-5.0DRVT
 Integrated Circuit
 0
 17
@@ -6671,7 +6678,21 @@ Transistor
 6
 6
 Component_lib
+USB_PCB
+
+
+0
+0
+0
+Component_lib
 pmk-v1
+
+
+0
+0
+0
+Component_lib
+pmk-v1-noFN
 
 
 0
