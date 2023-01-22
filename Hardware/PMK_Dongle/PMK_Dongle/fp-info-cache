@@ -1,4 +1,4 @@
-20454234492021712
+20454242861011608
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -6679,11 +6679,11 @@ Transistor
 6
 Component_lib
 USB_PCB
-
-
+USB A male PCB connector
+USB A PCB connector
 0
-0
-0
+4
+4
 Component_lib
 pmk-v1
 
