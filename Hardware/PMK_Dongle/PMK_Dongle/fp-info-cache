@@ -1,4 +1,4 @@
-20457823465937175
+20455929403109242
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -6321,6 +6321,13 @@ Capacitor
 2
 2
 Component_lib
+Crystal_SMD_2016-4Pin_2.0x1.6mm
+SMD Crystal SERIES SMD2016/4 http://www.q-crystal.com/upload/5/2015552223166229.pdf, 2.0x1.6mm^2 package
+SMD SMT crystal
+0
+4
+4
+Component_lib
 E28-2G4M27S
 
 
@@ -6700,20 +6707,6 @@ pmk-v1-noFN
 0
 Component_lib
 puma_logo
-
-
-0
-0
-0
-Component_lib
-puma_logo_4mm
-
-
-0
-0
-0
-Component_lib
-puma_logo_5mm
 
 
 0
@@ -51156,6 +51149,20 @@ Diode SOD923
 2
 2
 Diode_SMD
+D_SOT-23_ANK
+SOT-23, Single Diode
+SOT-23
+0
+3
+2
+Diode_SMD
+D_SOT-23_NKA
+SOT-23, Single Diode
+SOT-23
+0
+3
+2
+Diode_SMD
 D_TUMD2
 ROHM - TUMD2
 TUMD2
@@ -75557,27 +75564,6 @@ TO-264-5 Vertical RM 3.81mm
 0
 5
 5
-PiHAT
-MountingHole_2.7mm_M2.5_uHAT_RPi
-Mounting Hole 2.7mm, no annular, M2.5
-mounting hole 2.7mm no annular m2.5
-0
-0
-0
-PiHAT
-MountingHole_2.75mm
-
-mounting hole 2.75mm no annular
-0
-0
-0
-PiHAT
-PinSocket_2x20_P2.54mm_Vertical_Centered_Anchor
-Through hole straight socket strip, 2x20, 2.54mm pitch, double cols (from Kicad 4.0.7), script generated
-Through hole socket strip THT 2x20 2.54mm double row
-0
-40
-40
 Potentiometer_SMD
 Potentiometer_ACP_CA6-VSMD_Vertical
 Potentiometer, vertical, ACP CA6-VSMD, http://www.acptechnologies.com/wp-content/uploads/2017/06/01-ACP-CA6.pdf
