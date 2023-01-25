@@ -7,9 +7,9 @@
     "high_contrast_mode": 0,
     "net_color_mode": 1,
     "opacity": {
-      "pads": 1.0,
-      "tracks": 1.0,
-      "vias": 1.0,
+      "pads": 0.5299999713897705,
+      "tracks": 0.8299999833106995,
+      "vias": 0.49000000953674316,
       "zones": 0.6
     },
     "ratsnest_display_mode": 0,
@@ -61,7 +61,7 @@
       35,
       36
     ],
-    "visible_layers": "8031530_7fffffff",
+    "visible_layers": "8031130_7fffffff",
     "zone_display_mode": 0
   },
   "meta": {
