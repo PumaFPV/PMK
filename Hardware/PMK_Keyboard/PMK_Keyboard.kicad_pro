@@ -441,6 +441,30 @@
     [
       "c3b08055-08a5-4979-9bf8-f36ab0917722",
       ""
+    ],
+    [
+      "cf9fd53d-a626-44ae-9c40-26b02d8cda14",
+      "100- Connectors"
+    ],
+    [
+      "c339a531-e52a-46f8-bd80-af914d1773b4",
+      "200- Power"
+    ],
+    [
+      "2d6b4425-2527-49bd-b090-a8cc21f6a212",
+      "300- 1S_Charger"
+    ],
+    [
+      "38b3fafb-a86a-4dac-a282-53c1331aa596",
+      "400- ESP32S2FH4S2"
+    ],
+    [
+      "2ae89e7d-b59a-451e-9e36-5967d907d91f",
+      "500- Shift Register - Switch"
+    ],
+    [
+      "de772aea-8077-418d-aac4-895dc19d22de",
+      "600- LEDs"
     ]
   ],
   "text_variables": {}

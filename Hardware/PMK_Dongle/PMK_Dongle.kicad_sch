@@ -3198,7 +3198,7 @@
     (property "Reference" "C2" (id 0) (at 157.861 71.5553 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "10u" (id 1) (at 157.861 74.0922 0)
+    (property "Value" "2u2" (id 1) (at 157.861 74.0922 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (id 2) (at 155.9052 76.2 0)
@@ -3300,7 +3300,7 @@
     (property "Reference" "C1" (id 0) (at 117.221 71.5553 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "10u" (id 1) (at 117.221 74.0922 0)
+    (property "Value" "2u2" (id 1) (at 117.221 74.0922 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (id 2) (at 115.2652 76.2 0)
@@ -3460,10 +3460,10 @@
       (reference "ANT1") (unit 1) (value "2450AT18A100E") (footprint "Component_lib:ANTC3216X140N")
     )
     (path "/fad526eb-f434-405a-8637-a318b4eb6d87"
-      (reference "C1") (unit 1) (value "10u") (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (reference "C1") (unit 1) (value "2u2") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/e7f5af2d-fef3-4584-b3e3-56f0c16949da"
-      (reference "C2") (unit 1) (value "10u") (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (reference "C2") (unit 1) (value "2u2") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/c218e4a4-9e59-473a-8d25-3c1d0f722ba6"
       (reference "C3") (unit 1) (value "15p") (footprint "Capacitor_SMD:C_0201_0603Metric")
