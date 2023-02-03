@@ -400,7 +400,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 0,
+    "annotate_start_num": 200,
     "drawing": {
       "default_line_thickness": 6.0,
       "default_text_size": 50.0,
@@ -448,11 +448,11 @@
     ],
     [
       "c339a531-e52a-46f8-bd80-af914d1773b4",
-      "200- Power"
+      "300- Power"
     ],
     [
       "2d6b4425-2527-49bd-b090-a8cc21f6a212",
-      "300- 1S_Charger"
+      "200- 1S_Charger"
     ],
     [
       "38b3fafb-a86a-4dac-a282-53c1331aa596",
