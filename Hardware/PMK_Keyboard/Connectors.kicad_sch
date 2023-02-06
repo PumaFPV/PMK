@@ -4,6 +4,14 @@
 
   (paper "A4")
 
+  (title_block
+    (title "PMK_Keyboard")
+    (date "2023-02-06")
+    (rev "HW00")
+    (company "PumaCorp")
+    (comment 1 "Design by: NdG")
+  )
+
   (lib_symbols
     (symbol "Component lib:R" (pin_numbers hide) (pin_names (offset 0)) (in_bom yes) (on_board yes)
       (property "Reference" "R" (id 0) (at 2.032 -3.81 90)

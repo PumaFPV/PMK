@@ -4,6 +4,14 @@
 
   (paper "A4")
 
+  (title_block
+    (title "PMK_Keyboard")
+    (date "2023-02-06")
+    (rev "HW00")
+    (company "PumaCorp")
+    (comment 1 "Design by: NdG")
+  )
+
   (lib_symbols
     (symbol "Component lib:BQ24075RGTR" (pin_names (offset 0.762)) (in_bom yes) (on_board yes)
       (property "Reference" "U" (id 0) (at 0 10.16 0)
