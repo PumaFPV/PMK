@@ -1374,8 +1374,8 @@
     (path "/de772aea-8077-418d-aac4-895dc19d22de/ad546deb-c5a3-4986-92d6-586a037844d2"
       (reference "D640") (unit 1) (value "YF923_2020_WS2812_LED") (footprint "Component_lib:YF923_2020_WS2812_LED_DUALSIDE")
     )
-    (path "/cf9fd53d-a626-44ae-9c40-26b02d8cda14/f1e777e2-bfd3-4748-a5c5-975b8ca740a8"
-      (reference "J101") (unit 1) (value "USB_C_Receptacle_USB2.0") (footprint "Connector_USB:USB_C_Plug_Molex_105444")
+    (path "/cf9fd53d-a626-44ae-9c40-26b02d8cda14/ff95c019-dd39-405b-8ee6-b240f96a7551"
+      (reference "J101") (unit 1) (value "216990-0003") (footprint "Component_lib:2169900003")
     )
     (path "/cf9fd53d-a626-44ae-9c40-26b02d8cda14/e2b06392-75bb-4167-8aed-05cc8cbb4c0a"
       (reference "J102") (unit 1) (value "Conn_01x02_MountingPin") (footprint "")
@@ -1614,8 +1614,8 @@
     (path "/2ae89e7d-b59a-451e-9e36-5967d907d91f/9d8740f7-ec6b-4a0c-91db-9cd239fe8907"
       (reference "U505") (unit 1) (value "SN74HC165PWR") (footprint "Component_lib:SOP65P640X120-16N")
     )
-    (path "/38b3fafb-a86a-4dac-a282-53c1331aa596/da84df8c-2ea0-4e46-8a7c-0774917e0aa7"
-      (reference "Y401") (unit 1) (value "40MHz") (footprint "Component_lib:Crystal_SMD_2016-4Pin_2.0x1.6mm")
+    (path "/38b3fafb-a86a-4dac-a282-53c1331aa596/71ebd0c0-9084-4df3-9042-c25c0ccb0c93"
+      (reference "Y401") (unit 1) (value "Crystal_GND23_Small") (footprint "Component_lib:Crystal_SMD_2016-4Pin_2.0x1.6mm")
     )
   )
 )
