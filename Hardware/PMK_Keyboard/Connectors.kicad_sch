@@ -737,7 +737,7 @@
   (symbol (lib_id "Device:Battery_Cell") (at 48.26 137.16 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 0d15195d-eb9c-4cbb-9eb6-6e5f04d3ac09)
-    (property "Reference" "BT601" (at 51.181 134.4843 0)
+    (property "Reference" "BT101" (at 51.181 134.4843 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "Battery_Cell" (at 51.181 136.4053 0)
@@ -754,7 +754,7 @@
     (instances
       (project "PMK_Keyboard"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
-          (reference "BT601") (unit 1)
+          (reference "BT101") (unit 1)
         )
       )
     )
