@@ -13,10 +13,11 @@
 #define SR_CE 5
 #define SR_PL 7
 
-
 static const int srSpiClk = 1000000; // 1 MHz
 
 SPIClass * srSpi = NULL;
+SPISettings settingsA(2000000, MSBFIRST, SPI_MODE0);
+
 
 #define NUM_LEDS 1
 #define LED_DATA_PIN 9
@@ -24,7 +25,6 @@ SPIClass * srSpi = NULL;
 CRGB leds[NUM_LEDS];
 
 
-#ifdef ESP32S2
 #include "USB.h"
 #include "FirmwareMSC.h"
 
@@ -33,7 +33,6 @@ FirmwareMSC MSC_Update;
 USBCDC USBSerial;
 
 #include "USBHandle.h"
-#endif
 
 #include "pmk.h"
 
@@ -44,6 +43,8 @@ uint8_t dongleAddress[] = {0x84, 0xF7, 0x03, 0xF0, 0xEF, 0x72};
 
 esp_now_peer_info_t peerInfo;
 
+
+telemetryStruct telemetryPacket;
 keyboardStruct keyboardPacket;
 
 
@@ -109,26 +110,33 @@ void loop()
   //Read SPI from shift register
   uint32_t spiPacket[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
 
-  spiPacket = spiPacket | ((!digitalRead(0)) << 5);
-  Serial.println(spiPacket);
-
-  //Process spiPacket
-  uint8_t pos = 0;
-
-  for(uint8_t i = 0; i < 32; i++)
+  srSpi->beginTransaction(settingsA);
+  for(uint8_t packet = 0; packet < 4; packet++)
   {
-    bool isKeyPressed = spiPacket & (0b1 << i);
-    
-    if(isKeyPressed && pos < 8)
+    spiPacket[packet] = srSpi->transfer(0);
+  }
+
+  //Read pressed keys
+  uint8_t numberOfPressedKeys = 0;
+
+  for(uint8_t packet = 0; packet < 4; packet++)
+  {
+    for(uint8_t bit = 0; bit < 7; bit++)
     {
-      keyboardPacket.key[pos] = i;
-      pos++;
-    }
-    if(pos == 8)
-    {
-      Serial.println("maximum 8 keys pressed");
+      bool isKeyPressed = spiPacket[packet] & (0b1 << bit);
+
+      if(isKeyPressed == 1 && numberOfPressedKeys < 8)
+      {
+        keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit;
+        numberOfPressedKeys++;
+      }
+      if(numberOfPressedKeys == 8)
+      {
+        telemetryPacket.error = tooManyKeysPressed;
+      }
     }
   }
+
 
   //Send all pressed keys to packet
   // Send message via ESP-NOW
@@ -158,15 +166,9 @@ void loop()
     // Type the next ASCII value from what you received:
     Serial.print(inChar + 1);
   }
-  */
+  
 }
 
-uint8_t readSrData(SPIClass *spi, )
-{
-  uint8_t srData[5];
-
-  return srData;
-}
 
 void readUARTCommand()
 {
