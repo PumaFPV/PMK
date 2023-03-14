@@ -1,15 +1,27 @@
 #include <Arduino.h>
+
+#include "SPI.h"
+
 #include "WiFi.h"
 #include "esp_now.h"
 
-#ifdef ESP32C3
 #include "FastLED.h"
 
+#define SR_SPI_BUS 1 //Which SPI bus to use for this SPI object
+#define SR_MISO 8
+#define SR_CLK 6
+#define SR_CE 5
+#define SR_PL 7
+
+
+static const int srSpiClk = 1000000; // 1 MHz
+
+SPIClass * srSpi = NULL;
+
 #define NUM_LEDS 1
-#define DATA_PIN 7
+#define LED_DATA_PIN 9
 
 CRGB leds[NUM_LEDS];
-#endif
 
 
 #ifdef ESP32S2
@@ -34,16 +46,23 @@ esp_now_peer_info_t peerInfo;
 
 keyboardStruct keyboardPacket;
 
+
+
 void setup() 
 {
-  #ifdef ESP32C3
-  FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS);
+
+  //Initialize SPI for SR
+  srSpi = new SPIClass(SR_SPI_BUS);
+  
+  srSpi->begin(SR_CLK, SR_MISO, -1, SR_CE);
+  pinMode(srSpi->pinSS(), OUTPUT);
+
+
+  FastLED.addLeds<WS2812B, LED_DATA_PIN, RGB>(leds, NUM_LEDS);
   FastLED.setBrightness(10);
-  #endif
 
   WiFi.mode(WIFI_STA);
 
-  #ifdef ESP32S2
   USB.onEvent(usbEventCallback);
   MSC_Update.onEvent(usbEventCallback);
   MSC_Update.begin();
@@ -51,7 +70,7 @@ void setup()
   USBSerial.begin();
 
   USBSerial.println(WiFi.macAddress());
-  #endif
+
   Serial.begin(115200);
 
   if(esp_now_init() != ESP_OK) {
@@ -84,66 +103,12 @@ void setup()
 
 void loop() 
 {
-  /*
-  #ifdef ESP32C3
-  leds[0] = CRGB::Red;
-  FastLED.show();
-  delay(500);
-  // Now turn the LED off, then pause
-  leds[0] = CRGB::Black;
-  FastLED.show();
-  delay(500);
   
-  #endif
-  */
-
-  if(Serial.available() > 0)
-  {
-    String command = Serial.readStringUntil('\n');
-
-    if(command.equalsIgnoreCase("macaddress"))
-    {
-      Serial.print("Device MAC address is: ");
-      Serial.println(WiFi.macAddress());
-    }
-    else
-    if(command.equalsIgnoreCase("id"))
-    {
-      uint32_t chipId = 0;
-      for(int i=0; i<17; i=i+8) 
-      { chipId |= ((ESP.getEfuseMac() >> (40 - i)) & 0xff) << i;}
-      Serial.printf("ESP32 model = %s Rev %d\n", ESP.getChipModel(), ESP.getChipRevision());
-	    Serial.printf("Core number %d \n", ESP.getChipCores());
-      Serial.print("Chip ID: "); Serial.println(chipId);
-    }
-    else
-    if(command.indexOf("setDongleMacAddress") >= 0)
-    {
-      //Expected command: setDongleMacAddress=84:F7:03:F0:EF:72
-      uint8_t macAddressStart = command.indexOf("=");
-      Serial.println(macAddressStart); //should return 19
-      uint8_t columnStart = command.indexOf(":");
-      Serial.println(columnStart); //should return 22
-      
-      for(uint8_t i = 0; i < 5; ++i)
-      {
-        String macSubAddress = command.substring(macAddressStart + i, columnStart + i);
-        dongleAddress[i] = macSubAddress.toInt();
-      }
-
-    }
-    else
-    {
-      Serial.println("Invalid command");
-    }
-  }
-
-
-  /*
-  Serial.println(WiFi.macAddress());
+  //Serial.println(WiFi.macAddress());
 
   //Read SPI from shift register
-  uint32_t spiPacket = 0b00000000000000000000000000000000;
+  uint32_t spiPacket[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
+
   spiPacket = spiPacket | ((!digitalRead(0)) << 5);
   Serial.println(spiPacket);
 
@@ -194,4 +159,55 @@ void loop()
     Serial.print(inChar + 1);
   }
   */
+}
+
+uint8_t readSrData(SPIClass *spi, )
+{
+  uint8_t srData[5];
+
+  return srData;
+}
+
+void readUARTCommand()
+{
+  if(Serial.available() > 0)
+  {
+    String command = Serial.readStringUntil('\n');
+
+    if(command.equalsIgnoreCase("macaddress"))
+    {
+      Serial.print("Device MAC address is: ");
+      Serial.println(WiFi.macAddress());
+    }
+    else
+    if(command.equalsIgnoreCase("id"))
+    {
+      uint32_t chipId = 0;
+      for(int i=0; i<17; i=i+8) 
+      { chipId |= ((ESP.getEfuseMac() >> (40 - i)) & 0xff) << i;}
+      Serial.printf("ESP32 model = %s Rev %d\n", ESP.getChipModel(), ESP.getChipRevision());
+	    Serial.printf("Core number %d \n", ESP.getChipCores());
+      Serial.print("Chip ID: "); Serial.println(chipId);
+    }
+    else
+    if(command.indexOf("setDongleMacAddress") >= 0)
+    {
+      //Expected command: setDongleMacAddress=84:F7:03:F0:EF:72
+      uint8_t macAddressStart = command.indexOf("=");
+      Serial.println(macAddressStart); //should return 19
+      uint8_t columnStart = command.indexOf(":");
+      Serial.println(columnStart); //should return 22
+      
+      for(uint8_t i = 0; i < 5; ++i)
+      {
+        String macSubAddress = command.substring(macAddressStart + i, columnStart + i);
+        dongleAddress[i] = macSubAddress.toInt();
+      }
+
+    }
+    else
+    {
+      Serial.println("Invalid command");
+    }
+  }
 }
