@@ -1,27 +1,37 @@
 #include <Arduino.h>
 
+#include "WiFi.h"
+#include "esp_now.h"
 #include "USB.h"
-#include "USBHIDMouse.h"
+//#include "USBHIDMouse.h"
 
 #include "variables.h"
 
-#include "gpio.h"
-#include "led.h"
+#include "gpioHandle.h"
+#include "ledHandle.h"
+#include "espNowHandle.h"
 
-USBHIDMouse Mouse;
+#include "pmk.h"
+
+
+//USBHIDMouse Mouse;
+mouseStruct mousePacket;
 
 void loopCount();
+
 
 void setup() 
 {
   
   //Start Serial port for debugging. 
-  Serial.begin(9600); 
+  //Serial.begin(9600); 
 
-  Mouse.begin();
+  //Mouse.begin();
   USB.begin();
 
   ledSetup();
+
+  espNowSetup();
   
 }
 
@@ -95,6 +105,15 @@ void loop()
     pmkTask.beginTime = micros();
     pmkTask.inBetweenTime = pmkTask.beginTime - pmkTask.endTime;
 
+      mousePacket.x = xDistance;
+      mousePacket.y = yDistance;
+      mousePacket.k = trackballButtonCurrentState;
+      xPosition = 0;
+      yPosition = 0;
+      xDistance = 0;
+      yDistance = 0;
+
+      /*
         // if the mouse button is pressed:
       if (trackballButtonCurrentState == LOW) {
         // if the mouse is not pressed, press it:
@@ -122,16 +141,15 @@ void loop()
         xDistance = 0;
         yDistance = 0;
       }
-
+      */
     pmkTask.endTime = micros();
     pmkTask.counter++;
     pmkTask.duration = pmkTask.endTime - pmkTask.beginTime;
 
   }
-
-
-  
 }
+
+
 
 void loopCount()
 {

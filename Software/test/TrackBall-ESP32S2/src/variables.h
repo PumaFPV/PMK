@@ -1,3 +1,5 @@
+#pragma once
+
 //Define Trackballer Breakout pin connections to Arduino
 #define PIN_TRACKBALL_RIGHT     37
 #define PIN_TRACKBALL_UP        33
@@ -10,6 +12,9 @@
 #define PIN_TRACKBALL_LED_GREEN 36
 #define PIN_TRACKBALL_LED_RED   38
 #define PIN_TRACKBALL_LED_BLUE  40
+
+uint8_t dongleAddress[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
 
 //Define variables used in sketch
 bool trackballButtonCurrentState = 0;
@@ -48,5 +53,4 @@ struct Func
 Func gpioTask = {0, 0, 0, 0, 0, 10000, 0, 0};
 Func trackballTask = {0, 0, 0, 0, 0, 10000, 0, 0};
 Func pmkTask = {0, 0, 0, 0, 0, 10000, 0, 0};
-
 

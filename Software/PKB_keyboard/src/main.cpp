@@ -28,9 +28,9 @@ CRGB leds[NUM_LEDS];
 #include "USB.h"
 #include "FirmwareMSC.h"
 
-FirmwareMSC MSC_Update;
+//FirmwareMSC MSC_Update;
 
-USBCDC USBSerial;
+//USBCDC USBSerial;
 
 #include "USBHandle.h"
 
@@ -64,13 +64,13 @@ void setup()
 
   WiFi.mode(WIFI_STA);
 
-  USB.onEvent(usbEventCallback);
-  MSC_Update.onEvent(usbEventCallback);
-  MSC_Update.begin();
-  USBSerial.onEvent(usbEventCallback);
-  USBSerial.begin();
+  //USB.onEvent(usbEventCallback);
+  //MSC_Update.onEvent(usbEventCallback);
+  //MSC_Update.begin();
+  //USBSerial.onEvent(usbEventCallback);
+  //USBSerial.begin();
 
-  USBSerial.println(WiFi.macAddress());
+  //USBSerial.println(WiFi.macAddress());
 
   Serial.begin(115200);
 
