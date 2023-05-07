@@ -18,22 +18,24 @@
 mouseStruct mousePacket;
 
 void loopCount();
-
+bool ledState = 0;
 
 void setup() 
 {
   
   //Start Serial port for debugging. 
-  //Serial.begin(9600); 
+  Serial.begin(9600); 
 
   //Mouse.begin();
   USB.begin();
 
   ledSetup();
+  pinMode(9, OUTPUT);
 
   espNowSetup();
   
 }
+
 
 
 /*********************Main Loop*************************/
@@ -41,6 +43,12 @@ void loop()
 {  
 
   loopCount();
+  digitalWrite(9, ledState);
+
+  ledState =! ledState;
+
+  Serial.println(ledState);
+  delay(1000);
 
   if(micros() - gpioTask.beginTime >= gpioTask.interval)
   {

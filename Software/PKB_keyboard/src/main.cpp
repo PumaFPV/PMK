@@ -8,10 +8,10 @@
 #include "FastLED.h"
 
 #define SR_SPI_BUS 1 //Which SPI bus to use for this SPI object
-#define SR_MISO 8
-#define SR_CLK 6
-#define SR_CE 5
-#define SR_PL 7
+#define SR_MISO 3
+#define SR_CLK 7
+#define SR_CE 9
+#define SR_PL 5
 
 static const int srSpiClk = 1000000; // 1 MHz
 
@@ -20,7 +20,7 @@ SPISettings settingsA(2000000, MSBFIRST, SPI_MODE0);
 
 
 #define NUM_LEDS 1
-#define LED_DATA_PIN 9
+#define LED_DATA_PIN -1
 
 CRGB leds[NUM_LEDS];
 
@@ -39,7 +39,7 @@ CRGB leds[NUM_LEDS];
 #include "espNowHandle.h"
 
 //84:F7:03:F0:EF:72
-uint8_t dongleAddress[] = {0x84, 0xF7, 0x03, 0xF0, 0xEF, 0x72};
+uint8_t dongleAddress[] = {0x58, 0xCF, 0x79, 0xA3, 0x98, 0xC2};
 
 esp_now_peer_info_t peerInfo;
 
@@ -116,7 +116,7 @@ void loop()
     spiPacket[packet] = srSpi->transfer(0);
   }
 
-  //Read pressed keys
+  //Read pressed keyshello worldhello world
   uint8_t numberOfPressedKeys = 0;
 
   for(uint8_t packet = 0; packet < 4; packet++)

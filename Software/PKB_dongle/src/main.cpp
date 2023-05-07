@@ -1,14 +1,16 @@
 #include <Arduino.h>
 
+#define LED 9
+
 #include "WiFi.h"
 #include "esp_now.h"
 
 #include "USB.h"
 #include "USBHIDKeyboard.h"
-#include "USBMSC.h"
-#include "FirmwareMSC.h"
-#include "FS.h"
-#include "LittleFS.h"
+//#include "USBMSC.h"
+//#include "FirmwareMSC.h"
+//#include "FS.h"
+//#include "LittleFS.h"
 
 USBHIDKeyboard Keyboard;
 USBCDC USBSerial;
@@ -123,13 +125,10 @@ void loop()
   //If special key (shift / fn / other) than choose correct kb layout
 
   //if USB command  -> send 
-  while(USBSerial.available() > 0) 
-  {
-    // read incoming serial data:
-    char inChar = USBSerial.read();
-    // Type the next ASCII value from what you received:
-    Keyboard.write(inChar + 1);
-  }
+  Keyboard.print("hello world");
+  USBSerial.println(WiFi.macAddress());
+
+  delay(1000);
 
   if(USBSerial.available())
   {
