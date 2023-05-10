@@ -1,7 +1,8 @@
 #include <Arduino.h>
 
 #include "SPI.h"
-
+#include "USB.h"
+#include "FirmwareMSC.h"
 #include "WiFi.h"
 #include "esp_now.h"
 
@@ -13,24 +14,20 @@
 #define SR_CE 9
 #define SR_PL 5
 
-static const int srSpiClk = 1000000; // 1 MHz
+static const int srSpiClk = 100000; // 100kHz
 
 SPIClass * srSpi = NULL;
-SPISettings settingsA(2000000, MSBFIRST, SPI_MODE0);
-
+SPISettings settingsA(srSpiClk, MSBFIRST, SPI_MODE0);
 
 #define NUM_LEDS 1
-#define LED_DATA_PIN -1
+#define LED_DATA_PIN 4
 
-CRGB leds[NUM_LEDS];
-
-
-#include "USB.h"
-#include "FirmwareMSC.h"
+//CRGB leds[NUM_LEDS];
+CRGBArray<NUM_LEDS> leds;
 
 //FirmwareMSC MSC_Update;
 
-//USBCDC USBSerial;
+//USBCDC Serial;
 
 #include "USBHandle.h"
 
@@ -47,10 +44,9 @@ esp_now_peer_info_t peerInfo;
 telemetryStruct telemetryPacket;
 keyboardStruct keyboardPacket;
 
-
-
 void setup() 
 {
+  Serial.begin(115200);
 
   //Initialize SPI for SR
   srSpi = new SPIClass(SR_SPI_BUS);
@@ -60,19 +56,17 @@ void setup()
 
 
   FastLED.addLeds<WS2812B, LED_DATA_PIN, RGB>(leds, NUM_LEDS);
-  FastLED.setBrightness(10);
-
-  WiFi.mode(WIFI_STA);
+  FastLED.setBrightness(255);
+  leds[0] = CRGB::White;
+  FastLED.show();
 
   //USB.onEvent(usbEventCallback);
   //MSC_Update.onEvent(usbEventCallback);
   //MSC_Update.begin();
-  //USBSerial.onEvent(usbEventCallback);
-  //USBSerial.begin();
+  //Serial.onEvent(usbEventCallback);
 
-  //USBSerial.println(WiFi.macAddress());
-
-  Serial.begin(115200);
+  WiFi.mode(WIFI_STA);
+  Serial.println(WiFi.macAddress());
 
   if(esp_now_init() != ESP_OK) {
     Serial.println("Error initializing ESP-NOW");
@@ -104,18 +98,36 @@ void setup()
 
 void loop() 
 {
-  
+  //pride();
+  //FastLED.show(); 
   //Serial.println(WiFi.macAddress());
+  Serial.print("loop");
+  for(uint8_t brightness = 0; brightness < 254; brightness++)
+  {
+    FastLED.setBrightness(brightness);
+    FastLED.show();
+    delay(2);
+
+  }
+  for(uint8_t brightness = 255; brightness > 0; brightness--)
+  {
+    FastLED.setBrightness(brightness);
+    FastLED.show();
+    delay(2);
+  }
 
   //Read SPI from shift register
   uint32_t spiPacket[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
 
   srSpi->beginTransaction(settingsA);
-  for(uint8_t packet = 0; packet < 4; packet++)
+
+  for(uint8_t packet = 0; packet < 5; packet++)
   {
     spiPacket[packet] = srSpi->transfer(0);
+    Serial.println(spiPacket[packet]);
   }
-
+  srSpi->endTransaction();
+/*
   //Read pressed keyshello worldhello world
   uint8_t numberOfPressedKeys = 0;
 
@@ -155,9 +167,9 @@ void loop()
   //Deal with LED
 
   //Deal with other stuff
-  //USBSerial.println(getXtalFrequencyMhz());
-  //USBSerial.println(getApbFrequency());
-  //USBSerial.println(getCpuFrequencyMhz());
+  //Serial.println(getXtalFrequencyMhz());
+  //Serial.println(getApbFrequency());
+  //Serial.println(getCpuFrequencyMhz());
 
   while(Serial.available() > 0) 
   {
@@ -166,7 +178,7 @@ void loop()
     // Type the next ASCII value from what you received:
     Serial.print(inChar + 1);
   }
-  
+  */
 }
 
 

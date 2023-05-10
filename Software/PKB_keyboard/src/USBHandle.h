@@ -40,7 +40,7 @@ static void usbEventCallback(void* arg, esp_event_base_t event_base, int32_t eve
         //HWSerial.printf("CDC RX [%u]:", data->rx.len);
         {
             uint8_t buf[data->rx.len];
-            size_t len = USBSerial.read(buf, data->rx.len);
+            size_t len = Serial.read(buf, data->rx.len);
             //HWSerial.write(buf, len);
         }
         //HWSerial.println();
