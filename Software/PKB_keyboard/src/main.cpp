@@ -19,11 +19,11 @@ static const int srSpiClk = 100000; // 100kHz
 SPIClass * srSpi = NULL;
 SPISettings settingsA(srSpiClk, MSBFIRST, SPI_MODE0);
 
-#define NUM_LEDS 1
+#define NUM_LEDS 39
 #define LED_DATA_PIN 4
 
 //CRGB leds[NUM_LEDS];
-CRGBArray<NUM_LEDS> leds;
+//CRGBArray<NUM_LEDS> leds;
 
 //FirmwareMSC MSC_Update;
 
@@ -34,6 +34,8 @@ CRGBArray<NUM_LEDS> leds;
 #include "pmk.h"
 
 #include "espNowHandle.h"
+
+#include "ledHandle.h"
 
 //84:F7:03:F0:EF:72
 uint8_t dongleAddress[] = {0x58, 0xCF, 0x79, 0xA3, 0x98, 0xC2};
@@ -55,10 +57,11 @@ void setup()
   pinMode(srSpi->pinSS(), OUTPUT);
 
 
-  FastLED.addLeds<WS2812B, LED_DATA_PIN, RGB>(leds, NUM_LEDS);
-  FastLED.setBrightness(255);
-  leds[0] = CRGB::White;
-  FastLED.show();
+  FastLED.addLeds<WS2812B, LED_DATA_PIN, GRB>(leds, NUM_LEDS);
+  FastLED.setBrightness(100);
+
+  currentPalette = RainbowColors_p;
+  currentBlending = LINEARBLEND;
 
   //USB.onEvent(usbEventCallback);
   //MSC_Update.onEvent(usbEventCallback);
@@ -101,32 +104,32 @@ void loop()
   //pride();
   //FastLED.show(); 
   //Serial.println(WiFi.macAddress());
-  Serial.print("loop");
-  for(uint8_t brightness = 0; brightness < 254; brightness++)
-  {
-    FastLED.setBrightness(brightness);
-    FastLED.show();
-    delay(2);
+  Serial.println("loop");
 
-  }
-  for(uint8_t brightness = 255; brightness > 0; brightness--)
-  {
-    FastLED.setBrightness(brightness);
-    FastLED.show();
-    delay(2);
-  }
-
+  //ChangePalettePeriodically();
+  currentPalette = myRedWhiteBluePalette_p; currentBlending = NOBLEND;    static uint8_t startIndex = 0;
+  startIndex = startIndex + 1; /* motion speed */
+  
+  FillLEDsFromPaletteColors( startIndex);
+  
+  FastLED.show();
+  FastLED.delay(1000 / UPDATES_PER_SECOND);
+/*
   //Read SPI from shift register
   uint32_t spiPacket[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
 
   srSpi->beginTransaction(settingsA);
-
+  digitalWrite(SR_CE, LOW);
+  digitalWrite(SR_PL, LOW);
   for(uint8_t packet = 0; packet < 5; packet++)
   {
     spiPacket[packet] = srSpi->transfer(0);
-    Serial.println(spiPacket[packet]);
+    Serial.print(spiPacket[packet]);
+    Serial.print(" ");
   }
-  srSpi->endTransaction();
+  digitalWrite(SR_CE, LOW);
+  digitalWrite(SR_PL, HIGH);
+  srSpi->endTransaction();*/
 /*
   //Read pressed keyshello worldhello world
   uint8_t numberOfPressedKeys = 0;

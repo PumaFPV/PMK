@@ -809,7 +809,8 @@ struct CRGB {
         WhiteSmoke=0xF5F5F5,            ///< @htmlcolorblock{F5F5F5}
         Yellow=0xFFFF00,                ///< @htmlcolorblock{FFFF00}
         YellowGreen=0x9ACD32,           ///< @htmlcolorblock{9ACD32}
-
+        pulsarPurple = 0xfd26e9,
+        pulsarBlue = 0x00f1ff,
         // LED RGB color that roughly approximates
         // the color of incandescent fairy lights,
         // assuming that you're using FastLED

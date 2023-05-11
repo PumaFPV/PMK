@@ -1,8 +1,8 @@
 {
   "board": {
-    "active_layer": 1,
+    "active_layer": 0,
     "active_layer_preset": "",
-    "auto_track_width": false,
+    "auto_track_width": true,
     "hidden_netclasses": [],
     "hidden_nets": [],
     "high_contrast_mode": 0,
@@ -14,7 +14,6 @@
       "vias": 1.0,
       "zones": 0.6
     },
-    "ratsnest_display_mode": 0,
     "selection_filter": {
       "dimensions": true,
       "footprints": true,
@@ -41,7 +40,6 @@
       11,
       12,
       13,
-      14,
       15,
       16,
       17,
@@ -62,13 +60,11 @@
       33,
       34,
       35,
-      36
+      36,
+      39,
+      40
     ],
-<<<<<<< Updated upstream
-    "visible_layers": "fc43800_7ffffff9",
-=======
-    "visible_layers": "fc43800_7ffffff8",
->>>>>>> Stashed changes
+    "visible_layers": "fffffff_ffffffff",
     "zone_display_mode": 0
   },
   "meta": {
