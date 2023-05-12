@@ -5,6 +5,7 @@
 #include "FirmwareMSC.h"
 #include "WiFi.h"
 #include "esp_now.h"
+#include "USBHIDKeyboard.h"
 
 #include "FastLED.h"
 
@@ -28,6 +29,7 @@ SPISettings settingsA(srSpiClk, MSBFIRST, SPI_MODE0);
 //FirmwareMSC MSC_Update;
 
 //USBCDC Serial;
+USBHIDKeyboard Keyboard;
 
 #include "USBHandle.h"
 
@@ -50,6 +52,9 @@ void setup()
 {
   Serial.begin(115200);
 
+  pinMode(SR_PL, OUTPUT);
+  pinMode(SR_CE, OUTPUT);
+
   //Initialize SPI for SR
   srSpi = new SPIClass(SR_SPI_BUS);
   
@@ -58,11 +63,13 @@ void setup()
 
 
   FastLED.addLeds<WS2812B, LED_DATA_PIN, GRB>(leds, NUM_LEDS);
-  FastLED.setBrightness(100);
+  FastLED.setBrightness(255);
 
   currentPalette = RainbowColors_p;
   currentBlending = LINEARBLEND;
 
+  Keyboard.begin();
+  //USB.begin();
   //USB.onEvent(usbEventCallback);
   //MSC_Update.onEvent(usbEventCallback);
   //MSC_Update.begin();
@@ -95,6 +102,8 @@ void setup()
 
   //pinMode(0, INPUT_PULLUP);
   //pinMode(15, OUTPUT);
+  Keyboard.print("hello world");
+
 }
 
 
@@ -114,28 +123,30 @@ void loop()
   
   FastLED.show();
   FastLED.delay(1000 / UPDATES_PER_SECOND);
-/*
+
   //Read SPI from shift register
   uint32_t spiPacket[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
 
   srSpi->beginTransaction(settingsA);
   digitalWrite(SR_CE, LOW);
-  digitalWrite(SR_PL, LOW);
+  digitalWrite(SR_PL, HIGH);
   for(uint8_t packet = 0; packet < 5; packet++)
   {
     spiPacket[packet] = srSpi->transfer(0);
-    Serial.print(spiPacket[packet]);
-    Serial.print(" ");
+    //Serial.print(spiPacket[packet]);
+    //Serial.print(" ");
   }
-  digitalWrite(SR_CE, LOW);
-  digitalWrite(SR_PL, HIGH);
-  srSpi->endTransaction();*/
-/*
+  digitalWrite(SR_CE, HIGH);
+  digitalWrite(SR_PL, LOW);
+  srSpi->endTransaction();
+
   //Read pressed keyshello worldhello world
   uint8_t numberOfPressedKeys = 0;
 
-  for(uint8_t packet = 0; packet < 4; packet++)
+  for(uint8_t packet = 0; packet < 5; packet++)
   {
+    Serial.print(spiPacket[packet], BIN);
+    Serial.print(" ");
     for(uint8_t bit = 0; bit < 7; bit++)
     {
       bool isKeyPressed = spiPacket[packet] & (0b1 << bit);
@@ -143,7 +154,11 @@ void loop()
       if(isKeyPressed == 1 && numberOfPressedKeys < 8)
       {
         keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit;
+        //Serial.print("KeyID: ");
+        //Serial.println((packet * 8) + bit);
         numberOfPressedKeys++;
+        //Serial.print("Number of pressed keys: ");
+        //Serial.println(numberOfPressedKeys);
       }
       if(numberOfPressedKeys == 8)
       {
@@ -151,6 +166,7 @@ void loop()
       }
     }
   }
+  delay(100);
 
 
   //Send all pressed keys to packet
@@ -159,7 +175,7 @@ void loop()
    
   if (result == ESP_OK) 
   {
-    Serial.println("Sent with success");
+    //Serial.println("Sent with success");
   }
   else 
   {
@@ -174,14 +190,7 @@ void loop()
   //Serial.println(getApbFrequency());
   //Serial.println(getCpuFrequencyMhz());
 
-  while(Serial.available() > 0) 
-  {
-    // read incoming serial data:
-    char inChar = Serial.read();
-    // Type the next ASCII value from what you received:
-    Serial.print(inChar + 1);
-  }
-  */
+  
 }
 
 
