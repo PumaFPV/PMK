@@ -1,3 +1,6 @@
+#ifndef pmk_h
+#define pmk_h
+
 #include "Arduino.h"
 
 typedef struct packetStruct {
@@ -86,3 +89,5 @@ enum errorID {
     none, 
     tooManyKeysPressed
 };
+
+#endif

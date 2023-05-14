@@ -1,8 +1,22 @@
 #include "Arduino.h"
 #include "esp_now.h"
 
-uint8_t receivedData[16];
-String success;
+
+void espnowLoop()
+{
+  //Send all pressed keys to packet
+  // Send message via ESP-NOW
+  esp_err_t result = esp_now_send(dongleAddress, (uint8_t *) &keyboardPacket, sizeof(keyboardPacket));
+   
+  if (result == ESP_OK) 
+  {
+    //Serial.println("Sent with success");
+  }
+  else 
+  {
+    Serial.println("Error sending the data");
+  }
+}
 
 
 // Callback when data is sent

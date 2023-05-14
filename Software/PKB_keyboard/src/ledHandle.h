@@ -1,14 +1,14 @@
-CRGB leds[NUM_LEDS];
+void FillLEDsFromPaletteColors(uint8_t colorIndex);
+void SetupTotallyRandomPalette();
+void SetupBlackAndWhiteStripedPalette();
+void SetupPurpleAndGreenPalette();
+void ChangePalettePeriodically();
 
-#define UPDATES_PER_SECOND 30
+void ledLoop()
+{
 
+}
 
-
-CRGBPalette16 currentPalette;
-TBlendType    currentBlending;
-
-extern CRGBPalette16 myRedWhiteBluePalette;
-extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
 
 void FillLEDsFromPaletteColors( uint8_t colorIndex)
 {
@@ -20,7 +20,6 @@ void FillLEDsFromPaletteColors( uint8_t colorIndex)
     }
 }
 
-
 // There are several different palettes of colors demonstrated here.
 //
 // FastLED provides several 'preset' palettes: RainbowColors_p, RainbowStripeColors_p,
@@ -28,8 +27,6 @@ void FillLEDsFromPaletteColors( uint8_t colorIndex)
 //
 // Additionally, you can manually define your own color palettes, or you can write
 // code that creates color palettes on the fly.  All are shown here.
-
-
 
 // This function fills the palette with totally random colors.
 void SetupTotallyRandomPalette()
@@ -69,7 +66,6 @@ void SetupPurpleAndGreenPalette()
                                    purple, purple, black,  black );
 }
 
-
 // This example shows how to set up a static color palette
 // which is stored in PROGMEM (flash), which is almost always more
 // plentiful than RAM.  A static PROGMEM palette like this
@@ -95,8 +91,6 @@ const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM =
     CRGB::Black,
     CRGB::Black
 };
-
-
 
 // Additional notes on FastLED compact palettes:
 //

@@ -2,79 +2,50 @@
 
 #include "SPI.h"
 #include "USB.h"
-#include "FirmwareMSC.h"
+#include "USBHIDKeyboard.h"
 #include "WiFi.h"
 #include "esp_now.h"
-#include "USBHIDKeyboard.h"
-
 #include "FastLED.h"
-
-#define SR_SPI_BUS 1 //Which SPI bus to use for this SPI object
-#define SR_MISO 3
-#define SR_CLK 7
-#define SR_CE 9
-#define SR_PL 5
-
-static const int srSpiClk = 100000; // 100kHz
-
-SPIClass * srSpi = NULL;
-SPISettings settingsA(srSpiClk, MSBFIRST, SPI_MODE0);
-
-#define NUM_LEDS 39
-#define LED_DATA_PIN 4
-
-//CRGB leds[NUM_LEDS];
-//CRGBArray<NUM_LEDS> leds;
-
-//FirmwareMSC MSC_Update;
-
-//USBCDC Serial;
-USBHIDKeyboard Keyboard;
-
-#include "USBHandle.h"
-
 #include "pmk.h"
 
-#include "espNowHandle.h"
+#include "variables.h"
 
+#include "USBHandle.h"
+#include "espNowHandle.h"
 #include "ledHandle.h"
 
-//84:F7:03:F0:EF:72
-uint8_t dongleAddress[] = {0x58, 0xCF, 0x79, 0xA3, 0x98, 0xC2};
-
-esp_now_peer_info_t peerInfo;
+void loopCount();
 
 
-telemetryStruct telemetryPacket;
-keyboardStruct keyboardPacket;
 
 void setup() 
 {
+  //-----Serial
   Serial.begin(115200);
 
+
+  //-----USB
+  Keyboard.begin();
+
+
+  //-----Shift register
   pinMode(SR_PL, OUTPUT);
   pinMode(SR_CE, OUTPUT);
 
   //Initialize SPI for SR
   srSpi = new SPIClass(SR_SPI_BUS);
-  
   srSpi->begin(SR_CLK, SR_MISO, -1, SR_CE);
   pinMode(srSpi->pinSS(), OUTPUT);
 
 
+  //-----Leds
   FastLED.addLeds<WS2812B, LED_DATA_PIN, GRB>(leds, NUM_LEDS);
-  FastLED.setBrightness(255);
+  FastLED.setBrightness(150);
 
   currentPalette = RainbowColors_p;
   currentBlending = LINEARBLEND;
 
-  Keyboard.begin();
-  //USB.begin();
-  //USB.onEvent(usbEventCallback);
-  //MSC_Update.onEvent(usbEventCallback);
-  //MSC_Update.begin();
-  //Serial.onEvent(usbEventCallback);
-
+  //-----ESP NOW
   WiFi.mode(WIFI_STA);
   Serial.println(WiFi.macAddress());
 
@@ -86,12 +57,12 @@ void setup()
   // Once ESPNow is successfully Init, we will register for Send CB to
   // get the status of Trasnmitted packet
   esp_now_register_send_cb(OnDataSent);
-  
+
   // Register peer
   memcpy(peerInfo.peer_addr, dongleAddress, 6);
   peerInfo.channel = 0;  
   peerInfo.encrypt = false;
-  
+
   // Add peer        
   if (esp_now_add_peer(&peerInfo) != ESP_OK){
     Serial.println("Failed to add peer");
@@ -100,88 +71,291 @@ void setup()
   // Register for a callback function that will be called when data is received
   esp_now_register_recv_cb(OnDataRecv);
 
-  //pinMode(0, INPUT_PULLUP);
-  //pinMode(15, OUTPUT);
-  Keyboard.print("hello world");
+
+  //-----PMK
+
 
 }
 
 
 
-void loop() 
+uint8_t keyIDtoLedID(uint8_t keyID)
 {
-  //pride();
-  //FastLED.show(); 
-  //Serial.println(WiFi.macAddress());
-  Serial.println("loop");
-
-  //ChangePalettePeriodically();
-  currentPalette = myRedWhiteBluePalette_p; currentBlending = NOBLEND;    static uint8_t startIndex = 0;
-  startIndex = startIndex + 1; /* motion speed */
-  
-  FillLEDsFromPaletteColors( startIndex);
-  
-  FastLED.show();
-  FastLED.delay(1000 / UPDATES_PER_SECOND);
-
-  //Read SPI from shift register
-  uint32_t spiPacket[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
-
-  srSpi->beginTransaction(settingsA);
-  digitalWrite(SR_CE, LOW);
-  digitalWrite(SR_PL, HIGH);
-  for(uint8_t packet = 0; packet < 5; packet++)
+  uint8_t ledID[NUM_LEDS+1] = 
   {
-    spiPacket[packet] = srSpi->transfer(0);
-    //Serial.print(spiPacket[packet]);
-    //Serial.print(" ");
-  }
-  digitalWrite(SR_CE, HIGH);
-  digitalWrite(SR_PL, LOW);
-  srSpi->endTransaction();
+    7, 0, 1, 2, 3, 4, 5,
+    6, 21, 13, 12, 11, 10, 9,
+    8, 20, 38, 14, 15, 16, 17,
+    18, 19, 22, 28, 27, 26, 25, 
+    24, 23, 36, 37, 100, 32, 
+    33, 34, 35, 29, 30, 31
+  };
 
-  //Read pressed keyshello worldhello world
-  uint8_t numberOfPressedKeys = 0;
+  return ledID[keyID];
+}
 
-  for(uint8_t packet = 0; packet < 5; packet++)
+uint8_t ledIDtoKeyID(uint8_t ledID)
+{
+  uint8_t keyID[40] = 
   {
-    Serial.print(spiPacket[packet], BIN);
-    Serial.print(" ");
-    for(uint8_t bit = 0; bit < 7; bit++)
+    1, 2, 3, 4, 5, 6, 7, 0, 14, 13, 12, 11, 10, 9, 17, 18, 19, 20, 21, 22, 15, 8, 23, 29, 28, 27, 26, 25, 24, 37, 38, 39, 33, 34, 35, 36, 30, 31, 16
+  };
+
+  return keyID[ledID];
+}
+
+uint8_t keyIDtoChar(uint8_t keyID)
+{
+  uint8_t keyChar[40] = 
+  {
+    '5','4','3','2','1','0',KEY_ESC,
+    KEY_TAB,0,'q','w','e','r','t',
+    'g','f','d','s','a',0,KEY_CAPS_LOCK,
+    KEY_LEFT_SHIFT,'<','y','x','c','v','b',
+    0,KEY_LEFT_GUI,KEY_LEFT_ALT,KEY_LEFT_CTRL,' ',KEY_RETURN,
+    0,0,0,0,0,0
+  }; 
+  
+  return keyChar[keyIDtoLedID(keyID)];
+}
+
+uint8_t keyCoordinatesToLedID(uint8_t x, uint8_t y)
+{
+  uint8_t ledID[6][9] =
     {
-      bool isKeyPressed = spiPacket[packet] & (0b1 << bit);
+      {6,5,4,3,2,1,0,100,100},
+      {7,8,9,10,11,12,13,100,100},
+      {20,19,18,17,16,15,14,100,100},
+      {21,22,23,24,25,26,27,28,29},
+      {39,38,37,36,35,34,33,32,30},
+      {100,100,100,100,100,100,100,100,31}
 
-      if(isKeyPressed == 1 && numberOfPressedKeys < 8)
+    };
+    return ledID[x][y];
+}
+
+void pulsar()
+{
+
+  for(uint8_t brightness = 40; brightness < 250; brightness++)
+  {
+    for(uint8_t x = 0; x < 3; x++)
+    {
+      for(uint8_t y = 0; y < 7; y++)
       {
-        keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit;
-        //Serial.print("KeyID: ");
-        //Serial.println((packet * 8) + bit);
-        numberOfPressedKeys++;
-        //Serial.print("Number of pressed keys: ");
-        //Serial.println(numberOfPressedKeys);
-      }
-      if(numberOfPressedKeys == 8)
-      {
-        telemetryPacket.error = tooManyKeysPressed;
+        uint8_t ledID = keyCoordinatesToLedID(y,x);
+        //FastLED.setBrightness(255);
+        leds[ledID] = CRGB::pulsarPurple;
       }
     }
+    for(uint8_t x = 3; x < 4; x++)
+    {
+      for(uint8_t y = 0; y < 7; y++)
+      {
+        uint8_t ledID = keyCoordinatesToLedID(y,x);
+        //FastLED.setBrightness(150);
+        leds[ledID] = CRGB::pulsarPurpleBlue;
+      }
+    }      
+    for(uint8_t x = 4; x < 9; x++)
+    {
+      for(uint8_t y = 0; y < 7; y++)
+      {
+        uint8_t ledID = keyCoordinatesToLedID(y,x);
+        //FastLED.setBrightness(brightness);
+        
+        leds[ledID] = CRGB::pulsarBlue;
+        leds[ledID].subtractFromRGB(brightness);
+      }
+    }
+    FastLED.show();
+    delay(6);
   }
-  delay(100);
 
+  for(uint8_t brightness = 250; brightness > 40; brightness--)
+  {
+    for(uint8_t x = 0; x < 3; x++)
+    {
+      for(uint8_t y = 0; y < 7; y++)
+      {
+        uint8_t ledID = keyCoordinatesToLedID(y,x);
+        //FastLED.setBrightness(255);
+        leds[ledID] = CRGB::pulsarPurple;
+      }
+    }
+    for(uint8_t x = 3; x < 4; x++)
+    {
+      for(uint8_t y = 0; y < 7; y++)
+      {
+        uint8_t ledID = keyCoordinatesToLedID(y,x);
+        //FastLED.setBrightness(150);
+        leds[ledID] = CRGB::pulsarPurpleBlue;
+      }
+    }      
+    for(uint8_t x = 4; x < 9; x++)
+    {
+      for(uint8_t y = 0; y < 7; y++)
+      {
+        uint8_t ledID = keyCoordinatesToLedID(y,x);
+        //FastLED.setBrightness(brightness);
+        leds[ledID] = CRGB::pulsarBlue;
+        leds[ledID].subtractFromRGB(brightness);
 
-  //Send all pressed keys to packet
-  // Send message via ESP-NOW
-  esp_err_t result = esp_now_send(dongleAddress, (uint8_t *) &keyboardPacket, sizeof(keyboardPacket));
-   
-  if (result == ESP_OK) 
-  {
-    //Serial.println("Sent with success");
+      }
+    }
+    FastLED.show();
+    delay(10);
   }
-  else 
+}
+
+void loop() 
+{
+  //Serial.println(WiFi.macAddress());
+  //Serial.println("loop");
+  loopCount();
+
+  //------------------------------------------------------ledTask
+  if(micros() - ledTask.beginTime >= ledTask.interval)
   {
-    Serial.println("Error sending the data");
+    ledTask.beginTime = micros();
+    ledTask.inBetweenTime = ledTask.beginTime - ledTask.endTime;
+
+      
+      leds[ledNumber] = CRGB::pulsarPurple;
+      leds[ledNumber-1] = CRGB::pulsarBlue;
+      
+      ledNumber++;
+      if(ledNumber == NUM_LEDS)
+      {
+        ledNumber = 0;
+        leds[38] = CRGB::pulsarBlue;
+      }
+      
+      /*
+      for(uint8_t i = 0; i < 7; i++)
+      {
+        leds[keyIDtoLedID(keyboardPacket.key[i])] = CRGB::pulsarBlue;
+      }    
+      */
+
+      //ChangePalettePeriodically();
+
+      //currentPalette = myRedWhiteBluePalette_p; currentBlending = NOBLEND;    static uint8_t startIndex = 0;
+      //startIndex = startIndex + 1; /* motion speed */
+
+      //FillLEDsFromPaletteColors( startIndex);
+    
+      //pulsar();
+      FastLED.show();
+      //FastLED.delay(1000 / UPDATES_PER_SECOND);
+
+    ledTask.endTime = micros();
+    ledTask.counter++;
+    ledTask.duration = ledTask.endTime - ledTask.beginTime;
   }
+
+  //------------------------------------------------------srTask
+  if(micros() - srTask.beginTime >= srTask.interval)
+  {
+    srTask.beginTime = micros();
+    srTask.inBetweenTime = srTask.beginTime - srTask.endTime;
+    //Serial.println(srTask.duration);
+      //Read SPI from shift register
+
+      srSpi->beginTransaction(settingsA);
+      digitalWrite(SR_CE, LOW);
+      digitalWrite(SR_PL, HIGH);
+          
+      for(uint8_t packet = 0; packet < 5; packet++)
+      {
+        spiPacket[packet] = 0xFF - srSpi->transfer(0);
+        //Serial.print(spiPacket[packet], BIN);
+        //Serial.print(" ");
+      }
+
+      digitalWrite(SR_CE, HIGH);
+      digitalWrite(SR_PL, LOW);
+      srSpi->endTransaction();
+
+      //Read pressed keys
+      numberOfPressedKeys = 0;
+
+      
+      for(uint8_t i = 0; i < 7; i++)
+      {
+        keyboardPacket.key[i] = 0;
+      }
+
+      for(uint8_t packet = 0; packet < 5; packet++)
+      {
+        for(uint8_t bit = 0; bit < 8; bit++)
+        {
+          bool isKeyPressed = spiPacket[packet] & (0b1 << bit);
+
+          if(isKeyPressed == 1 && numberOfPressedKeys < 8)
+          {
+            keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit;
+
+            Serial.print("KeyID: 0d");
+            Serial.println(keyboardPacket.key[numberOfPressedKeys], DEC);
+            
+            numberOfPressedKeys++;
+
+            //Serial.print("  Number of pressed keys: ");
+            //Serial.println(numberOfPressedKeys);
+          }
+          if(numberOfPressedKeys == 8)
+          {
+            telemetryPacket.error = tooManyKeysPressed;
+            Serial.println("Too many keys pressed");
+          }
+        }
+      }
+
+    srTask.endTime = micros();
+    srTask.counter++;
+    srTask.duration = srTask.endTime - srTask.beginTime;
+
+  }
+  
   //send packet
+  //------------------------------------------------------espnowTask
+  if(micros() - espnowTask.beginTime >= espnowTask.interval)
+  {
+    espnowTask.beginTime = micros();
+    espnowTask.inBetweenTime = espnowTask.beginTime - espnowTask.endTime;
+
+      for(uint8_t i = 0; i < 7; i++)
+      {
+
+        if(keyboardPacket.key[i] != 0)
+        {
+          Keyboard.press(keyIDtoChar(keyboardPacket.key[i]));
+        }
+
+        uint8_t keyIsNotPressed = 0;
+        for(uint8_t j = 0; j < 7; j++)
+        {
+          if(previousKeyboardPacket.key[i] != keyboardPacket.key[j])
+          {
+            keyIsNotPressed++;
+            Serial.println(keyIsNotPressed);
+          }
+
+          if(keyIsNotPressed == 8)
+          {
+            Keyboard.release(previousKeyboardPacket.key[i]);
+          }
+        }
+
+        previousKeyboardPacket.key[i] = keyboardPacket.key[i];
+      }
+
+    espnowTask.endTime = micros();
+    espnowTask.counter++;
+    espnowTask.duration = espnowTask.endTime - espnowTask.beginTime;
+
+  }
 
   //Deal with LED
 
@@ -189,9 +363,78 @@ void loop()
   //Serial.println(getXtalFrequencyMhz());
   //Serial.println(getApbFrequency());
   //Serial.println(getCpuFrequencyMhz());
-
   
 }
+
+void loopCount()
+{
+  //Task frequency counter
+  if(ledTask.counter == 0)
+  {
+    ledTask.startCounterTime = micros();
+  }
+  if(micros() - ledTask.startCounterTime > 1000000)
+  {
+    ledTask.frequency = ledTask.counter;
+    //Serial.println(ledTask.counter);
+    ledTask.counter = 0;
+  }
+
+  //srTask frequency counter
+  if(srTask.counter == 0)
+  {
+    srTask.startCounterTime = micros();
+  }
+  if(micros() - srTask.startCounterTime > 1000000)
+  {
+    srTask.frequency = srTask.counter;
+    //Serial.println(srTask.counter);
+    srTask.counter = 0;
+  }
+
+  //Task frequency counter
+  if(espnowTask.counter == 0)
+  {
+    espnowTask.startCounterTime = micros();
+  }
+  if(micros() - espnowTask.startCounterTime > 1000000)
+  {
+    espnowTask.frequency = espnowTask.counter;
+    //Serial.println(espnowTask.counter);
+    espnowTask.counter = 0;
+  }
+}
+
+/* Typical task outline
+
+  //------------------------------------------------------Task
+  if(micros() - Task.beginTime >= Task.interval)
+  {
+    Task.beginTime = micros();
+    Task.inBetweenTime = Task.beginTime - Task.endTime;
+
+    **functions
+
+    Task.endTime = micros();
+    Task.counter++;
+    Task.duration = Task.endTime - Task.beginTime;
+
+  }
+
+  //Task frequency counter
+  if(Task.counter == 0)
+  {
+    Task.startCounterTime = micros();
+  }
+  if(micros() - Task.startCounterTime > 1000000)
+  {
+    Task.frequency = Task.counter;
+    debug.println(Task.counter);
+    Task.counter = 0;
+  }
+
+*/
+
 
 
 void readUARTCommand()
