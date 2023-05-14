@@ -9,6 +9,7 @@
 #include "FastLED.h"
 #include "pmk.h"
 
+
 //--------------------------------------------------Define--------------------------------------------------
 //----------Global values
 #define MIRCOS2SECONDS 1000000
@@ -59,6 +60,7 @@ esp_now_peer_info_t peerInfo;
 telemetryStruct telemetryPacket;
 keyboardStruct keyboardPacket;
 keyboardStruct previousKeyboardPacket;
+keyboardStruct releaseKeyboardPacket;
 
 //--------------------------------------------------Structs--------------------------------------------------
 struct Func

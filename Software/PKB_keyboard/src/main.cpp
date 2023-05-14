@@ -40,7 +40,7 @@ void setup()
 
   //-----Leds
   FastLED.addLeds<WS2812B, LED_DATA_PIN, GRB>(leds, NUM_LEDS);
-  FastLED.setBrightness(150);
+  FastLED.setBrightness(50);
 
   currentPalette = RainbowColors_p;
   currentBlending = LINEARBLEND;
@@ -71,13 +71,9 @@ void setup()
   // Register for a callback function that will be called when data is received
   esp_now_register_recv_cb(OnDataRecv);
 
-
   //-----PMK
 
-
 }
-
-
 
 uint8_t keyIDtoLedID(uint8_t keyID)
 {
@@ -114,7 +110,7 @@ uint8_t keyIDtoChar(uint8_t keyID)
     KEY_LEFT_SHIFT,'<','y','x','c','v','b',
     0,KEY_LEFT_GUI,KEY_LEFT_ALT,KEY_LEFT_CTRL,' ',KEY_RETURN,
     0,0,0,0,0,0
-  }; 
+  };
   
   return keyChar[keyIDtoLedID(keyID)];
 }
@@ -281,9 +277,9 @@ void loop()
       numberOfPressedKeys = 0;
 
       
-      for(uint8_t i = 0; i < 7; i++)
+      for(uint8_t i = 0; i < 8; i++)
       {
-        keyboardPacket.key[i] = 0;
+        keyboardPacket.key[i] = 255;
       }
 
       for(uint8_t packet = 0; packet < 5; packet++)
@@ -315,7 +311,6 @@ void loop()
     srTask.endTime = micros();
     srTask.counter++;
     srTask.duration = srTask.endTime - srTask.beginTime;
-
   }
   
   //send packet
@@ -324,33 +319,51 @@ void loop()
   {
     espnowTask.beginTime = micros();
     espnowTask.inBetweenTime = espnowTask.beginTime - espnowTask.endTime;
-
-      for(uint8_t i = 0; i < 7; i++)
+    /*
+    for(uint8_t i = 0; i < 255; i++)
+    {
+      Serial.print("Pressing: 0x");
+      Serial.println(i, HEX);
+      Keyboard.press(i);
+      delay(10);
+      Keyboard.release(i);
+      delay(500);
+    }*/
+//------------------
+      for(uint8_t i = 0; i < 8; i++)
       {
-
-        if(keyboardPacket.key[i] != 0)
+        if(keyboardPacket.key[i] != 255                             )
         {
           Keyboard.press(keyIDtoChar(keyboardPacket.key[i]));
+          Serial.print("Presseing: 0x");
+          Serial.println(keyIDtoChar(keyboardPacket.key[i]), HEX);
         }
-
-        uint8_t keyIsNotPressed = 0;
-        for(uint8_t j = 0; j < 7; j++)
-        {
-          if(previousKeyboardPacket.key[i] != keyboardPacket.key[j])
-          {
-            keyIsNotPressed++;
-            Serial.println(keyIsNotPressed);
-          }
-
-          if(keyIsNotPressed == 8)
-          {
-            Keyboard.release(previousKeyboardPacket.key[i]);
-          }
-        }
-
-        previousKeyboardPacket.key[i] = keyboardPacket.key[i];
       }
 
+      uint8_t releaseKeys[8];
+      memcpy(releaseKeys, previousKeyboardPacket.key, 8);
+
+      for(uint8_t i = 0; i < 8; i++)
+      {
+        for(uint8_t j = 0; j < 8; j++)
+        {
+          if(previousKeyboardPacket.key[i] == keyboardPacket.key[j])
+          {
+            releaseKeys[i] = 255;
+          }
+        }
+      }
+
+      for(uint8_t i = 0; i < 8; i++)
+      {
+        if(releaseKeys[i] != 255)
+        {
+          Keyboard.release(keyIDtoChar(releaseKeys[i]));
+        }
+      }
+      
+      memcpy(previousKeyboardPacket.key, keyboardPacket.key, 8);
+//------------------
     espnowTask.endTime = micros();
     espnowTask.counter++;
     espnowTask.duration = espnowTask.endTime - espnowTask.beginTime;
