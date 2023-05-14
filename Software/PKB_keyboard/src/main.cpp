@@ -109,7 +109,7 @@ uint8_t keyIDtoChar(uint8_t keyID)
     'g','f','d','s','a',0,KEY_CAPS_LOCK,
     KEY_LEFT_SHIFT,'<','y','x','c','v','b',
     0,KEY_LEFT_GUI,KEY_LEFT_ALT,KEY_LEFT_CTRL,' ',KEY_RETURN,
-    0,0,0,0,0,0
+    KEY_DELETE,KEY_BACKSPACE,0,0,0,0
   };
   
   return keyChar[keyIDtoLedID(keyID)];
