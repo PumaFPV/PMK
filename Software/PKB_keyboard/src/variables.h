@@ -75,8 +75,8 @@ struct Func
   unsigned long inBetweenTime;
 };
 
-Func ledTask = {0, 0, 0, 0, 0, 100000, 0, 0};
-Func srTask = {0, 0, 0, 0, 0, 10000, 0, 0};
+Func ledTask = {0, 0, 0, 0, 0, 10000, 0, 0};
+Func srTask = {0, 0, 0, 0, 0, 1000, 0, 0};
 Func espnowTask = {0, 0, 0, 0, 0, 1000, 0, 0};
 Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
 
@@ -94,5 +94,8 @@ uint8_t spiPacket[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
 uint8_t numberOfPressedKeys = 0;
 
 uint8_t ledNumber = 0;
+uint8_t ledBrightness = 50;
+
+uint8_t layerID = 0;
 
 #endif

@@ -40,7 +40,7 @@ void setup()
 
   //-----Leds
   FastLED.addLeds<WS2812B, LED_DATA_PIN, GRB>(leds, NUM_LEDS);
-  FastLED.setBrightness(50);
+  FastLED.setBrightness(250);
 
   currentPalette = RainbowColors_p;
   currentBlending = LINEARBLEND;
@@ -100,19 +100,77 @@ uint8_t ledIDtoKeyID(uint8_t ledID)
   return keyID[ledID];
 }
 
-uint8_t keyIDtoChar(uint8_t keyID)
+uint8_t keyIDtoChar(uint8_t keyID, uint8_t layer)
 {
-  uint8_t keyChar[40] = 
+  uint8_t keyChar[8][40] = 
   {
-    '5','4','3','2','1','0',KEY_ESC,
-    KEY_TAB,0,'q','w','e','r','t',
-    'g','f','d','s','a',0,KEY_CAPS_LOCK,
-    KEY_LEFT_SHIFT,'<','y','x','c','v','b',
-    0,KEY_LEFT_GUI,KEY_LEFT_ALT,KEY_LEFT_CTRL,' ',KEY_RETURN,
-    KEY_DELETE,KEY_BACKSPACE,0,0,0,0
+    {
+      '5','4','3','2','1','0',KEY_ESC,
+      KEY_TAB,'z','q','w','e','r','t',
+      'g','f','d','s','a',0,KEY_CAPS_LOCK,
+      KEY_LEFT_SHIFT,'<','y','x','c','v','b',
+      0,KEY_LEFT_GUI,KEY_LEFT_ALT,KEY_LEFT_CTRL,KEY_RETURN,' ',
+      KEY_DELETE,KEY_BACKSPACE,0,0,0,0
+    },
+    {
+      KEY_F5,KEY_F4,KEY_F3,KEY_F2,KEY_F1,0,KEY_ESC,
+      KEY_TAB,0,0,KEY_UP_ARROW,0,0,0,
+      0,0,KEY_RIGHT_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW,0,KEY_CAPS_LOCK,
+      KEY_LEFT_SHIFT,0,0,0,0,0,0,
+      0,KEY_LEFT_GUI,KEY_LEFT_ALT,KEY_LEFT_CTRL,KEY_RETURN,' ',
+      KEY_DELETE,KEY_BACKSPACE,0,0,0,0
+    },
+    {
+      0,0,0,0,0,0,KEY_ESC,
+      KEY_TAB,0,0,0,0,0,0,
+      0,0,0,0,0,0,KEY_CAPS_LOCK,
+      KEY_LEFT_SHIFT,0,0,0,0,0,0,
+      0,KEY_LEFT_GUI,KEY_LEFT_ALT,KEY_LEFT_CTRL,KEY_RETURN,' ',
+      KEY_DELETE,KEY_BACKSPACE,0,0,0,0
+    },
+    {
+      0,0,0,0,0,0,KEY_ESC,
+      KEY_TAB,0,0,0,0,0,0,
+      0,0,0,0,0,0,KEY_CAPS_LOCK,
+      KEY_LEFT_SHIFT,0,0,0,0,0,0,
+      0,KEY_LEFT_GUI,KEY_LEFT_ALT,KEY_LEFT_CTRL,KEY_RETURN,' ',
+      KEY_DELETE,KEY_BACKSPACE,0,0,0,0
+    },
+    {
+      0,0,0,0,0,0,KEY_ESC,
+      KEY_TAB,0,0,0,0,0,0,
+      0,0,0,0,0,0,KEY_CAPS_LOCK,
+      KEY_LEFT_SHIFT,0,0,0,0,0,0,
+      0,KEY_LEFT_GUI,KEY_LEFT_ALT,KEY_LEFT_CTRL,KEY_RETURN,' ',
+      KEY_DELETE,KEY_BACKSPACE,0,0,0,0
+    },
+    {
+      0,0,0,0,0,0,KEY_ESC,
+      KEY_TAB,0,0,0,0,0,0,
+      0,0,0,0,0,0,KEY_CAPS_LOCK,
+      KEY_LEFT_SHIFT,0,0,0,0,0,0,
+      0,KEY_LEFT_GUI,KEY_LEFT_ALT,KEY_LEFT_CTRL,KEY_RETURN,' ',
+      KEY_DELETE,KEY_BACKSPACE,0,0,0,0
+    },
+    {
+      0,0,0,0,0,0,KEY_ESC,
+      KEY_TAB,0,0,0,0,0,0,
+      0,0,0,0,0,0,KEY_CAPS_LOCK,
+      KEY_LEFT_SHIFT,0,0,0,0,0,0,
+      0,KEY_LEFT_GUI,KEY_LEFT_ALT,KEY_LEFT_CTRL,KEY_RETURN,' ',
+      KEY_DELETE,KEY_BACKSPACE,0,0,0,0
+    },
+    {
+      0,0,0,0,0,0,KEY_ESC,
+      KEY_TAB,0,0,0,0,0,0,
+      0,0,0,0,0,0,KEY_CAPS_LOCK,
+      KEY_LEFT_SHIFT,0,0,0,0,0,0,
+      0,KEY_LEFT_GUI,KEY_LEFT_ALT,KEY_LEFT_CTRL,KEY_RETURN,' ',
+      KEY_DELETE,KEY_BACKSPACE,0,0,0,0
+    },
   };
   
-  return keyChar[keyIDtoLedID(keyID)];
+  return keyChar[layer][keyIDtoLedID(keyID)];
 }
 
 uint8_t keyCoordinatesToLedID(uint8_t x, uint8_t y)
@@ -129,6 +187,94 @@ uint8_t keyCoordinatesToLedID(uint8_t x, uint8_t y)
     };
     return ledID[x][y];
 }
+
+uint8_t layerKeyID[8] = { //If no layer, put 0xFE which is key 254, which doesnt exist. Key 255 is no key...
+  0x10,
+  0x1F,
+  0x1E,
+  0xFE,
+  0xFE,
+  0xFE,
+  0xFE,
+  0xFE
+};
+
+uint32_t ledColorProfile[8][NUM_LEDS] = 
+{
+  {
+    0x000000, 0x000000, 0xFF0000, 0xFF0000, 0xFF0000, 0xFF0000, 0xDEB887,
+    0x9966CC, 0x32CD32, 0xFFFF00, 0x32CD32, 0xFFFF00, 0xFF0000, 0xDEB887, 
+    0xFF0000, 0x0000FF, 0x32CD32, 0x32CD32, 0x32CD32, 0x000000, 0x32CD32, 
+    0x32CD32, 0xFF0000, 0x000000, 0xEE82EE , 0x32CD32, 0x111111, 0xFF0000, 
+    0x000000, 0x000000, 0x000000, 0x32CD32, 0x000000, 0x32CD32, 0x000000, 
+    0x000000, 0x000000, 0x000000, 0x000000
+  },
+  {
+    0x00FF00, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x00FF00,
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111
+  },
+  {
+    0xFF0000, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0xFF0000,
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111
+  },
+  {
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111,
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111
+  },
+  {
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111,
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111
+  },
+  {
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111,
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111
+  },
+  {
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111,
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111
+  },
+  {
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111,
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111
+  }
+};
+
+void setLedColorProfile(uint8_t profile)
+{
+  for(uint8_t i = 0; i < NUM_LEDS; i++)
+  {
+    leds[i] = ledColorProfile[profile][i];
+  }
+}
+
 
 void pulsar()
 {
@@ -216,8 +362,9 @@ void loop()
     ledTask.beginTime = micros();
     ledTask.inBetweenTime = ledTask.beginTime - ledTask.endTime;
 
-      
-      leds[ledNumber] = CRGB::pulsarPurple;
+      setLedColorProfile(layerID);
+
+      /*leds[ledNumber] = CRGB::pulsarPurple;
       leds[ledNumber-1] = CRGB::pulsarBlue;
       
       ledNumber++;
@@ -225,7 +372,7 @@ void loop()
       {
         ledNumber = 0;
         leds[38] = CRGB::pulsarBlue;
-      }
+      }*/
       
       /*
       for(uint8_t i = 0; i < 7; i++)
@@ -242,6 +389,7 @@ void loop()
       //FillLEDsFromPaletteColors( startIndex);
     
       //pulsar();
+      FastLED.setBrightness(ledBrightness);
       FastLED.show();
       //FastLED.delay(1000 / UPDATES_PER_SECOND);
 
@@ -292,8 +440,8 @@ void loop()
           {
             keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit;
 
-            Serial.print("KeyID: 0d");
-            Serial.println(keyboardPacket.key[numberOfPressedKeys], DEC);
+            Serial.print("KeyID: 0x");
+            Serial.println(keyboardPacket.key[numberOfPressedKeys], HEX);
             
             numberOfPressedKeys++;
 
@@ -330,14 +478,49 @@ void loop()
       delay(500);
     }*/
 //------------------
+      //layerID = 0;
       for(uint8_t i = 0; i < 8; i++)
       {
-        if(keyboardPacket.key[i] != 255                             )
+        for(uint8_t j = 0; j < 8; j++)
         {
-          Keyboard.press(keyIDtoChar(keyboardPacket.key[i]));
-          Serial.print("Presseing: 0x");
-          Serial.println(keyIDtoChar(keyboardPacket.key[i]), HEX);
+          if(keyboardPacket.key[i] == layerKeyID[j])
+          {
+            layerID = j;
+            i = 9;
+            j = 9;
+          }
         }
+      }
+
+      for(uint8_t i = 0; i < 8; i++)
+      {
+        if(keyboardPacket.key[i] != 255 && layerID != settingLayerID)
+        {
+          Keyboard.press(keyIDtoChar(keyboardPacket.key[i], layerID));
+          //Serial.print("Pressing: 0x");
+          //Serial.println(keyIDtoChar(keyboardPacket.key[i], layerID), HEX);
+        }
+        else if (keyboardPacket.key[i] != 255 && layerID == settingLayerID)
+        {
+          switch (keyboardPacket.key[i])
+          {
+          case 0x09:
+            if(ledBrightness < 255)
+            {
+              ledBrightness++;
+            }
+            break;
+
+          case 0x11:
+            if(ledBrightness > 0)
+            {
+              ledBrightness--;
+            }
+            break;
+          }
+        }
+        
+
       }
 
       uint8_t releaseKeys[8];
@@ -358,7 +541,7 @@ void loop()
       {
         if(releaseKeys[i] != 255)
         {
-          Keyboard.release(keyIDtoChar(releaseKeys[i]));
+          Keyboard.release(keyIDtoChar(releaseKeys[i], layerID));
         }
       }
       

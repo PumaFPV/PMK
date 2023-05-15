@@ -90,4 +90,6 @@ enum errorID {
     tooManyKeysPressed
 };
 
+uint8_t settingLayerID = 2;
+
 #endif
