@@ -4,7 +4,6 @@
 
 #include "WiFi.h"
 #include "esp_now.h"
-
 #include "USB.h"
 #include "USBHIDKeyboard.h"
 //#include "USBMSC.h"
@@ -12,8 +11,9 @@
 //#include "FS.h"
 //#include "LittleFS.h"
 
-USBHIDKeyboard Keyboard;
-USBCDC USBSerial;
+
+
+#include "variables.h"
 //USBMSC MSC;
 //FirmwareMSC MSC_Update;
 
@@ -44,17 +44,20 @@ uint8_t deviceAddress[connectedDevices][MAC_ADDRESS_SIZE] =
 #include "espNowHandle.h"
 //#include "fsHandle.h"
 
+void loopCount();
 
 void setup(){
+
+  Serial.begin(115200);
 
   //===========================================
   //====================USB====================
   //===========================================
 
   Keyboard.begin();
-  USB.begin();
+  //USB.begin();
 
-  USB.onEvent(usbEventCallback);
+  //USB.onEvent(usbEventCallback);
 
   //MSC_Update.onEvent(usbEventCallback);
   //MSC_Update.begin();
@@ -67,8 +70,8 @@ void setup(){
   //MSC.mediaPresent(true);
   //MSC.begin(DISK_SECTOR_COUNT, DISK_SECTOR_SIZE);
 
-  USBSerial.onEvent(usbEventCallback);
-  USBSerial.begin();
+  //Serial.onEvent(usbEventCallback);
+  
 
 
   //===================================================
@@ -85,10 +88,10 @@ void setup(){
   //====================================================
 
   WiFi.mode(WIFI_STA);
-  USBSerial.println(WiFi.macAddress());
+  Serial.println(WiFi.macAddress());
 
   if (esp_now_init() != ESP_OK) {
-    USBSerial.println("Error initializing ESP-NOW");
+    Serial.println("Error initializing ESP-NOW");
     return;
   }
 
@@ -106,10 +109,10 @@ void setup(){
     memcpy(peerInfo.peer_addr, deviceAddress[connectedDevices], 6);
 
     if (esp_now_add_peer(&peerInfo) != ESP_OK){
-      USBSerial.print("Failed to add peer ");
+      Serial.print("Failed to add peer ");
       for(uint8_t i = 0; i < 6; ++i)
       {
-        USBSerial.println(deviceAddress[connectedDevices][i]);
+        Serial.println(deviceAddress[connectedDevices][i]);
       }
       return;
     }
@@ -125,26 +128,136 @@ void loop()
   //If special key (shift / fn / other) than choose correct kb layout
 
   //if USB command  -> send 
-  Keyboard.print("hello world");
-  USBSerial.println(WiFi.macAddress());
 
-  delay(1000);
 
-  if(USBSerial.available())
+  //------------------------------------------------------ledTask
+  if(micros() - ledTask.beginTime >= ledTask.interval)
+  {
+    ledTask.beginTime = micros();
+    ledTask.inBetweenTime = ledTask.beginTime - ledTask.endTime;
+
+    //**functions
+
+    ledTask.endTime = micros();
+    ledTask.counter++;
+    ledTask.duration = ledTask.endTime - ledTask.beginTime;
+
+  }
+
+  //------------------------------------------------------espnowTask
+  if(micros() - espnowTask.beginTime >= espnowTask.interval)
+  {
+    espnowTask.beginTime = micros();
+    espnowTask.inBetweenTime = espnowTask.beginTime - espnowTask.endTime;
+
+    //**functions
+
+    espnowTask.endTime = micros();
+    espnowTask.counter++;
+    espnowTask.duration = espnowTask.endTime - espnowTask.beginTime;
+
+  }
+
+  //------------------------------------------------------keyboardTask
+  if(micros() - keyboardTask.beginTime >= keyboardTask.interval)
+  {
+    keyboardTask.beginTime = micros();
+    keyboardTask.inBetweenTime = keyboardTask.beginTime - keyboardTask.endTime;
+
+    //**functions
+
+    keyboardTask.endTime = micros();
+    keyboardTask.counter++;
+    keyboardTask.duration = keyboardTask.endTime - keyboardTask.beginTime;
+
+  }
+
+  //------------------------------------------------------uartTask
+  if(micros() - uartTask.beginTime >= uartTask.interval)
+  {
+    uartTask.beginTime = micros();
+    uartTask.inBetweenTime = uartTask.beginTime - uartTask.endTime;
+
+    //**functions
+
+    uartTask.endTime = micros();
+    uartTask.counter++;
+    uartTask.duration = uartTask.endTime - uartTask.beginTime;
+
+  }
+
+
+
+  
+}
+
+void loopCount()
+{
+  //Task frequency counter
+  if(ledTask.counter == 0)
+  {
+    ledTask.startCounterTime = micros();
+  }
+  if(micros() - ledTask.startCounterTime > 1000000)
+  {
+    ledTask.frequency = ledTask.counter;
+    //Serial.println(ledTask.counter);
+    ledTask.counter = 0;
+  }
+
+  //Task frequency counter
+  if(espnowTask.counter == 0)
+  {
+    espnowTask.startCounterTime = micros();
+  }
+  if(micros() - espnowTask.startCounterTime > 1000000)
+  {
+    espnowTask.frequency = espnowTask.counter;
+    //Serial.println(espnowTask.counter);
+    espnowTask.counter = 0;
+  }
+
+  //Task frequency counter
+  if(keyboardTask.counter == 0)
+  {
+    keyboardTask.startCounterTime = micros();
+  }
+  if(micros() - keyboardTask.startCounterTime > 1000000)
+  {
+    keyboardTask.frequency = keyboardTask.counter;
+    //Serial.println(keyboardTask.counter);
+    keyboardTask.counter = 0;
+  }
+
+  //Task frequency counter
+  if(uartTask.counter == 0)
+  {
+    uartTask.startCounterTime = micros();
+  }
+  if(micros() - uartTask.startCounterTime > 1000000)
+  {
+    uartTask.frequency = uartTask.counter;
+    //Serial.println(uartTask.counter);
+    uartTask.counter = 0;
+  }
+}
+
+void uartHandle()
+{
+  if(Serial.available())
   {
     String macAddressCommand = "macaddress";
-    String command = USBSerial.readString();
-    USBSerial.println(command);
+    String command = Serial.readString();
+    Serial.println(command);
     
     if(command == macAddressCommand)
     {
-      USBSerial.print("Device MAC address is: ");
-      USBSerial.println(WiFi.macAddress());
+      Serial.print("Device MAC address is: ");
+      Serial.println(WiFi.macAddress());
     }
     else
     {
-      USBSerial.println("Invalid command");
+      Serial.println("Invalid command");
     }
   }
-  
 }
