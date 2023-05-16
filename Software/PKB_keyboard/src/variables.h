@@ -80,6 +80,24 @@ Func srTask = {0, 0, 0, 0, 0, 1000, 0, 0};
 Func espnowTask = {0, 0, 0, 0, 0, 1000, 0, 0};
 Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
 
+struct NoDelay
+{
+  unsigned long interval;  //in ms
+  unsigned long previousMillis;
+  unsigned long currentMillis;
+};
+
+NoDelay pulsarNoDelay = {6, 0, 0};
+
+struct Debounce
+{
+  uint8_t state;
+  uint8_t lastState;
+  unsigned long lastDebounceTime;
+  unsigned long debounceDelay;
+  uint8_t reading;
+};
+
 //--------------------------------------------------Variables--------------------------------------------------
 //84:F7:03:F0:EF:72
 uint8_t dongleAddress[] = {0x58, 0xCF, 0x79, 0xA3, 0x98, 0xC2};
@@ -97,5 +115,9 @@ uint8_t ledNumber = 0;
 uint8_t ledBrightness = 50;
 
 uint8_t layerID = 0;
+
+//------------------------------------------------No delay
+
+
 
 #endif

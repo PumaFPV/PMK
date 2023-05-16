@@ -75,6 +75,3 @@ uint8_t ledBrightness = 50;
 uint8_t layerID = 0;
 
 #endif
-
-
-#endif
