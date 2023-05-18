@@ -1,14 +1,14 @@
+#ifndef ledHandle_h
+#define ledHandle_h
+
+#include "pmk.h"
+
 void FillLEDsFromPaletteColors(uint8_t colorIndex);
 void SetupTotallyRandomPalette();
 void SetupBlackAndWhiteStripedPalette();
 void SetupPurpleAndGreenPalette();
 void ChangePalettePeriodically();
 void pulsar(uint8_t minBrightness, uint8_t maxBrightness);
-
-void ledLoop()
-{
-
-}
 
 
 void FillLEDsFromPaletteColors( uint8_t colorIndex)
@@ -142,7 +142,6 @@ void pulsar(uint8_t minBrightness, uint8_t maxBrightness)
   bool rising;
     Serial.println(brightness);
 
-
   if(brightness == 0)
   {
     rising = 1;
@@ -235,3 +234,5 @@ void pulsar(uint8_t minBrightness, uint8_t maxBrightness)
     }  
   }
 }
+
+#endif
