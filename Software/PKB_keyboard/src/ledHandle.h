@@ -136,27 +136,18 @@ void ChangePalettePeriodically()
 }
 
 
-void pulsar(uint8_t minBrightness, uint8_t maxBrightness)
+void pulsar(uint8_t leftColor, uint8_t rightColor, uint8_t minBrightness, uint8_t maxBrightness, bool breathingSide /*0=left - 1=right*/)
 {
-  uint8_t brightness;
-  bool rising;
-    Serial.println(brightness);
-
-  if(brightness == 0)
-  {
-    rising = 1;
-  }
 
   pulsarNoDelay.currentMillis = millis();
-
-  if(brightness < maxBrightness && (pulsarNoDelay.currentMillis - pulsarNoDelay.previousMillis) >= pulsarNoDelay.interval && rising)
+  if(pulsarNoDelay.currentMillis - pulsarNoDelay.previousMillis > pulsarNoDelay.interval)
   {
+
     for(uint8_t x = 0; x < 3; x++)
     {
       for(uint8_t y = 0; y < 7; y++)
       {
         uint8_t ledID = keyCoordinatesToLedID(y,x);
-        //FastLED.setBrightness(255);
         leds[ledID] = CRGB::pulsarPurple;
       }
     }
@@ -165,7 +156,6 @@ void pulsar(uint8_t minBrightness, uint8_t maxBrightness)
       for(uint8_t y = 0; y < 7; y++)
       {
         uint8_t ledID = keyCoordinatesToLedID(y,x);
-        //FastLED.setBrightness(150);
         leds[ledID] = CRGB::pulsarPurpleBlue;
       }
     }      
@@ -174,64 +164,24 @@ void pulsar(uint8_t minBrightness, uint8_t maxBrightness)
       for(uint8_t y = 0; y < 7; y++)
       {
         uint8_t ledID = keyCoordinatesToLedID(y,x);
-        //FastLED.setBrightness(brightness);
-        
         leds[ledID] = CRGB::pulsarBlue;
         leds[ledID].subtractFromRGB(brightness);
       }
     }
-    FastLED.show();
 
-    pulsarNoDelay.previousMillis = pulsarNoDelay.currentMillis;
-    brightness++;
-    
     if(brightness == maxBrightness)
     {
       rising = 0;
       pulsarNoDelay.interval = 10;
     }
-  }
     
-  if(brightness > minBrightness && (pulsarNoDelay.currentMillis - pulsarNoDelay.previousMillis) >= pulsarNoDelay.interval && !rising)
-  {
-    for(uint8_t x = 0; x < 3; x++)
-    {
-      for(uint8_t y = 0; y < 7; y++)
-      {
-        uint8_t ledID = keyCoordinatesToLedID(y,x);
-        //FastLED.setBrightness(255);
-        leds[ledID] = CRGB::pulsarPurple;
-      }
-    }
-    for(uint8_t x = 3; x < 4; x++)
-    {
-      for(uint8_t y = 0; y < 7; y++)
-      {
-        uint8_t ledID = keyCoordinatesToLedID(y,x);
-        //FastLED.setBrightness(150);
-        leds[ledID] = CRGB::pulsarPurpleBlue;
-      }
-    }      
-    for(uint8_t x = 4; x < 9; x++)
-    {
-      for(uint8_t y = 0; y < 7; y++)
-      {
-        uint8_t ledID = keyCoordinatesToLedID(y,x);
-        //FastLED.setBrightness(brightness);
-        leds[ledID] = CRGB::pulsarBlue;
-        leds[ledID].subtractFromRGB(brightness);
-      }
-    }
-    FastLED.show();
-
-    pulsarNoDelay.previousMillis = pulsarNoDelay.currentMillis;
-    brightness--;
-
     if(brightness == minBrightness)
     {
       rising = 1;
       pulsarNoDelay.interval = 6;
     }  
+    
+    pulsarNoDelay.previousMillis = pulsarNoDelay.currentMillis;
   }
 }
 

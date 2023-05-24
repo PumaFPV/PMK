@@ -17,7 +17,6 @@
 void loopCount();
 
 
-
 void setup() 
 {
   //-----Serial
@@ -32,6 +31,7 @@ void setup()
   pinMode(SR_PL, OUTPUT);
   pinMode(SR_CE, OUTPUT);
 
+
   //Initialize SPI for SR
   srSpi = new SPIClass(SR_SPI_BUS);
   srSpi->begin(SR_CLK, SR_MISO, -1, SR_CE);
@@ -44,6 +44,7 @@ void setup()
 
   currentPalette = RainbowColors_p;
   currentBlending = LINEARBLEND;
+
 
   //-----ESP NOW
   WiFi.mode(WIFI_STA);
