@@ -98,6 +98,12 @@ struct Debounce
   uint8_t reading;
 };
 
+struct runOnce 
+{
+  template <typename T>
+  runOnce(T &&F) { f();}
+};
+
 //--------------------------------------------------Variables--------------------------------------------------
 //84:F7:03:F0:EF:72
 uint8_t dongleAddress[] = {0x58, 0xCF, 0x79, 0xA3, 0x98, 0xC2};
@@ -115,8 +121,6 @@ uint8_t ledNumber = 0;
 uint8_t ledBrightness = 50;
 
 uint8_t layerID = 0;
-
-//------------------------------------------------No delay
 
 
 
