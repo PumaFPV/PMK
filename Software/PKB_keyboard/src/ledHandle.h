@@ -139,6 +139,13 @@ void ChangePalettePeriodically()
 void pulsar(uint8_t leftColor, uint8_t rightColor, uint8_t minBrightness, uint8_t maxBrightness, bool breathingSide /*0=left - 1=right*/)
 {
 
+  static runOnce pulsarInit([]() 
+  {
+    extern uint8_t brightness;
+    extern bool rising; 
+  });
+  brightness = 0;
+
   pulsarNoDelay.currentMillis = millis();
   if(pulsarNoDelay.currentMillis - pulsarNoDelay.previousMillis > pulsarNoDelay.interval)
   {
