@@ -467,16 +467,7 @@ void loop()
   {
     espnowTask.beginTime = micros();
     espnowTask.inBetweenTime = espnowTask.beginTime - espnowTask.endTime;
-    /*
-    for(uint8_t i = 0; i < 255; i++)
-    {
-      Serial.print("Pressing: 0x");
-      Serial.println(i, HEX);
-      Keyboard.press(i);
-      delay(10);
-      Keyboard.release(i);
-      delay(500);
-    }*/
+
 //------------------
       //layerID = 0;
       for(uint8_t i = 0; i < 8; i++)
