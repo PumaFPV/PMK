@@ -21,7 +21,7 @@
 //----------PWM
 
 //----------LED
-#define LED_DATA_PIN 4
+#define LED_PIN 9
 
 
 
@@ -73,8 +73,5 @@ String success;
 uint8_t ledBrightness = 50;
 
 uint8_t layerID = 0;
-
-#endif
-
 
 #endif

@@ -6,17 +6,8 @@
 #include "esp_now.h"
 #include "USB.h"
 #include "USBHIDKeyboard.h"
-//#include "USBMSC.h"
-//#include "FirmwareMSC.h"
-//#include "FS.h"
-//#include "LittleFS.h"
-
-
 
 #include "variables.h"
-//USBMSC MSC;
-//FirmwareMSC MSC_Update;
-
 
 enum devices{
   leftKeyboard,
@@ -50,42 +41,10 @@ void setup(){
 
   Serial.begin(115200);
 
-  //===========================================
-  //====================USB====================
-  //===========================================
-
   Keyboard.begin();
-  //USB.begin();
 
-  //USB.onEvent(usbEventCallback);
-
-  //MSC_Update.onEvent(usbEventCallback);
-  //MSC_Update.begin();
-  //MSC.vendorID("ESP32");//max 8 chars
-  //MSC.productID("USB_MSC");//max 16 chars
-  //MSC.productRevision("1.0");//max 4 chars
-  //MSC.onStartStop(onStartStop);
-  //MSC.onRead(onRead);
-  //MSC.onWrite(onWrite);
-  //MSC.mediaPresent(true);
-  //MSC.begin(DISK_SECTOR_COUNT, DISK_SECTOR_SIZE);
-
-  //Serial.onEvent(usbEventCallback);
-  
-
-
-  //===================================================
-  //====================File System====================
-  //===================================================
-
-  //if(!LittleFS.begin(FORMAT_LITTLEFS_IF_FAILED)){
-  //  USBSerial.println("LITTLEFS Mount Failed");
-  //  return;
-  //}
-
-  //====================================================
-  //====================Wifi/ESP Now====================
-  //====================================================
+  pinMode(LED_PIN, OUTPUT);
+  digitalWrite(LED_PIN, HIGH);
 
   WiFi.mode(WIFI_STA);
   Serial.println(WiFi.macAddress());

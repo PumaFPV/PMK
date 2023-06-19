@@ -440,8 +440,8 @@ void loop()
           {
             keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit;
 
-            Serial.print("KeyID: 0x");
-            Serial.println(keyboardPacket.key[numberOfPressedKeys], HEX);
+            //Serial.print("KeyID: 0x");
+            //Serial.println(keyboardPacket.key[numberOfPressedKeys], HEX);
             
             numberOfPressedKeys++;
 

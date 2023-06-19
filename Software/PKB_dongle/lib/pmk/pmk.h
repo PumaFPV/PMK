@@ -1,3 +1,6 @@
+#ifndef pmk_h
+#define pmk_h
+
 #include "Arduino.h"
 
 typedef struct packetStruct {
@@ -219,3 +222,5 @@ void handleReceivedPacket(packetStruct receivedPacket)
         break;
     } 
 }
+
+#endif
