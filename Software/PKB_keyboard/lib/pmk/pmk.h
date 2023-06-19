@@ -91,5 +91,9 @@ enum errorID {
 };
 
 uint8_t settingLayerID = 2;
+uint8_t minLayer = 0;
+uint8_t maxLayer = 3;
+uint8_t keyIDLayerUp = 0x1F;
+uint8_t keyIDLayerDown = 0x10;
 
 #endif

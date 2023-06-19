@@ -23,10 +23,8 @@ void setup()
   //-----Serial
   Serial.begin(115200);
 
-
   //-----USB
   Keyboard.begin();
-
 
   //-----Shift register
   pinMode(SR_PL, OUTPUT);
@@ -36,7 +34,6 @@ void setup()
   srSpi = new SPIClass(SR_SPI_BUS);
   srSpi->begin(SR_CLK, SR_MISO, -1, SR_CE);
   pinMode(srSpi->pinSS(), OUTPUT);
-
 
   //-----Leds
   FastLED.addLeds<WS2812B, LED_DATA_PIN, GRB>(leds, NUM_LEDS);
@@ -218,15 +215,15 @@ uint32_t ledColorProfile[8][NUM_LEDS] =
     0x111111, 0x111111, 0x111111, 0x111111
   },
   {
-    0xFF0000, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0xFF0000,
-    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
-    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
-    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
-    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
-    0x111111, 0x111111, 0x111111, 0x111111
+    0xFF0000, 0x000000, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0x5000000, 0xFF0000,
+    0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 
+    0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 
+    0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 
+    0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 
+    0xFFFFFF, 0xFFFFFF, 0xFFFFFF, 0xFFFFFF
   },
   {
-    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111,
+    0x000000, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111,
     0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
     0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
     0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
@@ -424,7 +421,6 @@ void loop()
       //Read pressed keys
       numberOfPressedKeys = 0;
 
-      
       for(uint8_t i = 0; i < 8; i++)
       {
         keyboardPacket.key[i] = 255;
@@ -442,7 +438,7 @@ void loop()
 
             //Serial.print("KeyID: 0x");
             //Serial.println(keyboardPacket.key[numberOfPressedKeys], HEX);
-            
+
             numberOfPressedKeys++;
 
             //Serial.print("  Number of pressed keys: ");
@@ -472,15 +468,18 @@ void loop()
       //layerID = 0;
       for(uint8_t i = 0; i < 8; i++)
       {
-        for(uint8_t j = 0; j < 8; j++)
+        if(keyboardPacket.key[i] == keyIDLayerDown)
         {
-          if(keyboardPacket.key[i] == layerKeyID[j])
-          {
-            layerID = j;
-            i = 9;
-            j = 9;
-          }
+          layerID--;
         }
+        
+        if(keyboardPacket.key[i] == keyIDLayerUp)
+        {
+          layerID++;
+        }
+
+        layerID = constrain(layerID, minLayer, maxLayer);
+        i = 9;
       }
 
       for(uint8_t i = 0; i < 8; i++)
@@ -510,8 +509,6 @@ void loop()
             break;
           }
         }
-        
-
       }
 
       uint8_t releaseKeys[8];
