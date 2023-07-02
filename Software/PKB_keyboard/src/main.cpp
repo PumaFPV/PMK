@@ -16,8 +16,6 @@
 
 void loopCount();
 
-
-
 void setup() 
 {
   //-----Serial
