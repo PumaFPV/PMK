@@ -55,23 +55,6 @@ void setup(){
   //===========================================
 
   Keyboard.begin();
-  //USB.begin();
-
-  //USB.onEvent(usbEventCallback);
-
-  //MSC_Update.onEvent(usbEventCallback);
-  //MSC_Update.begin();
-  //MSC.vendorID("ESP32");//max 8 chars
-  //MSC.productID("USB_MSC");//max 16 chars
-  //MSC.productRevision("1.0");//max 4 chars
-  //MSC.onStartStop(onStartStop);
-  //MSC.onRead(onRead);
-  //MSC.onWrite(onWrite);
-  //MSC.mediaPresent(true);
-  //MSC.begin(DISK_SECTOR_COUNT, DISK_SECTOR_SIZE);
-
-  //Serial.onEvent(usbEventCallback);
-  
 
 
   //===================================================
@@ -95,9 +78,9 @@ void setup(){
     return;
   }
 
-  esp_now_register_send_cb(OnDataSent);
+  esp_now_register_send_cb(OnEspNowDataSent);
 
-  esp_now_register_recv_cb(OnDataRecv);
+  esp_now_register_recv_cb(OnEspNowDataRecv);
   
   //Register peer
   peerInfo.channel = 0;  
@@ -151,6 +134,8 @@ void loop()
     espnowTask.inBetweenTime = espnowTask.beginTime - espnowTask.endTime;
 
     //**functions
+    receivedPacket;
+    
 
     espnowTask.endTime = micros();
     espnowTask.counter++;
@@ -164,7 +149,88 @@ void loop()
     keyboardTask.beginTime = micros();
     keyboardTask.inBetweenTime = keyboardTask.beginTime - keyboardTask.endTime;
 
-    //**functions
+    //Keyboard functions start
+      //layerID = 0;
+      for(uint8_t i = 0; i < 8; i++)
+      {
+        for(uint8_t j = 0; j < 2; j++)
+        {
+          if(keyboardPacket.key[i] == layerKeyID[j])
+          {
+            if(j == 0 && layerID > 0)
+            {
+              layerID--;
+              delay(200);
+            }
+            else if (j == 1 && layerID < 7)
+            {
+              layerID++;
+              delay(200);
+            }
+            //layerID = j;
+            keyboardPacket.key[i] = 0xFF;
+            i = 9;
+            j = 2;
+          }
+        }
+      }
+
+      for(uint8_t i = 0; i < 8; i++)
+      {
+        if(keyboardPacket.key[i] != 255 && layerID != settingLayerID)
+        {
+          Keyboard.press(keyIDtoChar(keyboardPacket.key[i], layerID));
+          //Serial.print("Pressing: 0x");
+          //Serial.println(keyIDtoChar(keyboardPacket.key[i], layerID), HEX);
+        }
+        else if (keyboardPacket.key[i] != 0xFF && layerID == settingLayerID)
+        {
+          switch (keyboardPacket.key[i])
+          {
+          case 0x09:
+            if(ledBrightness < 255)
+            {
+              ledBrightness++;
+            }
+            break;
+
+          case 0x11:
+            if(ledBrightness > 0)
+            {
+              ledBrightness--;
+            }
+            break;
+          }
+        }
+        
+
+      }
+
+      uint8_t releaseKeys[8];
+      memcpy(releaseKeys, previousKeyboardPacket.key, 8);
+
+      for(uint8_t i = 0; i < 8; i++)
+      {
+        for(uint8_t j = 0; j < 8; j++)
+        {
+          if(previousKeyboardPacket.key[i] == keyboardPacket.key[j])
+          {
+            releaseKeys[i] = 255;
+          }
+        }
+      }
+
+      for(uint8_t i = 0; i < 8; i++)
+      {
+        if(releaseKeys[i] != 255)
+        {
+          Keyboard.release(keyIDtoChar(releaseKeys[i], layerID));
+        }
+      }
+
+      memcpy(previousKeyboardPacket.key, keyboardPacket.key, 8);
+
+    //Keyboard functions end
 
     keyboardTask.endTime = micros();
     keyboardTask.counter++;

@@ -200,7 +200,7 @@ void handleReceivedPacket(packetStruct receivedPacket)
     switch(receivedPacket.packetType)
     {
     case 0:
-        USBSerial.println("Non existant packetType");
+        Serial.println("Non existant packetType");
         break;
     case 1: //Keyboard
         convertPacket2Keyboard(receivedPacket);
