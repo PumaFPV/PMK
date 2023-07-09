@@ -7,6 +7,7 @@ The first step is to make a wireless split keyboard, and then we will see later.
 ## Dongle
 The dongle is master ESP32S2/S3, appears as HID (keyboard, mouse and joystick) and as Mass Storage device Class with right.json, left.json to store and update configuration of each connected devices.
 Maybe also store password manager
+<img src="/Documentation/Images/Dongle_HW00_recto.jpg" width="200" height="100">
 ![Dongle_recto](/Documentation/Images/Dongle_HW00_recto.jpg)
 ![Dongle_verso](/Documentation/Images/Dongle_HW00_verso.jpg)
 ![Dongle_PCB](/Documentation/Images/Dongle_HW00_PCB_bottom.jpg)
@@ -40,4 +41,4 @@ Devices should send data as simple as possible, keyboard sends key IDs pressed (
 | 0x08 | Serial | battery voltage, temperature, mac address, error |  |  |  |
 | 0x09 |  |  |  |  |  |
 
-More info on [notion](https://swamp-zydeco-907.notion.site/PumaKeyBoard-b41d42fec8c74b02bc73637fae3648d7)
+More info on [Notion](https://swamp-zydeco-907.notion.site/PumaKeyBoard-b41d42fec8c74b02bc73637fae3648d7)
