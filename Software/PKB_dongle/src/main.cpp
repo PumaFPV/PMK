@@ -32,17 +32,15 @@ uint8_t deviceAddress[connectedDevices][MAC_ADDRESS_SIZE] =
   {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xB8}  //rightKeyboard 84:F7:03:F0:F0:B8
 };
 
-//FlashUSB dev;
-
-//char *l1 = "ffat";
-//char *l2 = "ffat1";
+enum devices{
+  leftKeyboard,
+  rightKeyboard,
+};
 
 
 #include "pmk.h"
-//#include "MSCHandle.h"
 #include "USBHandle.h"
 #include "espNowHandle.h"
-//#include "fsHandle.h"
 
 void loopCount();
 
@@ -55,16 +53,6 @@ void setup(){
   //===========================================
 
   Keyboard.begin();
-
-
-  //===================================================
-  //====================File System====================
-  //===================================================
-
-  //if(!LittleFS.begin(FORMAT_LITTLEFS_IF_FAILED)){
-  //  USBSerial.println("LITTLEFS Mount Failed");
-  //  return;
-  //}
 
   //====================================================
   //====================Wifi/ESP Now====================
