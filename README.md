@@ -6,10 +6,11 @@ The first step is to make a wireless split keyboard, and then we will see later.
 
 ## Dongle
 The dongle is master ESP32S2/S3, appears as HID (keyboard, mouse and joystick) and as Mass Storage device Class with right.json, left.json to store and update configuration of each connected devices.
-Maybe also store password manager
-<img src="/Documentation/Images/Dongle_HW00_recto.jpg" width="154" height="150">
-<img src="/Documentation/Images/Dongle_HW00_verso.jpg" width="170" height="130">
-<img src="/Documentation/Images/Dongle_HW00_PCB_bottom.jpg" width="150" height="200">
+Maybe also store password manager.  
+
+<img src="/Documentation/Images/Dongle_HW00_recto.jpg" width="231" height="225">
+<img src="/Documentation/Images/Dongle_HW00_verso.jpg" width="255" height="195">
+<img src="/Documentation/Images/Dongle_HW00_PCB_bottom.jpg" width="225" height="300">
 
 ## Devices
 Can run on any espressif chip that can run ESP-NOW.
@@ -17,12 +18,14 @@ The plan is to run the same firmware on all devices and being able to configure 
 Each device should be configurable via UART (set device ID, set dongle MAC address, and read device MAC address)
 
 ### Keyboard
-For example a keyboard would send pressed keys number "0x04, 0xA1", which the dongle then reads in the .json as coordinates for returning desired key "a,b", if special key is pressed (shift, Fn, …) then use 2nd line of array “A” 
-![splitkeyboard](/Layout/keyboard-layout.jpg)
+For example a keyboard would send pressed keys number "0x04, 0xA1", which the dongle then reads in the .json as coordinates for returning desired key "a,b", if special key is pressed (shift, Fn, …) then use 2nd line of array “A”.  
+
+<img src="/Layout/keyboard-layout.jpg" width="536" height="242">
 
 ### LED
-Hopefully processing key press and led function on dongle and send data to kb is fast enough, otherwise we will have to run led function on keyboard.
-![pulsar](/Documentation/Images/PKB_HW00_pulsar.png)
+Hopefully processing key press and led function on dongle and send data to kb is fast enough, otherwise we will have to run led function on keyboard.  
+
+<img src="/Documentation/Images/PKB_HW00_pulsar.png" width="700" height="394">
 
 ## Protocol
 Devices should send data as simple as possible, keyboard sends key IDs pressed (max 8 at a time) and then the dongle processes the key ID depending on the json configuration
