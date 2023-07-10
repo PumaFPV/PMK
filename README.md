@@ -8,9 +8,7 @@ The first step is to make a wireless split keyboard, and then we will see later.
 The dongle is master ESP32S2/S3, appears as HID (keyboard, mouse and joystick) and as Mass Storage device Class with right.json, left.json to store and update configuration of each connected devices.
 Maybe also store password manager.  
 
-<img src="/Documentation/Images/Dongle_HW00_recto.jpg" width="231" height="225">
-<img src="/Documentation/Images/Dongle_HW00_verso.jpg" width="255" height="195">
-<img src="/Documentation/Images/Dongle_HW00_PCB_bottom.jpg" width="225" height="300">
+<img src="/Documentation/Images/Dongle_HW00_recto.jpg" width="231" height="225"><img src="/Documentation/Images/Dongle_HW00_verso.jpg" width="255" height="195"><img src="/Documentation/Images/Dongle_HW00_PCB_bottom.jpg" width="225" height="300">
 
 ## Devices
 Can run on any espressif chip that can run ESP-NOW.
