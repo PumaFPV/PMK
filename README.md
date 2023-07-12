@@ -12,7 +12,7 @@ Maybe also store password manager.
 
 ## Devices
 Can run on any espressif chip that can run ESP-NOW.
-The plan is to run the same firmware on all devices and being able to configure them via their according .json files on the master dongle. 
+The plan is to run the same firmware on all devices and being able to configure them via their corresponding .json files on the master dongle. 
 Each device should be configurable via UART (set device ID, set dongle MAC address, and read device MAC address)
 
 ### Keyboard
