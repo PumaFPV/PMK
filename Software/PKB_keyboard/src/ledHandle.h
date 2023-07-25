@@ -135,16 +135,26 @@ void ChangePalettePeriodically()
     }
 }
 
+uint8_t keyCoordinatesToLedID(uint8_t x, uint8_t y)
+{
+  uint8_t ledID[6][9] =
+    {
+      {6,5,4,3,2,1,0,100,100},
+      {7,8,9,10,11,12,13,100,100},
+      {20,19,18,17,16,15,14,100,100},
+      {21,22,23,24,25,26,27,28,29},
+      {39,38,37,36,35,34,33,32,30},
+      {100,100,100,100,100,100,100,100,31}
+
+    };
+    return ledID[x][y];
+};
 
 void pulsar(uint8_t leftColor, uint8_t rightColor, uint8_t minBrightness, uint8_t maxBrightness, bool breathingSide /*0=left - 1=right*/)
 {
 
-  static runOnce pulsarInit([]() 
-  {
-    extern uint8_t brightness;
-    extern bool rising; 
-  });
-  brightness = 0;
+  uint8_t brightness = 0;
+  bool rising = 1;
 
   pulsarNoDelay.currentMillis = millis();
   if(pulsarNoDelay.currentMillis - pulsarNoDelay.previousMillis > pulsarNoDelay.interval)

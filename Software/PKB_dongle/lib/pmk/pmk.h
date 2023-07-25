@@ -1,3 +1,6 @@
+#ifndef pmk_h
+#define pmk_h
+
 #include "Arduino.h"
 
 typedef struct packetStruct {
@@ -5,6 +8,15 @@ typedef struct packetStruct {
     uint8_t packetType;
     uint8_t data[16];
 }   packetStruct;
+
+typedef struct telemetryStruct {
+    uint8_t deviceID;
+    const uint8_t packetType = 0;
+    uint8_t battery;
+    uint8_t temperature;
+    uint8_t macAddress;
+    uint8_t error;
+}   telemetryStruct;
 
 typedef struct keyboardStruct {
     uint8_t deviceID;
@@ -67,21 +79,16 @@ typedef struct displayStruct {
     uint8_t brightness;
 }   displayStruct;
 
-typedef struct telemetryStruct {
-    uint8_t deviceID;
-    const uint8_t packetType = 8;
-    uint8_t battery;
-    uint8_t temperature;
-    uint8_t macAddress;
-    uint8_t error;
-}   telemetryStruct;
-
 typedef struct serialStruct {
     uint8_t deviceID;
     const uint8_t packetType = 9;
     uint8_t packet[8];
 }   serialStruct;
 
+enum errorID {
+    none, 
+    tooManyKeysPressed
+};
 
 packetStruct receivedPacket;
 
@@ -209,7 +216,6 @@ void handleReceivedPacket(packetStruct receivedPacket)
             if(keyboardPacket.key[i] =! 0)
             {
                 //packet2key(keyboardPacket.deviceID, keyboardPacket.key);
-                USBSerial.println(keyboardPacket.key[i]);
                 Keyboard.print(keyboardPacket.key[i]);
                 
             }
@@ -219,3 +225,5 @@ void handleReceivedPacket(packetStruct receivedPacket)
         break;
     } 
 }
+
+#endif

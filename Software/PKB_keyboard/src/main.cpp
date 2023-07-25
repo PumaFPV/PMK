@@ -91,6 +91,8 @@ void loop()
     ledTask.beginTime = micros();
     ledTask.inBetweenTime = ledTask.beginTime - ledTask.endTime;
 
+    Serial.println(WiFi.macAddress());
+
       setLedColorProfile(layerID);
 
       /*leds[ledNumber] = CRGB::pulsarPurple;
