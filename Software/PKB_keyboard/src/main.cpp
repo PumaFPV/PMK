@@ -1,5 +1,7 @@
 #include <Arduino.h>
 
+#include "config.h"
+
 #include "SPI.h"
 #include "USB.h"
 #include "USBHIDKeyboard.h"

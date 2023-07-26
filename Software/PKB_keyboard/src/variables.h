@@ -1,6 +1,8 @@
 #ifndef variables_h
 #define variables_h
 
+#include "config.h"
+
 #include "SPI.h"
 #include "USB.h"
 #include "USBHIDKeyboard.h"
@@ -23,8 +25,6 @@
 //----------PWM
 
 //----------LED
-#define NUM_LEDS 39
-#define LED_DATA_PIN 4
 #define UPDATES_PER_SECOND 30
 
 

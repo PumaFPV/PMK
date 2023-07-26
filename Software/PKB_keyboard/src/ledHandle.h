@@ -3,6 +3,8 @@
 
 #include "pmk.h"
 
+#include "variables.h"
+
 void FillLEDsFromPaletteColors(uint8_t colorIndex);
 void SetupTotallyRandomPalette();
 void SetupBlackAndWhiteStripedPalette();
@@ -150,7 +152,7 @@ uint8_t keyCoordinatesToLedID(uint8_t x, uint8_t y)
     return ledID[x][y];
 };
 
-void pulsar(uint8_t leftColor, uint8_t rightColor, uint8_t minBrightness, uint8_t maxBrightness, bool breathingSide /*0=left - 1=right*/)
+void pulsar(uint8_t minBrightness, uint8_t maxBrightness, bool breathingSide /*0=left - 1=right*/)
 {
 
   uint8_t brightness = 0;
@@ -201,5 +203,37 @@ void pulsar(uint8_t leftColor, uint8_t rightColor, uint8_t minBrightness, uint8_
     pulsarNoDelay.previousMillis = pulsarNoDelay.currentMillis;
   }
 }
+
+void setLedColorProfile(uint8_t profile)
+{
+  switch (profile)
+  {
+  case 0:
+    for(uint8_t i = 0; i < NUM_LEDS; i++)
+    {
+      leds[i] = ledColorProfile[profile][i];
+    }
+    break;
+  
+  case 1: 
+    for(uint8_t i = 0; i < NUM_LEDS; i++)
+    {
+      leds[i] = ledColorProfile[profile][i];
+    }
+    break;
+  
+  case 2: 
+    for(uint8_t i = 0; i < NUM_LEDS; i++)
+    {
+      leds[i] = ledColorProfile[profile][i];
+    }
+    break;
+
+  case 3:
+    pulsar(40, 250, 1);
+    break;
+
+  }
+};
 
 #endif
