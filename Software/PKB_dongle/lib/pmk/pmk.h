@@ -92,7 +92,7 @@ enum errorID {
     tooManyKeysPressed
 };
 
-keyboardStruct keyboardPacketConvert;
+keyboardStruct keyboardPacket;
 mouseStruct mousePacketConvert;
 gamepadStruct gamepadPacketConvert;
 ledStruct ledPacketConvert;
@@ -105,15 +105,15 @@ serialStruct serialPacketConvert;
 
 void convertPacket2Keyboard(packetStruct packet)
 {
-    keyboardPacketConvert.deviceID = packet.deviceID;
-    keyboardPacketConvert.key[0] = packet.data[0];
-    keyboardPacketConvert.key[1] = packet.data[1];
-    keyboardPacketConvert.key[2] = packet.data[2];
-    keyboardPacketConvert.key[3] = packet.data[3];
-    keyboardPacketConvert.key[4] = packet.data[4];
-    keyboardPacketConvert.key[5] = packet.data[5];
-    keyboardPacketConvert.key[6] = packet.data[6];
-    keyboardPacketConvert.key[7] = packet.data[7];
+    keyboardPacket.deviceID = packet.deviceID;
+    keyboardPacket.key[0] = packet.data[0];
+    keyboardPacket.key[1] = packet.data[1];
+    keyboardPacket.key[2] = packet.data[2];
+    keyboardPacket.key[3] = packet.data[3];
+    keyboardPacket.key[4] = packet.data[4];
+    keyboardPacket.key[5] = packet.data[5];
+    keyboardPacket.key[6] = packet.data[6];
+    keyboardPacket.key[7] = packet.data[7];
 }
 
 void convertPacket2Mouse(packetStruct packet)
@@ -201,6 +201,7 @@ uint8_t packet2key(uint8_t deviceID, uint8_t key[8])
     /*
     if(modifierKeyIsPressed)
     */
+   return 0;
 }
 
 

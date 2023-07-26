@@ -42,7 +42,7 @@ packetStruct receivedPacket;
 
 telemetryStruct telemetryPacket;
 
-keyboardStruct keyboardPacket;
+//keyboardStruct keyboardPacket;
 keyboardStruct previousKeyboardPacket;
 
 //--------------------------------------------------Structs--------------------------------------------------

@@ -109,7 +109,6 @@ void loop()
     ledTask.inBetweenTime = ledTask.beginTime - ledTask.endTime;
 
     //**functions
-      Serial.println(WiFi.macAddress());
 
 
     ledTask.endTime = micros();
@@ -125,7 +124,7 @@ void loop()
     espnowTask.inBetweenTime = espnowTask.beginTime - espnowTask.endTime;
 
     //**functions
-    receivedPacket;
+    handleReceivedPacket(receivedPacket);
     
 
     espnowTask.endTime = micros();
@@ -172,6 +171,7 @@ void loop()
         {
           Keyboard.press(keyIDtoChar(keyboardPacket.key[i], layerID));
           //Serial.print("Pressing: 0x");
+          //Serial.print(keyboardPacket.key[i]);
           //Serial.println(keyIDtoChar(keyboardPacket.key[i], layerID), HEX);
         }
         else if (keyboardPacket.key[i] != 0xFF && layerID == settingLayerID)
@@ -193,6 +193,7 @@ void loop()
             break;
           }
         }
+        Serial.println();
         
 
       }

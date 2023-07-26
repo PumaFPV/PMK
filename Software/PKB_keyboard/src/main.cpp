@@ -21,6 +21,9 @@ void loopCount();
 
 void setup() 
 {
+
+  keyboardPacket.deviceID = 1; 
+
   //-----Serial
   Serial.begin(115200);
 
@@ -93,8 +96,6 @@ void loop()
     ledTask.beginTime = micros();
     ledTask.inBetweenTime = ledTask.beginTime - ledTask.endTime;
 
-      Serial.println(WiFi.macAddress());
-
       setLedColorProfile(layerID);
 
       /*leds[ledNumber] = CRGB::pulsarPurple;
@@ -149,6 +150,7 @@ void loop()
         //Serial.print(spiPacket[packet], BIN);
         //Serial.print(" ");
       }
+      //Serial.println();
 
       digitalWrite(SR_CE, HIGH);
       digitalWrite(SR_PL, LOW);
@@ -199,16 +201,7 @@ void loop()
   {
     espnowTask.beginTime = micros();
     espnowTask.inBetweenTime = espnowTask.beginTime - espnowTask.endTime;
-    /*
-    for(uint8_t i = 0; i < 255; i++)
-    {
-      Serial.print("Pressing: 0x");
-      Serial.println(i, HEX);
-      Keyboard.press(i);
-      delay(10);
-      Keyboard.release(i);
-      delay(500);
-    }*/
+
 //------------------
       
       //Send all pressed keys to packet

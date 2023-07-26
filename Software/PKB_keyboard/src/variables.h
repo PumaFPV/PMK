@@ -42,7 +42,7 @@
 #define SR_CE 9
 #define SR_PL 5
 
-static const int srSpiClk = 10000000; // 10MHz
+static const int srSpiClk = 10000000; // 1MHz
 
 
 //--------------------------------------------------Initialize libraries--------------------------------------------------
@@ -113,6 +113,8 @@ uint8_t numberOfPressedKeys = 0;
 
 uint8_t ledNumber = 0;
 uint8_t ledBrightness = 50;
+
+uint8_t layerID = 0;
 
 
 
