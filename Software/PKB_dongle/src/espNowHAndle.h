@@ -6,6 +6,30 @@ String success;
 
 
 
+void handleReceivedPacket(packetStruct receivedPacket)
+{
+    switch(receivedPacket.packetType)
+    {
+    case 0:
+        Serial.println("Non existant packetType");
+        break;
+    case 1: //Keyboard
+        convertPacket2Keyboard(receivedPacket);
+        for(uint8_t i = 0; i < 8; i++)
+        {
+            if(keyboardPacket.key[i] =! 0)
+            {
+                //packet2key(keyboardPacket.deviceID, keyboardPacket.key);
+                Keyboard.print(keyboardPacket.key[i]);
+                
+            }
+        }
+        break;
+    case 2: //Mouse
+        break;
+    } 
+}
+
 // Callback when data is sent
 void OnEspNowDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) 
 {

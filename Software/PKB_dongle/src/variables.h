@@ -38,7 +38,7 @@
 
 USBHIDKeyboard Keyboard;
 
-esp_now_peer_info_t peerInfo;
+packetStruct receivedPacket;
 
 telemetryStruct telemetryPacket;
 
@@ -64,11 +64,8 @@ Func keyboardTask = {0, 0, 0, 0, 0, 1000, 0, 0};
 Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
 
 //--------------------------------------------------Variables--------------------------------------------------
-//84:F7:03:F0:EF:72
-uint8_t dongleAddress[] = {0x58, 0xCF, 0x79, 0xA3, 0x98, 0xC2};
 
 uint8_t receivedData[16];
-String success;
 
 uint8_t ledBrightness = 50;
 

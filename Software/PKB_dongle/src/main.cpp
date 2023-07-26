@@ -1,5 +1,8 @@
 #include <Arduino.h>
 
+#include "config.h"
+
+
 #define LED 9
 
 #include "WiFi.h"
@@ -28,14 +31,10 @@ const uint8_t connectedDevices = 2;
 
 uint8_t deviceAddress[connectedDevices][MAC_ADDRESS_SIZE] = 
 {
-  {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xBE}, //leftKeyboard 84:F7:03:F0:F0:BE
-  {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xB8}  //rightKeyboard 84:F7:03:F0:F0:B8
+  {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xB8}, //leftKeyboard 84:F7:03:F0:F0:B8
+  {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xB0}  //rightKeyboard 84:F7:03:F0:F0:B0
 };
 
-enum devices{
-  leftKeyboard,
-  rightKeyboard,
-};
 
 
 #include "pmk.h"
@@ -90,6 +89,8 @@ void setup(){
   }
 }
 
+
+
 void loop()
 {
   //Receive ESP-NOW packet
@@ -108,6 +109,8 @@ void loop()
     ledTask.inBetweenTime = ledTask.beginTime - ledTask.endTime;
 
     //**functions
+      Serial.println(WiFi.macAddress());
+
 
     ledTask.endTime = micros();
     ledTask.counter++;

@@ -114,8 +114,6 @@ uint8_t numberOfPressedKeys = 0;
 uint8_t ledNumber = 0;
 uint8_t ledBrightness = 50;
 
-uint8_t layerID = 0;
-
 
 
 #endif
