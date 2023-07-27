@@ -125,19 +125,6 @@ void loop()
 
     //**functions
     handleReceivedPacket(receivedPacket);
-    
-
-    espnowTask.endTime = micros();
-    espnowTask.counter++;
-    espnowTask.duration = espnowTask.endTime - espnowTask.beginTime;
-
-  }
-
-  //------------------------------------------------------keyboardTask
-  if(micros() - keyboardTask.beginTime >= keyboardTask.interval)
-  {
-    keyboardTask.beginTime = micros();
-    keyboardTask.inBetweenTime = keyboardTask.beginTime - keyboardTask.endTime;
 
     //Keyboard functions start
       //layerID = 0;
@@ -224,6 +211,21 @@ void loop()
 
     //Keyboard functions end
 
+    
+
+    espnowTask.endTime = micros();
+    espnowTask.counter++;
+    espnowTask.duration = espnowTask.endTime - espnowTask.beginTime;
+
+  }
+
+  //------------------------------------------------------keyboardTask
+  if(micros() - keyboardTask.beginTime >= keyboardTask.interval)
+  {
+    keyboardTask.beginTime = micros();
+    keyboardTask.inBetweenTime = keyboardTask.beginTime - keyboardTask.endTime;
+
+    
     keyboardTask.endTime = micros();
     keyboardTask.counter++;
     keyboardTask.duration = keyboardTask.endTime - keyboardTask.beginTime;

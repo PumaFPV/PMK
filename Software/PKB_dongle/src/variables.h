@@ -67,7 +67,7 @@ Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
 
 uint8_t receivedData[16];
 
-uint8_t ledBrightness = 50;
+uint8_t ledBrightness = 0;
 
 uint8_t layerID = 0;
 

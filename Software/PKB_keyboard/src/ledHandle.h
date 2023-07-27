@@ -211,7 +211,7 @@ void setLedColorProfile(uint8_t profile)
   case 0:
     for(uint8_t i = 0; i < NUM_LEDS; i++)
     {
-      leds[i] = ledColorProfile[profile][i];
+      //leds[i] = CRGB::White; //ledColorProfile[profile][i];
     }
     break;
   

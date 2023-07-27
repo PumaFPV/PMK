@@ -13,7 +13,6 @@ void handleReceivedPacket(packetStruct receivedPacket)
     break;
   case 1: //Keyboard
     convertPacket2Keyboard(receivedPacket);
-    //Serial.println("is Keyboard");
 
     break;
   case 2: //Mouse
