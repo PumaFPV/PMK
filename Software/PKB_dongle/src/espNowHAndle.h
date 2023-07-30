@@ -8,12 +8,14 @@ void handleReceivedPacket(packetStruct receivedPacket)
 {
   switch(receivedPacket.packetType)
   {
+  case 255: 
+    //default packet
+    break;
   case 0:
-    Serial.println("Non existant packetType");
+    Serial.println("Telem Packet");
     break;
   case 1: //Keyboard
     convertPacket2Keyboard(receivedPacket);
-
     break;
   case 2: //Mouse
     break;
@@ -38,9 +40,7 @@ void OnEspNowDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)
 // Callback when data is received
 void OnEspNowDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len) 
 {
-  
   memcpy(&receivedPacket, incomingData, sizeof(receivedPacket));
   //Serial.println(receivedPacket.data[1]);
-
 }
 

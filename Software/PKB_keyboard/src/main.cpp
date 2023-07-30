@@ -7,6 +7,7 @@
 #include "USBHIDKeyboard.h"
 #include "WiFi.h"
 #include "esp_now.h"
+#include "LittleFS.h"
 #include "FastLED.h"
 #include "pmk.h"
 
@@ -174,8 +175,8 @@ void loop()
           {
             keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit;
 
-            Serial.print("KeyID: 0x");
-            Serial.println(keyboardPacket.key[numberOfPressedKeys], HEX);
+            //Serial.print("KeyID: 0x");
+            //                                                          Serial.println(keyboardPacket.key[numberOfPressedKeys], HEX);
             
             numberOfPressedKeys++;
 

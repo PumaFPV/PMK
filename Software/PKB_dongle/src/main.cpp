@@ -12,8 +12,7 @@
 //#include "USBMSC.h"
 //#include "FirmwareMSC.h"
 //#include "FS.h"
-//#include "LittleFS.h"
-
+#include "LittleFS.h"
 
 
 #include "variables.h"
@@ -26,26 +25,34 @@ enum devices{
   rightKeyboard,
 };
 
-const uint8_t connectedDevices = 2;
-#define MAC_ADDRESS_SIZE 6
-
-uint8_t deviceAddress[connectedDevices][MAC_ADDRESS_SIZE] = 
-{
-  {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xB8}, //leftKeyboard 84:F7:03:F0:F0:B8
-  {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xB0}  //rightKeyboard 84:F7:03:F0:F0:B0
-};
 
 
 
 #include "pmk.h"
 #include "USBHandle.h"
 #include "espNowHandle.h"
+#include "fsHandle.h"
 
 void loopCount();
 
 void setup(){
 
   Serial.begin(115200);
+
+  //===========================================
+  //====================LittleFS===============
+  //===========================================
+  if(!LittleFS.begin())
+  {
+    Serial.println("An Error has occurred while mounting LittleFS");
+    return;
+  }
+
+  //===========================================
+  //====================Config=================
+  //===========================================
+
+
 
   //===========================================
   //====================USB====================
@@ -111,10 +118,10 @@ void loop()
     //**functions
 
 
+
     ledTask.endTime = micros();
     ledTask.counter++;
     ledTask.duration = ledTask.endTime - ledTask.beginTime;
-
   }
 
   //------------------------------------------------------espnowTask
@@ -179,10 +186,7 @@ void loop()
             }
             break;
           }
-        }
-        Serial.println();
-        
-
+        }        
       }
 
       uint8_t releaseKeys[8];
@@ -246,9 +250,29 @@ void loop()
 
   }
 
+  //------------------------------------------------------fsTask
+  if(micros() - fsTask.beginTime >= fsTask.interval)
+  {
+    fsTask.beginTime = micros();
+    fsTask.inBetweenTime = fsTask.beginTime - fsTask.endTime;
+
+    //**functions
+    //File configFile = LittleFS.open("/config.json", "r");
+    //if(!configFile)
+    //{
+    //  Serial.println("Failed to open file for reading");
+    //  return;
+    //}
+    
+    //listDir(LittleFS, "/");
 
 
-  
+    //readConfig("/config.json");
+
+    fsTask.endTime = micros();
+    fsTask.counter++;
+    fsTask.duration = fsTask.endTime - fsTask.beginTime;
+  }
 }
 
 void loopCount()
@@ -299,6 +323,18 @@ void loopCount()
     uartTask.frequency = uartTask.counter;
     //Serial.println(uartTask.counter);
     uartTask.counter = 0;
+  }
+
+  //Task frequency counter
+  if(fsTask.counter == 0)
+  {
+    fsTask.startCounterTime = micros();
+  }
+  if(micros() - fsTask.startCounterTime > 1000000)
+  {
+    fsTask.frequency = fsTask.counter;
+    //Serial.println(fsTask.counter);
+    fsTask.counter = 0;
   }
 }
 

@@ -62,6 +62,8 @@ Func ledTask = {0, 0, 0, 0, 0, 10000, 0, 0};
 Func espnowTask = {0, 0, 0, 0, 0, 1000, 0, 0};
 Func keyboardTask = {0, 0, 0, 0, 0, 1000, 0, 0};
 Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
+Func fsTask = {0, 0, 0, 0, 0, 2000000, 0, 0};
+
 
 //--------------------------------------------------Variables--------------------------------------------------
 
@@ -70,5 +72,15 @@ uint8_t receivedData[16];
 uint8_t ledBrightness = 0;
 
 uint8_t layerID = 0;
+
+const uint8_t connectedDevices = 2;
+#define MAC_ADDRESS_SIZE 6
+
+uint8_t deviceAddress[][MAC_ADDRESS_SIZE] = 
+{
+  {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xB8}, //leftKeyboard 84:F7:03:F0:F0:B8
+  {0x84, 0xF7, 0x03, 0xF0, 0xF0, 0xB0}  //rightKeyboard 84:F7:03:F0:F0:B0
+};
+
 
 #endif

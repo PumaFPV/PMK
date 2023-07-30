@@ -7,7 +7,7 @@
 
 typedef struct packetStruct {
     uint8_t deviceID;
-    uint8_t packetType;
+    uint8_t packetType = 255;
     uint8_t data[16];
 }   packetStruct;
 
@@ -23,7 +23,7 @@ typedef struct telemetryStruct {
 typedef struct keyboardStruct {
     uint8_t deviceID;
     const uint8_t packetType = 1;
-    uint8_t key[8];
+    uint8_t key[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 }   keyboardStruct;
 
 typedef struct mouseStruct {
