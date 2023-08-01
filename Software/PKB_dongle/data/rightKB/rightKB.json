@@ -1,0 +1,14 @@
+{
+    "deviceName": "rightKB",
+    "deviceID": "2",
+    "deviceAddress": ["0x84", "0xF7", "0x03", "0xF0", "0xF0", "0xFE"],
+
+    "isKeyboard": "true",
+    "isMouse": "true",
+    "isGamepad": "false",
+    "isLed": "true",
+    "isKnob": "false",
+    "isActuator": "false",
+    "isDisplay": "false",
+    "isSerial": "false"
+}

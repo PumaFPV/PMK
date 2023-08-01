@@ -19,13 +19,10 @@
 //USBMSC MSC;
 //FirmwareMSC MSC_Update;
 
-
 enum devices{
   leftKeyboard,
   rightKeyboard,
 };
-
-
 
 
 #include "pmk.h"
@@ -35,9 +32,15 @@ enum devices{
 
 void loopCount();
 
-void setup(){
+void setup()
+{
+
 
   Serial.begin(115200);
+  while(!Serial)
+  {
+  }
+  Serial.printf("Dongle is booting\r\n");
 
   //===========================================
   //====================LittleFS===============
@@ -47,12 +50,32 @@ void setup(){
     Serial.println("An Error has occurred while mounting LittleFS");
     return;
   }
+  else
+  {
+    Serial.println("File system is ok");
+  }
 
   //===========================================
   //====================Config=================
   //===========================================
+  uint8_t numberOfDeviceToConfig = getNumberOfDevices();
+  Serial.printf("Number of configs: %d \r\n", numberOfDeviceToConfig);
+  for(uint8_t deviceNumber = 0; deviceNumber < numberOfDeviceToConfig; deviceNumber++)
+  {
+    Serial.printf("Configuring device number %d\r\n", deviceNumber);
+    File root = LittleFS.open("/");
 
-
+    File directory = root.openNextFile();
+    
+    if(!directory.isDirectory())
+    {
+      Serial.printf("There is a file in root, please reupload file system");
+    }
+    File configRoot = LittleFS.open(directory.path());
+    listDir(LittleFS, directory.path(), 0);
+  }
+  
+  //listDir(LittleFS, "/", 2);
 
   //===========================================
   //====================USB====================
@@ -65,7 +88,8 @@ void setup(){
   //====================================================
 
   WiFi.mode(WIFI_STA);
-  Serial.println(WiFi.macAddress());
+  Serial.println("Dongle MAC address: " +  WiFi.macAddress());
+  //Serial.println(WiFi.macAddress());
 
   if (esp_now_init() != ESP_OK) {
     Serial.println("Error initializing ESP-NOW");
@@ -257,21 +281,28 @@ void loop()
     fsTask.inBetweenTime = fsTask.beginTime - fsTask.endTime;
 
     //**functions
-    //File configFile = LittleFS.open("/config.json", "r");
-    //if(!configFile)
-    //{
-    //  Serial.println("Failed to open file for reading");
-    //  return;
-    //}
     
-    //listDir(LittleFS, "/");
+    //listDir(LittleFS, "/", 1);
 
-
-    //readConfig("/config.json");
+    //readConfig();
 
     fsTask.endTime = micros();
     fsTask.counter++;
     fsTask.duration = fsTask.endTime - fsTask.beginTime;
+  }
+
+  //------------------------------------------------------telemetryTask
+  if(micros() - telemetryTask.beginTime >= telemetryTask.interval)
+  {
+    telemetryTask.beginTime = micros();
+    telemetryTask.inBetweenTime = telemetryTask.beginTime - telemetryTask.endTime;
+
+    //**functions
+    //Serial.printf("Proc temp: %.1f °C\r\n", temperatureRead());
+
+    telemetryTask.endTime = micros();
+    telemetryTask.counter++;
+    telemetryTask.duration = telemetryTask.endTime - telemetryTask.beginTime;
   }
 }
 
@@ -335,6 +366,18 @@ void loopCount()
     fsTask.frequency = fsTask.counter;
     //Serial.println(fsTask.counter);
     fsTask.counter = 0;
+  }
+
+  //Task frequency counter
+  if(telemetryTask.counter == 0)
+  {
+    telemetryTask.startCounterTime = micros();
+  }
+  if(micros() - telemetryTask.startCounterTime > 1000000)
+  {
+    telemetryTask.frequency = telemetryTask.counter;
+    //Serial.println(fsTask.counter);
+    telemetryTask.counter = 0;
   }
 }
 

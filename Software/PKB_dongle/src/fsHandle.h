@@ -257,29 +257,4 @@ void testFileIO(fs::FS &fs, const char * path){
     }
 }
 
-bool readConfig(String fileName)
-{
-    String fileContent = readFile(LittleFS, fileName);
-
-    int configFileSize = fileContent.length();
-    if(configFileSize > MAX_FILE_SIZE)
-    {
-        Serial.println("Config file size too large");
-        return false;
-    }
-
-    StaticJsonDocument<MAX_FILE_SIZE> doc;
-
-    auto error = deserializeJson(doc, fileContent);
-    if(error)
-    {
-        Serial.println("Error interpreting config file");
-        return false;
-    }
-
-    Serial.println(getNumberOfDevices(doc));
-
-    return true;
-}
-
 #endif

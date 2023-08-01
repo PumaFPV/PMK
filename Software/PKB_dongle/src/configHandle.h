@@ -4,10 +4,21 @@
 #include "variables.h"
 #include "fsHandle.h"
 
-uint8_t getNumberOfDevices(JsonDocument& configJson)
+uint8_t getNumberOfDevices()
 {
-    JsonObject root = configJson.as<JsonObject>();
-    uint8_t numberOfDevices = root.size();
+    uint8_t numberOfDevices = 0;
+
+    File root = LittleFS.open("/");
+    File directory = root.openNextFile();
+    while(directory)
+    {
+        if(directory.isDirectory())
+        {
+            numberOfDevices++;
+        }
+        directory = root.openNextFile();
+    }
+
     return numberOfDevices;
 }
 
