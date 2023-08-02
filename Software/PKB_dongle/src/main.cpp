@@ -130,7 +130,7 @@ void loop()
 
   //If special key (shift / fn / other) than choose correct kb layout
 
-  //if USB command  -> send 
+  //if USB command  -> send
 
 
   //------------------------------------------------------ledTask
