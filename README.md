@@ -10,6 +10,26 @@ Maybe also store password manager.
 
 <img src="/Documentation/Images/Dongle_HW00_recto.jpg" width="231" height="225"><img src="/Documentation/Images/Dongle_HW00_verso.jpg" width="255" height="195"><img src="/Documentation/Images/Dongle_HW00_PCB_bottom.jpg" width="225" height="300">
 
+As the dongle is the master of PMK, it hosts the config files for each devices. Here is the expected file organisation:
+
+|--deviceName1
+	|- config.json
+	|--keyboard
+		|- l1.json
+		|- l2.json
+	|--led
+		|- l1.json
+		|- l2.json
+|--deviceName2
+	|- config.json
+	|--keyboard
+		|- l1.json
+		|- l2.json
+	|--mouse
+		|- l1.json
+		|- l2.json
+For more details about devices configurations / capabilities check the Protocol chapter.
+
 ## Devices
 Can run on any espressif chip that can run ESP-NOW.
 The plan is to run the same firmware on all devices and being able to configure them via their corresponding .json files on the master dongle. 
