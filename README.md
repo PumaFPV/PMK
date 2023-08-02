@@ -13,7 +13,7 @@ Maybe also store password manager.
 As the dongle is the master of PMK, it hosts the config files for each devices. Here is the expected file organisation:
 
 |--deviceName1
-	|- config.json
+	|- deviceName1.json
 	|--keyboard
 		|- l1.json
 		|- l2.json
@@ -21,7 +21,7 @@ As the dongle is the master of PMK, it hosts the config files for each devices. 
 		|- l1.json
 		|- l2.json
 |--deviceName2
-	|- config.json
+	|- deviceName2.json
 	|--keyboard
 		|- l1.json
 		|- l2.json

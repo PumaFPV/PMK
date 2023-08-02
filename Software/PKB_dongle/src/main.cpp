@@ -60,6 +60,7 @@ void setup()
   //===========================================
   uint8_t numberOfDeviceToConfig = getNumberOfDevices();
   Serial.printf("Number of configs: %d \r\n", numberOfDeviceToConfig);
+
   for(uint8_t deviceNumber = 0; deviceNumber < numberOfDeviceToConfig; deviceNumber++)
   {
     Serial.printf("Configuring device number %d\r\n", deviceNumber);
@@ -71,8 +72,26 @@ void setup()
     {
       Serial.printf("There is a file in root, please reupload file system");
     }
+
     File configRoot = LittleFS.open(directory.path());
-    listDir(LittleFS, directory.path(), 0);
+    //listDir(LittleFS, directory.path(), 0);
+
+    //Now inside device config folder
+    String deviceName = directory.name();
+    Serial.printf("Device name to configure: %s \r\n", deviceName);
+    uint8_t deviceNameLength = deviceName.length();
+
+    File folder = directory.openNextFile();
+    while(folder)
+    {
+      String deviceType = folder.name();
+      deviceType.remove(0, deviceNameLength+1);
+      Serial.printf("Device type has: %s \r\n", deviceType);
+      folder = directory.openNextFile();
+    }
+
+
+
   }
   
   //listDir(LittleFS, "/", 2);
@@ -105,15 +124,15 @@ void setup()
   peerInfo.encrypt = false;
 
   //Add peer    
-  for(uint8_t i = 0; i < connectedDevices; i++)
+  for(uint8_t i = 0; i < numberOfDeviceToConfig; i++)
   {
-    memcpy(peerInfo.peer_addr, deviceAddress[connectedDevices], 6);
+    memcpy(peerInfo.peer_addr, deviceAddress[numberOfDeviceToConfig], 6);
 
     if (esp_now_add_peer(&peerInfo) != ESP_OK){
       Serial.print("Failed to add peer ");
       for(uint8_t i = 0; i < 6; ++i)
       {
-        Serial.println(deviceAddress[connectedDevices][i]);
+        Serial.println(deviceAddress[numberOfDeviceToConfig][i]);
       }
       return;
     }
@@ -131,7 +150,6 @@ void loop()
   //If special key (shift / fn / other) than choose correct kb layout
 
   //if USB command  -> send
-
 
   //------------------------------------------------------ledTask
   if(micros() - ledTask.beginTime >= ledTask.interval)
