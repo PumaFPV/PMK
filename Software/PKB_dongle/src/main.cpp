@@ -60,11 +60,11 @@ void setup()
   //===========================================
   uint8_t numberOfDeviceToConfig = getNumberOfDevices();
   Serial.printf("Number of configs: %d \r\n", numberOfDeviceToConfig);
-
+  
+  File root = LittleFS.open("/");
   for(uint8_t deviceNumber = 0; deviceNumber < numberOfDeviceToConfig; deviceNumber++)
   {
     Serial.printf("Configuring device number %d\r\n", deviceNumber);
-    File root = LittleFS.open("/");
 
     File directory = root.openNextFile();
     
@@ -74,7 +74,6 @@ void setup()
     }
 
     File configRoot = LittleFS.open(directory.path());
-    //listDir(LittleFS, directory.path(), 0);
 
     //Now inside device config folder
     String deviceName = directory.name();
@@ -82,19 +81,38 @@ void setup()
     uint8_t deviceNameLength = deviceName.length();
 
     File folder = directory.openNextFile();
+
     while(folder)
     {
       String deviceType = folder.name();
       deviceType.remove(0, deviceNameLength+1);
       Serial.printf("Device type has: %s \r\n", deviceType);
+
+      if(deviceType == "json")
+      {
+        Serial.printf("Folder name: %s\r\n", folder.name());
+        readAttribute("leftKB/leftKB.json", "deviceAddress");
+        Serial.printf("\n\r");
+        
+      }
+      else if (deviceType == "key.json")
+      {
+
+      }
+      else if (deviceType == "led.json")
+      {
+
+      }
+      
+      
+
       folder = directory.openNextFile();
     }
 
 
-
   }
   
-  //listDir(LittleFS, "/", 2);
+  //listDir(LittleFS, "/", 3);
 
   //===========================================
   //====================USB====================

@@ -40,4 +40,56 @@ void configureKeyboard()
 
 }
 
+void readAttribute(const char* filename, const char* objectName, const char* attributeName) {
+  File file = LittleFS.open(filename, "r");
+  if (!file) {
+    Serial.println("Failed to open file for reading");
+    return;
+  }
+
+  size_t size = file.size();
+  std::unique_ptr<char[]> buf(new char[size]);
+
+  file.readBytes(buf.get(), size);
+  file.close();
+
+  DynamicJsonDocument doc(1024);
+  DeserializationError error = deserializeJson(doc, buf.get());
+  if (error) {
+    Serial.println("Failed to parse JSON");
+    return;
+  }
+
+  const char* value = doc[objectName][attributeName].as<const char*>();
+  
+  Serial.print("Attribute value: ");
+  Serial.println(value);
+}
+
+void readAttribute(const char* filename, const char* attributeName) {
+  File file = LittleFS.open(filename, "r");
+  if (!file) {
+    Serial.println("Failed to open file for reading");
+    return;
+  }
+
+  size_t size = file.size();
+  std::unique_ptr<char[]> buf(new char[size]);
+
+  file.readBytes(buf.get(), size);
+  file.close();
+
+  DynamicJsonDocument doc(1024);
+  DeserializationError error = deserializeJson(doc, buf.get());
+  if (error) {
+    Serial.println("Failed to parse JSON");
+    return;
+  }
+
+  const char* value = doc[attributeName].as<const char*>();
+  
+  Serial.print("Attribute value: ");
+  Serial.println(value);
+}
+
 #endif
