@@ -59,7 +59,7 @@ void setup()
   //====================Config=================
   //===========================================
   uint8_t numberOfDeviceToConfig = getNumberOfDevices();
-  Serial.printf("Number of configs: %d \r\n", numberOfDeviceToConfig);
+  Serial.printf("Number of device to config: %d \r\n\r\n", numberOfDeviceToConfig);
   
   File root = LittleFS.open("/");
   for(uint8_t deviceNumber = 0; deviceNumber < numberOfDeviceToConfig; deviceNumber++)
