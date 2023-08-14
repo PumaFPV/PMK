@@ -91,7 +91,7 @@ void setup()
       if(deviceType == "json")
       {
         Serial.printf("Folder name: %s\r\n", folder.name());
-        readAttribute("leftKB/leftKB.json", "deviceAddress");
+        readAttribute("/leftKB/leftKB.json", "deviceName");
         Serial.printf("\n\r");
         
       }
