@@ -56,6 +56,33 @@ void setup()
   }
 
   //===========================================
+  //====================USB====================
+  //===========================================
+
+  Keyboard.begin();
+
+  //====================================================
+  //====================Wifi/ESP Now====================
+  //====================================================
+
+  WiFi.mode(WIFI_STA);
+  Serial.println("Dongle MAC address: " +  WiFi.macAddress());
+  //Serial.println(WiFi.macAddress());
+
+  if (esp_now_init() != ESP_OK) {
+    Serial.println("Error initializing ESP-NOW");
+    return;
+  }
+
+  esp_now_register_send_cb(OnEspNowDataSent);
+
+  esp_now_register_recv_cb(OnEspNowDataRecv);
+  
+  //Register peer
+  peerInfo.channel = 0;  
+  peerInfo.encrypt = false;
+
+  //===========================================
   //====================Config=================
   //===========================================
   uint8_t numberOfDeviceToConfig = getNumberOfDevices();
@@ -91,8 +118,16 @@ void setup()
       if(deviceType == "json")
       {
         Serial.printf("Folder name: %s\r\n", folder.name());
-        readAttribute("/leftKB/leftKB.json", "deviceName");
-        Serial.printf("\n\r");
+        
+        String filePathString = "/" + deviceName + "/" + deviceName + ".json";
+        const char* filePath = new char[filePathString.length() + 1];
+        strcpy(const_cast<char*>(filePath), filePathString.c_str());
+
+        Serial.printf("Config name: %s \r\n", getAttribute(filePath, "deviceName"));
+        Serial.printf("Config ID: %s \r\n", getAttribute(filePath, "deviceID"));
+
+
+        addDeviceAddress(filePath);
         
       }
       else if (deviceType == "key.json")
@@ -105,6 +140,7 @@ void setup()
       }
       
       
+      Serial.printf("\n\r");
 
       folder = directory.openNextFile();
     }
@@ -114,47 +150,6 @@ void setup()
   
   //listDir(LittleFS, "/", 3);
 
-  //===========================================
-  //====================USB====================
-  //===========================================
-
-  Keyboard.begin();
-
-  //====================================================
-  //====================Wifi/ESP Now====================
-  //====================================================
-
-  WiFi.mode(WIFI_STA);
-  Serial.println("Dongle MAC address: " +  WiFi.macAddress());
-  //Serial.println(WiFi.macAddress());
-
-  if (esp_now_init() != ESP_OK) {
-    Serial.println("Error initializing ESP-NOW");
-    return;
-  }
-
-  esp_now_register_send_cb(OnEspNowDataSent);
-
-  esp_now_register_recv_cb(OnEspNowDataRecv);
-  
-  //Register peer
-  peerInfo.channel = 0;  
-  peerInfo.encrypt = false;
-
-  //Add peer    
-  for(uint8_t i = 0; i < numberOfDeviceToConfig; i++)
-  {
-    memcpy(peerInfo.peer_addr, deviceAddress[numberOfDeviceToConfig], 6);
-
-    if (esp_now_add_peer(&peerInfo) != ESP_OK){
-      Serial.print("Failed to add peer ");
-      for(uint8_t i = 0; i < 6; ++i)
-      {
-        Serial.println(deviceAddress[numberOfDeviceToConfig][i]);
-      }
-      return;
-    }
-  }
 }
 
 

@@ -22,29 +22,16 @@ uint8_t getNumberOfDevices()
     return numberOfDevices;
 }
 
-void configureDeviceMacAddress(JsonDocument& configJson)
-{
-    //deviceAddress[];
-
-    JsonObject device1 = configJson["device1"];
-    String _value = device1["deviceName"];
-    JsonArray macAddress = device1["deviceAddress"]; 
-
-    for (const auto& item : macAddress) {
-        const char* value = item.as<const char*>();
-    }
-}
-
 void configureKeyboard()
 {
 
 }
 
-void readAttribute(const char* filename, const char* objectName, const char* attributeName) {
+const char* getAttribute(const char* filename, const char* attributeName) {
   File file = LittleFS.open(filename, "r");
   if (!file) {
     Serial.println("Failed to open file for reading");
-    return;
+    return 0;
   }
 
   size_t size = file.size();
@@ -57,39 +44,60 @@ void readAttribute(const char* filename, const char* objectName, const char* att
   DeserializationError error = deserializeJson(doc, buf.get());
   if (error) {
     Serial.println("Failed to parse JSON");
-    return;
-  }
-
-  const char* value = doc[objectName][attributeName].as<const char*>();
-  
-  Serial.print("Attribute value: ");
-  Serial.println(value);
-}
-
-void readAttribute(const char* filename, const char* attributeName) {
-  File file = LittleFS.open(filename, "r");
-  if (!file) {
-    Serial.println("Failed to open file for reading");
-    return;
-  }
-
-  size_t size = file.size();
-  std::unique_ptr<char[]> buf(new char[size]);
-
-  file.readBytes(buf.get(), size);
-  file.close();
-
-  DynamicJsonDocument doc(1024);
-  DeserializationError error = deserializeJson(doc, buf.get());
-  if (error) {
-    Serial.println("Failed to parse JSON");
-    return;
+    return 0;
   }
 
   const char* value = doc[attributeName].as<const char*>();
-  
-  Serial.print("Attribute value: ");
-  Serial.println(value);
+  return value;
+}
+
+
+void addDeviceAddress(const char* filename) 
+{
+  File file = LittleFS.open(filename, "r");
+  if(!file) 
+  {
+    Serial.println("Failed to open file for reading");
+    return;
+  }
+
+  size_t size = file.size();
+  std::unique_ptr<char[]> buf(new char[size]);
+
+  file.readBytes(buf.get(), size);
+  file.close();
+
+  DynamicJsonDocument doc(1024);
+  DeserializationError error = deserializeJson(doc, buf.get());
+  if(error) 
+  {
+    Serial.println("Failed to parse JSON");
+    return;
+  }
+
+  JsonArray addressJsonArray = doc["deviceAddress"];
+  if(addressJsonArray.size() != 6) 
+  {
+    Serial.println("Invalid device address size");
+    return;
+  }
+
+  Serial.print("Device Address: ");
+
+  uint8_t addressArray[6];
+  for(int i = 0; i < 6; i++) 
+  {
+    String hexStr = addressJsonArray[i].as<String>();
+    addressArray[i] = strtoul(hexStr.c_str(), NULL, 16);
+  }
+
+  memcpy(peerInfo.peer_addr, addressArray, 6);
+
+  if (esp_now_add_peer(&peerInfo) != ESP_OK)
+  {
+    Serial.print("Failed to add peer ");
+    return;
+  }
 }
 
 #endif
