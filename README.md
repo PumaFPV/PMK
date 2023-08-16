@@ -47,6 +47,9 @@ Hopefully processing key press and led function on dongle and send data to kb is
 <img src="/Documentation/Images/PKB_HW00_pulsar.png" width="700" height="394">
 
 ## Protocol
+Packet structure is: 
+| Byte | 1 | 2 | 3 |
+| Description | DeviceID | PacketID
 Devices should send data as simple as possible, keyboard sends key IDs pressed (max 8 at a time) and then the dongle processes the key ID depending on the json configuration
 
 | Packet ID | Packet type | Packet information | Number of bytes | Example packet | Example description |
