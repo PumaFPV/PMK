@@ -47,12 +47,12 @@ void setup()
   //===========================================
   if(!LittleFS.begin())
   {
-    Serial.println("An Error has occurred while mounting LittleFS");
+    Serial.printf("An Error has occurred while mounting LittleFS\r\n");
     return;
   }
   else
   {
-    Serial.println("File system is ok");
+    Serial.printf("File system is ok\r\n");
   }
 
   //===========================================
@@ -66,11 +66,11 @@ void setup()
   //====================================================
 
   WiFi.mode(WIFI_STA);
-  Serial.println("Dongle MAC address: " +  WiFi.macAddress());
-  //Serial.println(WiFi.macAddress());
+  Serial.print("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
 
-  if (esp_now_init() != ESP_OK) {
-    Serial.println("Error initializing ESP-NOW");
+  if (esp_now_init() != ESP_OK) 
+  {
+    Serial.printf("Error initializing ESP-NOW\r\n");
     return;
   }
 
@@ -114,8 +114,6 @@ void setup()
     while(folder)
     {
       String fileName = folder.name();
-      //fileName.remove(0, deviceNameLength+1);
-      //Serial.printf("Device type has: %s \r\n", fileName);
 
       Serial.printf("File name: %s\r\n", folder.name());
       String filePathString = "/" + deviceName + "/" + deviceName + ".json";
@@ -125,7 +123,7 @@ void setup()
       if(fileName == String(deviceName + ".json"))
       {
         Serial.printf("Config name: %s \r\n", getAttribute(filePath, "deviceName"));
-        Serial.printf("Config ID: %s \r\n", getAttribute(filePath, "deviceID"));
+        Serial.printf("Device ID: %s \r\n", getAttribute(filePath, "deviceID"));
 
         addDeviceAddress(filePath); 
       }

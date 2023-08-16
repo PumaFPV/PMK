@@ -82,20 +82,18 @@ void addDeviceAddress(const char* filename)
     return;
   }
 
-  Serial.print("Device Address: ");
   uint8_t addressArray[6];
   for(int i = 0; i < 6; i++) 
   {
     String hexStr = addressJsonArray[i].as<String>();
     addressArray[i] = strtoul(hexStr.c_str(), NULL, 16);
-    Serial.print(addressArray[i], HEX); Serial.print(":");
   }
-
+  Serial.printf("Device MAC address: %02X:%02X:%02X:%02X:%02X:%02X\r\n", addressArray[0],addressArray[1], addressArray[2], addressArray[3], addressArray[4], addressArray[5]);
   memcpy(peerInfo.peer_addr, addressArray, 6);
 
   if(esp_now_add_peer(&peerInfo) != ESP_OK)
   {
-    Serial.print("Failed to add peer ");
+    Serial.printf("Failed to add peer ");
   }
   Serial.printf("\r\n");
 }
