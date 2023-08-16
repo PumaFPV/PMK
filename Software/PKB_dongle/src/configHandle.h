@@ -83,21 +83,21 @@ void addDeviceAddress(const char* filename)
   }
 
   Serial.print("Device Address: ");
-
   uint8_t addressArray[6];
   for(int i = 0; i < 6; i++) 
   {
     String hexStr = addressJsonArray[i].as<String>();
     addressArray[i] = strtoul(hexStr.c_str(), NULL, 16);
+    Serial.print(addressArray[i], HEX); Serial.print(":");
   }
 
   memcpy(peerInfo.peer_addr, addressArray, 6);
 
-  if (esp_now_add_peer(&peerInfo) != ESP_OK)
+  if(esp_now_add_peer(&peerInfo) != ESP_OK)
   {
     Serial.print("Failed to add peer ");
-    return;
   }
+  Serial.printf("\r\n");
 }
 
 #endif

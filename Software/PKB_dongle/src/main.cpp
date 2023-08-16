@@ -85,8 +85,10 @@ void setup()
   //===========================================
   //====================Config=================
   //===========================================
+
   uint8_t numberOfDeviceToConfig = getNumberOfDevices();
-  Serial.printf("Number of device to config: %d \r\n\r\n", numberOfDeviceToConfig);
+
+  Serial.printf("Number of devices to config: %d \r\n\r\n", numberOfDeviceToConfig);
   
   File root = LittleFS.open("/");
   for(uint8_t deviceNumber = 0; deviceNumber < numberOfDeviceToConfig; deviceNumber++)
@@ -111,40 +113,39 @@ void setup()
 
     while(folder)
     {
-      String deviceType = folder.name();
-      deviceType.remove(0, deviceNameLength+1);
-      Serial.printf("Device type has: %s \r\n", deviceType);
+      String fileName = folder.name();
+      //fileName.remove(0, deviceNameLength+1);
+      //Serial.printf("Device type has: %s \r\n", fileName);
 
-      if(deviceType == "json")
+      Serial.printf("File name: %s\r\n", folder.name());
+      String filePathString = "/" + deviceName + "/" + deviceName + ".json";
+      const char* filePath = new char[filePathString.length() + 1];
+      strcpy(const_cast<char*>(filePath), filePathString.c_str());
+
+      if(fileName == String(deviceName + ".json"))
       {
-        Serial.printf("Folder name: %s\r\n", folder.name());
-        
-        String filePathString = "/" + deviceName + "/" + deviceName + ".json";
-        const char* filePath = new char[filePathString.length() + 1];
-        strcpy(const_cast<char*>(filePath), filePathString.c_str());
-
         Serial.printf("Config name: %s \r\n", getAttribute(filePath, "deviceName"));
         Serial.printf("Config ID: %s \r\n", getAttribute(filePath, "deviceID"));
 
-
-        addDeviceAddress(filePath);
-        
+        addDeviceAddress(filePath); 
       }
-      else if (deviceType == "key.json")
+
+      else if (fileName == String(deviceName + "-key.json"))
       {
 
+
       }
-      else if (deviceType == "led.json")
+
+      else if (fileName == String(deviceName + "-led.json"))
       {
+
 
       }
       
-      
-      Serial.printf("\n\r");
-
       folder = directory.openNextFile();
     }
-
+    
+    Serial.printf("\n\r");
 
   }
   
