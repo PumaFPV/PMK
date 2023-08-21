@@ -3,6 +3,7 @@
 
 #include "USB.h"
 #include "USBHIDKeyboard.h"
+//#include "USBMSC.h"
 #include "WiFi.h"
 #include "esp_now.h"
 #include "pmk.h"
@@ -37,6 +38,8 @@
 //--------------------------------------------------Initialize libraries--------------------------------------------------
 
 USBHIDKeyboard Keyboard;
+//USBMSC MSC;
+//FirmwareMSC MSC_Update;
 
 packetStruct receivedPacket;
 

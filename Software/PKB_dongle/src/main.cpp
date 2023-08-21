@@ -2,44 +2,31 @@
 
 #include "config.h"
 
-
 #define LED 9
 
 #include "WiFi.h"
 #include "esp_now.h"
 #include "USB.h"
 #include "USBHIDKeyboard.h"
-//#include "USBMSC.h"
-//#include "FirmwareMSC.h"
-//#include "FS.h"
 #include "LittleFS.h"
 
-
 #include "variables.h"
-//USBMSC MSC;
-//FirmwareMSC MSC_Update;
-
-enum devices{
-  leftKeyboard,
-  rightKeyboard,
-};
-
 
 #include "pmk.h"
 #include "USBHandle.h"
 #include "espNowHandle.h"
 #include "fsHandle.h"
+#include "MSCHandle.h"
 
 void loopCount();
 
 void setup()
 {
 
-
   Serial.begin(115200);
-  while(!Serial)
-  {
-  }
+  //while(!Serial)
+  //{
+  //}
   Serial.printf("Dongle is booting\r\n");
 
   //===========================================
@@ -185,10 +172,19 @@ void loop()
     espnowTask.inBetweenTime = espnowTask.beginTime - espnowTask.endTime;
 
     //**functions
-    handleReceivedPacket(receivedPacket);
 
-    //Keyboard functions start
-      //layerID = 0;
+    espnowTask.endTime = micros();
+    espnowTask.counter++;
+    espnowTask.duration = espnowTask.endTime - espnowTask.beginTime;
+
+  }
+
+  //------------------------------------------------------keyboardTask
+  if(micros() - keyboardTask.beginTime >= keyboardTask.interval)
+  {
+    keyboardTask.beginTime = micros();
+    keyboardTask.inBetweenTime = keyboardTask.beginTime - keyboardTask.endTime;
+
       for(uint8_t i = 0; i < 8; i++)
       {
         for(uint8_t j = 0; j < 2; j++)
@@ -230,7 +226,7 @@ void loop()
             if(ledBrightness < 255)
             {
               ledBrightness++;
-            }
+            }   
             break;
 
           case 0x11:
@@ -269,21 +265,6 @@ void loop()
 
     //Keyboard functions end
 
-    
-
-    espnowTask.endTime = micros();
-    espnowTask.counter++;
-    espnowTask.duration = espnowTask.endTime - espnowTask.beginTime;
-
-  }
-
-  //------------------------------------------------------keyboardTask
-  if(micros() - keyboardTask.beginTime >= keyboardTask.interval)
-  {
-    keyboardTask.beginTime = micros();
-    keyboardTask.inBetweenTime = keyboardTask.beginTime - keyboardTask.endTime;
-
-    
     keyboardTask.endTime = micros();
     keyboardTask.counter++;
     keyboardTask.duration = keyboardTask.endTime - keyboardTask.beginTime;

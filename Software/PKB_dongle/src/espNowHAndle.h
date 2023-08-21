@@ -61,5 +61,6 @@ void OnEspNowDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)
 void OnEspNowDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len) 
 {
   memcpy(&receivedPacket, incomingData, sizeof(receivedPacket));
+  handleReceivedPacket(receivedPacket);
 }
 
