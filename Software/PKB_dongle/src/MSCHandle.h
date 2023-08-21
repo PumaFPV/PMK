@@ -1,3 +1,5 @@
+#include "Arduino.h"
+
 #define FAT_U8(v) ((v) & 0xFF)
 #define FAT_U16(v) FAT_U8(v), FAT_U8((v) >> 8)
 #define FAT_U32(v) FAT_U8(v), FAT_U8((v) >> 8), FAT_U8((v) >> 16), FAT_U8((v) >> 24)
@@ -118,18 +120,18 @@ static uint8_t msc_disk[DISK_SECTOR_COUNT][DISK_SECTOR_SIZE] =
 };
 
 static int32_t onWrite(uint32_t lba, uint32_t offset, uint8_t* buffer, uint32_t bufsize){
-  USBSerial.printf("MSC WRITE: lba: %u, offset: %u, bufsize: %u\n", lba, offset, bufsize);
+  Serial.printf("MSC WRITE: lba: %u, offset: %u, bufsize: %u\n", lba, offset, bufsize);
   memcpy(msc_disk[lba] + offset, buffer, bufsize);
   return bufsize;
 }
 
 static int32_t onRead(uint32_t lba, uint32_t offset, void* buffer, uint32_t bufsize){
-  USBSerial.printf("MSC READ: lba: %u, offset: %u, bufsize: %u\n", lba, offset, bufsize);
+  Serial.printf("MSC READ: lba: %u, offset: %u, bufsize: %u\n", lba, offset, bufsize);
   memcpy(buffer, msc_disk[lba] + offset, bufsize);
   return bufsize;
 }
 
 static bool onStartStop(uint8_t power_condition, bool start, bool load_eject){
-  USBSerial.printf("MSC START/STOP: power: %u, start: %u, eject: %u\n", power_condition, start, load_eject);
+  Serial.printf("MSC START/STOP: power: %u, start: %u, eject: %u\n", power_condition, start, load_eject);
   return true;
 }

@@ -51,7 +51,6 @@ const char* getAttribute(const char* filename, const char* attributeName) {
   return value;
 }
 
-
 void addDeviceAddress(const char* filename) 
 {
   File file = LittleFS.open(filename, "r");

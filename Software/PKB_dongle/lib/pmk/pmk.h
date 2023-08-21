@@ -204,5 +204,8 @@ uint8_t packet2key(uint8_t deviceID, uint8_t key[8])
    return 0;
 }
 
+void handleKeyboard()
+{
 
+}
 #endif

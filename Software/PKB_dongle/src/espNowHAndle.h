@@ -13,13 +13,33 @@ void handleReceivedPacket(packetStruct receivedPacket)
     break;
   case 0:
     Serial.println("Telem Packet");
+    convertPacket2Telemetry(receivedPacket);
     break;
   case 1: //Keyboard
     convertPacket2Keyboard(receivedPacket);
     break;
   case 2: //Mouse
+    convertPacket2Mouse(receivedPacket);
     break;
-  } 
+  case 3: //GamePad
+    convertPacket2Gamepad(receivedPacket);
+    break;
+  case 4: //LED
+    convertPacket2Led(receivedPacket);
+    break;
+  case 5: //Knob
+    convertPacket2Knob(receivedPacket);
+    break;
+  case 6: //Actuator
+    convertPacket2Actuator(receivedPacket);
+    break;
+  case 7: //Display
+    convertPacket2Display(receivedPacket);
+    break;
+  case 8: //Serial
+    convertPacket2Serial(receivedPacket);
+    break;
+  }
 }
 
 // Callback when data is sent
