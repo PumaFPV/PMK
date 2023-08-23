@@ -2,8 +2,20 @@
 #define pmk_h
 
 #include "Arduino.h"
+#include "USBHIDKeyboard.h"
+#include "USBHIDMouse.h"
+#include "USBHIDGamepad.h"
 
 #include "config.h"
+
+USBHIDKeyboard Keyboard;
+USBHIDMouse Mouse;
+USBHIDGamepad Gamepad;
+
+
+uint8_t ledBrightness = 0;
+
+uint8_t layerID = 0;
 
 typedef struct packetStruct {
     uint8_t deviceID;
@@ -33,7 +45,7 @@ typedef struct mouseStruct {
     uint8_t y;
     uint8_t w;
     uint8_t p;
-    uint8_t k;  
+    uint8_t key;  //5 possible buttons, 8 bits be smart dumbass, dont use an array.  
 }   mouseStruct;
 
 typedef struct gamepadStruct {
@@ -92,15 +104,19 @@ enum errorID {
     tooManyKeysPressed
 };
 
-keyboardStruct keyboardPacket;
-mouseStruct mousePacketConvert;
-gamepadStruct gamepadPacketConvert;
-ledStruct ledPacketConvert;
-knobStruct knobPacketConvert;
-actuatorStruct actuatorPacketConvert;
-displayStruct displayPacketConvert;
-telemetryStruct telemetryPacketConvert;
-serialStruct serialPacketConvert;
+keyboardStruct  keyboardPacket;
+mouseStruct     mousePacket;
+gamepadStruct   gamepadPacket;
+ledStruct       ledPacket;
+knobStruct      knobPacket;
+actuatorStruct  actuatorPacket;
+displayStruct   displayPacket;
+telemetryStruct telemetryPacket;
+serialStruct    serialPacket;
+
+packetStruct receivedPacket;
+
+keyboardStruct previousKeyboardPacket;
 
 
 void convertPacket2Keyboard(packetStruct packet)
@@ -118,81 +134,82 @@ void convertPacket2Keyboard(packetStruct packet)
 
 void convertPacket2Mouse(packetStruct packet)
 {
-    mousePacketConvert.deviceID = packet.deviceID;
-    mousePacketConvert.x = packet.data[0];
-    mousePacketConvert.y = packet.data[1];
-    mousePacketConvert.w = packet.data[2];
-    mousePacketConvert.p = packet.data[3];
-    mousePacketConvert.k = packet.data[4];
+    mousePacket.deviceID = packet.deviceID;
+    mousePacket.x = packet.data[0];
+    mousePacket.y = packet.data[1];
+    mousePacket.w = packet.data[2];
+    mousePacket.p = packet.data[3];
+    mousePacket.key = packet.data[4];
+
 }
 
 void convertPacket2Gamepad(packetStruct packet)
 {
-    gamepadPacketConvert.deviceID = packet.deviceID;
-    gamepadPacketConvert.x = packet.data[0];
-    gamepadPacketConvert.y = packet.data[1];
-    gamepadPacketConvert.z = packet.data[2];
-    gamepadPacketConvert.rz = packet.data[3];
-    gamepadPacketConvert.rx = packet.data[4];
-    gamepadPacketConvert.ry = packet.data[5];
-    gamepadPacketConvert.hh = packet.data[6];
+    gamepadPacket.deviceID = packet.deviceID;
+    gamepadPacket.x = packet.data[0];
+    gamepadPacket.y = packet.data[1];
+    gamepadPacket.z = packet.data[2];
+    gamepadPacket.rz = packet.data[3];
+    gamepadPacket.rx = packet.data[4];
+    gamepadPacket.ry = packet.data[5];
+    gamepadPacket.hh = packet.data[6];
 
     for(uint8_t i = 0; i < 4; ++i)
     {
-        gamepadPacketConvert.buttons[i] = packet.data[7+i];
+        gamepadPacket.buttons[i] = packet.data[7+i];
     }
 }
 
 void convertPacket2Led(packetStruct packet)
 {
-    ledPacketConvert.deviceID = packet.deviceID;
-    ledPacketConvert.function = packet.data[0];
-    ledPacketConvert.red = packet.data[1];
-    ledPacketConvert.green = packet.data[2];
-    ledPacketConvert.blue = packet.data[3];
+    ledPacket.deviceID = packet.deviceID;
+    ledPacket.function = packet.data[0];
+    ledPacket.red = packet.data[1];
+    ledPacket.green = packet.data[2];
+    ledPacket.blue = packet.data[3];
 }
 
 void convertPacket2Knob(packetStruct packet)
 {
-    knobPacketConvert.deviceID = packet.deviceID;  
+    knobPacket.deviceID = packet.deviceID;  
     for(uint8_t i = 0; i < 7; ++i)
     {
-      knobPacketConvert.knob[i] = packet.data[i];
+      knobPacket.knob[i] = packet.data[i];
     }
 }
 
 void convertPacket2Actuator(packetStruct packet)
 {
-    actuatorPacketConvert.deviceID = packet.deviceID;
-    actuatorPacketConvert.function = packet.data[0];
-    actuatorPacketConvert.position = packet.data[1];
-    actuatorPacketConvert.command = packet.data[2];
+    actuatorPacket.deviceID = packet.deviceID;
+    actuatorPacket.function = packet.data[0];
+    actuatorPacket.position = packet.data[1];
+    actuatorPacket.command = packet.data[2];
 }
 
 void convertPacket2Display(packetStruct packet)
 {
-    displayPacketConvert.deviceID = packet.deviceID;
-    displayPacketConvert.image = packet.data[0];
-    displayPacketConvert.x = packet.data[1];
-    displayPacketConvert.y = packet.data[2];
-    displayPacketConvert.brightness = packet.data[3];
+    displayPacket.deviceID = packet.deviceID;
+    displayPacket.image = packet.data[0];
+    displayPacket.x = packet.data[1];
+    displayPacket.y = packet.data[2];
+    displayPacket.brightness = packet.data[3];
 }
 
 void convertPacket2Telemetry(packetStruct packet)
 {
-    telemetryPacketConvert.deviceID = packet.deviceID;
-    telemetryPacketConvert.battery = packet.data[0];
-    telemetryPacketConvert.temperature = packet.data[1];
-    telemetryPacketConvert.macAddress = packet.data[2];
-    telemetryPacketConvert.error = packet.data[3];
+    telemetryPacket.deviceID = packet.deviceID;
+    telemetryPacket.battery = packet.data[0];
+    telemetryPacket.temperature = packet.data[1];
+    telemetryPacket.macAddress = packet.data[2];
+    telemetryPacket.error = packet.data[3];
 }   
 
 void convertPacket2Serial(packetStruct packet)
 {
-    serialPacketConvert.deviceID = packet.deviceID;
+    serialPacket.deviceID = packet.deviceID;
     for(uint8_t i = 0; i < 7; ++i)
     {
-      serialPacketConvert.packet[i] = packet.data[i];
+      serialPacket.packet[i] = packet.data[i];
     }
 }
 
@@ -206,6 +223,90 @@ uint8_t packet2key(uint8_t deviceID, uint8_t key[8])
 
 void handleKeyboard()
 {
+    for(uint8_t i = 0; i < 8; i++)
+    {
+        for(uint8_t j = 0; j < 2; j++)
+        {
+            if(keyboardPacket.key[i] == layerKeyID[j])
+            {
+            if(j == 0 && layerID > 0)
+            {
+                layerID--;
+                delay(200);
+            }
+            else if (j == 1 && layerID < 7)
+            {
+                layerID++;
+                delay(200);
+            }
+                //layerID = j;
+                keyboardPacket.key[i] = 0xFF;
+                i = 9;
+                j = 2;
+            }
+        }
+    }
+
+    for(uint8_t i = 0; i < 8; i++)
+    {
+        if(keyboardPacket.key[i] != 255 && layerID != settingLayerID)
+        {
+            Keyboard.press(keyIDtoChar(keyboardPacket.key[i], layerID));
+            //Serial.print("Pressing: 0x");
+            //Serial.print(keyboardPacket.key[i]);
+            //Serial.println(keyIDtoChar(keyboardPacket.key[i], layerID), HEX);
+        }
+        else if (keyboardPacket.key[i] != 0xFF && layerID == settingLayerID)
+        {
+            switch (keyboardPacket.key[i])
+            {
+            case 0x09:
+            if(ledBrightness < 255)
+            {
+                ledBrightness++;
+            }   
+            break;
+
+            case 0x11:
+            if(ledBrightness > 0)
+            {
+                ledBrightness--;
+            }
+            break;
+            }
+        }        
+        }
+
+        uint8_t releaseKeys[8];
+        memcpy(releaseKeys, previousKeyboardPacket.key, 8);
+
+        for(uint8_t i = 0; i < 8; i++)
+        {
+        for(uint8_t j = 0; j < 8; j++)
+        {
+            if(previousKeyboardPacket.key[i] == keyboardPacket.key[j])
+            {
+            releaseKeys[i] = 255;
+            }
+        }
+        }
+
+        for(uint8_t i = 0; i < 8; i++)
+        {
+            if(releaseKeys[i] != 255)
+            {
+                Keyboard.release(keyIDtoChar(releaseKeys[i], layerID));
+            }
+        }   
+
+    memcpy(previousKeyboardPacket.key, keyboardPacket.key, 8);
 
 }
+
+void handleMouse()
+{
+    Mouse.move(mousePacket.x, mousePacket.y, mousePacket.w, mousePacket.p);
+    //Mouse.press(mousePacket.key[0]);
+}
+
 #endif

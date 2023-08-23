@@ -27,7 +27,7 @@ void setup()
   Serial.begin(9600); 
 
   //Mouse.begin();
-  USB.begin();
+  //USB.begin();
 
   ledSetup();
   pinMode(9, OUTPUT);
@@ -115,12 +115,12 @@ void loop()
 
       mousePacket.x = xDistance;
       mousePacket.y = yDistance;
-      mousePacket.k = trackballButtonCurrentState;
+      mousePacket.key = trackballButtonCurrentState;
       xPosition = 0;
       yPosition = 0;
       xDistance = 0;
       yDistance = 0;
-
+      
       /*
         // if the mouse button is pressed:
       if (trackballButtonCurrentState == LOW) {

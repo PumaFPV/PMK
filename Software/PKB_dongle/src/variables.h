@@ -37,16 +37,8 @@
 
 //--------------------------------------------------Initialize libraries--------------------------------------------------
 
-USBHIDKeyboard Keyboard;
 //USBMSC MSC;
 //FirmwareMSC MSC_Update;
-
-packetStruct receivedPacket;
-
-telemetryStruct telemetryPacket;
-
-//keyboardStruct keyboardPacket;
-keyboardStruct previousKeyboardPacket;
 
 //--------------------------------------------------Structs--------------------------------------------------
 struct Func
@@ -72,10 +64,6 @@ Func telemetryTask = {0, 0, 0, 0, 0, 2000000, 0, 0};
 //--------------------------------------------------Variables--------------------------------------------------
 
 uint8_t receivedData[16];
-
-uint8_t ledBrightness = 0;
-
-uint8_t layerID = 0;
 
 #define MAC_ADDRESS_SIZE 6
 

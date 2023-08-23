@@ -185,83 +185,8 @@ void loop()
     keyboardTask.beginTime = micros();
     keyboardTask.inBetweenTime = keyboardTask.beginTime - keyboardTask.endTime;
 
-      for(uint8_t i = 0; i < 8; i++)
-      {
-        for(uint8_t j = 0; j < 2; j++)
-        {
-          if(keyboardPacket.key[i] == layerKeyID[j])
-          {
-            if(j == 0 && layerID > 0)
-            {
-              layerID--;
-              delay(200);
-            }
-            else if (j == 1 && layerID < 7)
-            {
-              layerID++;
-              delay(200);
-            }
-            //layerID = j;
-            keyboardPacket.key[i] = 0xFF;
-            i = 9;
-            j = 2;
-          }
-        }
-      }
-
-      for(uint8_t i = 0; i < 8; i++)
-      {
-        if(keyboardPacket.key[i] != 255 && layerID != settingLayerID)
-        {
-          Keyboard.press(keyIDtoChar(keyboardPacket.key[i], layerID));
-          //Serial.print("Pressing: 0x");
-          //Serial.print(keyboardPacket.key[i]);
-          //Serial.println(keyIDtoChar(keyboardPacket.key[i], layerID), HEX);
-        }
-        else if (keyboardPacket.key[i] != 0xFF && layerID == settingLayerID)
-        {
-          switch (keyboardPacket.key[i])
-          {
-          case 0x09:
-            if(ledBrightness < 255)
-            {
-              ledBrightness++;
-            }   
-            break;
-
-          case 0x11:
-            if(ledBrightness > 0)
-            {
-              ledBrightness--;
-            }
-            break;
-          }
-        }        
-      }
-
-      uint8_t releaseKeys[8];
-      memcpy(releaseKeys, previousKeyboardPacket.key, 8);
-
-      for(uint8_t i = 0; i < 8; i++)
-      {
-        for(uint8_t j = 0; j < 8; j++)
-        {
-          if(previousKeyboardPacket.key[i] == keyboardPacket.key[j])
-          {
-            releaseKeys[i] = 255;
-          }
-        }
-      }
-
-      for(uint8_t i = 0; i < 8; i++)
-      {
-        if(releaseKeys[i] != 255)
-        {
-          Keyboard.release(keyIDtoChar(releaseKeys[i], layerID));
-        }
-      }
-
-      memcpy(previousKeyboardPacket.key, keyboardPacket.key, 8);
+    handleKeyboard();
+    handleMouse();
 
     //Keyboard functions end
 
