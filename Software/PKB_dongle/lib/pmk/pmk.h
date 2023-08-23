@@ -223,23 +223,23 @@ uint8_t packet2key(uint8_t deviceID, uint8_t key[8])
 
 void handleKeyboard()
 {
+    //Figure out if any key layer change is pressed
     for(uint8_t i = 0; i < 8; i++)
     {
         for(uint8_t j = 0; j < 2; j++)
         {
             if(keyboardPacket.key[i] == layerKeyID[j])
             {
-            if(j == 0 && layerID > 0)
-            {
-                layerID--;
-                delay(200);
-            }
-            else if (j == 1 && layerID < 7)
-            {
-                layerID++;
-                delay(200);
-            }
-                //layerID = j;
+                if(j == 0 && layerID > 0)
+                {
+                    layerID--;
+                    delay(200);
+                }
+                else if (j == 1 && layerID < 7)
+                {
+                    layerID++;
+                    delay(200);
+                }
                 keyboardPacket.key[i] = 0xFF;
                 i = 9;
                 j = 2;
@@ -249,7 +249,7 @@ void handleKeyboard()
 
     for(uint8_t i = 0; i < 8; i++)
     {
-        if(keyboardPacket.key[i] != 255 && layerID != settingLayerID)
+        if(keyboardPacket.key[i] != 0xFF && layerID != settingLayerID)
         {
             Keyboard.press(keyIDtoChar(keyboardPacket.key[i], layerID));
             //Serial.print("Pressing: 0x");
