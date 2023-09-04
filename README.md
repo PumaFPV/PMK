@@ -12,22 +12,22 @@ Maybe also store password manager.
 
 As the dongle is the master of PMK, it hosts the config files for each devices. Here is the expected file organisation:
 
-|--deviceName1
-|	|- deviceName1.json
-|	|--keyboard
-|	|	|- l1.json
-|	|	|- l2.json
-|	|--led
-|	|	|- l1.json
-|	|	|- l2.json
-|--deviceName2
-|	|- deviceName2.json
-|	|--keyboard
-|	|	|- l1.json
-|	|	|- l2.json
-|	|--mouse
-|	|	|- l1.json
-|	|	|- l2.json
+|--deviceName1  
+|	|- deviceName1.json  
+|	|--keyboard  
+|	|	|- l1.json  
+|	|	|- l2.json  
+|	|--led  
+|	|	|- l1.json  
+|	|	|- l2.json  
+|--deviceName2  
+|	|- deviceName2.json  
+|	|--keyboard  
+|	|	|- l1.json  
+|	|	|- l2.json  
+|	|--mouse  
+|	|	|- l1.json  
+|	|	|- l2.json  
 		
 For more details about devices configurations / capabilities check the Protocol chapter.
 
@@ -49,6 +49,7 @@ Hopefully processing key press and led function on dongle and send data to kb is
 ## Protocol
 Packet structure is: 
 | Byte | 1 | 2 | 3 |
+| ---- | - | - | - |
 | Description | DeviceID | PacketID
 Devices should send data as simple as possible, keyboard sends key IDs pressed (max 8 at a time) and then the dongle processes the key ID depending on the json configuration
 
