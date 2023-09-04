@@ -3,8 +3,6 @@
 #include "config.h"
 
 #include "SPI.h"
-#include "USB.h"
-#include "USBHIDKeyboard.h"
 #include "WiFi.h"
 #include "esp_now.h"
 #include "LittleFS.h"
@@ -30,8 +28,6 @@ void setup()
 
 
   //-----USB
-  Keyboard.begin();
-
 
   //-----Shift register
   pinMode(SR_PL, OUTPUT);

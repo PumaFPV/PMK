@@ -45,7 +45,7 @@ typedef struct mouseStruct {
     uint8_t y;
     uint8_t w;
     uint8_t p;
-    uint8_t key;  
+    uint8_t key;  //5 possible buttons, 8 bits be smart u dumbass, dont use an array.  
 }   mouseStruct;
 
 typedef struct gamepadStruct {
@@ -79,9 +79,9 @@ typedef struct knobStruct {
 typedef struct actuatorStruct {
     uint8_t deviceID;
     const uint8_t packetType = 6;
-    uint8_t function;
-    uint8_t position;
-    uint8_t command;
+    uint8_t function;   //Can be Torque, Speed, Position, Acceleration
+    uint8_t position;   //Returned by device
+    uint8_t command;    //Sent by Master
 }   actuatorStruct;
 
 typedef struct displayStruct {
@@ -101,7 +101,10 @@ typedef struct serialStruct {
 
 enum errorID {
     none, 
-    tooManyKeysPressed
+    tooManyKeysPressed,
+    overTemperature,
+    lowBattery,
+    invalidPacket
 };
 
 keyboardStruct  keyboardPacket;
@@ -139,11 +142,8 @@ void convertPacket2Mouse(packetStruct packet)
     mousePacket.y = packet.data[1];
     mousePacket.w = packet.data[2];
     mousePacket.p = packet.data[3];
-    mousePacket.key[0] = packet.data[4];
-    mousePacket.key[1] = packet.data[5];
-    mousePacket.key[2] = packet.data[6];
-    mousePacket.key[3] = packet.data[7];
-    mousePacket.key[4] = packet.data[8];
+    mousePacket.key = packet.data[4];
+
 }
 
 void convertPacket2Gamepad(packetStruct packet)
@@ -226,23 +226,23 @@ uint8_t packet2key(uint8_t deviceID, uint8_t key[8])
 
 void handleKeyboard()
 {
+    //Figure out if any key layer change is pressed
     for(uint8_t i = 0; i < 8; i++)
     {
         for(uint8_t j = 0; j < 2; j++)
         {
             if(keyboardPacket.key[i] == layerKeyID[j])
             {
-            if(j == 0 && layerID > 0)
-            {
-                layerID--;
-                delay(200);
-            }
-            else if (j == 1 && layerID < 7)
-            {
-                layerID++;
-                delay(200);
-            }
-                //layerID = j;
+                if(j == 0 && layerID > 0)
+                {
+                    layerID--;
+                    delay(200);
+                }
+                else if (j == 1 && layerID < 7)
+                {
+                    layerID++;
+                    delay(200);
+                }
                 keyboardPacket.key[i] = 0xFF;
                 i = 9;
                 j = 2;
@@ -252,7 +252,7 @@ void handleKeyboard()
 
     for(uint8_t i = 0; i < 8; i++)
     {
-        if(keyboardPacket.key[i] != 255 && layerID != settingLayerID)
+        if(keyboardPacket.key[i] != 0xFF && layerID != settingLayerID)
         {
             Keyboard.press(keyIDtoChar(keyboardPacket.key[i], layerID));
             //Serial.print("Pressing: 0x");
@@ -309,7 +309,52 @@ void handleKeyboard()
 void handleMouse()
 {
     Mouse.move(mousePacket.x, mousePacket.y, mousePacket.w, mousePacket.p);
-    //Mouse.press(mousePacket.key[0]);
+    
+    if(mousePacket.key && 0b00001)
+    {
+        Mouse.press(MOUSE_LEFT);
+    }
+    else
+    {
+        Mouse.release(MOUSE_LEFT);
+    }
+
+    if(mousePacket.key && 0b00010)
+    {
+        Mouse.press(MOUSE_RIGHT);
+    }
+    else
+    {
+        Mouse.release(MOUSE_RIGHT);
+    }
+    
+    if(mousePacket.key && 0b00100)
+    {
+        Mouse.press(MOUSE_MIDDLE);
+    }
+    else
+    {
+        Mouse.release(MOUSE_MIDDLE);
+    }
+
+    if(mousePacket.key && 0b01000)
+    {
+        Mouse.press(MOUSE_BACKWARD);
+    }
+    else
+    {
+        Mouse.release(MOUSE_BACKWARD);
+    }
+
+    if(mousePacket.key && 0b10000)
+    {
+        Mouse.press(MOUSE_FORWARD);
+    }
+    else
+    {
+        Mouse.release(MOUSE_FORWARD);
+    }
+   
 }
 
 #endif

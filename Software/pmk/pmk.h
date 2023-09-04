@@ -51,13 +51,13 @@ typedef struct mouseStruct {
 typedef struct gamepadStruct {
     uint8_t deviceID;
     const uint8_t packetType = 3;
-    uint8_t leftX;
-    uint8_t leftY;
-    uint8_t rightX;
-    uint8_t rightY;
-    uint8_t leftTrigger;
-    uint8_t rightTrigger;
-    uint8_t dpad;
+    uint8_t x;
+    uint8_t y;
+    uint8_t z;
+    uint8_t rz;
+    uint8_t rx;
+    uint8_t ry;
+    uint8_t hh;
     uint8_t buttons[5];
 }   gamepadStruct;
 
@@ -149,13 +149,13 @@ void convertPacket2Mouse(packetStruct packet)
 void convertPacket2Gamepad(packetStruct packet)
 {
     gamepadPacket.deviceID = packet.deviceID;
-    gamepadPacket.leftX = packet.data[0];
-    gamepadPacket.leftY = packet.data[1];
-    gamepadPacket.rightX = packet.data[2];
-    gamepadPacket.rightY = packet.data[3];
-    gamepadPacket.leftTrigger = packet.data[4];
-    gamepadPacket.rightTrigger = packet.data[5];
-    gamepadPacket.dpad = packet.data[6];
+    gamepadPacket.x = packet.data[0];
+    gamepadPacket.y = packet.data[1];
+    gamepadPacket.z = packet.data[2];
+    gamepadPacket.rz = packet.data[3];
+    gamepadPacket.rx = packet.data[4];
+    gamepadPacket.ry = packet.data[5];
+    gamepadPacket.hh = packet.data[6];
 
     for(uint8_t i = 0; i < 4; ++i)
     {
@@ -250,9 +250,9 @@ void handleKeyboard()
         }
     }
 
-    for(uint8_t i = 0; i < 8; i++) //Go through the 8 sent keys
+    for(uint8_t i = 0; i < 8; i++)
     {
-        if(keyboardPacket.key[i] != 0xFF && layerID != settingLayerID) //TODO change layer management
+        if(keyboardPacket.key[i] != 0xFF && layerID != settingLayerID)
         {
             Keyboard.press(keyIDtoChar(keyboardPacket.key[i], layerID));
             //Serial.print("Pressing: 0x");
@@ -280,19 +280,18 @@ void handleKeyboard()
         }        
         }
 
-        //Press/Release management
         uint8_t releaseKeys[8];
         memcpy(releaseKeys, previousKeyboardPacket.key, 8);
 
         for(uint8_t i = 0; i < 8; i++)
         {
-            for(uint8_t j = 0; j < 8; j++)
+        for(uint8_t j = 0; j < 8; j++)
+        {
+            if(previousKeyboardPacket.key[i] == keyboardPacket.key[j])
             {
-                if(previousKeyboardPacket.key[i] == keyboardPacket.key[j])
-                {
-                    releaseKeys[i] = 255;
-                }
+            releaseKeys[i] = 255;
             }
+        }
         }
 
         for(uint8_t i = 0; i < 8; i++)
@@ -355,18 +354,9 @@ void handleMouse()
     {
         Mouse.release(MOUSE_FORWARD);
     }
-}
 
-void handleGamepad()
-{
-    uint32_t gamePadButtons = gamepadPacket.buttons[0] | (gamepadPacket.buttons[1] << 8) | (gamepadPacket.buttons[2] << 16) | (gamepadPacket.buttons[3] << 24);
-    Gamepad.send(
-        gamepadPacket.leftX, gamepadPacket.leftY, 
-        gamepadPacket.rightX, gamepadPacket.rightY, 
-        gamepadPacket.leftTrigger, gamepadPacket.rightTrigger, 
-        gamepadPacket.dpad, gamePadButtons
-    );
 
+    
 }
 
 #endif

@@ -48,7 +48,7 @@ Hopefully processing key press and led function on dongle and send data to kb is
 
 ## Protocol
 Packet structure is: 
-| Byte | 1 | 2 | 3-12 |
+| Byte | 1 | 2 | 3-16 |
 | ---- | - | - | - |
 | Description | DeviceID | PacketID | Payload |
 

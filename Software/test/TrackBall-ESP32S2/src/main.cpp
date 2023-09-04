@@ -2,8 +2,6 @@
 
 #include "WiFi.h"
 #include "esp_now.h"
-#include "USB.h"
-//#include "USBHIDMouse.h"
 
 #include "variables.h"
 
@@ -22,7 +20,8 @@ bool ledState = 0;
 
 void setup() 
 {
-  
+  keyboardPacket.deviceID = 2;
+
   //Start Serial port for debugging. 
   Serial.begin(9600); 
 
@@ -32,7 +31,31 @@ void setup()
   ledSetup();
   pinMode(9, OUTPUT);
 
-  espNowSetup();
+  WiFi.mode(WIFI_STA);
+
+  if(esp_now_init() != ESP_OK) 
+  {
+    Serial.println("Error initializing ESP-NOW");
+    return;
+  }
+
+  // Once ESPNow is successfully Init, we will register for Send CB to
+  // get the status of Trasnmitted packet
+  esp_now_register_send_cb(onDataSent);
+  
+  // Register peer
+  memcpy(peerInfo.peer_addr, dongleAddress, 6);
+  peerInfo.channel = 0;  
+  peerInfo.encrypt = false;
+  
+  // Add peer        
+  if (esp_now_add_peer(&peerInfo) != ESP_OK)
+  {
+    Serial.println("Failed to add peer");
+    return;
+  }
+  // Register for a callback function that will be called when data is received
+  esp_now_register_recv_cb(onDataReceive);
   
 }
 
@@ -120,6 +143,16 @@ void loop()
       yPosition = 0;
       xDistance = 0;
       yDistance = 0;
+      esp_err_t result = esp_now_send(dongleAddress, (uint8_t *) &mousePacket, sizeof(mousePacket));
+        
+      if (result == ESP_OK) 
+      {
+        //Serial.println("Sent with success");
+      }
+      else 
+      {
+        Serial.println("Error sending the data");
+      }
       
       /*
         // if the mouse button is pressed:
