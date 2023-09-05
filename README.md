@@ -56,12 +56,12 @@ Devices should send data as simple as possible, keyboard sends key IDs pressed (
 
 | Packet ID | Packet type | Packet information | Number of bytes | Example packet | Example description |
 | --------- | ----------- | ------------------ | --------------- | -------------- | ------------------- |
-| 0x00 | Telemetry | Send battery voltage, temperature, mac address, errors... |  |  |  |
-| 0x01 | Keyboard | 1 byte = 1 key ID | 8 | 01 A2 34 DB 32 21 4F 00 00 | 6 keys are pressed |
-| 0x02 | Mouse | move x, move y, wheel, pan, mouse clicks |  | 02 xx yy ww pp kk |move x relative, move y relative, move w relative, move p relative, kk key press|
-| 0x03 | Gamepad |  | 12 | 03 xx yy zz rz rx ry hh bb bb bb bb bb |  |
-| 0x04 | LED |  | TBD |  |  |
-| 0x05 | Knob / Rotary encoder / potentiometer | each byte is a pot value, max 8 pot per MCU | 8 | 05 FF 00 FF 00 FF 00 FF 00 | 4 pots are at max, 4 are at min |
+| 0x00 | Telemetry | Send battery voltage, temperature, mac address, errors... | 15 | dID 00 battery temperature address[6] err err err err err |  |
+| 0x01 | Keyboard | 1 byte = 1 key ID | 8 | dID 01 A2 34 DB 32 21 4F 00 00 | 6 keys are pressed |
+| 0x02 | Mouse | move x, move y, wheel, pan, mouse clicks | 7 | dID 02 xx yy ww pp kk |move x relative, move y relative, move w relative, move p relative, kk key press|
+| 0x03 | Gamepad | 2 joysticks, 2 analog triggers, 9 directions d pad, 32 buttons | 12 | dID 03 xx yy zz rz rx ry hh bb bb bb bb bb |  |
+| 0x04 | LED | Choose pre defined function, and R, G and B | 8 | dID 04 func ledNumberStart ledNumberEnd Red Green Blue |  |
+| 0x05 | Knob / Rotary encoder / potentiometer | each byte is a pot value, max 8 pot per MCU | 8 | dID 05 FF 00 FF 00 FF 00 FF 00 | 4 pots are at max, 4 are at min |
 | 0x06 | Display | send image to display use wifi for faster refresh rate? |  |  |  |
 | 0x07 | Actuator |  |  |  |  |
 | 0x08 | Serial | battery voltage, temperature, mac address, error |  |  |  |

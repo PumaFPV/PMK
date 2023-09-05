@@ -28,8 +28,8 @@ typedef struct telemetryStruct {
     const uint8_t packetType = 0;
     uint8_t battery;
     uint8_t temperature;
-    uint8_t macAddress;
-    uint8_t error;
+    uint8_t macAddress[6];
+    uint8_t error[5];
 }   telemetryStruct;
 
 typedef struct keyboardStruct {
@@ -57,14 +57,16 @@ typedef struct gamepadStruct {
     uint8_t rightY;
     uint8_t leftTrigger;
     uint8_t rightTrigger;
-    uint8_t dpad;
-    uint8_t buttons[5];
+    uint8_t dpad;   //0b000ldruc - Left - Down - Right - Up - Center
+    uint8_t buttons[4];
 }   gamepadStruct;
 
 typedef struct ledStruct {
     uint8_t deviceID;
     const uint8_t packetType = 4;
     uint8_t function;
+    uint8_t ledNumberStart;
+    uint8_t ledNumberEnd;
     uint8_t red;
     uint8_t green;
     uint8_t blue;
@@ -80,8 +82,8 @@ typedef struct actuatorStruct {
     uint8_t deviceID;
     const uint8_t packetType = 6;
     uint8_t function;   //Can be Torque, Speed, Position, Acceleration
-    uint8_t position;   //Returned by device
     uint8_t command;    //Sent by Master
+    uint8_t position;   //Returned by device
 }   actuatorStruct;
 
 typedef struct displayStruct {
@@ -104,7 +106,8 @@ enum errorID {
     tooManyKeysPressed,
     overTemperature,
     lowBattery,
-    invalidPacket
+    invalidPacket,
+    internalSensorFailure
 };
 
 keyboardStruct  keyboardPacket;
@@ -121,6 +124,24 @@ packetStruct receivedPacket;
 
 keyboardStruct previousKeyboardPacket;
 
+
+void convertPacket2Telemetry(packetStruct packet)
+{
+    telemetryPacket.deviceID = packet.deviceID;
+    telemetryPacket.battery = packet.data[0];
+    telemetryPacket.temperature = packet.data[1];
+    telemetryPacket.macAddress[0] = packet.data[2]; //MAC address might not stay, maybe useless TODO
+    telemetryPacket.macAddress[1] = packet.data[3];
+    telemetryPacket.macAddress[2] = packet.data[4];
+    telemetryPacket.macAddress[3] = packet.data[5];
+    telemetryPacket.macAddress[4] = packet.data[6];
+    telemetryPacket.macAddress[5] = packet.data[7];
+    telemetryPacket.error[0] = packet.data[8];
+    telemetryPacket.error[1] = packet.data[9];
+    telemetryPacket.error[2] = packet.data[10];
+    telemetryPacket.error[3] = packet.data[11];
+    telemetryPacket.error[4] = packet.data[12];
+}
 
 void convertPacket2Keyboard(packetStruct packet)
 {
@@ -143,7 +164,6 @@ void convertPacket2Mouse(packetStruct packet)
     mousePacket.w = packet.data[2];
     mousePacket.p = packet.data[3];
     mousePacket.key = packet.data[4];
-
 }
 
 void convertPacket2Gamepad(packetStruct packet)
@@ -196,16 +216,7 @@ void convertPacket2Display(packetStruct packet)
     displayPacket.x = packet.data[1];
     displayPacket.y = packet.data[2];
     displayPacket.brightness = packet.data[3];
-}
-
-void convertPacket2Telemetry(packetStruct packet)
-{
-    telemetryPacket.deviceID = packet.deviceID;
-    telemetryPacket.battery = packet.data[0];
-    telemetryPacket.temperature = packet.data[1];
-    telemetryPacket.macAddress = packet.data[2];
-    telemetryPacket.error = packet.data[3];
-}   
+} 
 
 void convertPacket2Serial(packetStruct packet)
 {
@@ -359,12 +370,45 @@ void handleMouse()
 
 void handleGamepad()
 {
+    uint8_t gamepadHat;
+    switch(gamepadPacket.dpad)
+    {
+        case 0b00000001:
+            gamepadHat = HAT_CENTER;
+            break;
+        case 0b00000010:
+            gamepadHat = HAT_UP;
+            break;  
+        case 0b00000110:
+            gamepadHat = HAT_UP_RIGHT;
+            break;
+        case 0b00000100:
+            gamepadHat = HAT_RIGHT;
+            break;
+        case 0b00001100:
+            gamepadHat = HAT_DOWN_RIGHT;
+            break;
+        case 0b00001000:
+            gamepadHat = HAT_DOWN;
+            break;
+        case 0b00011000:
+            gamepadHat = HAT_DOWN_LEFT;
+            break;
+        case 0b00010000:
+            gamepadHat = HAT_LEFT;
+            break;
+        case 0b00010010:
+            gamepadHat = HAT_UP_LEFT;
+            break;
+    }
+
     uint32_t gamePadButtons = gamepadPacket.buttons[0] | (gamepadPacket.buttons[1] << 8) | (gamepadPacket.buttons[2] << 16) | (gamepadPacket.buttons[3] << 24);
+    
     Gamepad.send(
         gamepadPacket.leftX, gamepadPacket.leftY, 
         gamepadPacket.rightX, gamepadPacket.rightY, 
         gamepadPacket.leftTrigger, gamepadPacket.rightTrigger, 
-        gamepadPacket.dpad, gamePadButtons
+        gamepadHat, gamePadButtons
     );
 
 }
