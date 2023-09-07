@@ -41,10 +41,21 @@ For example a keyboard would send pressed keys number "0x04, 0xA1", which the do
 
 <img src="/Layout/keyboard-layout.jpg" width="536" height="242">
 
+### Mouse
+Mouse can send x,y movement, wheel, pan scrolling and mouse buttons (left, middle, right, forward, backward). Each button is encoded as a bit in the "key" byte of the packet.
+
+### Gamepad
+Gamepad can send 2 analog joysticks, 2 analog triggers, dpad buttons, and 32 additionnal buttons.
+
 ### LED
 Hopefully processing key press and led function on dongle and send data to kb is fast enough, otherwise we will have to run led function on keyboard.  
 
 <img src="/Documentation/Images/PKB_HW00_pulsar.png" width="700" height="394">
+
+### Knob
+Knobs are in absolute position going from 0 to 255. 
+For relative knobs, this is handled on the device and enumerates as a keyboard.
+
 
 ## Protocol
 Packet structure is: 
@@ -61,10 +72,10 @@ Devices should send data as simple as possible, keyboard sends key IDs pressed (
 | 0x02 | Mouse | move x, move y, wheel, pan, mouse clicks | 7 | dID 02 xx yy ww pp kk |move x relative, move y relative, move w relative, move p relative, kk key press|
 | 0x03 | Gamepad | 2 joysticks, 2 analog triggers, 9 directions d pad, 32 buttons | 12 | dID 03 xx yy zz rz rx ry hh bb bb bb bb bb |  |
 | 0x04 | LED | Choose pre defined function, and R, G and B | 8 | dID 04 func ledNumberStart ledNumberEnd Red Green Blue |  |
-| 0x05 | Knob / Rotary encoder / potentiometer | each byte is a pot value, max 8 pot per MCU | 8 | dID 05 FF 00 FF 00 FF 00 FF 00 | 4 pots are at max, 4 are at min |
-| 0x06 | Display | send image to display use wifi for faster refresh rate? |  |  |  |
-| 0x07 | Actuator |  |  |  |  |
-| 0x08 | Serial | battery voltage, temperature, mac address, error |  |  |  |
+| 0x05 | Knob / Rotary encoder / potentiometer | each byte is a pot value, max 8 pot per MCU | 10 | dID 05 FF 00 FF 00 FF 00 FF 00 | 4 pots are at max, 4 are at min |
+| 0x06 | Actuator | Choose command type (torque, speed, position) | 5 | dID 06 01 |  |
+| 0x07 | Display | send image to display using wifi for faster refresh rate? or store on local mem | 6 | dID 07 imgNumber x y brightness | Display img number n at coordinates x,y and brightness b. Might change later |
+| 0x08 | Serial | send up to 8 bytes of data | 10 | dID 08 aa bb cc dd ee ff gg hh | Sending 8 bytes of data |
 | 0x09 |  |  |  |  |  |
 
 More info on [Notion](https://swamp-zydeco-907.notion.site/PumaKeyBoard-b41d42fec8c74b02bc73637fae3648d7)

@@ -12,7 +12,6 @@ USBHIDKeyboard Keyboard;
 USBHIDMouse Mouse;
 USBHIDGamepad Gamepad;
 
-
 uint8_t ledBrightness = 0;
 
 uint8_t layerID = 0;
@@ -97,7 +96,7 @@ typedef struct displayStruct {
 
 typedef struct serialStruct {
     uint8_t deviceID;
-    const uint8_t packetType = 9;
+    const uint8_t packetType = 8;
     uint8_t packet[8];
 }   serialStruct;
 
@@ -274,19 +273,19 @@ void handleKeyboard()
         {
             switch (keyboardPacket.key[i])
             {
-            case 0x09:
-            if(ledBrightness < 255)
-            {
-                ledBrightness++;
-            }   
-            break;
+                case 0x09:
+                    if(ledBrightness < 255)
+                    {
+                        ledBrightness++;
+                    }   
+                break;
 
-            case 0x11:
-            if(ledBrightness > 0)
-            {
-                ledBrightness--;
-            }
-            break;
+                case 0x11:
+                    if(ledBrightness > 0)
+                    {
+                        ledBrightness--;
+                    }
+                break;
             }
         }        
         }
@@ -411,6 +410,11 @@ void handleGamepad()
         gamepadHat, gamePadButtons
     );
 
+}
+
+void handleKnob()
+{
+    
 }
 
 #endif
