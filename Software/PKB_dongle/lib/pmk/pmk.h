@@ -226,16 +226,9 @@ void convertPacket2Serial(packetStruct packet)
     }
 }
 
-uint8_t packet2key(uint8_t deviceID, uint8_t key[8])
-{
-    /*
-    if(modifierKeyIsPressed)
-    */
-   return 0;
-}
-
 void handleKeyboard()
 {
+
     //Figure out if any key layer change is pressed
     for(uint8_t i = 0; i < 8; i++)
     {
@@ -264,7 +257,7 @@ void handleKeyboard()
     {
         if(keyboardPacket.key[i] != 0xFF && layerID != settingLayerID) //TODO change layer management
         {
-            Keyboard.press(keyIDtoChar(keyboardPacket.key[i], layerID));
+            Keyboard.press(keyIDtoChar(keyboardPacket.key[i], layerID)); //TODO add deviceID to keyIDtoChar function
             //Serial.print("Pressing: 0x");
             //Serial.print(keyboardPacket.key[i]);
             //Serial.println(keyIDtoChar(keyboardPacket.key[i], layerID), HEX);
@@ -414,7 +407,7 @@ void handleGamepad()
 
 void handleKnob()
 {
-    
+
 }
 
 #endif

@@ -45,13 +45,18 @@ void setup()
   //===========================================
   //====================USB====================
   //===========================================
-
+  Serial.print("Starting keyboard\r\n");
   Keyboard.begin();
+  Serial.print("Starting mouse\r\n");
+  Mouse.begin();
+  Serial.print("Starting gamepad\r\n");
+  Gamepad.begin();
+
 
   //====================================================
   //====================Wifi/ESP Now====================
   //====================================================
-
+  Serial.printf("Starting WiFi\r\n");
   WiFi.mode(WIFI_STA);
   Serial.print("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
 
@@ -59,6 +64,10 @@ void setup()
   {
     Serial.printf("Error initializing ESP-NOW\r\n");
     return;
+  }
+  else
+  {
+    Serial.printf("Succesfully initiated ESP-NOW\r\n");
   }
 
   esp_now_register_send_cb(OnEspNowDataSent);

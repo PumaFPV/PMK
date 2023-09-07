@@ -15,19 +15,19 @@ As the dongle is the master of PMK, it hosts the config files for each devices. 
 		|--deviceName1  
 		|  |- deviceName1.json  
 		|  |--keyboard  
-		|  |  |- l1.json  
-		|  |  |- l2.json  
+		|  |  |- kb-l1.json  
+		|  |  |- kb-l2.json  
 		|  |--led  
-		|  |  |- l1.json  
-		|  |  |- l2.json  
+		|  |  |- led-l1.json  
+		|  |  |- led-l2.json  
 		|--deviceName2  
 		|  |- deviceName2.json  
 		|  |--keyboard  
-		|  |  |- l1.json  
-		|  |  |- l2.json  
+		|  |  |- kb-l1.json  
+		|  |  |- kb-l2.json  
 		|  |--mouse  
-		|  |  |- l1.json  
-		|  |  |- l2.json
+		|  |  |- ms-l1.json  
+		|  |  |- ms-l2.json
 		
 For more details about devices configurations / capabilities check the Protocol chapter.
 

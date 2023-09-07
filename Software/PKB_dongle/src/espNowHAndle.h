@@ -50,10 +50,12 @@ void OnEspNowDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)
   if (status == 0)
   {
     success = "Delivery Success :)";
+    Serial.printf("Delivery Success\r\n");
   }
   else
   {
     success = "Delivery Fail :(";
+    Serial.printf("Delivery fail\r\n");
   }
 }
 
