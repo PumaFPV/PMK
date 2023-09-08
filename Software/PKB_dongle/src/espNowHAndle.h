@@ -16,10 +16,14 @@ void handleReceivedPacket(packetStruct receivedPacket)
     convertPacket2Telemetry(receivedPacket);
     break;
   case 1: //Keyboard
+    digitalWrite(LED_DATA_PIN, 1);
     convertPacket2Keyboard(receivedPacket);
+    handleKeyboard();
+    digitalWrite(LED_DATA_PIN, 0);
     break;
   case 2: //Mouse
     convertPacket2Mouse(receivedPacket);
+    handleMouse();
     break;
   case 3: //GamePad
     convertPacket2Gamepad(receivedPacket);
