@@ -9,6 +9,7 @@ static void usbEventCallback(void* arg, esp_event_base_t event_base, int32_t eve
         //HWSerial.println("USB PLUGGED");
         break;
       case ARDUINO_USB_STOPPED_EVENT:
+        digitalWrite(LED_DATA_PIN, 0);
         //HWSerial.println("USB UNPLUGGED");
         break;
       case ARDUINO_USB_SUSPEND_EVENT:
