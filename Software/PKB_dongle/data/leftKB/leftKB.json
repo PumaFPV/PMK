@@ -10,5 +10,19 @@
     "isKnob": "false",
     "isActuator": "false",
     "isDisplay": "false",
-    "isSerial": "false"
+    "isSerial": "false",
+	
+	"layerModifier":
+	{
+		"layer+": "",
+		"layer-": "",
+		"layer1": "",
+		"layer2": "",
+		"layer3": "",
+		"layer4": "",
+		"layer5": "",
+		"layer6": "",
+		"layer7": "",
+		"layer8": ""
+	}
 }
