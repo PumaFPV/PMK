@@ -7,6 +7,7 @@
 #include "esp_now.h"
 #include "USB.h"
 #include "USBHIDKeyboard.h"
+#include "FirmwareMSC.h"
 #include "LittleFS.h"
 
 #include "variables.h"
@@ -27,6 +28,11 @@ void setup()
   digitalWrite(LED_DATA_PIN, 1);
 
   Serial.begin(115200);
+  USB.onEvent(usbEventCallback);
+  MSC_Update.onEvent(usbEventCallback);
+  MSC_Update.begin();  
+  USB.begin();
+  
   while(!Serial){}
   delay(10);
   Serial.printf("Dongle is booting\r\n");
