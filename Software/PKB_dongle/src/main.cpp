@@ -30,14 +30,14 @@ void setup()
   MSC_Update.begin();  
   USB.begin();
 
-  while(!Serial){}
+  //while(!Serial){}
   pinMode(LED_DATA_PIN, OUTPUT);
   digitalWrite(LED_DATA_PIN, 1);
   delay(10);
   Serial.printf("Dongle is booting\r\n");
   Serial.printf("Firmware rev: %s\r\n", FIRMWARE_REV);
   Serial.printf("Firmware was built the: %s at %s\r\n\r\n", __DATE__, __TIME__);
-  
+
   Serial.printf("__          __  _                            _          _____  __  __ _  __ \r\n");
   Serial.printf("\\ \\        / / | |                          | |        |  __ \\|  \\/  | |/ / \r\n");
   Serial.printf(" \\ \\  /\\  / /__| | ___ ___  _ __ ___   ___  | |_ ___   | |__) | \\  / | ' /  \r\n");

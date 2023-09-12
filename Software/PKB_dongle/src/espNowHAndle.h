@@ -27,6 +27,7 @@ void handleReceivedPacket(packetStruct receivedPacket)
     break;
   case 3: //GamePad
     convertPacket2Gamepad(receivedPacket);
+    handleGamepad();
     break;
   case 4: //LED
     convertPacket2Led(receivedPacket);

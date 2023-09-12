@@ -1,0 +1,51 @@
+A esp32c3 c++ software that reads spi data and sends it via espnow
+To receive and transmit data over the SPI bus using the ESP32C3, you can use the following steps:
+
+Initialize the SPI bus by calling the spi_bus_initialize function and specifying the desired SPI bus and configuration settings.
+
+Set up the ESP32C3 as a slave by calling the spi_slave_initialize function and specifying the desired slave settings.
+
+In your main loop, call the spi_slave_wait_for_transaction function to wait for a transaction to be initiated by the master.
+
+When a transaction is initiated, the ESP32C3 will receive data from the master via the spi_slave_transmit function and transmit data back to the master via the spi_slave_receive function.
+
+To send the data over ESP-NOW, you can use the esp_now_send function, which takes a pointer to the data to be sent and the length of the data, as well as the destination MAC address.
+
+Here is some example code that demonstrates these steps:
+
+Copy code
+#include "esp_now.h"
+#include "esp_spi_slave.h"
+
+void spi_event_handler(spi_slave_transaction_t *trans) {
+  uint8_t rx_data[10];
+  uint8_t tx_data[10];
+  spi_slave_transmit(trans, tx_data, sizeof(tx_data));
+  spi_slave_receive(trans, rx_data, sizeof(rx_data));
+  esp_now_send(dest_mac, rx_data, sizeof(rx_data));
+}
+
+void setup() {
+  spi_bus_config_t bus_config = {
+    .miso_io_num = PIN_NUM_MISO,
+    .mosi_io_num = PIN_NUM_MOSI,
+    .sclk_io_num = PIN_NUM_CLK,
+    .quadwp_io_num = -1,
+    .quadhd_io_num = -1,
+  };
+  spi_bus_initialize(HSPI_HOST, &bus_config, 1);
+
+  spi_slave_config_t slave_config = {
+    .spics_io_num = PIN_NUM_CS,
+    .flags = 0,
+    .queue_size = 3,
+    .mode = 0,
+    .post_setup_cb = spi_event_handler,
+  };
+  spi_slave_initialize(HSPI_HOST, &slave_config);
+}
+
+void loop() {
+  spi_slave_wait_for_transaction(HSPI_HOST);
+}
+Note that this code is just a basic example and does not include error handling or other important considerations for a real application. You may need to modify the code to fit your specific needs and requirements.

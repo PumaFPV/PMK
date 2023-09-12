@@ -13,17 +13,23 @@
 
 
 //USBHIDMouse Mouse;
-mouseStruct mousePacket;
+//mouseStruct mousePacket;
 
 void loopCount();
 bool ledState = 0;
+int16_t deg = 0;
+int8_t radius = 5;
 
 void setup() 
 {
+  Serial.begin(115200);
+
   keyboardPacket.deviceID = 2;
+  //while(!Serial){}
+  //delay(1000);
+  Serial.print("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
 
   //Start Serial port for debugging. 
-  Serial.begin(9600); 
 
   //Mouse.begin();
   //USB.begin();
@@ -70,8 +76,6 @@ void loop()
 
   ledState =! ledState;
 
-  Serial.println(ledState);
-  delay(1000);
 
   if(micros() - gpioTask.beginTime >= gpioTask.interval)
   {
@@ -136,16 +140,29 @@ void loop()
     pmkTask.beginTime = micros();
     pmkTask.inBetweenTime = pmkTask.beginTime - pmkTask.endTime;
 
-      mousePacket.x = xDistance;
-      mousePacket.y = yDistance;
+      //mousePacket.x = xDistance;
+      //mousePacket.y = yDistance;
+      if(deg == 360)
+      {
+        deg = 0;
+      }
+      mousePacket.x = cos(deg*DEG_TO_RAD)*radius;//(cos(float(deg * DEG_TO_RAD)) - cos(float((deg-1) * DEG_TO_RAD)))*radius;
+      mousePacket.y = sin(deg*DEG_TO_RAD)*radius;//(sin(float(deg* DEG_TO_RAD)) - sin(float((deg-1)*DEG_TO_RAD)))*radius;
+      Serial.printf("deg: %i, x: %i, y: %i\r\n", deg, mousePacket.x, mousePacket.y);
+      deg = deg + 5;
       mousePacket.key = trackballButtonCurrentState;
-      xPosition = 0;
-      yPosition = 0;
-      xDistance = 0;
-      yDistance = 0;
+      //xPosition = 0;
+      //yPosition = 0;
+      //xDistance = 0;
+      //yDistance = 0;
       esp_err_t result = esp_now_send(dongleAddress, (uint8_t *) &mousePacket, sizeof(mousePacket));
-        
-      if (result == ESP_OK) 
+      
+      gamepadPacket.rightX = cos(deg*DEG_TO_RAD)*10;
+      gamepadPacket.rightY = sin(deg*DEG_TO_RAD)*10;
+
+      esp_err_t result1 = esp_now_send(dongleAddress, (uint8_t *) &gamepadPacket, sizeof(gamepadPacket));
+
+      if (result == ESP_OK)
       {
         //Serial.println("Sent with success");
       }

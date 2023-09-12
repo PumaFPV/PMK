@@ -40,10 +40,10 @@ typedef struct keyboardStruct {
 typedef struct mouseStruct {
     uint8_t deviceID;
     const uint8_t packetType = 2;
-    uint8_t x;
-    uint8_t y;
-    uint8_t w;
-    uint8_t p;
+    int8_t x;
+    int8_t y;
+    int8_t w;
+    int8_t p;
     uint8_t key;  //5 possible buttons, 8 bits be smart u dumbass, dont use an array.  
 }   mouseStruct;
 
