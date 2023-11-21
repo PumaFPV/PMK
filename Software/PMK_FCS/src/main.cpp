@@ -1,11 +1,7 @@
 #include <Arduino.h>
 
-#include "config.h"
-
-#include "SPI.h"
 #include "WiFi.h"
 #include "esp_now.h"
-#include "LittleFS.h"
 #include "pmk.h"
 
 #include "variables.h"
@@ -24,6 +20,7 @@ void setup()
   Serial.begin(115200);
 
   //-----Shift register
+  Serial.printf("Initialising GPIO\r\n");
   pinMode(pinky, INPUT_PULLUP);
   pinMode(mid, INPUT_PULLUP);
   pinMode(trigger, INPUT_PULLUP);
@@ -33,22 +30,22 @@ void setup()
   pinMode(hatRight, INPUT_PULLUP);
   pinMode(hatDown, INPUT_PULLUP);
 
-  //Initialize SPI for SR
-
   //-----Leds
 
 
   //-----ESP NOW
   WiFi.mode(WIFI_STA);
-  Serial.println(WiFi.macAddress());
+  Serial.printf("MAC Address: %s\r\n", WiFi.macAddress());
 
-  if(esp_now_init() != ESP_OK) {
-    Serial.println("Error initializing ESP-NOW");
+  if(esp_now_init() != ESP_OK)
+  {
+    Serial.printf("Error initializing ESP-NOW \r\n");
     return;
   }
 
   // Once ESPNow is successfully Init, we will register for Send CB to
-  // get the status of Trasnmitted packet
+  // get the status of Transmitted packet
+  Serial.printf("Registering OnDataSent CB\r\n");
   esp_now_register_send_cb(OnDataSent);
 
   // Register peer
@@ -57,14 +54,15 @@ void setup()
   peerInfo.encrypt = false;
 
   // Add peer        
-  if (esp_now_add_peer(&peerInfo) != ESP_OK){
-    Serial.println("Failed to add peer");
+  if (esp_now_add_peer(&peerInfo) != ESP_OK)
+  {
+    Serial.printf("Failed to add peer\r\n");
     return;
   }
-  // Register for a callback function that will be called when data is received
-  esp_now_register_recv_cb(OnDataRecv);
 
-  //-----PMK
+  // Register for a callback function that will be called when data is received
+  Serial.printf("Registering OnDataRecv CB\r\n");
+  esp_now_register_recv_cb(OnDataRecv);
 
 }
 
@@ -73,8 +71,6 @@ void setup()
 
 void loop() 
 {
-  //Serial.println(WiFi.macAddress());
-  //Serial.println("loop");
   loopCount();
 
   //------------------------------------------------------gpioTask
@@ -86,7 +82,6 @@ void loop()
       gamepadPacket.y = map(constrain(analogRead(pitch), 0, 4095), 0, 4095, -128, 127);
       gamepadPacket.x = map(constrain(analogRead(roll), 0, 4095), 0, 4095, 127, -128);
       gamepadPacket.buttons[0] = !digitalRead(pinky) | !digitalRead(mid) << 1 | !digitalRead(trigger) << 2 | !digitalRead(thumb) << 3;
-      //Serial.println(gamepadPacket.buttons[0], BIN);
       gamepadPacket.hh = 0X00 | !digitalRead(hatUp) << 1 | !digitalRead(hatRight) << 2 | !digitalRead(hatDown) << 3 | !digitalRead(hatLeft) << 4;
 
     gpioTask.endTime = micros();
@@ -94,14 +89,12 @@ void loop()
     gpioTask.duration = gpioTask.endTime - gpioTask.beginTime;
   }
   
-  //send packet
+
   //------------------------------------------------------espnowTask
   if(micros() - espnowTask.beginTime >= espnowTask.interval)
   {
     espnowTask.beginTime = micros();
     espnowTask.inBetweenTime = espnowTask.beginTime - espnowTask.endTime;
-
-//------------------
       
     //Send all pressed keys to packet
     // Send message via ESP-NOW
@@ -115,7 +108,7 @@ void loop()
     {
       //Serial.println("Error sending the data");
     }
-//------------------
+
     espnowTask.endTime = micros();
     espnowTask.counter++;
     espnowTask.duration = espnowTask.endTime - espnowTask.beginTime;
