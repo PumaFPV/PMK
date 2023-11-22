@@ -1,8 +1,6 @@
 #ifndef variables_h
 #define variables_h
 
-#include "config.h"
-
 #include "WiFi.h"
 #include "esp_now.h"
 #include "pmk.h"
@@ -13,19 +11,19 @@
 #define MIRCOS2SECONDS 1000000
 
 //----------GPI
-#define annularPin 26
-#define middlePin 16
-#define indexPin 17
-#define thumb1Pin 17
-#define thumb2Pin 26
-#define thumb3Pin 18
-#define switchDownPin 19
-#define switchUpPin 5
+#define ANNULAR_PIN 26
+#define MIDDLE_PIN 16
+#define INDEX_PIN 17
+#define THUMB1_PIN 17
+#define THUMB2_PIN 26
+#define THUMB3_PIN 18
+#define DOWN_PIN 19
+#define UP_PIN 5
 
 //----------GPO
 
 //----------ADC
-#define throttlePin 33
+#define THROTTLE_PIN 33
 
 //----------PWM
 
@@ -33,15 +31,10 @@
 
 //----------Peripherals
 //---UART
-//HardwareSerial debug = HardwareSerial(0);
-
 
 //---I2C
 
 //---SPI
-
-
-static const int srSpiClk = 10000000; // 1MHz
 
 
 //--------------------------------------------------Initialize libraries--------------------------------------------------

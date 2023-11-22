@@ -1,16 +1,13 @@
 #include <Arduino.h>
 
-#include "config.h"
-
-#include "SPI.h"
 #include "WiFi.h"
 #include "esp_now.h"
-#include "LittleFS.h"
 #include "pmk.h"
 
 #include "variables.h"
 
 #include "espNowHandle.h"
+
 
 void loopCount();
 
@@ -18,32 +15,31 @@ void loopCount();
 void setup() 
 {
 
-  gamepadPacket.deviceID = 4; 
+  gamepadPacket.deviceID = 5; 
 
   //-----Serial
   Serial.begin(115200);
 
   //-----Shift register
-  pinMode(annularPin, INPUT_PULLUP);
-  pinMode(middlePin, INPUT_PULLUP);
-  pinMode(indexPin, INPUT_PULLUP);
-  pinMode(thumb1Pin, INPUT_PULLUP);
-  pinMode(thumb2Pin, INPUT_PULLUP);
-  pinMode(thumb3Pin, INPUT_PULLUP);
-  pinMode(switchDownPin, INPUT_PULLUP);
-  pinMode(switchUpPin, INPUT_PULLUP);
-
-  //Initialize SPI for SR
+  pinMode(ANNULAR_PIN, INPUT_PULLUP);
+  pinMode(MIDDLE_PIN, INPUT_PULLUP);
+  pinMode(INDEX_PIN, INPUT_PULLUP);
+  pinMode(THUMB1_PIN, INPUT_PULLUP);
+  pinMode(THUMB2_PIN, INPUT_PULLUP);
+  pinMode(THUMB3_PIN, INPUT_PULLUP);
+  pinMode(DOWN_PIN, INPUT_PULLUP);
+  pinMode(UP_PIN, INPUT_PULLUP);
 
   //-----Leds
 
 
   //-----ESP NOW
   WiFi.mode(WIFI_STA);
-  Serial.println(WiFi.macAddress());
+  Serial.printf("MAC Address: %s\r\n", WiFi.macAddress());
 
-  if(esp_now_init() != ESP_OK) {
-    Serial.println("Error initializing ESP-NOW");
+  if(esp_now_init() != ESP_OK)
+  {
+    Serial.printf("Error initializing ESP-NOW\r\n");
     return;
   }
 
@@ -57,14 +53,13 @@ void setup()
   peerInfo.encrypt = false;
 
   // Add peer        
-  if (esp_now_add_peer(&peerInfo) != ESP_OK){
-    Serial.println("Failed to add peer");
+  if (esp_now_add_peer(&peerInfo) != ESP_OK)
+  {
+    Serial.printf("Failed to add peer\r\n");
     return;
   }
   // Register for a callback function that will be called when data is received
   esp_now_register_recv_cb(OnDataRecv);
-
-  //-----PMK
 
 }
 
@@ -73,9 +68,9 @@ void setup()
 
 void loop() 
 {
-  //Serial.println(WiFi.macAddress());
-  //Serial.println("loop");
+
   loopCount();
+
 
   //------------------------------------------------------gpioTask
   if(micros() - gpioTask.beginTime >= gpioTask.interval)
@@ -83,9 +78,9 @@ void loop()
     gpioTask.beginTime = micros();
     gpioTask.inBetweenTime = gpioTask.beginTime - gpioTask.endTime;
 
-      gamepadPacket.z = map(constrain(analogRead(throttlePin), 0, 4095), 0, 4095, -128, 127);
-      gamepadPacket.buttons[0] = !digitalRead(annularPin) << 4 | !digitalRead(middlePin) << 5 | !digitalRead(indexPin) << 6 | !digitalRead(thumb1Pin) << 7;
-      gamepadPacket.buttons[1] = !digitalRead(thumb2Pin) | !digitalRead(thumb3Pin) << 1 | !digitalRead(switchDownPin) << 2 | !digitalRead(switchUpPin) << 3;
+      gamepadPacket.z = map(constrain(analogRead(THROTTLE_PIN), 0, 4095), 0, 4095, -128, 127);
+      gamepadPacket.buttons[0] = !digitalRead(ANNULAR_PIN) << 4 | !digitalRead(MIDDLE_PIN) << 5 | !digitalRead(INDEX_PIN) << 6 | !digitalRead(THUMB1_PIN) << 7;
+      gamepadPacket.buttons[1] = !digitalRead(THUMB2_PIN) | !digitalRead(THUMB3_PIN) << 1 | !digitalRead(DOWN_PIN) << 2 | !digitalRead(UP_PIN) << 3;
 
     gpioTask.endTime = micros();
     gpioTask.counter++;
@@ -98,20 +93,18 @@ void loop()
   {
     espnowTask.beginTime = micros();
     espnowTask.inBetweenTime = espnowTask.beginTime - espnowTask.endTime;
-
-//------------------
       
     //Send all pressed keys to packet
-    // Send message via ESP-NOW
+    //Send message via ESP-NOW
     esp_err_t result = esp_now_send(dongleAddress, (uint8_t *) &gamepadPacket, sizeof(gamepadPacket));
       
     if (result == ESP_OK) 
     {
-      //Serial.println("Sent with success");
+      //Serial.printf("Sent with success\r\n");
     }
     else 
     {
-      //Serial.println("Error sending the data");
+      //Serial.printf("Error sending the data\r\n");
     }
 //------------------
     espnowTask.endTime = micros();
@@ -133,7 +126,7 @@ void loopCount()
   if(micros() - gpioTask.startCounterTime > 1000000)
   {
     gpioTask.frequency = gpioTask.counter;
-    //Serial.println(gpioTask.counter);
+    //Serial.printf("%i\r\n", gpioTask.counter);
     gpioTask.counter = 0;
   }
 
@@ -145,7 +138,7 @@ void loopCount()
   if(micros() - espnowTask.startCounterTime > 1000000)
   {
     espnowTask.frequency = espnowTask.counter;
-    //Serial.println(espnowTask.counter);
+    //Serial.printf("%i\r\n", espnowTask.counter);
     espnowTask.counter = 0;
   }
 }
@@ -174,7 +167,7 @@ void loopCount()
   if(micros() - Task.startCounterTime > 1000000)
   {
     Task.frequency = Task.counter;
-    debug.println(Task.counter);
+    Serial.printf("%i\r\n", Task.counter);
     Task.counter = 0;
   }
 

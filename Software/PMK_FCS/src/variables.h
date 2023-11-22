@@ -1,8 +1,6 @@
 #ifndef variables_h
 #define variables_h
 
-#include "config.h"
-
 #include "WiFi.h"
 #include "esp_now.h"
 #include "pmk.h"
@@ -13,20 +11,20 @@
 #define MIRCOS2SECONDS 1000000
 
 //----------GPI
-#define pinky 26
-#define mid 25
-#define trigger 19
-#define thumb 23
-#define hatDown 18
-#define hatLeft 16
-#define hatUp 17
-#define hatRight 5
+#define PINKY_PIN 26
+#define MIDDLE_PIN 25
+#define TRIGGER_PIN 19
+#define THUMB_PIN 23
+#define HAT_DOWN_PIN 18
+#define HAT_LEFT_PIN 16
+#define HAT_UP_PIN 17
+#define HAT_RIGHT_PIN 5
 
 //----------GPO
 
 //----------ADC
-#define pitch 32
-#define roll 33
+#define PITCH_PIN 32
+#define ROLL_PIN 33
 
 //----------PWM
 
@@ -34,15 +32,10 @@
 
 //----------Peripherals
 //---UART
-//HardwareSerial debug = HardwareSerial(0);
-
 
 //---I2C
 
 //---SPI
-
-
-static const int srSpiClk = 10000000; // 1MHz
 
 
 //--------------------------------------------------Initialize libraries--------------------------------------------------

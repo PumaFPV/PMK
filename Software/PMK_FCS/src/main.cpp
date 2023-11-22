@@ -8,7 +8,10 @@
 
 #include "espNowHandle.h"
 
+
+
 void loopCount();
+
 
 
 void setup() 
@@ -16,19 +19,21 @@ void setup()
 
   gamepadPacket.deviceID = 4; 
 
+
   //-----Serial
   Serial.begin(115200);
 
+
   //-----Shift register
   Serial.printf("Initialising GPIO\r\n");
-  pinMode(pinky, INPUT_PULLUP);
-  pinMode(mid, INPUT_PULLUP);
-  pinMode(trigger, INPUT_PULLUP);
-  pinMode(thumb, INPUT_PULLUP);
-  pinMode(hatUp, INPUT_PULLUP);
-  pinMode(hatLeft, INPUT_PULLUP);
-  pinMode(hatRight, INPUT_PULLUP);
-  pinMode(hatDown, INPUT_PULLUP);
+  pinMode(PINKY_PIN, INPUT_PULLUP);
+  pinMode(MIDDLE_PIN, INPUT_PULLUP);
+  pinMode(TRIGGER_PIN, INPUT_PULLUP);
+  pinMode(THUMB_PIN, INPUT_PULLUP);
+  pinMode(HAT_UP_PIN, INPUT_PULLUP);
+  pinMode(HAT_LEFT_PIN, INPUT_PULLUP);
+  pinMode(HAT_RIGHT_PIN, INPUT_PULLUP);
+  pinMode(HAT_DOWN_PIN, INPUT_PULLUP);
 
   //-----Leds
 
@@ -68,10 +73,10 @@ void setup()
 
 
 
-
 void loop() 
 {
   loopCount();
+
 
   //------------------------------------------------------gpioTask
   if(micros() - gpioTask.beginTime >= gpioTask.interval)
@@ -79,16 +84,16 @@ void loop()
     gpioTask.beginTime = micros();
     gpioTask.inBetweenTime = gpioTask.beginTime - gpioTask.endTime;
 
-      gamepadPacket.y = map(constrain(analogRead(pitch), 0, 4095), 0, 4095, -128, 127);
-      gamepadPacket.x = map(constrain(analogRead(roll), 0, 4095), 0, 4095, 127, -128);
-      gamepadPacket.buttons[0] = !digitalRead(pinky) | !digitalRead(mid) << 1 | !digitalRead(trigger) << 2 | !digitalRead(thumb) << 3;
-      gamepadPacket.hh = 0X00 | !digitalRead(hatUp) << 1 | !digitalRead(hatRight) << 2 | !digitalRead(hatDown) << 3 | !digitalRead(hatLeft) << 4;
+      gamepadPacket.y = map(constrain(analogRead(PITCH_PIN), 0, 4095), 0, 4095, -128, 127);
+      gamepadPacket.x = map(constrain(analogRead(ROLL_PIN), 0, 4095), 0, 4095, 127, -128);
+      gamepadPacket.buttons[0] = !digitalRead(PINKY_PIN) | !digitalRead(MIDDLE_PIN) << 1 | !digitalRead(TRIGGER_PIN) << 2 | !digitalRead(THUMB_PIN) << 3;
+      gamepadPacket.hh = 0X00 | !digitalRead(HAT_UP_PIN) << 1 | !digitalRead(HAT_RIGHT_PIN) << 2 | !digitalRead(HAT_DOWN_PIN) << 3 | !digitalRead(HAT_LEFT_PIN) << 4;
 
     gpioTask.endTime = micros();
     gpioTask.counter++;
     gpioTask.duration = gpioTask.endTime - gpioTask.beginTime;
   }
-  
+
 
   //------------------------------------------------------espnowTask
   if(micros() - espnowTask.beginTime >= espnowTask.interval)
@@ -102,11 +107,11 @@ void loop()
       
     if (result == ESP_OK) 
     {
-      //Serial.println("Sent with success");
+      //Serial.printf("Sent with success\r\n");
     }
     else 
     {
-      //Serial.println("Error sending the data");
+      Serial.printf("Error sending the data\r\n");
     }
 
     espnowTask.endTime = micros();
@@ -128,7 +133,7 @@ void loopCount()
   if(micros() - gpioTask.startCounterTime > 1000000)
   {
     gpioTask.frequency = gpioTask.counter;
-    //Serial.println(gpioTask.counter);
+    //Serial.printf("%i\n\r", gpioTask.counter);
     gpioTask.counter = 0;
   }
 
@@ -140,10 +145,12 @@ void loopCount()
   if(micros() - espnowTask.startCounterTime > 1000000)
   {
     espnowTask.frequency = espnowTask.counter;
-    //Serial.println(espnowTask.counter);
+    //Serial.printf("%i\n\r", espnowTask.counter);
     espnowTask.counter = 0;
   }
 }
+
+
 
 /* Typical task outline
 
@@ -169,7 +176,7 @@ void loopCount()
   if(micros() - Task.startCounterTime > 1000000)
   {
     Task.frequency = Task.counter;
-    debug.println(Task.counter);
+    Serial.printf("%i\n\r", Task.counter);
     Task.counter = 0;
   }
 
