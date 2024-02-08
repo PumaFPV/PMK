@@ -49,6 +49,7 @@ Gamepad can send 2 analog joysticks, 2 analog triggers, dpad buttons, and 32 add
 
 ### LED
 Hopefully processing key press and led function on dongle and send data to kb is fast enough, otherwise we will have to run led function on keyboard.  
+Buildin keyboard functions: all kb, breath, swipe wave (single color or rainbow), key wave, single key...
 
 <img src="/Documentation/Images/PKB_HW00_pulsar.png" width="700" height="394">
 
