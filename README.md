@@ -1,5 +1,5 @@
-# PumaKeyBoard
-PKB - a Full wireless HID ecosystem for split keyboards and other fun devices
+# PumaMechaniclKeyboard
+PMK - a Full wireless HID ecosystem for split keyboards and other fun devices
 
 The goal is to make a suit of wireless devices such as "smart keyboard" (combined mouse and keyboard), LEDs, knobs, display, etc  
 The first step is to make a wireless split keyboard, and then we will see later...
@@ -54,7 +54,8 @@ Hopefully processing key press and led function on dongle and send data to kb is
 
 ### Knob
 Knobs are in absolute position going from 0 to 255. 
-For relative knobs, this is handled on the device and enumerates as a keyboard.
+
+For encoder knobs, this is handled on the device and enumerates as a keyboard pressing one key for clockwise and another for counterclockwise rotation.
 
 
 ## Protocol
