@@ -42,7 +42,7 @@
 #define SR_CE 9
 #define SR_PL 5
 
-static const int srSpiClk = 10000000; // 1MHz
+static const int srSpiClk = 10000000; // 10MHz
 
 
 //--------------------------------------------------Initialize libraries--------------------------------------------------

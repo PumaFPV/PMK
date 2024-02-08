@@ -423,7 +423,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "PMK_Keyboard.kicad_pro",
+    "filename": "PMK_Keyboard_HW01.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -518,16 +518,8 @@
       "100- Connectors"
     ],
     [
-      "c339a531-e52a-46f8-bd80-af914d1773b4",
-      "300- Power"
-    ],
-    [
-      "2d6b4425-2527-49bd-b090-a8cc21f6a212",
-      "200- 1S_Charger"
-    ],
-    [
-      "38b3fafb-a86a-4dac-a282-53c1331aa596",
-      "400- ESP32S2FH4S2"
+      "f4bd3789-d94c-4771-8f5c-2a22000e96d6",
+      "100- PSoM"
     ],
     [
       "2ae89e7d-b59a-451e-9e36-5967d907d91f",

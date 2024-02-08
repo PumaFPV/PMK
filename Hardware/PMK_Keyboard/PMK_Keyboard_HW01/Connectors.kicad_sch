@@ -752,9 +752,12 @@
     (pin "1" (uuid d8fdeca3-beda-4f14-aa22-3a789bf4f737))
     (pin "2" (uuid 1da5439b-7985-46d0-9c06-61aafac3c932))
     (instances
-      (project "PMK_Keyboard"
+      (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
           (reference "BT101") (unit 1)
+        )
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/f4bd3789-d94c-4771-8f5c-2a22000e96d6"
+          (reference "BT601") (unit 1)
         )
       )
     )
@@ -778,9 +781,12 @@
     (pin "1" (uuid f61fcf4d-336f-40cf-a23d-05c8a091c4ed))
     (pin "2" (uuid 3ade4c65-ce9c-4d43-a59e-46014c2f6dd4))
     (instances
-      (project "PMK_Keyboard"
+      (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
           (reference "R101") (unit 1)
+        )
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/f4bd3789-d94c-4771-8f5c-2a22000e96d6"
+          (reference "R601") (unit 1)
         )
       )
     )
@@ -803,9 +809,12 @@
     )
     (pin "1" (uuid 85572272-35c0-4f63-9f64-40303df767d9))
     (instances
-      (project "PMK_Keyboard"
+      (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
           (reference "#PWR0106") (unit 1)
+        )
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/f4bd3789-d94c-4771-8f5c-2a22000e96d6"
+          (reference "#PWR0689") (unit 1)
         )
       )
     )
@@ -828,9 +837,12 @@
     )
     (pin "1" (uuid e26a4672-7908-4a45-854a-5fca79af92a0))
     (instances
-      (project "PMK_Keyboard"
+      (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
           (reference "#PWR0104") (unit 1)
+        )
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/f4bd3789-d94c-4771-8f5c-2a22000e96d6"
+          (reference "#PWR0687") (unit 1)
         )
       )
     )
@@ -853,9 +865,12 @@
     )
     (pin "" (uuid e9763f14-d5b1-48f2-ba3a-6e69f7c03aba))
     (instances
-      (project "PMK_Keyboard"
+      (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
           (reference "#VBAT0102") (unit 1)
+        )
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/f4bd3789-d94c-4771-8f5c-2a22000e96d6"
+          (reference "#VBAT0601") (unit 1)
         )
       )
     )
@@ -878,9 +893,12 @@
     )
     (pin "1" (uuid a8bc6aa9-4f13-4839-beca-43a58e43b027))
     (instances
-      (project "PMK_Keyboard"
+      (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
           (reference "#PWR0101") (unit 1)
+        )
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/f4bd3789-d94c-4771-8f5c-2a22000e96d6"
+          (reference "#PWR0683") (unit 1)
         )
       )
     )
@@ -903,9 +921,12 @@
     )
     (pin "1" (uuid a36313da-2b32-4b19-9e0f-9d92d7474c8f))
     (instances
-      (project "PMK_Keyboard"
+      (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
           (reference "#PWR0107") (unit 1)
+        )
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/f4bd3789-d94c-4771-8f5c-2a22000e96d6"
+          (reference "#PWR0690") (unit 1)
         )
       )
     )
@@ -928,9 +949,12 @@
     )
     (pin "1" (uuid 619864b5-e303-43f8-ab40-27e53bdab0c6))
     (instances
-      (project "PMK_Keyboard"
+      (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
           (reference "#PWR0118") (unit 1)
+        )
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/f4bd3789-d94c-4771-8f5c-2a22000e96d6"
+          (reference "#PWR0686") (unit 1)
         )
       )
     )
@@ -953,9 +977,12 @@
     )
     (pin "1" (uuid 308ea27a-eed1-4cd3-b6c9-0c5d32c578e8))
     (instances
-      (project "PMK_Keyboard"
+      (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
           (reference "#PWR0105") (unit 1)
+        )
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/f4bd3789-d94c-4771-8f5c-2a22000e96d6"
+          (reference "#PWR0688") (unit 1)
         )
       )
     )
@@ -979,9 +1006,12 @@
     (pin "1" (uuid 2b7989b6-45cf-465d-93a6-640219f0c19c))
     (pin "2" (uuid 2242c4fd-8082-43c3-87e0-ff4eba23dd9b))
     (instances
-      (project "PMK_Keyboard"
+      (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
           (reference "R102") (unit 1)
+        )
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/f4bd3789-d94c-4771-8f5c-2a22000e96d6"
+          (reference "R602") (unit 1)
         )
       )
     )
@@ -1041,9 +1071,12 @@
     (pin "B8" (uuid a7482efa-20da-4c62-8ee6-39b808d1f27d))
     (pin "B9" (uuid 0f89b653-5e6c-429f-abf0-88be4c5ac9f1))
     (instances
-      (project "PMK_Keyboard"
+      (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
           (reference "J101") (unit 1)
+        )
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/f4bd3789-d94c-4771-8f5c-2a22000e96d6"
+          (reference "J602") (unit 1)
         )
       )
     )
@@ -1066,9 +1099,12 @@
     )
     (pin "1" (uuid 09a3de8b-34e0-4f8c-ade6-7ab864d8e0b8))
     (instances
-      (project "PMK_Keyboard"
+      (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
           (reference "#PWR0103") (unit 1)
+        )
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/f4bd3789-d94c-4771-8f5c-2a22000e96d6"
+          (reference "#PWR0684") (unit 1)
         )
       )
     )
@@ -1091,9 +1127,12 @@
     )
     (pin "" (uuid 26a6788f-dfd9-493b-8911-d6c89a876114))
     (instances
-      (project "PMK_Keyboard"
+      (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
           (reference "#VBAT0602") (unit 1)
+        )
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/f4bd3789-d94c-4771-8f5c-2a22000e96d6"
+          (reference "#VBAT0603") (unit 1)
         )
       )
     )
@@ -1116,9 +1155,12 @@
     )
     (pin "1" (uuid a06d35ce-2240-4ff8-8f20-8e3b3957725a))
     (instances
-      (project "PMK_Keyboard"
+      (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
           (reference "#PWR0685") (unit 1)
+        )
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/f4bd3789-d94c-4771-8f5c-2a22000e96d6"
+          (reference "#PWR0691") (unit 1)
         )
       )
     )
