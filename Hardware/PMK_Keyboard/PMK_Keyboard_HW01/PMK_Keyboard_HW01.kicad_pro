@@ -465,7 +465,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 600,
+    "annotate_start_num": 400,
     "drawing": {
       "dashed_lines_dash_length_ratio": 12.0,
       "dashed_lines_gap_length_ratio": 3.0,
@@ -523,11 +523,11 @@
     ],
     [
       "2ae89e7d-b59a-451e-9e36-5967d907d91f",
-      "500- Shift Register - Switch"
+      "300- Shift Register - Switch"
     ],
     [
       "de772aea-8077-418d-aac4-895dc19d22de",
-      "600- LEDs"
+      "400- LEDs"
     ]
   ],
   "text_variables": {}
