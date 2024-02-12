@@ -859,6 +859,10 @@
     (stroke (width 0) (type default))
     (uuid 06a5b7bc-5ed7-49c1-bc04-1251803bb3e1)
   )
+  (wire (pts (xy 292.1 208.28) (xy 297.18 208.28))
+    (stroke (width 0) (type default))
+    (uuid 06eeb89d-43d2-435c-92b8-834e35947a00)
+  )
   (wire (pts (xy 185.42 160.02) (xy 185.42 172.72))
     (stroke (width 0) (type default))
     (uuid 07278d37-f246-43fe-9c71-d491e2372bc4)
@@ -1247,10 +1251,6 @@
     (stroke (width 0) (type default))
     (uuid 60b38046-4050-4f0d-90fe-4c8254e09042)
   )
-  (wire (pts (xy 345.44 203.2) (xy 345.44 200.66))
-    (stroke (width 0) (type default))
-    (uuid 6158906d-a4b0-4135-9a34-a6e74a761f58)
-  )
   (wire (pts (xy 180.34 160.02) (xy 180.34 175.26))
     (stroke (width 0) (type default))
     (uuid 61c1c946-4427-47bb-aa6d-0478958ae68d)
@@ -1347,6 +1347,10 @@
     (stroke (width 0) (type default))
     (uuid 761b9a2a-f122-40c0-b603-4f86b5cc82cd)
   )
+  (wire (pts (xy 312.42 203.2) (xy 314.96 203.2))
+    (stroke (width 0) (type default))
+    (uuid 76f83b6c-d8e0-47ff-bc6c-381ab1d4e329)
+  )
   (wire (pts (xy 53.34 129.54) (xy 58.42 129.54))
     (stroke (width 0) (type default))
     (uuid 77e47911-33ea-4431-bed6-e57100a364ac)
@@ -1415,6 +1419,10 @@
     (stroke (width 0) (type default))
     (uuid 82e8033e-e576-4279-9a65-5bbdd29118bf)
   )
+  (wire (pts (xy 314.96 210.82) (xy 314.96 208.28))
+    (stroke (width 0) (type default))
+    (uuid 85221dd2-af48-405c-bdf0-91dd5d5b42a1)
+  )
   (wire (pts (xy 223.52 167.64) (xy 223.52 170.18))
     (stroke (width 0) (type default))
     (uuid 8568bae5-4dd4-475e-b32e-fd53a5cbd354)
@@ -1443,6 +1451,10 @@
     (stroke (width 0) (type default))
     (uuid 8b530033-0401-4360-ba2c-0f3caae5b37b)
   )
+  (wire (pts (xy 292.1 203.2) (xy 297.18 203.2))
+    (stroke (width 0) (type default))
+    (uuid 8d03a09f-cbc0-435a-b047-ef39d4c9747e)
+  )
   (wire (pts (xy 127 114.3) (xy 127 137.16))
     (stroke (width 0) (type default))
     (uuid 8f68be15-eb9b-46ca-8f30-7cc967718049)
@@ -1466,10 +1478,6 @@
   (wire (pts (xy 274.32 132.08) (xy 276.86 132.08))
     (stroke (width 0) (type default))
     (uuid 94a46b42-ae82-4e84-8ce6-6c036c8933ee)
-  )
-  (wire (pts (xy 322.58 195.58) (xy 327.66 195.58))
-    (stroke (width 0) (type default))
-    (uuid 9540cf31-13aa-497d-b7c2-3d9c18617589)
   )
   (wire (pts (xy 116.84 205.74) (xy 116.84 213.36))
     (stroke (width 0) (type default))
@@ -1575,6 +1583,10 @@
     (stroke (width 0) (type default))
     (uuid a81ae966-f82c-431c-85e1-5c8444b82289)
   )
+  (wire (pts (xy 314.96 208.28) (xy 312.42 208.28))
+    (stroke (width 0) (type default))
+    (uuid a8223b54-a459-47a4-bd12-88b030afc742)
+  )
   (wire (pts (xy 83.82 205.74) (xy 83.82 213.36))
     (stroke (width 0) (type default))
     (uuid a9309e89-ddca-45b5-9cdd-eddf1aaf8344)
@@ -1594,6 +1606,10 @@
   (wire (pts (xy 111.76 170.18) (xy 127 170.18))
     (stroke (width 0) (type default))
     (uuid b0e34544-dc93-45b0-b25f-a6d7d44d1462)
+  )
+  (wire (pts (xy 294.64 205.74) (xy 294.64 210.82))
+    (stroke (width 0) (type default))
+    (uuid b0ed5dd9-1670-4081-8c3d-03af7ad4543b)
   )
   (wire (pts (xy 200.66 160.02) (xy 200.66 185.42))
     (stroke (width 0) (type default))
@@ -1619,10 +1635,6 @@
     (stroke (width 0) (type default))
     (uuid b4a4a1b9-896a-4800-a0ad-c4c36a558fd7)
   )
-  (wire (pts (xy 342.9 195.58) (xy 345.44 195.58))
-    (stroke (width 0) (type default))
-    (uuid b587a4ac-e18b-478f-a792-5f1e6d837a00)
-  )
   (wire (pts (xy 83.82 180.34) (xy 83.82 195.58))
     (stroke (width 0) (type default))
     (uuid b625bc18-fd80-49f3-b1e1-8c1a4b8671f0)
@@ -1631,17 +1643,9 @@
     (stroke (width 0) (type default))
     (uuid b64caf43-f373-4076-9dfb-e0a3b0220e91)
   )
-  (wire (pts (xy 322.58 200.66) (xy 327.66 200.66))
-    (stroke (width 0) (type default))
-    (uuid b6be7e83-10df-4250-880e-c86911ff25b6)
-  )
   (wire (pts (xy 58.42 172.72) (xy 58.42 195.58))
     (stroke (width 0) (type default))
     (uuid b72ffe69-6538-4135-98a8-f941f5eb0f9b)
-  )
-  (wire (pts (xy 325.12 198.12) (xy 325.12 203.2))
-    (stroke (width 0) (type default))
-    (uuid b79c1afb-d163-49be-9721-5c6fade6c2b2)
   )
   (wire (pts (xy 78.74 205.74) (xy 78.74 213.36))
     (stroke (width 0) (type default))
@@ -1678,10 +1682,6 @@
   (wire (pts (xy 175.26 167.64) (xy 195.58 167.64))
     (stroke (width 0) (type default))
     (uuid bfce8ce5-ad32-47c5-bc5e-583d0b84f28f)
-  )
-  (wire (pts (xy 345.44 200.66) (xy 342.9 200.66))
-    (stroke (width 0) (type default))
-    (uuid c0f5e922-de7f-452a-ad6b-ddd8106dc8c3)
   )
   (wire (pts (xy 269.24 160.02) (xy 269.24 182.88))
     (stroke (width 0) (type default))
@@ -1730,6 +1730,10 @@
   (wire (pts (xy 175.26 180.34) (xy 210.82 180.34))
     (stroke (width 0) (type default))
     (uuid cb0837d5-8978-40f7-89b1-956cadce3778)
+  )
+  (wire (pts (xy 297.18 205.74) (xy 294.64 205.74))
+    (stroke (width 0) (type default))
+    (uuid cb3810b3-763a-4d78-8d05-31cf41939a0e)
   )
   (wire (pts (xy 96.52 170.18) (xy 96.52 172.72))
     (stroke (width 0) (type default))
@@ -1871,10 +1875,6 @@
     (stroke (width 0) (type default))
     (uuid eaf7b58f-a475-498d-94f2-a896b5f5bbc4)
   )
-  (wire (pts (xy 327.66 198.12) (xy 325.12 198.12))
-    (stroke (width 0) (type default))
-    (uuid ec963527-3e37-46cd-81be-3c459a774f22)
-  )
   (wire (pts (xy 259.08 213.3229) (xy 254 213.3229))
     (stroke (width 0) (type default))
     (uuid ee097c65-75aa-4890-a605-28cf61ec8318)
@@ -1969,10 +1969,6 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 03be4ec8-9c11-492a-8ab2-d7b47638a1ec)
   )
-  (label "A" (at 322.58 195.58 180) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify right bottom))
-    (uuid 08ba8a79-204a-41eb-b8a4-d0524d9a1713)
-  )
   (label "3-4" (at 231.14 132.08 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 158758c6-d5da-4449-b203-2e207dc52ab5)
@@ -2037,6 +2033,10 @@
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 6c3a466c-4214-4937-81a0-4ff8d3b5d61f)
   )
+  (label "A" (at 292.1 203.2 180) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify right bottom))
+    (uuid 6c65a184-8c7c-4af4-89af-79e67ac71100)
+  )
   (label "14" (at 142.24 162.56 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 7372b643-4afd-40ec-8fe7-400444ab9cc5)
@@ -2048,6 +2048,10 @@
   (label "7" (at 83.82 162.56 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 7970187b-6592-4344-af0b-9856fd748f6f)
+  )
+  (label "B" (at 292.1 208.28 180) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify right bottom))
+    (uuid 7afcd79e-fe9f-4e56-936a-1334bcfb0a1f)
   )
   (label "SPI_CLK" (at 53.34 124.46 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
@@ -2069,13 +2073,13 @@
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 84d0a5dc-df15-4cd0-99d1-e0638146edc5)
   )
+  (label "30" (at 314.96 203.2 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 88843f46-34e6-4975-b336-e8890b1cb08a)
+  )
   (label "22" (at 205.74 162.56 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 8f8f1bb4-6189-4ee0-ba50-1ca43b29d10f)
-  )
-  (label "30" (at 345.44 195.58 0) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid 9649d786-ac3f-40c6-a836-b116d0481eae)
   )
   (label "10" (at 121.92 162.56 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
@@ -2100,10 +2104,6 @@
   (label "11" (at 127 162.56 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid abd14604-3f66-40d6-8898-25b1ca308894)
-  )
-  (label "B" (at 322.58 200.66 180) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify right bottom))
-    (uuid b220f6d0-9bb6-402c-a050-3a396698b0c5)
   )
   (label "CE" (at 383.54 43.18 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
@@ -2249,10 +2249,35 @@
     )
   )
 
+  (symbol (lib_id "power:GND") (at 294.64 210.82 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 013e8037-dc2b-42b7-85e5-60c48cceb7b1)
+    (property "Reference" "#PWR0319" (at 294.64 217.17 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 294.64 215.2634 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 294.64 210.82 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 294.64 210.82 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 7b488306-eb86-4299-a708-2e21d72bde07))
+    (instances
+      (project "PMK_Keyboard_HW01"
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+          (reference "#PWR0319") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "Switch:SW_Push") (at 63.5 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 0213ec11-d086-4bc0-aa0b-2fecfcb64237)
-    (property "Reference" "SW304" (at 66.04 193.04 0)
+    (property "Reference" "SW303" (at 66.04 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 66.04 208.28 0)
@@ -2269,36 +2294,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW304") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Component_lib:RIC11-22S10D5S-TH") (at 335.28 198.12 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 0b76744a-30d0-4d74-b53a-255e19cf81b9)
-    (property "Reference" "SW301" (at 335.28 190.0301 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Value" "RIC11-22S10D5S-TH" (at 335.28 191.9511 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "Component_lib:RIC11-22S10D5S-TH" (at 331.47 194.056 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "https://www.mouser.ch/ProductDetail/CUI-Devices/RIC11-22S10D5S-TH?qs=HoCaDK9Nz5fxypdms%252BmQUg%3D%3D" (at 335.28 191.516 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "A" (uuid b2b63e27-4e91-47e0-95b9-2f6669fa4ca0))
-    (pin "B" (uuid 0ee9cfd5-115f-4fbe-91e5-9f457b59bb31))
-    (pin "C" (uuid f11ec1ca-2544-4e95-90f8-e802b08b7076))
-    (pin "S1" (uuid e27077d7-bf08-4773-8dbb-0a22ef940119))
-    (pin "S2" (uuid dc572141-ff79-417b-b571-50d446edc472))
-    (instances
-      (project "PMK_Keyboard_HW01"
-        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW301") (unit 1)
+          (reference "SW303") (unit 1)
         )
       )
     )
@@ -2357,7 +2353,7 @@
   (symbol (lib_id "power:GND") (at 180.34 215.9 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 212c265c-d327-40fe-9aca-08295a243a36)
-    (property "Reference" "#PWR0319" (at 180.34 222.25 0)
+    (property "Reference" "#PWR0317" (at 180.34 222.25 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 180.34 220.3434 0)
@@ -2373,7 +2369,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "#PWR0319") (unit 1)
+          (reference "#PWR0317") (unit 1)
         )
       )
     )
@@ -2382,7 +2378,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 58.42 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 218b116a-cedb-4d27-ad89-15b5bf770c2d)
-    (property "Reference" "SW303" (at 60.96 193.04 0)
+    (property "Reference" "SW302" (at 60.96 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 60.96 208.28 0)
@@ -2399,7 +2395,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW303") (unit 1)
+          (reference "SW302") (unit 1)
         )
       )
     )
@@ -2408,7 +2404,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 78.74 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 234ae734-dee2-4663-8127-38ee33f52fb6)
-    (property "Reference" "SW307" (at 81.28 193.04 0)
+    (property "Reference" "SW306" (at 81.28 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 81.28 208.28 0)
@@ -2425,7 +2421,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW307") (unit 1)
+          (reference "SW306") (unit 1)
         )
       )
     )
@@ -2459,7 +2455,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 88.9 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2e434246-1982-4dc7-a8e8-c4d03c58d8d0)
-    (property "Reference" "SW309" (at 91.44 193.04 0)
+    (property "Reference" "SW308" (at 91.44 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 91.44 208.28 0)
@@ -2476,7 +2472,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW309") (unit 1)
+          (reference "SW308") (unit 1)
         )
       )
     )
@@ -2485,7 +2481,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 53.34 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2ed2ac0b-32a9-4194-bc14-04dbe0f5f4b1)
-    (property "Reference" "SW302" (at 55.88 193.04 0)
+    (property "Reference" "SW301" (at 55.88 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 55.88 208.28 0)
@@ -2502,7 +2498,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW302") (unit 1)
+          (reference "SW301") (unit 1)
         )
       )
     )
@@ -2561,7 +2557,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 205.74 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 3f1cb656-548d-490b-a211-eab58fe45400)
-    (property "Reference" "SW323" (at 208.28 193.04 0)
+    (property "Reference" "SW322" (at 208.28 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 208.28 208.28 0)
@@ -2578,7 +2574,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW323") (unit 1)
+          (reference "SW322") (unit 1)
         )
       )
     )
@@ -2587,7 +2583,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 116.84 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 40acfee7-5dd5-44cb-8b4e-1e664d46fb83)
-    (property "Reference" "SW310" (at 119.38 193.04 0)
+    (property "Reference" "SW309" (at 119.38 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 119.38 208.28 0)
@@ -2604,7 +2600,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW310") (unit 1)
+          (reference "SW309") (unit 1)
         )
       )
     )
@@ -2638,7 +2634,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 132.08 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4936bca0-935d-4720-89e3-dbb8c75da34f)
-    (property "Reference" "SW313" (at 134.62 193.04 0)
+    (property "Reference" "SW312" (at 134.62 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 134.62 208.28 0)
@@ -2655,7 +2651,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW313") (unit 1)
+          (reference "SW312") (unit 1)
         )
       )
     )
@@ -2686,60 +2682,10 @@
     )
   )
 
-  (symbol (lib_id "power:GND") (at 325.12 203.2 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 5bcf11ec-4f0f-4d23-8c4e-2890c0f07ca4)
-    (property "Reference" "#PWR0315" (at 325.12 209.55 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GND" (at 325.12 207.6434 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 325.12 203.2 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 325.12 203.2 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 43b299f9-438f-4b58-8f8c-1e0f228a9a76))
-    (instances
-      (project "PMK_Keyboard_HW01"
-        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "#PWR0315") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "power:GND") (at 345.44 203.2 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 5e143f7e-9173-4fb2-8e16-4826e73dba44)
-    (property "Reference" "#PWR0316" (at 345.44 209.55 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GND" (at 345.44 207.6434 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 345.44 203.2 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 345.44 203.2 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid cb0cb3bb-e463-4200-ae14-a5be98ae8a85))
-    (instances
-      (project "PMK_Keyboard_HW01"
-        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "#PWR0316") (unit 1)
-        )
-      )
-    )
-  )
-
   (symbol (lib_id "Switch:SW_Push") (at 200.66 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 61ae4562-b3b2-490d-9cef-96fd63392a8f)
-    (property "Reference" "SW322" (at 203.2 193.04 0)
+    (property "Reference" "SW321" (at 203.2 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 203.2 208.28 0)
@@ -2756,7 +2702,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW322") (unit 1)
+          (reference "SW321") (unit 1)
         )
       )
     )
@@ -2765,7 +2711,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 215.9 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 69076701-1550-479a-b9e9-1524edd25703)
-    (property "Reference" "SW325" (at 218.44 193.04 0)
+    (property "Reference" "SW324" (at 218.44 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 218.44 208.28 0)
@@ -2782,7 +2728,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW325") (unit 1)
+          (reference "SW324") (unit 1)
         )
       )
     )
@@ -2808,6 +2754,35 @@
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
           (reference "#PWR0314") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Component_lib:RIC11-22S10D5S-TH") (at 304.8 205.74 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 72af2df9-cb37-494f-bec7-a7742847db12)
+    (property "Reference" "SW330" (at 304.8 197.6501 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "RIC11-22S10D5S-TH" (at 304.8 199.5711 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "Component_lib:RIC11-22S10D5S-TH" (at 300.99 201.676 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "https://www.mouser.ch/ProductDetail/CUI-Devices/RIC11-22S10D5S-TH?qs=HoCaDK9Nz5fxypdms%252BmQUg%3D%3D" (at 304.8 199.136 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "A" (uuid f112b275-ca8e-4035-8e72-6a653b5d5882))
+    (pin "B" (uuid 4545bc1f-2446-450e-b211-842eb9ccfa60))
+    (pin "C" (uuid 9783b7d6-469a-4364-9e7b-16e55cbe12c6))
+    (pin "S1" (uuid 570e854d-0bd7-408e-a275-06cba1e828d0))
+    (pin "S2" (uuid 3e38c9f9-782b-4eb0-b790-1ed2ba5cf306))
+    (instances
+      (project "PMK_Keyboard_HW01"
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+          (reference "SW330") (unit 1)
         )
       )
     )
@@ -2841,7 +2816,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 259.08 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 78889987-63e5-4eb2-bfca-c0bdf904bc5d)
-    (property "Reference" "SW329" (at 261.62 193.04 0)
+    (property "Reference" "SW328" (at 261.62 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 261.62 208.28 0)
@@ -2858,7 +2833,32 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW329") (unit 1)
+          (reference "SW328") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 314.96 210.82 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 7af2c7eb-0597-43c1-84fc-923c7cbfff94)
+    (property "Reference" "#PWR0320" (at 314.96 217.17 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 314.96 215.2634 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 314.96 210.82 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 314.96 210.82 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 9ac66423-da4c-4b37-aa2f-0f40367197e6))
+    (instances
+      (project "PMK_Keyboard_HW01"
+        (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+          (reference "#PWR0320") (unit 1)
         )
       )
     )
@@ -2867,7 +2867,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 83.82 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 85638086-91dc-4168-9c23-24e266ba1808)
-    (property "Reference" "SW308" (at 86.36 193.04 0)
+    (property "Reference" "SW307" (at 86.36 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 86.36 208.28 0)
@@ -2884,7 +2884,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW308") (unit 1)
+          (reference "SW307") (unit 1)
         )
       )
     )
@@ -2918,7 +2918,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 180.34 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 9f21b0c1-f96c-4948-b4bd-67f265ebfdee)
-    (property "Reference" "SW318" (at 182.88 193.04 0)
+    (property "Reference" "SW317" (at 182.88 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 182.88 208.28 0)
@@ -2935,7 +2935,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW318") (unit 1)
+          (reference "SW317") (unit 1)
         )
       )
     )
@@ -3002,7 +3002,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 190.5 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a5f1063c-895d-4238-a1e7-43297eba2bc5)
-    (property "Reference" "SW320" (at 193.04 193.04 0)
+    (property "Reference" "SW319" (at 193.04 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 193.04 208.28 0)
@@ -3019,7 +3019,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW320") (unit 1)
+          (reference "SW319") (unit 1)
         )
       )
     )
@@ -3028,7 +3028,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 152.4 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a93f99ce-30b1-445b-a8b0-aa1588f8cec7)
-    (property "Reference" "SW317" (at 154.94 193.04 0)
+    (property "Reference" "SW316" (at 154.94 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 154.94 208.28 0)
@@ -3045,7 +3045,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW317") (unit 1)
+          (reference "SW316") (unit 1)
         )
       )
     )
@@ -3054,7 +3054,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 248.92 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b5f8de49-5d98-46ce-8d76-0f0a37febfaa)
-    (property "Reference" "SW327" (at 251.46 193.04 0)
+    (property "Reference" "SW326" (at 251.46 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 251.46 208.28 0)
@@ -3071,7 +3071,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW327") (unit 1)
+          (reference "SW326") (unit 1)
         )
       )
     )
@@ -3105,7 +3105,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 264.16 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b8f4f9d5-acf4-4498-8145-badbc2ba1d5d)
-    (property "Reference" "SW330" (at 266.7 193.04 0)
+    (property "Reference" "SW329" (at 266.7 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 266.7 208.28 0)
@@ -3122,7 +3122,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW330") (unit 1)
+          (reference "SW329") (unit 1)
         )
       )
     )
@@ -3131,7 +3131,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 195.58 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b9b2f74f-f917-4129-b01b-7c0d5e79f000)
-    (property "Reference" "SW321" (at 198.12 193.04 0)
+    (property "Reference" "SW320" (at 198.12 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 198.12 208.28 0)
@@ -3148,7 +3148,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW321") (unit 1)
+          (reference "SW320") (unit 1)
         )
       )
     )
@@ -3157,7 +3157,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 254 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid bdfff482-475a-422d-a435-48cca8af505c)
-    (property "Reference" "SW328" (at 256.54 193.04 0)
+    (property "Reference" "SW327" (at 256.54 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 256.54 208.28 0)
@@ -3174,7 +3174,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW328") (unit 1)
+          (reference "SW327") (unit 1)
         )
       )
     )
@@ -3241,7 +3241,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 121.92 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c822586e-8fe3-42ac-84f0-29145f0b39f2)
-    (property "Reference" "SW311" (at 124.46 193.04 0)
+    (property "Reference" "SW310" (at 124.46 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 124.46 208.28 0)
@@ -3258,7 +3258,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW311") (unit 1)
+          (reference "SW310") (unit 1)
         )
       )
     )
@@ -3292,7 +3292,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 73.66 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c90938bb-8837-441c-9f7b-2ae021f859af)
-    (property "Reference" "SW306" (at 76.2 193.04 0)
+    (property "Reference" "SW305" (at 76.2 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 76.2 208.28 0)
@@ -3309,7 +3309,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW306") (unit 1)
+          (reference "SW305") (unit 1)
         )
       )
     )
@@ -3459,7 +3459,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 147.32 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d7529ebd-5038-4a02-bd89-672b2c815df3)
-    (property "Reference" "SW316" (at 149.86 193.04 0)
+    (property "Reference" "SW315" (at 149.86 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 149.86 208.28 0)
@@ -3476,7 +3476,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW316") (unit 1)
+          (reference "SW315") (unit 1)
         )
       )
     )
@@ -3485,7 +3485,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 185.42 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid df508708-39ec-4db9-82fc-af10dc382c79)
-    (property "Reference" "SW319" (at 187.96 193.04 0)
+    (property "Reference" "SW318" (at 187.96 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 187.96 208.28 0)
@@ -3502,7 +3502,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW319") (unit 1)
+          (reference "SW318") (unit 1)
         )
       )
     )
@@ -3511,7 +3511,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 210.82 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid e000e3ee-a46d-484c-9aa7-8031ceb8fa65)
-    (property "Reference" "SW324" (at 213.36 193.04 0)
+    (property "Reference" "SW323" (at 213.36 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 213.36 208.28 0)
@@ -3528,7 +3528,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW324") (unit 1)
+          (reference "SW323") (unit 1)
         )
       )
     )
@@ -3537,7 +3537,7 @@
   (symbol (lib_id "power:GND") (at 243.84 215.9 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid e02858b1-c811-4d94-b363-f50f1391f7c3)
-    (property "Reference" "#PWR0320" (at 243.84 222.25 0)
+    (property "Reference" "#PWR0318" (at 243.84 222.25 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 243.84 220.3434 0)
@@ -3553,7 +3553,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "#PWR0320") (unit 1)
+          (reference "#PWR0318") (unit 1)
         )
       )
     )
@@ -3562,7 +3562,7 @@
   (symbol (lib_id "power:GND") (at 116.84 215.9 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid e6361f21-cf09-483a-a9c9-efac5d2429b4)
-    (property "Reference" "#PWR0318" (at 116.84 222.25 0)
+    (property "Reference" "#PWR0316" (at 116.84 222.25 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 116.84 220.3434 0)
@@ -3578,7 +3578,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "#PWR0318") (unit 1)
+          (reference "#PWR0316") (unit 1)
         )
       )
     )
@@ -3612,7 +3612,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 127 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid eb84c185-d310-4eef-81eb-64412dd37f39)
-    (property "Reference" "SW312" (at 129.54 193.04 0)
+    (property "Reference" "SW311" (at 129.54 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 129.54 208.28 0)
@@ -3629,7 +3629,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW312") (unit 1)
+          (reference "SW311") (unit 1)
         )
       )
     )
@@ -3638,7 +3638,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 137.16 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ee8b6592-9ce2-4fff-a2fe-92288b7ee1cd)
-    (property "Reference" "SW314" (at 139.7 193.04 0)
+    (property "Reference" "SW313" (at 139.7 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 139.7 208.28 0)
@@ -3655,7 +3655,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW314") (unit 1)
+          (reference "SW313") (unit 1)
         )
       )
     )
@@ -3664,7 +3664,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 142.24 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f77548d0-3203-478a-afa2-f91f79f0a49b)
-    (property "Reference" "SW315" (at 144.78 193.04 0)
+    (property "Reference" "SW314" (at 144.78 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 144.78 208.28 0)
@@ -3681,7 +3681,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW315") (unit 1)
+          (reference "SW314") (unit 1)
         )
       )
     )
@@ -3690,7 +3690,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 243.84 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f78a9eba-8106-48c2-bf98-ceb01dfc8224)
-    (property "Reference" "SW326" (at 246.38 193.04 0)
+    (property "Reference" "SW325" (at 246.38 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 246.38 208.28 0)
@@ -3707,7 +3707,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW326") (unit 1)
+          (reference "SW325") (unit 1)
         )
       )
     )
@@ -3774,7 +3774,7 @@
   (symbol (lib_id "power:GND") (at 53.34 215.9 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid fb0cd16b-b06f-407b-8f59-e1fafa810947)
-    (property "Reference" "#PWR0317" (at 53.34 222.25 0)
+    (property "Reference" "#PWR0315" (at 53.34 222.25 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 53.34 220.3434 0)
@@ -3790,7 +3790,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "#PWR0317") (unit 1)
+          (reference "#PWR0315") (unit 1)
         )
       )
     )
@@ -3799,7 +3799,7 @@
   (symbol (lib_id "Switch:SW_Push") (at 68.58 200.66 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid fb22d588-9771-4ecd-a965-5087473f506e)
-    (property "Reference" "SW305" (at 71.12 193.04 0)
+    (property "Reference" "SW304" (at 71.12 193.04 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SW_Push" (at 71.12 208.28 0)
@@ -3816,7 +3816,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-          (reference "SW305") (unit 1)
+          (reference "SW304") (unit 1)
         )
       )
     )

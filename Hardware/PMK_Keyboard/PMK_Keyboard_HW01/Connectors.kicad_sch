@@ -1506,7 +1506,7 @@
     (property "Value" "S2B-PH-SM4-TB" (at 48.26 144.78 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "Component_lib:JST_PH_B2B-PH-SM4-TB_1x02-1MP_P2.00mm_Vertical_DUALSIDE" (at 58.42 139.7 0)
+    (property "Footprint" "Component_lib:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal_DUALSIDE" (at 58.42 139.7 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://www.digikey.ch/de/products/detail/jst-sales-america-inc./S2B-PH-SM4-TB/926846?utm_adgroup=General&utm_source=google&utm_medium=cpc&utm_campaign=Shopping_Product_All%20%28Catch-up%29&utm_term=&productid=926846&utm_content=General&utm_id=go_cmp-17998691427_adg-142975836667_ad-615797033692_pla-293946777986_dev-c_ext-_prd-926846_sig-CjwKCAiA_aGuBhACEiwAly57MUivoDja23i39S08pqlBL_hz8j8Q1-EzZKUcIjgt6XCmc5HoJvPWRxoCrIMQAvD_BwE&gad_source=1&gclid=CjwKCAiA_aGuBhACEiwAly57MUivoDja23i39S08pqlBL_hz8j8Q1-EzZKUcIjgt6XCmc5HoJvPWRxoCrIMQAvD_BwE" (at 60.96 142.24 0)
