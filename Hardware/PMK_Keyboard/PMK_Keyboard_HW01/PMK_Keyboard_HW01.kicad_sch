@@ -161,6 +161,10 @@
     (stroke (width 0) (type default))
     (uuid 47b07627-cf30-4067-b49d-204b55bc2e13)
   )
+  (wire (pts (xy 119.38 71.12) (xy 162.56 71.12))
+    (stroke (width 0) (type default))
+    (uuid 48129665-f90c-4b9d-86ec-eae4039e22a5)
+  )
   (wire (pts (xy 119.38 48.26) (xy 162.56 48.26))
     (stroke (width 0) (type default))
     (uuid 4aaf4f92-1ebb-4dd5-a508-17f5c54429d4)
@@ -601,6 +605,10 @@
       (effects (font (size 1.27 1.27)) (justify right))
       (uuid af2b0d9d-d47f-4f54-a793-bf0a10a4b423)
     )
+    (pin "GP_CE" input (at 162.56 71.12 180)
+      (effects (font (size 1.27 1.27)) (justify left))
+      (uuid 147d9e3d-873c-4411-a43d-7f822a016850)
+    )
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722" (page "2"))
@@ -718,6 +726,10 @@
     (pin "A" input (at 119.38 73.66 0)
       (effects (font (size 1.27 1.27)) (justify right))
       (uuid d76f999e-ff62-424b-991f-4f640f34553d)
+    )
+    (pin "GP_CE" input (at 119.38 71.12 0)
+      (effects (font (size 1.27 1.27)) (justify right))
+      (uuid 5e40b748-a952-4b25-b779-f69247234221)
     )
     (instances
       (project "PMK_Keyboard_HW01"
