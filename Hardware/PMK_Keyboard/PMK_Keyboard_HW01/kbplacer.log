@@ -1,0 +1,4 @@
+[kbplacer_plugin_action.py:79]: Plugin executed with KiCad version: 7.0.0
+[kbplacer_plugin_action.py:80]: Plugin executed with python version: '3.9.14 (main, Dec 23 2022, 23:36:19) [MSC v.1934 64 bit (AMD64)]'
+[kbplacer_dialog.py:512]: Language: en
+[kbplacer_plugin_action.py:125]: GUI state: {"switch_section": {"annotation": "SW{}", "layout_path": "", "x_distance": "19.05", "y_distance": "19.05"}, "switch_diodes_section": {"enable": true, "route_switches_with_diodes": true, "element_info": {"annotation_format": "D{}", "position_option": "Default", "position": {"relative_position": [5.08, 3.03], "orientation": 90.0, "side": "BACK"}, "template_path": ""}}, "additional_elements": {"elements_info": [{"annotation_format": "ST{}", "position_option": "Custom", "position": {"relative_position": [0.0, 0.0], "orientation": 0.0, "side": "FRONT"}, "template_path": ""}]}, "misc_section": {"route_rows_and_columns": true, "template_path": ""}}

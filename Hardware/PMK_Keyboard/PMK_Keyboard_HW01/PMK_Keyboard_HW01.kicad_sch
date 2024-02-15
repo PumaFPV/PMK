@@ -322,7 +322,7 @@
   (symbol (lib_id "power:+3V3") (at 210.82 30.48 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 49365f3e-8ea9-4a9f-9898-cd9ae144cd35)
-    (property "Reference" "#PWR0102" (at 210.82 34.29 0)
+    (property "Reference" "#PWR0302" (at 210.82 34.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 210.82 26.9042 0)
@@ -338,7 +338,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722"
-          (reference "#PWR0102") (unit 1)
+          (reference "#PWR0302") (unit 1)
         )
       )
     )
@@ -347,7 +347,7 @@
   (symbol (lib_id "power:+3V3") (at 96.52 30.48 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 49ad2183-0334-4541-843c-76e0147e3c88)
-    (property "Reference" "#PWR0101" (at 96.52 34.29 0)
+    (property "Reference" "#PWR0301" (at 96.52 34.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 96.52 26.9042 0)
@@ -363,7 +363,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722"
-          (reference "#PWR0101") (unit 1)
+          (reference "#PWR0301") (unit 1)
         )
       )
     )
@@ -372,7 +372,7 @@
   (symbol (lib_id "power:+3V3") (at 104.14 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4b7131a1-bcbd-4066-8f55-71c8c279821a)
-    (property "Reference" "#PWR0105" (at 104.14 102.87 0)
+    (property "Reference" "#PWR0305" (at 104.14 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 104.14 95.4842 0)
@@ -388,7 +388,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722"
-          (reference "#PWR0105") (unit 1)
+          (reference "#PWR0305") (unit 1)
         )
       )
     )
@@ -397,7 +397,7 @@
   (symbol (lib_id "power:GND") (at 104.14 154.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4f5b82e6-59c0-4f2a-8675-df9b8f056d70)
-    (property "Reference" "#PWR0106" (at 104.14 161.29 0)
+    (property "Reference" "#PWR0306" (at 104.14 161.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 104.14 159.3834 0)
@@ -413,7 +413,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722"
-          (reference "#PWR0106") (unit 1)
+          (reference "#PWR0306") (unit 1)
         )
       )
     )
@@ -422,7 +422,7 @@
   (symbol (lib_id "power:GND") (at 215.9 154.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 6f741958-e2f8-4df1-80e7-d18cd5e08858)
-    (property "Reference" "#PWR0107" (at 215.9 161.29 0)
+    (property "Reference" "#PWR0307" (at 215.9 161.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 215.9 159.3834 0)
@@ -438,7 +438,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722"
-          (reference "#PWR0107") (unit 1)
+          (reference "#PWR0307") (unit 1)
         )
       )
     )
@@ -447,7 +447,7 @@
   (symbol (lib_id "power:GND") (at 104.14 86.36 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 84699798-774c-4b58-b165-7913d453e925)
-    (property "Reference" "#PWR0103" (at 104.14 92.71 0)
+    (property "Reference" "#PWR0303" (at 104.14 92.71 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 104.14 90.8034 0)
@@ -463,7 +463,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722"
-          (reference "#PWR0103") (unit 1)
+          (reference "#PWR0303") (unit 1)
         )
       )
     )
@@ -472,7 +472,7 @@
   (symbol (lib_id "power:GND") (at 215.9 86.36 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid c8a17131-809c-4d24-8634-a99a4c8c7a24)
-    (property "Reference" "#PWR0104" (at 215.9 92.71 0)
+    (property "Reference" "#PWR0304" (at 215.9 92.71 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 215.9 90.8034 0)
@@ -488,7 +488,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722"
-          (reference "#PWR0104") (unit 1)
+          (reference "#PWR0304") (unit 1)
         )
       )
     )
@@ -498,7 +498,7 @@
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))
     (uuid 2ae89e7d-b59a-451e-9e36-5967d907d91f)
-    (property "Sheetname" "300- Shift Register - Switch" (at 55.88 100.5234 0)
+    (property "Sheetname" "400- Shift Register - Switch" (at 55.88 100.5234 0)
       (effects (font (size 2 2)) (justify left bottom))
     )
     (property "Sheetfile" "ShiftRegisterSwitch.kicad_sch" (at 55.88 152.9846 0)
@@ -547,7 +547,7 @@
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))
     (uuid cf9fd53d-a626-44ae-9c40-26b02d8cda14)
-    (property "Sheetname" "200- Connectors" (at 162.56 31.9434 0)
+    (property "Sheetname" "300- Connectors" (at 162.56 31.9434 0)
       (effects (font (size 2 2)) (justify left bottom))
     )
     (property "Sheetfile" "Connectors.kicad_sch" (at 162.56 84.4046 0)
@@ -620,7 +620,7 @@
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))
     (uuid de772aea-8077-418d-aac4-895dc19d22de)
-    (property "Sheetname" "400- LEDs" (at 162.56 100.5234 0)
+    (property "Sheetname" "500- LEDs" (at 162.56 100.5234 0)
       (effects (font (size 2 2)) (justify left bottom))
     )
     (property "Sheetfile" "LEDs.kicad_sch" (at 162.56 152.9846 0)
@@ -649,7 +649,7 @@
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))
     (uuid f4bd3789-d94c-4771-8f5c-2a22000e96d6)
-    (property "Sheetname" "100- PSoM" (at 55.88 31.9434 0)
+    (property "Sheetname" "200- PSoM" (at 55.88 31.9434 0)
       (effects (font (size 2 2)) (justify left bottom))
     )
     (property "Sheetfile" "PSoM.kicad_sch" (at 55.88 84.4046 0)

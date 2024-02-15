@@ -598,7 +598,7 @@
     (uuid ffa709a4-349f-40fa-aa12-8914583fad46)
   )
 
-  (text "400- LEDs" (at 12.7 27.94 0)
+  (text "500- LEDs" (at 12.7 27.94 0)
     (effects (font (size 8 8) bold) (justify left bottom))
     (uuid ec853a81-9ccb-44f1-9e7b-9fee34b5d5b8)
   )
@@ -644,7 +644,7 @@
   (symbol (lib_id "power:VDD") (at 35.56 137.16 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 0235be40-4a74-4a86-bcf8-b40a4f7400db)
-    (property "Reference" "#PWR0455" (at 35.56 140.97 0)
+    (property "Reference" "#PWR0555" (at 35.56 140.97 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 35.56 133.5842 0)
@@ -660,7 +660,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0455") (unit 1)
+          (reference "#PWR0555") (unit 1)
         )
       )
     )
@@ -669,7 +669,7 @@
   (symbol (lib_id "power:GND") (at 142.24 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 07756c5a-d053-4904-bcf4-c18d639f7a39)
-    (property "Reference" "#PWR0448" (at 142.24 125.73 0)
+    (property "Reference" "#PWR0548" (at 142.24 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 142.24 123.8234 0)
@@ -685,7 +685,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0448") (unit 1)
+          (reference "#PWR0548") (unit 1)
         )
       )
     )
@@ -694,7 +694,7 @@
   (symbol (lib_id "power:VDD") (at 142.24 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 0ee927d8-e39f-4424-9933-13d5fedfc7c8)
-    (property "Reference" "#PWR0435" (at 142.24 102.87 0)
+    (property "Reference" "#PWR0535" (at 142.24 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 142.24 95.4842 0)
@@ -710,7 +710,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0435") (unit 1)
+          (reference "#PWR0535") (unit 1)
         )
       )
     )
@@ -719,7 +719,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 106.68 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 0fd9498a-0ffd-4da4-87bf-d932948538e5)
-    (property "Reference" "D405" (at 111.76 60.96 0)
+    (property "Reference" "D505" (at 111.76 60.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 106.68 55.88 0)
@@ -738,7 +738,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D405") (unit 1)
+          (reference "D505") (unit 1)
         )
       )
     )
@@ -747,7 +747,7 @@
   (symbol (lib_id "power:VDD") (at 35.56 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 12b15ac0-a5d9-49c0-acaa-c7b4a8ba773a)
-    (property "Reference" "#PWR0403" (at 35.56 62.23 0)
+    (property "Reference" "#PWR0503" (at 35.56 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 35.56 54.8442 0)
@@ -763,7 +763,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0403") (unit 1)
+          (reference "#PWR0503") (unit 1)
         )
       )
     )
@@ -772,7 +772,7 @@
   (symbol (lib_id "power:GND") (at 71.12 157.48 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 15579a9f-d2e3-459d-a90c-7effc3e20170)
-    (property "Reference" "#PWR0463" (at 71.12 163.83 0)
+    (property "Reference" "#PWR0560" (at 71.12 163.83 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 71.12 161.9234 0)
@@ -788,7 +788,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0463") (unit 1)
+          (reference "#PWR0560") (unit 1)
         )
       )
     )
@@ -797,7 +797,7 @@
   (symbol (lib_id "power:VDD") (at 71.12 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 166619d8-13d0-4d0b-b796-43e9d146c78b)
-    (property "Reference" "#PWR0405" (at 71.12 62.23 0)
+    (property "Reference" "#PWR0505" (at 71.12 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 71.12 54.8442 0)
@@ -813,7 +813,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0405") (unit 1)
+          (reference "#PWR0505") (unit 1)
         )
       )
     )
@@ -822,7 +822,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 195.58 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 1be0e439-42b7-457c-bcfd-37ef07493c87)
-    (property "Reference" "D410" (at 200.66 60.96 0)
+    (property "Reference" "D510" (at 200.66 60.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 195.58 55.88 0)
@@ -841,7 +841,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D410") (unit 1)
+          (reference "D510") (unit 1)
         )
       )
     )
@@ -850,7 +850,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 177.8 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 1ca75833-9edb-4423-b9f1-09da8d82d133)
-    (property "Reference" "D409" (at 182.88 60.96 0)
+    (property "Reference" "D509" (at 182.88 60.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 177.8 55.88 0)
@@ -869,7 +869,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D409") (unit 1)
+          (reference "D509") (unit 1)
         )
       )
     )
@@ -878,7 +878,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 177.8 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 1f1f8553-1b6e-49dc-869a-05713a5c0c7d)
-    (property "Reference" "D422" (at 182.88 101.6 0)
+    (property "Reference" "D522" (at 182.88 101.6 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 177.8 96.52 0)
@@ -897,7 +897,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D422") (unit 1)
+          (reference "D522") (unit 1)
         )
       )
     )
@@ -906,7 +906,7 @@
   (symbol (lib_id "power:VDD") (at 124.46 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 220b482c-742a-4e8a-8099-4b98d1b2bda9)
-    (property "Reference" "#PWR0408" (at 124.46 62.23 0)
+    (property "Reference" "#PWR0508" (at 124.46 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 124.46 54.8442 0)
@@ -922,7 +922,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0408") (unit 1)
+          (reference "#PWR0508") (unit 1)
         )
       )
     )
@@ -931,7 +931,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 160.02 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 237bc282-55fc-4935-9dc8-39521775e0a0)
-    (property "Reference" "D421" (at 165.1 101.6 0)
+    (property "Reference" "D521" (at 165.1 101.6 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 160.02 96.52 0)
@@ -950,7 +950,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D421") (unit 1)
+          (reference "D521") (unit 1)
         )
       )
     )
@@ -959,7 +959,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 142.24 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 28c33a55-ff6a-48fb-8a6e-c2a0918c2dab)
-    (property "Reference" "D407" (at 147.32 60.96 0)
+    (property "Reference" "D507" (at 147.32 60.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 142.24 55.88 0)
@@ -978,7 +978,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D407") (unit 1)
+          (reference "D507") (unit 1)
         )
       )
     )
@@ -987,7 +987,7 @@
   (symbol (lib_id "power:GND") (at 53.34 157.48 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 29feb7a6-171e-4540-a475-77483bfb2523)
-    (property "Reference" "#PWR0462" (at 53.34 163.83 0)
+    (property "Reference" "#PWR0559" (at 53.34 163.83 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 53.34 161.9234 0)
@@ -1003,7 +1003,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0462") (unit 1)
+          (reference "#PWR0559") (unit 1)
         )
       )
     )
@@ -1012,7 +1012,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 248.92 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 32120a12-1fad-41af-9d08-cacf118ed77b)
-    (property "Reference" "D426" (at 254 101.6 0)
+    (property "Reference" "D526" (at 254 101.6 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 248.92 96.52 0)
@@ -1031,7 +1031,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D426") (unit 1)
+          (reference "D526") (unit 1)
         )
       )
     )
@@ -1040,7 +1040,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 160.02 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 32acde9d-399f-4aa3-a9f0-b3afca4a5036)
-    (property "Reference" "D408" (at 165.1 60.96 0)
+    (property "Reference" "D508" (at 165.1 60.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 160.02 55.88 0)
@@ -1059,7 +1059,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D408") (unit 1)
+          (reference "D508") (unit 1)
         )
       )
     )
@@ -1068,7 +1068,7 @@
   (symbol (lib_id "power:GND") (at 124.46 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 34f64f75-b92a-4d3b-8d95-c276f0ca4c90)
-    (property "Reference" "#PWR0447" (at 124.46 125.73 0)
+    (property "Reference" "#PWR0547" (at 124.46 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 124.46 123.8234 0)
@@ -1084,7 +1084,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0447") (unit 1)
+          (reference "#PWR0547") (unit 1)
         )
       )
     )
@@ -1093,7 +1093,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 248.92 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 38f2513b-fff6-442c-a6a3-2a4f742d50b6)
-    (property "Reference" "D413" (at 254 60.96 0)
+    (property "Reference" "D513" (at 254 60.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 248.92 55.88 0)
@@ -1112,7 +1112,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D413") (unit 1)
+          (reference "D513") (unit 1)
         )
       )
     )
@@ -1121,7 +1121,7 @@
   (symbol (lib_id "power:VDD") (at 248.92 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3c504173-05d8-4321-921b-b37e75dcd924)
-    (property "Reference" "#PWR0415" (at 248.92 62.23 0)
+    (property "Reference" "#PWR0515" (at 248.92 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 248.92 54.8442 0)
@@ -1137,7 +1137,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0415") (unit 1)
+          (reference "#PWR0515") (unit 1)
         )
       )
     )
@@ -1146,7 +1146,7 @@
   (symbol (lib_id "power:VDD") (at 53.34 137.16 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3e83656d-d620-4c80-b56d-6026fe724197)
-    (property "Reference" "#PWR0456" (at 53.34 140.97 0)
+    (property "Reference" "#PWR0556" (at 53.34 140.97 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 53.34 133.5842 0)
@@ -1162,7 +1162,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0456") (unit 1)
+          (reference "#PWR0556") (unit 1)
         )
       )
     )
@@ -1171,7 +1171,7 @@
   (symbol (lib_id "power:VDD") (at 35.56 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 446c91e1-379a-4a30-862c-a30835f4e403)
-    (property "Reference" "#PWR0429" (at 35.56 102.87 0)
+    (property "Reference" "#PWR0529" (at 35.56 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 35.56 95.4842 0)
@@ -1187,7 +1187,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0429") (unit 1)
+          (reference "#PWR0529") (unit 1)
         )
       )
     )
@@ -1196,7 +1196,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 71.12 147.32 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4603c769-9cdb-4ea0-8618-6668918b3015)
-    (property "Reference" "D429" (at 76.2 139.7 0)
+    (property "Reference" "D529" (at 76.2 139.7 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 71.12 134.62 0)
@@ -1215,7 +1215,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D429") (unit 1)
+          (reference "D529") (unit 1)
         )
       )
     )
@@ -1224,7 +1224,7 @@
   (symbol (lib_id "power:VDD") (at 264.16 25.4 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 469544fe-8b53-4122-b5fb-a712f0d27f98)
-    (property "Reference" "#PWR0401" (at 264.16 29.21 0)
+    (property "Reference" "#PWR0501" (at 264.16 29.21 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 264.16 21.8242 0)
@@ -1240,7 +1240,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0401") (unit 1)
+          (reference "#PWR0501") (unit 1)
         )
       )
     )
@@ -1249,7 +1249,7 @@
   (symbol (lib_id "power:VDD") (at 124.46 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 49b31d75-0b5c-4a7f-aff8-403d068552ac)
-    (property "Reference" "#PWR0434" (at 124.46 102.87 0)
+    (property "Reference" "#PWR0534" (at 124.46 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 124.46 95.4842 0)
@@ -1265,7 +1265,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0434") (unit 1)
+          (reference "#PWR0534") (unit 1)
         )
       )
     )
@@ -1274,7 +1274,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 35.56 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4b795b1c-e8ed-4c28-b0b5-4383a33efdfc)
-    (property "Reference" "D414" (at 40.64 101.6 0)
+    (property "Reference" "D514" (at 40.64 101.6 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 35.56 96.52 0)
@@ -1293,7 +1293,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D414") (unit 1)
+          (reference "D514") (unit 1)
         )
       )
     )
@@ -1302,7 +1302,7 @@
   (symbol (lib_id "power:GND") (at 35.56 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4e07ae4a-7143-4abe-848b-42d61eb00b4a)
-    (property "Reference" "#PWR0442" (at 35.56 125.73 0)
+    (property "Reference" "#PWR0542" (at 35.56 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 35.56 123.8234 0)
@@ -1318,7 +1318,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0442") (unit 1)
+          (reference "#PWR0542") (unit 1)
         )
       )
     )
@@ -1327,7 +1327,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 106.68 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 504cc9ec-af07-420d-96c9-1b4c9056d829)
-    (property "Reference" "D418" (at 111.76 101.6 0)
+    (property "Reference" "D518" (at 111.76 101.6 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 106.68 96.52 0)
@@ -1346,7 +1346,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D418") (unit 1)
+          (reference "D518") (unit 1)
         )
       )
     )
@@ -1355,7 +1355,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 88.9 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 518cbb9b-13ca-460b-90bd-97cb63233a04)
-    (property "Reference" "D404" (at 93.98 60.96 0)
+    (property "Reference" "D504" (at 93.98 60.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 88.9 55.88 0)
@@ -1374,7 +1374,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D404") (unit 1)
+          (reference "D504") (unit 1)
         )
       )
     )
@@ -1383,7 +1383,7 @@
   (symbol (lib_id "power:GND") (at 264.16 40.64 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5329751e-a619-40cc-a8dc-4ab96d0790eb)
-    (property "Reference" "#PWR0402" (at 264.16 46.99 0)
+    (property "Reference" "#PWR0502" (at 264.16 46.99 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 264.16 45.0834 0)
@@ -1399,7 +1399,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0402") (unit 1)
+          (reference "#PWR0502") (unit 1)
         )
       )
     )
@@ -1408,7 +1408,7 @@
   (symbol (lib_id "power:GND") (at 124.46 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5892134f-1828-4526-b9e6-bab414ffb45d)
-    (property "Reference" "#PWR0421" (at 124.46 85.09 0)
+    (property "Reference" "#PWR0521" (at 124.46 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 124.46 83.1834 0)
@@ -1424,7 +1424,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0421") (unit 1)
+          (reference "#PWR0521") (unit 1)
         )
       )
     )
@@ -1433,7 +1433,7 @@
   (symbol (lib_id "power:VDD") (at 195.58 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5d076145-0d64-4e04-9310-7d6442cd1491)
-    (property "Reference" "#PWR0438" (at 195.58 102.87 0)
+    (property "Reference" "#PWR0538" (at 195.58 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 195.58 95.4842 0)
@@ -1449,7 +1449,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0438") (unit 1)
+          (reference "#PWR0538") (unit 1)
         )
       )
     )
@@ -1458,7 +1458,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 71.12 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 5fbcd15f-55b6-401a-854a-3a69c0af9876)
-    (property "Reference" "D416" (at 76.2 101.6 0)
+    (property "Reference" "D516" (at 76.2 101.6 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 71.12 96.52 0)
@@ -1477,7 +1477,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D416") (unit 1)
+          (reference "D516") (unit 1)
         )
       )
     )
@@ -1486,7 +1486,7 @@
   (symbol (lib_id "power:GND") (at 195.58 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 64af5cc8-bc60-459d-90fa-736873e80c13)
-    (property "Reference" "#PWR0451" (at 195.58 125.73 0)
+    (property "Reference" "#PWR0551" (at 195.58 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 195.58 123.8234 0)
@@ -1502,7 +1502,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0451") (unit 1)
+          (reference "#PWR0551") (unit 1)
         )
       )
     )
@@ -1511,7 +1511,7 @@
   (symbol (lib_id "power:GND") (at 53.34 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 67aa000e-9566-4916-9f5e-07586bcae160)
-    (property "Reference" "#PWR0443" (at 53.34 125.73 0)
+    (property "Reference" "#PWR0543" (at 53.34 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 53.34 123.8234 0)
@@ -1527,7 +1527,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0443") (unit 1)
+          (reference "#PWR0543") (unit 1)
         )
       )
     )
@@ -1536,7 +1536,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 213.36 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6809c708-c113-4948-9e48-5f3c6b1b989f)
-    (property "Reference" "D424" (at 218.44 101.6 0)
+    (property "Reference" "D524" (at 218.44 101.6 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 213.36 96.52 0)
@@ -1555,7 +1555,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D424") (unit 1)
+          (reference "D524") (unit 1)
         )
       )
     )
@@ -1564,7 +1564,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 231.14 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6c1cfdd1-568d-4a5c-8e3c-ea6d93484a3c)
-    (property "Reference" "D412" (at 236.22 60.96 0)
+    (property "Reference" "D512" (at 236.22 60.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 231.14 55.88 0)
@@ -1583,7 +1583,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D412") (unit 1)
+          (reference "D512") (unit 1)
         )
       )
     )
@@ -1592,7 +1592,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 124.46 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6c5f9bc3-efc9-4005-906c-676e69233c40)
-    (property "Reference" "D419" (at 129.54 101.6 0)
+    (property "Reference" "D519" (at 129.54 101.6 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 124.46 96.52 0)
@@ -1611,7 +1611,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D419") (unit 1)
+          (reference "D519") (unit 1)
         )
       )
     )
@@ -1620,7 +1620,7 @@
   (symbol (lib_id "power:GND") (at 231.14 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 6f455bf9-af0e-4a6a-b1a3-c5aa9564688c)
-    (property "Reference" "#PWR0427" (at 231.14 85.09 0)
+    (property "Reference" "#PWR0527" (at 231.14 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 231.14 83.1834 0)
@@ -1636,7 +1636,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0427") (unit 1)
+          (reference "#PWR0527") (unit 1)
         )
       )
     )
@@ -1645,7 +1645,7 @@
   (symbol (lib_id "power:VDD") (at 195.58 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 6fb2cb05-1617-4ae6-97de-37aee52d8ca9)
-    (property "Reference" "#PWR0412" (at 195.58 62.23 0)
+    (property "Reference" "#PWR0512" (at 195.58 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 195.58 54.8442 0)
@@ -1661,7 +1661,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0412") (unit 1)
+          (reference "#PWR0512") (unit 1)
         )
       )
     )
@@ -1670,7 +1670,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 142.24 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 70d6b6fe-d248-4746-a787-b1acb45c24fc)
-    (property "Reference" "D420" (at 147.32 101.6 0)
+    (property "Reference" "D520" (at 147.32 101.6 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 142.24 96.52 0)
@@ -1689,7 +1689,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D420") (unit 1)
+          (reference "D520") (unit 1)
         )
       )
     )
@@ -1698,7 +1698,7 @@
   (symbol (lib_id "power:GND") (at 177.8 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 76c63475-cba9-43a8-9070-acce07751f19)
-    (property "Reference" "#PWR0424" (at 177.8 85.09 0)
+    (property "Reference" "#PWR0524" (at 177.8 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 177.8 83.1834 0)
@@ -1714,7 +1714,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0424") (unit 1)
+          (reference "#PWR0524") (unit 1)
         )
       )
     )
@@ -1723,7 +1723,7 @@
   (symbol (lib_id "power:VDD") (at 106.68 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 790fa8db-89dd-45ec-93d5-519b55b3c1df)
-    (property "Reference" "#PWR0407" (at 106.68 62.23 0)
+    (property "Reference" "#PWR0507" (at 106.68 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 106.68 54.8442 0)
@@ -1739,7 +1739,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0407") (unit 1)
+          (reference "#PWR0507") (unit 1)
         )
       )
     )
@@ -1748,7 +1748,7 @@
   (symbol (lib_id "power:VDD") (at 88.9 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 794921ab-9fe3-46d5-95f5-5351b785658b)
-    (property "Reference" "#PWR0432" (at 88.9 102.87 0)
+    (property "Reference" "#PWR0532" (at 88.9 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 88.9 95.4842 0)
@@ -1764,7 +1764,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0432") (unit 1)
+          (reference "#PWR0532") (unit 1)
         )
       )
     )
@@ -1773,7 +1773,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 213.36 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7a8d7cb8-cd06-4532-89b2-227334ce84ac)
-    (property "Reference" "D411" (at 218.44 60.96 0)
+    (property "Reference" "D511" (at 218.44 60.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 213.36 55.88 0)
@@ -1792,7 +1792,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D411") (unit 1)
+          (reference "D511") (unit 1)
         )
       )
     )
@@ -1801,7 +1801,7 @@
   (symbol (lib_id "power:GND") (at 177.8 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 7c7ba705-e8a6-429e-86b6-e75aae6bb356)
-    (property "Reference" "#PWR0450" (at 177.8 125.73 0)
+    (property "Reference" "#PWR0550" (at 177.8 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 177.8 123.8234 0)
@@ -1817,7 +1817,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0450") (unit 1)
+          (reference "#PWR0550") (unit 1)
         )
       )
     )
@@ -1826,7 +1826,7 @@
   (symbol (lib_id "power:VDD") (at 213.36 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 7e567326-236e-43ac-8727-17ab5e09c2b2)
-    (property "Reference" "#PWR0413" (at 213.36 62.23 0)
+    (property "Reference" "#PWR0513" (at 213.36 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 213.36 54.8442 0)
@@ -1842,7 +1842,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0413") (unit 1)
+          (reference "#PWR0513") (unit 1)
         )
       )
     )
@@ -1851,7 +1851,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 53.34 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7f8e03e3-06f7-4729-8ecd-22d88e044c41)
-    (property "Reference" "D402" (at 58.42 60.96 0)
+    (property "Reference" "D502" (at 58.42 60.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 53.34 55.88 0)
@@ -1870,7 +1870,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D402") (unit 1)
+          (reference "D502") (unit 1)
         )
       )
     )
@@ -1879,7 +1879,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 124.46 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8120ebe8-f613-4f96-b083-d2b017302fa0)
-    (property "Reference" "D406" (at 129.54 60.96 0)
+    (property "Reference" "D506" (at 129.54 60.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 124.46 55.88 0)
@@ -1898,7 +1898,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D406") (unit 1)
+          (reference "D506") (unit 1)
         )
       )
     )
@@ -1907,7 +1907,7 @@
   (symbol (lib_id "power:VDD") (at 53.34 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 8170798b-54c5-4b8f-88e8-7f62af80cce2)
-    (property "Reference" "#PWR0404" (at 53.34 62.23 0)
+    (property "Reference" "#PWR0504" (at 53.34 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 53.34 54.8442 0)
@@ -1923,7 +1923,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0404") (unit 1)
+          (reference "#PWR0504") (unit 1)
         )
       )
     )
@@ -1932,7 +1932,7 @@
   (symbol (lib_id "power:VDD") (at 213.36 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 84359363-603d-4d66-b0b3-056c57462a28)
-    (property "Reference" "#PWR0439" (at 213.36 102.87 0)
+    (property "Reference" "#PWR0539" (at 213.36 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 213.36 95.4842 0)
@@ -1948,7 +1948,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0439") (unit 1)
+          (reference "#PWR0539") (unit 1)
         )
       )
     )
@@ -1957,7 +1957,7 @@
   (symbol (lib_id "power:GND") (at 106.68 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 8de7e157-5b58-4dfa-b978-33c58ca14fa2)
-    (property "Reference" "#PWR0446" (at 106.68 125.73 0)
+    (property "Reference" "#PWR0546" (at 106.68 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 106.68 123.8234 0)
@@ -1973,7 +1973,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0446") (unit 1)
+          (reference "#PWR0546") (unit 1)
         )
       )
     )
@@ -1982,7 +1982,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 35.56 147.32 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 9125333d-f31b-4c9e-a13c-b8b6b4c142b4)
-    (property "Reference" "D427" (at 40.64 139.7 0)
+    (property "Reference" "D527" (at 40.64 139.7 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 35.56 134.62 0)
@@ -2001,7 +2001,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D427") (unit 1)
+          (reference "D527") (unit 1)
         )
       )
     )
@@ -2010,7 +2010,7 @@
   (symbol (lib_id "power:GND") (at 88.9 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 9333fa58-6f3e-40e6-89e6-89f0006baccf)
-    (property "Reference" "#PWR0445" (at 88.9 125.73 0)
+    (property "Reference" "#PWR0545" (at 88.9 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 88.9 123.8234 0)
@@ -2026,7 +2026,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0445") (unit 1)
+          (reference "#PWR0545") (unit 1)
         )
       )
     )
@@ -2035,7 +2035,7 @@
   (symbol (lib_id "power:GND") (at 88.9 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 93c07f87-6a2d-4718-aa28-38a4c41c8bc4)
-    (property "Reference" "#PWR0419" (at 88.9 85.09 0)
+    (property "Reference" "#PWR0519" (at 88.9 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 88.9 83.1834 0)
@@ -2051,7 +2051,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0419") (unit 1)
+          (reference "#PWR0519") (unit 1)
         )
       )
     )
@@ -2060,7 +2060,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 35.56 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 93d2e7cd-d5bc-4cab-a7c8-f5d2ff1b24fc)
-    (property "Reference" "D401" (at 40.64 60.96 0)
+    (property "Reference" "D501" (at 40.64 60.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 35.56 55.88 0)
@@ -2079,7 +2079,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D401") (unit 1)
+          (reference "D501") (unit 1)
         )
       )
     )
@@ -2088,7 +2088,7 @@
   (symbol (lib_id "power:VDD") (at 88.9 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 96089b35-1686-49b9-8d1b-d0f9dfbb9b5c)
-    (property "Reference" "#PWR0406" (at 88.9 62.23 0)
+    (property "Reference" "#PWR0506" (at 88.9 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 88.9 54.8442 0)
@@ -2104,7 +2104,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0406") (unit 1)
+          (reference "#PWR0506") (unit 1)
         )
       )
     )
@@ -2113,7 +2113,7 @@
   (symbol (lib_id "power:VDD") (at 71.12 137.16 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 9cbb0e3e-facc-407f-ab32-dfb53b3c6282)
-    (property "Reference" "#PWR0457" (at 71.12 140.97 0)
+    (property "Reference" "#PWR0557" (at 71.12 140.97 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 71.12 133.5842 0)
@@ -2129,7 +2129,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0457") (unit 1)
+          (reference "#PWR0557") (unit 1)
         )
       )
     )
@@ -2138,7 +2138,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 195.58 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a2d585c3-c326-4512-b8b3-07151c9fb58e)
-    (property "Reference" "D423" (at 200.66 101.6 0)
+    (property "Reference" "D523" (at 200.66 101.6 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 195.58 96.52 0)
@@ -2157,7 +2157,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D423") (unit 1)
+          (reference "D523") (unit 1)
         )
       )
     )
@@ -2166,7 +2166,7 @@
   (symbol (lib_id "power:GND") (at 248.92 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid a55882d2-bf84-4d4f-be0a-df5b9f81f951)
-    (property "Reference" "#PWR0454" (at 248.92 125.73 0)
+    (property "Reference" "#PWR0554" (at 248.92 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 248.92 123.8234 0)
@@ -2182,7 +2182,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0454") (unit 1)
+          (reference "#PWR0554") (unit 1)
         )
       )
     )
@@ -2191,7 +2191,7 @@
   (symbol (lib_id "power:GND") (at 213.36 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid a92b299e-8a95-480e-b6ad-494916a34c12)
-    (property "Reference" "#PWR0426" (at 213.36 85.09 0)
+    (property "Reference" "#PWR0526" (at 213.36 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 213.36 83.1834 0)
@@ -2207,7 +2207,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0426") (unit 1)
+          (reference "#PWR0526") (unit 1)
         )
       )
     )
@@ -2216,7 +2216,7 @@
   (symbol (lib_id "power:GND") (at 35.56 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid a9b06e29-6a5f-4a38-b13f-e4bb4e0bbe92)
-    (property "Reference" "#PWR0416" (at 35.56 85.09 0)
+    (property "Reference" "#PWR0516" (at 35.56 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 35.56 83.1834 0)
@@ -2232,7 +2232,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0416") (unit 1)
+          (reference "#PWR0516") (unit 1)
         )
       )
     )
@@ -2241,7 +2241,7 @@
   (symbol (lib_id "power:VDD") (at 53.34 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid aca3dfda-ed47-4681-bff4-d1a70dd6b5c3)
-    (property "Reference" "#PWR0430" (at 53.34 102.87 0)
+    (property "Reference" "#PWR0530" (at 53.34 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 53.34 95.4842 0)
@@ -2257,7 +2257,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0430") (unit 1)
+          (reference "#PWR0530") (unit 1)
         )
       )
     )
@@ -2266,7 +2266,7 @@
   (symbol (lib_id "power:GND") (at 71.12 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid accd0ded-5006-40d6-8ce4-f693b6a1f52b)
-    (property "Reference" "#PWR0418" (at 71.12 85.09 0)
+    (property "Reference" "#PWR0518" (at 71.12 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 71.12 83.1834 0)
@@ -2282,7 +2282,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0418") (unit 1)
+          (reference "#PWR0518") (unit 1)
         )
       )
     )
@@ -2291,7 +2291,7 @@
   (symbol (lib_id "power:VDD") (at 106.68 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b181d0e5-42a8-4a7e-a396-bc4a5398666a)
-    (property "Reference" "#PWR0433" (at 106.68 102.87 0)
+    (property "Reference" "#PWR0533" (at 106.68 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 106.68 95.4842 0)
@@ -2307,7 +2307,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0433") (unit 1)
+          (reference "#PWR0533") (unit 1)
         )
       )
     )
@@ -2316,7 +2316,7 @@
   (symbol (lib_id "power:GND") (at 160.02 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b2235f22-409c-4594-a820-1296b50c9f9e)
-    (property "Reference" "#PWR0449" (at 160.02 125.73 0)
+    (property "Reference" "#PWR0549" (at 160.02 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 160.02 123.8234 0)
@@ -2332,7 +2332,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0449") (unit 1)
+          (reference "#PWR0549") (unit 1)
         )
       )
     )
@@ -2341,7 +2341,7 @@
   (symbol (lib_id "power:GND") (at 248.92 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ba848b3d-cccb-4dc4-b4f0-5799e7324458)
-    (property "Reference" "#PWR0428" (at 248.92 85.09 0)
+    (property "Reference" "#PWR0528" (at 248.92 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 248.92 83.1834 0)
@@ -2357,7 +2357,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0428") (unit 1)
+          (reference "#PWR0528") (unit 1)
         )
       )
     )
@@ -2366,7 +2366,7 @@
   (symbol (lib_id "power:VDD") (at 142.24 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid c5ed835f-e035-4811-862e-2acf5418260e)
-    (property "Reference" "#PWR0409" (at 142.24 62.23 0)
+    (property "Reference" "#PWR0509" (at 142.24 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 142.24 54.8442 0)
@@ -2382,7 +2382,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0409") (unit 1)
+          (reference "#PWR0509") (unit 1)
         )
       )
     )
@@ -2391,7 +2391,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 53.34 147.32 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c9af87a7-2357-4b66-b962-289d4f26ff6d)
-    (property "Reference" "D428" (at 58.42 139.7 0)
+    (property "Reference" "D528" (at 58.42 139.7 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 53.34 134.62 0)
@@ -2410,7 +2410,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D428") (unit 1)
+          (reference "D528") (unit 1)
         )
       )
     )
@@ -2419,7 +2419,7 @@
   (symbol (lib_id "power:GND") (at 213.36 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid cbd52a34-a84e-4d3e-8647-5d541372900a)
-    (property "Reference" "#PWR0452" (at 213.36 125.73 0)
+    (property "Reference" "#PWR0552" (at 213.36 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 213.36 123.8234 0)
@@ -2435,7 +2435,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0452") (unit 1)
+          (reference "#PWR0552") (unit 1)
         )
       )
     )
@@ -2444,7 +2444,7 @@
   (symbol (lib_id "power:VDD") (at 177.8 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid cbe716b5-68b0-4914-afaa-4583fa40c890)
-    (property "Reference" "#PWR0437" (at 177.8 102.87 0)
+    (property "Reference" "#PWR0537" (at 177.8 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 177.8 95.4842 0)
@@ -2460,7 +2460,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0437") (unit 1)
+          (reference "#PWR0537") (unit 1)
         )
       )
     )
@@ -2469,7 +2469,7 @@
   (symbol (lib_id "power:GND") (at 195.58 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ce410be1-53a1-4bc0-aee4-8a4f03061a26)
-    (property "Reference" "#PWR0425" (at 195.58 85.09 0)
+    (property "Reference" "#PWR0525" (at 195.58 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 195.58 83.1834 0)
@@ -2485,7 +2485,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0425") (unit 1)
+          (reference "#PWR0525") (unit 1)
         )
       )
     )
@@ -2494,7 +2494,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 53.34 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d5c8b038-6f55-42f6-990d-f0c6bfbc73e0)
-    (property "Reference" "D415" (at 58.42 101.6 0)
+    (property "Reference" "D515" (at 58.42 101.6 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 53.34 96.52 0)
@@ -2513,7 +2513,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D415") (unit 1)
+          (reference "D515") (unit 1)
         )
       )
     )
@@ -2522,7 +2522,7 @@
   (symbol (lib_id "power:GND") (at 71.12 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid d5ee080b-de6e-4144-94c5-d9db65b87c29)
-    (property "Reference" "#PWR0444" (at 71.12 125.73 0)
+    (property "Reference" "#PWR0544" (at 71.12 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 71.12 123.8234 0)
@@ -2538,7 +2538,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0444") (unit 1)
+          (reference "#PWR0544") (unit 1)
         )
       )
     )
@@ -2547,7 +2547,7 @@
   (symbol (lib_id "power:GND") (at 231.14 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid dafa51ce-a6aa-46f3-8212-2f8b99f50869)
-    (property "Reference" "#PWR0453" (at 231.14 125.73 0)
+    (property "Reference" "#PWR0553" (at 231.14 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 231.14 123.8234 0)
@@ -2563,7 +2563,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0453") (unit 1)
+          (reference "#PWR0553") (unit 1)
         )
       )
     )
@@ -2572,7 +2572,7 @@
   (symbol (lib_id "power:VDD") (at 231.14 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid db0bf6c2-3aca-449d-a127-240bf98cd83c)
-    (property "Reference" "#PWR0414" (at 231.14 62.23 0)
+    (property "Reference" "#PWR0514" (at 231.14 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 231.14 54.8442 0)
@@ -2588,7 +2588,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0414") (unit 1)
+          (reference "#PWR0514") (unit 1)
         )
       )
     )
@@ -2597,7 +2597,7 @@
   (symbol (lib_id "power:VDD") (at 231.14 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid dc360517-6fa5-41bf-9b62-6b56495a50f8)
-    (property "Reference" "#PWR0440" (at 231.14 102.87 0)
+    (property "Reference" "#PWR0540" (at 231.14 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 231.14 95.4842 0)
@@ -2613,7 +2613,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0440") (unit 1)
+          (reference "#PWR0540") (unit 1)
         )
       )
     )
@@ -2622,7 +2622,7 @@
   (symbol (lib_id "power:VDD") (at 160.02 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid dc69b13e-ca0e-4fe4-9f7e-38f917bff40e)
-    (property "Reference" "#PWR0436" (at 160.02 102.87 0)
+    (property "Reference" "#PWR0536" (at 160.02 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 160.02 95.4842 0)
@@ -2638,7 +2638,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0436") (unit 1)
+          (reference "#PWR0536") (unit 1)
         )
       )
     )
@@ -2647,7 +2647,7 @@
   (symbol (lib_id "power:GND") (at 106.68 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid e03c689e-6988-40f5-9692-b7ba1342b1f1)
-    (property "Reference" "#PWR0420" (at 106.68 85.09 0)
+    (property "Reference" "#PWR0520" (at 106.68 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 106.68 83.1834 0)
@@ -2663,7 +2663,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0420") (unit 1)
+          (reference "#PWR0520") (unit 1)
         )
       )
     )
@@ -2672,7 +2672,7 @@
   (symbol (lib_id "power:VDD") (at 71.12 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid e3dbd0c8-7297-4c43-ba44-9ad9ab762e1b)
-    (property "Reference" "#PWR0431" (at 71.12 102.87 0)
+    (property "Reference" "#PWR0531" (at 71.12 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 71.12 95.4842 0)
@@ -2688,7 +2688,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0431") (unit 1)
+          (reference "#PWR0531") (unit 1)
         )
       )
     )
@@ -2697,7 +2697,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 88.9 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid e61c476b-46c2-4dc5-a920-0f995b016b0c)
-    (property "Reference" "D417" (at 93.98 101.6 0)
+    (property "Reference" "D517" (at 93.98 101.6 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 88.9 96.52 0)
@@ -2716,7 +2716,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D417") (unit 1)
+          (reference "D517") (unit 1)
         )
       )
     )
@@ -2725,7 +2725,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 231.14 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ea00ec1b-f394-42e2-97c0-a2123393ed90)
-    (property "Reference" "D425" (at 236.22 101.6 0)
+    (property "Reference" "D525" (at 236.22 101.6 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 231.14 96.52 0)
@@ -2744,7 +2744,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D425") (unit 1)
+          (reference "D525") (unit 1)
         )
       )
     )
@@ -2753,7 +2753,7 @@
   (symbol (lib_id "power:GND") (at 35.56 157.48 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid eaf54f22-f45f-4f25-842b-a39134f33240)
-    (property "Reference" "#PWR0461" (at 35.56 163.83 0)
+    (property "Reference" "#PWR0558" (at 35.56 163.83 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 35.56 161.9234 0)
@@ -2769,7 +2769,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0461") (unit 1)
+          (reference "#PWR0558") (unit 1)
         )
       )
     )
@@ -2778,7 +2778,7 @@
   (symbol (lib_id "power:VDD") (at 177.8 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ec673619-7155-4233-9005-4dce231a7352)
-    (property "Reference" "#PWR0411" (at 177.8 62.23 0)
+    (property "Reference" "#PWR0511" (at 177.8 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 177.8 54.8442 0)
@@ -2794,7 +2794,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0411") (unit 1)
+          (reference "#PWR0511") (unit 1)
         )
       )
     )
@@ -2803,7 +2803,7 @@
   (symbol (lib_id "power:VDD") (at 160.02 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ed47fbb9-896a-4574-bf64-70d3e4249288)
-    (property "Reference" "#PWR0410" (at 160.02 62.23 0)
+    (property "Reference" "#PWR0510" (at 160.02 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 160.02 54.8442 0)
@@ -2819,7 +2819,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0410") (unit 1)
+          (reference "#PWR0510") (unit 1)
         )
       )
     )
@@ -2828,7 +2828,7 @@
   (symbol (lib_id "power:GND") (at 142.24 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid eee1079a-07da-4d04-9186-70fccb8f04f5)
-    (property "Reference" "#PWR0422" (at 142.24 85.09 0)
+    (property "Reference" "#PWR0522" (at 142.24 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 142.24 83.1834 0)
@@ -2844,7 +2844,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0422") (unit 1)
+          (reference "#PWR0522") (unit 1)
         )
       )
     )
@@ -2853,7 +2853,7 @@
   (symbol (lib_id "power:VDD") (at 248.92 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid f0ea3dfe-0793-4171-88fd-a4e1d210359d)
-    (property "Reference" "#PWR0441" (at 248.92 102.87 0)
+    (property "Reference" "#PWR0541" (at 248.92 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VDD" (at 248.92 95.4842 0)
@@ -2869,7 +2869,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0441") (unit 1)
+          (reference "#PWR0541") (unit 1)
         )
       )
     )
@@ -2878,7 +2878,7 @@
   (symbol (lib_id "power:GND") (at 53.34 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid f426c9de-1873-48a9-bd6d-c99ab1be5dbb)
-    (property "Reference" "#PWR0417" (at 53.34 85.09 0)
+    (property "Reference" "#PWR0517" (at 53.34 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 53.34 83.1834 0)
@@ -2894,7 +2894,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0417") (unit 1)
+          (reference "#PWR0517") (unit 1)
         )
       )
     )
@@ -2903,7 +2903,7 @@
   (symbol (lib_id "power:GND") (at 160.02 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid f5ed7ccb-00a9-4ee7-aaea-e14fe3c651e5)
-    (property "Reference" "#PWR0423" (at 160.02 85.09 0)
+    (property "Reference" "#PWR0523" (at 160.02 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 160.02 83.1834 0)
@@ -2919,7 +2919,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "#PWR0423") (unit 1)
+          (reference "#PWR0523") (unit 1)
         )
       )
     )
@@ -2928,7 +2928,7 @@
   (symbol (lib_id "Component lib:YF923_2020_WS2812_LED") (at 71.12 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid fe91dfe3-3a40-4739-a34f-c83934af3ec3)
-    (property "Reference" "D403" (at 76.2 60.96 0)
+    (property "Reference" "D503" (at 76.2 60.96 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "YF923_2020_WS2812_LED" (at 71.12 55.88 0)
@@ -2947,7 +2947,7 @@
     (instances
       (project "PMK_Keyboard_HW01"
         (path "/c3b08055-08a5-4979-9bf8-f36ab0917722/de772aea-8077-418d-aac4-895dc19d22de"
-          (reference "D403") (unit 1)
+          (reference "D503") (unit 1)
         )
       )
     )
