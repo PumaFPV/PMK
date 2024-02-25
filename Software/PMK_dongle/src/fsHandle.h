@@ -6,17 +6,15 @@
 #define MAX_FILE_SIZE 4096
 
 #include "FS.h"
-#include "LittleFS.h"
+#include "SdFat.h"
 #include "ArduinoJson.h"
-
-#define FORMAT_LITTLEFS_IF_FAILED true
 
 #include "configHandle.h"
 
-void listDir(fs::FS &fs, const char * dirname, uint8_t levels){
+void listDir(FatVolume &fs, const char * dirname, uint8_t levels){
     Serial.printf("Listing directory: %s\r\n", dirname);
 
-    File root = fs.open(dirname);
+    File32 root = fs.open(dirname, O_READ);
     if(!root){
         Serial.print("- failed to open directory\r\n");
         return;
@@ -26,7 +24,7 @@ void listDir(fs::FS &fs, const char * dirname, uint8_t levels){
         return;
     }
 
-    File file = root.openNextFile();
+    File32 file = root.openNextFile();
     while(file){
         if(file.isDirectory()){
             Serial.printf("  DIR : ");
@@ -65,7 +63,7 @@ void removeDir(fs::FS &fs, const char * path){
 void readFile(fs::FS &fs, const char * path){
     Serial.printf("Reading file: %s\r\n", path);
 
-    File file = fs.open(path);
+    File32 file = fs.open(path);
     if(!file || file.isDirectory()){
         Serial.print("- failed to open file for reading\r\n");
         return;
@@ -80,7 +78,7 @@ void readFile(fs::FS &fs, const char * path){
 
 String readFile(fs::FS &fs, String fileName)
 {
-    File file = fs.open(fileName);
+    File32 file = fs.open(fileName);
     if(!file || file.isDirectory())
     {
         Serial.println("readFile -> failed to open file");
@@ -98,7 +96,7 @@ String readFile(fs::FS &fs, String fileName)
 void writeFile(fs::FS &fs, const char * path, const char * message){
     Serial.printf("Writing file: %s\r\n", path);
 
-    File file = fs.open(path, FILE_WRITE);
+    File32 file = fs.open(path, FILE_WRITE);
     if(!file){
         Serial.printf("- failed to open file for writing\r\n");
         return;
@@ -114,7 +112,7 @@ void writeFile(fs::FS &fs, const char * path, const char * message){
 void appendFile(fs::FS &fs, const char * path, const char * message){
     Serial.printf("Appending to file: %s\r\n", path);
 
-    File file = fs.open(path, FILE_APPEND);
+    File32 file = fs.open(path, FILE_APPEND);
     if(!file){
         Serial.printf("- failed to open file for appending\r\n");
         return;
@@ -166,7 +164,7 @@ void writeFile2(fs::FS &fs, const char * path, const char * message){
     }
 
     Serial.printf("Writing file to: %s\r\n", path);
-    File file = fs.open(path, FILE_WRITE);
+    File32 file = fs.open(path, FILE_WRITE);
     if(!file){
         Serial.printf("- failed to open file for writing\r\n");
         return;
@@ -208,7 +206,7 @@ void testFileIO(fs::FS &fs, const char * path){
 
     static uint8_t buf[512];
     size_t len = 0;
-    File file = fs.open(path, FILE_WRITE);
+    File32 file = fs.open(path, FILE_WRITE);
     if(!file){
         Serial.printf("- failed to open file for writing\r\n");
         return;

@@ -40,6 +40,23 @@
 //USBMSC MSC;
 FirmwareMSC MSC_Update;
 
+// ESP32 use same flash device that store code.
+// Therefore there is no need to specify the SPI and SS
+Adafruit_FlashTransport_ESP32 flashTransport;
+Adafruit_SPIFlash flash(&flashTransport);
+
+// file system object from SdFat
+FatVolume fatfs;
+
+// USB Mass Storage object
+Adafruit_USBD_MSC usb_msc;
+
+bool fs_formatted;  // Check if flash is formatted
+bool fs_changed;    // Set to true when browser write to flash
+
+File32 fsUploadFile;
+
+
 //--------------------------------------------------Structs--------------------------------------------------
 struct Func
 {

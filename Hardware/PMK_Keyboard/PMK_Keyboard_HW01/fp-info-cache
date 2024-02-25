@@ -1,4 +1,4 @@
-22530411775277664
+22533829476011347
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -6398,6 +6398,13 @@ Connector
 14
 14
 Component_lib
+830105420809
+3.4x2.7x0.8mm
+Crystal or Oscillator
+0
+4
+4
+Component_lib
 ACZ11BR1E15FA120C
 ACZ11BR1E-15FA1-20C-3
 Connector
@@ -6922,6 +6929,13 @@ Integrated Circuit
 0
 7
 7
+Component_lib
+SON127P600X500X80-9N-D
+8-Pad WSON 6x5-mm (Package Code P)
+Integrated Circuit
+0
+9
+9
 Component_lib
 SOP50P310X90-8N
 SOT-765

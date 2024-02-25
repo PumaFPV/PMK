@@ -8,8 +8,8 @@ uint8_t getNumberOfDevices()
 {
     uint8_t numberOfDevices = 0;
 
-    File root = LittleFS.open("/");
-    File directory = root.openNextFile();
+    File32 root = fatfs.open("/");
+    File32 directory = root.openNextFile();
     while(directory)
     {
         if(directory.isDirectory())
@@ -28,7 +28,7 @@ void configureKeyboard()
 }
 
 const char* getAttribute(const char* filename, const char* attributeName) {
-  File file = LittleFS.open(filename, "r");
+  File32 file = fatfs.open(filename, O_READ);
   if (!file) {
     Serial.println("Failed to open file for reading");
     return 0;
@@ -53,7 +53,7 @@ const char* getAttribute(const char* filename, const char* attributeName) {
 
 void addDeviceAddress(const char* filename) 
 {
-  File file = LittleFS.open(filename, "r");
+  File32 file = fatfs.open(filename, O_READ);
   if(!file) 
   {
     Serial.println("Failed to open file for reading");
