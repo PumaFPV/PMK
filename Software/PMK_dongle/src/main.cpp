@@ -5,9 +5,9 @@
 #define FIRMWARE_REV "MSC_ver"
 #include "WiFi.h"
 #include "esp_now.h"
-#include "USB.h"
-#include "USBHIDKeyboard.h"
-#include "FirmwareMSC.h"
+//#include "USB.h"
+//#include "USBHIDKeyboard.h"
+//#include "FirmwareMSC.h"
 #include "SPI.h"
 #include "SdFat.h"
 #include "Adafruit_SPIFlash.h"
@@ -93,8 +93,8 @@ void setup()
 {
   Serial.begin(115200);
   USB.onEvent(usbEventCallback);
-  MSC_Update.onEvent(usbEventCallback);
-  MSC_Update.begin();  
+  //MSC_Update.onEvent(usbEventCallback);
+  //MSC_Update.begin();  
   USB.begin();
 
   while(!Serial){}

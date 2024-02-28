@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "USB.h"
+//#include "USB.h"
 
 static void usbEventCallback(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data){
   if(event_base == ARDUINO_USB_EVENTS){
@@ -53,7 +53,7 @@ static void usbEventCallback(void* arg, esp_event_base_t event_base, int32_t eve
       default:
         break;
     }
-  } else if(event_base == ARDUINO_FIRMWARE_MSC_EVENTS){
+  }/* else if(event_base == ARDUINO_FIRMWARE_MSC_EVENTS){
     arduino_firmware_msc_event_data_t * data = (arduino_firmware_msc_event_data_t*)event_data;
     switch (event_id){
       case ARDUINO_FIRMWARE_MSC_START_EVENT:
@@ -77,4 +77,5 @@ static void usbEventCallback(void* arg, esp_event_base_t event_base, int32_t eve
         break;
     }
   }
+  */
 }

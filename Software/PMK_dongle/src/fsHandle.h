@@ -30,7 +30,7 @@ void listDir(FatVolume &fs, const char * dirname, uint8_t levels){
             Serial.printf("  DIR : ");
             Serial.printf("%c\r\n", file.name());
             if(levels){
-                listDir(fs, file.path(), levels -1);
+                //listDir(fs, file.path(), levels -1);
             }
         } else {
             Serial.printf("  FILE: ");
@@ -42,7 +42,7 @@ void listDir(FatVolume &fs, const char * dirname, uint8_t levels){
     }
 }
 
-void createDir(fs::FS &fs, const char * path){
+void createDir(FatVolume &fs, const char * path){
     Serial.printf("Creating Dir: %s\n", path);
     if(fs.mkdir(path)){
         Serial.printf("Dir created\r\n");
@@ -51,7 +51,7 @@ void createDir(fs::FS &fs, const char * path){
     }
 }
 
-void removeDir(fs::FS &fs, const char * path){
+void removeDir(FatVolume &fs, const char * path){
     Serial.printf("Removing Dir: %s\n", path);
     if(fs.rmdir(path)){
         Serial.printf("Dir removed\r\n");
@@ -60,7 +60,7 @@ void removeDir(fs::FS &fs, const char * path){
     }
 }
 
-void readFile(fs::FS &fs, const char * path){
+void readFile(FatVolume &fs, const char * path){
     Serial.printf("Reading file: %s\r\n", path);
 
     File32 file = fs.open(path);
@@ -76,7 +76,7 @@ void readFile(fs::FS &fs, const char * path){
     file.close();
 }
 
-String readFile(fs::FS &fs, String fileName)
+String readFile(FatVolume &fs, String fileName)
 {
     File32 file = fs.open(fileName);
     if(!file || file.isDirectory())
@@ -93,10 +93,10 @@ String readFile(fs::FS &fs, String fileName)
     return fileText;
 }
 
-void writeFile(fs::FS &fs, const char * path, const char * message){
+void writeFile(FatVolume &fs, const char * path, const char * message){
     Serial.printf("Writing file: %s\r\n", path);
 
-    File32 file = fs.open(path, FILE_WRITE);
+    File32 file = fs.open(path, O_WRITE);
     if(!file){
         Serial.printf("- failed to open file for writing\r\n");
         return;
@@ -109,10 +109,10 @@ void writeFile(fs::FS &fs, const char * path, const char * message){
     file.close();
 }
 
-void appendFile(fs::FS &fs, const char * path, const char * message){
+void appendFile(FatVolume &fs, const char * path, const char * message){
     Serial.printf("Appending to file: %s\r\n", path);
 
-    File32 file = fs.open(path, FILE_APPEND);
+    File32 file = fs.open(path, O_WRITE);
     if(!file){
         Serial.printf("- failed to open file for appending\r\n");
         return;
@@ -125,7 +125,7 @@ void appendFile(fs::FS &fs, const char * path, const char * message){
     file.close();
 }
 
-void renameFile(fs::FS &fs, const char * path1, const char * path2){
+void renameFile(FatVolume &fs, const char * path1, const char * path2){
     Serial.printf("Renaming file %s to %s\r\n", path1, path2);
     if (fs.rename(path1, path2)) {
         Serial.printf("- file renamed\r\n");
@@ -134,7 +134,7 @@ void renameFile(fs::FS &fs, const char * path1, const char * path2){
     }
 }
 
-void deleteFile(fs::FS &fs, const char * path){
+void deleteFile(FatVolume &fs, const char * path){
     Serial.printf("Deleting file: %s\r\n", path);
     if(fs.remove(path)){
         Serial.printf("- file deleted\r\n");
@@ -145,7 +145,7 @@ void deleteFile(fs::FS &fs, const char * path){
 
 // SPIFFS-like write and delete file, better use #define CONFIG_LITTLEFS_SPIFFS_COMPAT 1
 
-void writeFile2(fs::FS &fs, const char * path, const char * message){
+void writeFile2(FatVolume &fs, const char * path, const char * message){
     if(!fs.exists(path)){
 		if (strchr(path, '/')) {
             Serial.printf("Create missing folders of: %s\r\n", path);
@@ -164,7 +164,7 @@ void writeFile2(fs::FS &fs, const char * path, const char * message){
     }
 
     Serial.printf("Writing file to: %s\r\n", path);
-    File32 file = fs.open(path, FILE_WRITE);
+    File32 file = fs.open(path, O_WRITE);
     if(!file){
         Serial.printf("- failed to open file for writing\r\n");
         return;
@@ -177,7 +177,7 @@ void writeFile2(fs::FS &fs, const char * path, const char * message){
     file.close();
 }
 
-void deleteFile2(fs::FS &fs, const char * path){
+void deleteFile2(FatVolume &fs, const char * path){
     Serial.printf("Deleting file and empty folders on path: %s\r\n", path);
 
     if(fs.remove(path)){
@@ -201,12 +201,12 @@ void deleteFile2(fs::FS &fs, const char * path){
     }
 }
 
-void testFileIO(fs::FS &fs, const char * path){
+void testFileIO(FatVolume &fs, const char * path){
     Serial.printf("Testing file I/O with %s\r\n", path);
 
     static uint8_t buf[512];
     size_t len = 0;
-    File32 file = fs.open(path, FILE_WRITE);
+    File32 file = fs.open(path, O_WRITE);
     if(!file){
         Serial.printf("- failed to open file for writing\r\n");
         return;

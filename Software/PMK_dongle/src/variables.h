@@ -1,8 +1,8 @@
 #ifndef variables_h
 #define variables_h
 
-#include "USB.h"
-#include "USBHIDKeyboard.h"
+//#include "USB.h"
+//#include "USBHIDKeyboard.h"
 //#include "USBMSC.h"
 #include "WiFi.h"
 #include "esp_now.h"
@@ -38,7 +38,7 @@
 //--------------------------------------------------Initialize libraries--------------------------------------------------
 
 //USBMSC MSC;
-FirmwareMSC MSC_Update;
+//FirmwareMSC MSC_Update;
 
 // ESP32 use same flash device that store code.
 // Therefore there is no need to specify the SPI and SS
