@@ -108,7 +108,7 @@ extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
 uint8_t receivedData[16];
 String success;
 
-uint8_t spiPacket[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
+uint8_t spiPacket[4] = {0x00, 0x00, 0x00, 0x00};
 uint8_t numberOfPressedKeys = 0;
 
 uint8_t ledNumber = 0;

@@ -141,7 +141,7 @@ void loop()
       digitalWrite(SR_CE, LOW);
       digitalWrite(SR_PL, HIGH);
           
-      for(uint8_t packet = 0; packet < 5; packet++)
+      for(uint8_t packet = 0; packet < 4; packet++)
       {
         spiPacket[packet] = 0xFF - srSpi->transfer(0);
         //Serial.print(spiPacket[packet], BIN);
@@ -161,7 +161,7 @@ void loop()
         keyboardPacket.key[i] = 255;
       }
 
-      for(uint8_t packet = 0; packet < 5; packet++)
+      for(uint8_t packet = 0; packet < 4; packet++)
       {
         for(uint8_t bit = 0; bit < 8; bit++)
         {
@@ -171,8 +171,8 @@ void loop()
           {
             keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit;
 
-            //Serial.print("KeyID: 0x");
-            //                                                          Serial.println(keyboardPacket.key[numberOfPressedKeys], HEX);
+            Serial.print("KeyID: 0x");
+            Serial.println(keyboardPacket.key[numberOfPressedKeys], HEX);
             
             numberOfPressedKeys++;
 
