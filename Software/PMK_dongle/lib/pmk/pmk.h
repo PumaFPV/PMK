@@ -2,15 +2,15 @@
 #define pmk_h
 
 #include "Arduino.h"
-#include "USBHIDKeyboard.h"
-#include "USBHIDMouse.h"
-#include "USBHIDGamepad.h"
-
+//#include "USBHIDKeyboard.h"
+//#include "USBHIDMouse.h"
+//#include "USBHIDGamepad.h"
+#include "Adafruit_TinyUSB.h"
 #include "config.h"
 
-USBHIDKeyboard Keyboard;
-USBHIDMouse Mouse;
-USBHIDGamepad Gamepad;
+//USBHIDKeyboard Keyboard;
+//USBHIDMouse Mouse;
+//USBHIDGamepad Gamepad;
 
 uint8_t ledBrightness = 0;
 
@@ -257,7 +257,7 @@ void handleKeyboard()
     {
         if(keyboardPacket.key[i] != 0xFF && layerID != settingLayerID) //TODO change layer management
         {
-            Keyboard.press(keyIDtoChar(keyboardPacket.key[i], layerID)); //TODO add deviceID to keyIDtoChar function
+            //Keyboard.press(keyIDtoChar(keyboardPacket.key[i], layerID)); //TODO add deviceID to keyIDtoChar function
             //Serial.print("Pressing: 0x");
             //Serial.print(keyboardPacket.key[i]);
             //Serial.println(keyIDtoChar(keyboardPacket.key[i], layerID), HEX);
@@ -302,7 +302,7 @@ void handleKeyboard()
         {
             if(releaseKeys[i] != 255)
             {
-                Keyboard.release(keyIDtoChar(releaseKeys[i], layerID));
+                //Keyboard.release(keyIDtoChar(releaseKeys[i], layerID));
             }
         }   
 
@@ -312,51 +312,51 @@ void handleKeyboard()
 
 void handleMouse()
 {
-    Mouse.move(mousePacket.x, mousePacket.y, mousePacket.w, mousePacket.p);
+    //Mouse.move(mousePacket.x, mousePacket.y, mousePacket.w, mousePacket.p);
     
     if(mousePacket.key && 0b00001)
     {
-        Mouse.press(MOUSE_LEFT);
+        //Mouse.press(MOUSE_BUTTON_LEFT);
     }
     else
     {
-        Mouse.release(MOUSE_LEFT);
+        //Mouse.release(MOUSE_BUTTON_LEFT);
     }
 
     if(mousePacket.key && 0b00010)
     {
-        Mouse.press(MOUSE_RIGHT);
+        //Mouse.press(MOUSE_BUTTON_RIGHT);
     }
     else
     {
-        Mouse.release(MOUSE_RIGHT);
+        //Mouse.release(MOUSE_BUTTON_RIGHT);
     }
     
     if(mousePacket.key && 0b00100)
     {
-        Mouse.press(MOUSE_MIDDLE);
+        //Mouse.press(MOUSE_BUTTON_MIDDLE);
     }
     else
     {
-        Mouse.release(MOUSE_MIDDLE);
+        //Mouse.release(MOUSE_BUTTON_MIDDLE);
     }
 
     if(mousePacket.key && 0b01000)
     {
-        Mouse.press(MOUSE_BACKWARD);
+        //Mouse.press(MOUSE_BUTTON_BACKWARD);
     }
     else
     {
-        Mouse.release(MOUSE_BACKWARD);
+        //Mouse.release(MOUSE_BUTTON_BACKWARD);
     }
 
     if(mousePacket.key && 0b10000)
     {
-        Mouse.press(MOUSE_FORWARD);
+        //Mouse.press(MOUSE_BUTTON_FORWARD);
     }
     else
     {
-        Mouse.release(MOUSE_FORWARD);
+        //Mouse.release(MOUSE_BUTTON_FORWARD);
     }
 }
 
@@ -366,42 +366,42 @@ void handleGamepad()
     switch(gamepadPacket.dpad)
     {
         case 0b00000001:
-            gamepadHat = HAT_CENTER;
+            gamepadHat = GAMEPAD_HAT_CENTERED;
             break;
         case 0b00000010:
-            gamepadHat = HAT_UP;
+            gamepadHat = GAMEPAD_HAT_UP;
             break;  
         case 0b00000110:
-            gamepadHat = HAT_UP_RIGHT;
+            gamepadHat = GAMEPAD_HAT_UP_RIGHT;
             break;
         case 0b00000100:
-            gamepadHat = HAT_RIGHT;
+            gamepadHat = GAMEPAD_HAT_RIGHT;
             break;
         case 0b00001100:
-            gamepadHat = HAT_DOWN_RIGHT;
+            gamepadHat = GAMEPAD_HAT_DOWN_RIGHT;
             break;
         case 0b00001000:
-            gamepadHat = HAT_DOWN;
+            gamepadHat = GAMEPAD_HAT_DOWN;
             break;
         case 0b00011000:
-            gamepadHat = HAT_DOWN_LEFT;
+            gamepadHat = GAMEPAD_HAT_DOWN_LEFT;
             break;
         case 0b00010000:
-            gamepadHat = HAT_LEFT;
+            gamepadHat = GAMEPAD_HAT_LEFT;
             break;
         case 0b00010010:
-            gamepadHat = HAT_UP_LEFT;
+            gamepadHat = GAMEPAD_HAT_UP_LEFT;
             break;
     }
 
     uint32_t gamePadButtons = gamepadPacket.buttons[0] | (gamepadPacket.buttons[1] << 8) | (gamepadPacket.buttons[2] << 16) | (gamepadPacket.buttons[3] << 24);
     
-    Gamepad.send(
-        gamepadPacket.leftX, gamepadPacket.leftY, 
-        gamepadPacket.rightX, gamepadPacket.rightY, 
-        gamepadPacket.leftTrigger, gamepadPacket.rightTrigger, 
-        gamepadHat, gamePadButtons
-    );
+    //Gamepad.send(
+    //    gamepadPacket.leftX, gamepadPacket.leftY, 
+    //    gamepadPacket.rightX, gamepadPacket.rightY, 
+    //    gamepadPacket.leftTrigger, gamepadPacket.rightTrigger, 
+    //    gamepadHat, gamePadButtons
+    //);
 
 }
 

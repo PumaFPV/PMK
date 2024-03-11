@@ -12,6 +12,7 @@ uint8_t getNumberOfDevices()
     File32 directory = root.openNextFile();
     while(directory)
     {
+      Serial.printf("Directory: %s \r\n", directory);
         if(directory.isDirectory())
         {
             numberOfDevices++;
@@ -30,7 +31,7 @@ void configureKeyboard()
 const char* getAttribute(const char* filename, const char* attributeName) {
   File32 file = fatfs.open(filename, O_READ);
   if (!file) {
-    Serial.println("Failed to open file for reading");
+    Serial.printf("Failed to open file for reading\r\n");
     return 0;
   }
 

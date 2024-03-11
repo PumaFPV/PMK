@@ -92,12 +92,11 @@ const char compileDate[] = __DATE__ " " __TIME__;
 void setup()
 {
   Serial.begin(115200);
-  USB.onEvent(usbEventCallback);
+  //USB.onEvent(usbEventCallback);
   //MSC_Update.onEvent(usbEventCallback);
   //MSC_Update.begin();  
-  USB.begin();
+  //USB.begin();
 
-  while(!Serial){}
   pinMode(LED_DATA_PIN, OUTPUT);
   digitalWrite(LED_DATA_PIN, 1);
   delay(10);
@@ -113,20 +112,19 @@ void setup()
   Serial.printf("    \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___| \\__ \\___/  |_|    |_|  |_|_|\\_\\ \r\n\r\n\r\n");
 
   //===========================================
-  //====================LittleFS===============
+  //====================FatFS==================
   //===========================================
-  /*
-  if(!LittleFS.begin())
+  
+  if(!flash.begin())
   {
-    Serial.printf("An Error has occurred while mounting LittleFS\r\n");
+    Serial.printf("An Error has occurred while mounting FatFS\r\n");
     return;
   }
   else
   {
     Serial.printf("File system is ok\r\n");
-  }*/
-  flash.begin();
-
+  }
+  
   // Set disk vendor id, product id and revision with string up to 8, 16, 4 characters respectively
   usb_msc.setID("PMK", "Configure Flash", "0.1");
 
@@ -154,11 +152,11 @@ void setup()
   //====================USB====================
   //===========================================
   Serial.print("Starting keyboard\r\n");
-  Keyboard.begin();
+  //Keyboard.begin();
   Serial.print("Starting mouse\r\n");
-  Mouse.begin();
+  //Mouse.begin();
   Serial.print("Starting gamepad\r\n");
-  Gamepad.begin();
+  //Gamepad.begin();
 
 
   //====================================================
@@ -189,6 +187,7 @@ void setup()
   //===========================================
   //====================Config=================
   //===========================================
+  while(!Serial){}
 
   uint8_t numberOfDeviceToConfig = getNumberOfDevices();
 
