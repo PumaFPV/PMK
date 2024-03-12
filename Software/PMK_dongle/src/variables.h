@@ -1,5 +1,5 @@
-#ifndef variables_h
-#define variables_h
+#ifndef VARIABLE_H
+#define VARIABLE_H
 
 //#include "USB.h"
 //#include "USBHIDKeyboard.h"
@@ -23,7 +23,7 @@
 
 //----------LED
 #define LED_DATA_PIN 9
-
+#define LED_BUILDIN LED_DATA_PIN
 
 
 //----------Peripherals
@@ -37,8 +37,13 @@
 
 //--------------------------------------------------Initialize libraries--------------------------------------------------
 
-//USBMSC MSC;
-//FirmwareMSC MSC_Update;
+// USB HID object. For ESP32 these values cannot be changed after this declaration
+// desc report, desc len, protocol, interval, use out endpoint
+Adafruit_USBD_HID usb_keyboard;
+Adafruit_USBD_HID usb_mouse;
+Adafruit_USBD_HID usb_gamepad;
+
+hid_gamepad_report_t gp;
 
 // ESP32 use same flash device that store code.
 // Therefore there is no need to specify the SPI and SS

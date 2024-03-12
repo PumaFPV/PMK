@@ -1,18 +1,19 @@
 #include <Arduino.h>
 
+//TO DO delete this file
 #include "config.h"
 
-#define FIRMWARE_REV "MSC_ver"
+#define FIRMWARE_REV "dev"
+
+//Include library
 #include "WiFi.h"
 #include "esp_now.h"
-//#include "USB.h"
-//#include "USBHIDKeyboard.h"
-//#include "FirmwareMSC.h"
 #include "SPI.h"
 #include "SdFat.h"
 #include "Adafruit_SPIFlash.h"
 #include "Adafruit_TinyUSB.h"
 
+//Include files
 #include "variables.h"
 
 #include "pmk.h"
@@ -22,99 +23,25 @@
 #include "MSCHandle.h"
 
 
-//bool msc_ready_callback(void);
-//void msc_flush_cb (void);
-//int32_t msc_write_cba (uint32_t lba, uint8_t* buffer, uint32_t bufsize);
-//int32_t msc_read_cba (uint32_t lba, void* buffer, uint32_t bufsize);
-//void refreshMassStorage(void);
-//void setupMassStorage(void);
-
-// Callback invoked when received READ10 command.
-// Copy disk's data to buffer (up to bufsize) and 
-// return number of copied bytes (must be multiple of block size) 
-int32_t msc_read_cba (uint32_t lba, void* buffer, uint32_t bufsize)
-{
-  // Note: SPIFLash Bock API: readBlocks/writeBlocks/syncBlocks
-  // already include 4K sector caching internally. We don't need to cache it, yahhhh!!
-  return flash.readBlocks(lba, (uint8_t*) buffer, bufsize/512) ? bufsize : -1;
-}
-
-// Callback invoked when received WRITE10 command.
-// Process data in buffer to disk's storage and 
-// return number of written bytes (must be multiple of block size)
-int32_t msc_write_cba (uint32_t lba, uint8_t* buffer, uint32_t bufsize)
-{
-#ifdef LED_BUILTIN
-  digitalWrite(LED_BUILTIN, HIGH);
-#endif
-
-  // Note: SPIFLash Bock API: readBlocks/writeBlocks/syncBlocks
-  // already include 4K sector caching internally. We don't need to cache it, yahhhh!!
-  return flash.writeBlocks(lba, buffer, bufsize/512) ? bufsize : -1;
-}
-
-// Callback invoked when WRITE10 command is completed (status received and accepted by host).
-// used to flush any pending cache.
-void msc_flush_cba (void)
-{
-  // sync with flash
-  flash.syncBlocks();
-
-  // clear file system's cache to force refresh
-  fatfs.cacheClear();
-
-#ifdef LED_BUILTIN
-  digitalWrite(LED_BUILTIN, LOW);
-#endif
-}
-
-// Invoked when received Test Unit Ready command.
-// return true allowing host to read/write this LUN e.g SD card inserted
-bool msc_ready_callbacka(void)
-{
-  // if fs has changed, mark unit as not ready temporarily to force PC to flush cache
-  bool ret = !fs_changed;
-  fs_changed = false;
-  return ret;
-}
-
-void refreshMassStorage(void)
-{
-  fs_changed = true;
-}
-
-
 
 void loopCount();
 
 const char compileDate[] = __DATE__ " " __TIME__;
 
+
+//===========================================
+//====================Setup==================
+//===========================================
 void setup()
 {
+
   Serial.begin(115200);
-  //USB.onEvent(usbEventCallback);
-  //MSC_Update.onEvent(usbEventCallback);
-  //MSC_Update.begin();  
-  //USB.begin();
-
-  pinMode(LED_DATA_PIN, OUTPUT);
-  digitalWrite(LED_DATA_PIN, 1);
-  delay(10);
-  Serial.printf("Dongle is booting\r\n");
-  Serial.printf("Firmware rev: %s\r\n", FIRMWARE_REV);
-  Serial.printf("Firmware was built the: %s at %s\r\n\r\n", __DATE__, __TIME__);
-
-  Serial.printf("__          __  _                            _          _____  __  __ _  __ \r\n");
-  Serial.printf("\\ \\        / / | |                          | |        |  __ \\|  \\/  | |/ / \r\n");
-  Serial.printf(" \\ \\  /\\  / /__| | ___ ___  _ __ ___   ___  | |_ ___   | |__) | \\  / | ' /  \r\n");
-  Serial.printf("  \\ \\/  \\/ / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ | __/ _ \\  |  ___/| |\\/| |  <   \r\n");
-  Serial.printf("   \\  /\\  /  __/ | (_| (_) | | | | | |  __/ | || (_) | | |    | |  | | . \\  \r\n");
-  Serial.printf("    \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___| \\__ \\___/  |_|    |_|  |_|_|\\_\\ \r\n\r\n\r\n");
 
   //===========================================
   //====================FatFS==================
   //===========================================
   
+  //Initiate flash
   if(!flash.begin())
   {
     Serial.printf("An Error has occurred while mounting FatFS\r\n");
@@ -126,9 +53,9 @@ void setup()
   }
   
   // Set disk vendor id, product id and revision with string up to 8, 16, 4 characters respectively
-  usb_msc.setID("PMK", "Configure Flash", "0.1");
+  usb_msc.setID("PMK", "Config Flash", "0.1");
 
-  // Set callback
+  // Set read callback
   usb_msc.setReadWriteCallback(msc_read_cba, msc_write_cba, msc_flush_cba);
 
   // Set disk size, block size should be 512 regardless of spi flash page size
@@ -146,11 +73,59 @@ void setup()
   if ( !fs_formatted )
   {
     Serial.println("Failed to init files system, flash may not be formatted");
-  }
+  }  
+
+  //===========================================
+  //====================INIT===================
+  //===========================================  
+  //while(!Serial){}
+
+  pinMode(LED_DATA_PIN, OUTPUT);
+  digitalWrite(LED_DATA_PIN, 1);
+  delay(10);
+  Serial.printf("Dongle is booting\r\n");
+  Serial.printf("Firmware rev: %s\r\n", FIRMWARE_REV);
+  Serial.printf("Firmware was built the: %s at %s\r\n\r\n", __DATE__, __TIME__);
+
+  Serial.printf("__          __  _                            _          _____  __  __ _  __ \r\n");
+  Serial.printf("\\ \\        / / | |                          | |        |  __ \\|  \\/  | |/ / \r\n");
+  Serial.printf(" \\ \\  /\\  / /__| | ___ ___  _ __ ___   ___  | |_ ___   | |__) | \\  / | ' /  \r\n");
+  Serial.printf("  \\ \\/  \\/ / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ | __/ _ \\  |  ___/| |\\/| |  <   \r\n");
+  Serial.printf("   \\  /\\  /  __/ | (_| (_) | | | | | |  __/ | || (_) | | |    | |  | | . \\  \r\n");
+  Serial.printf("    \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___| \\__ \\___/  |_|    |_|  |_|_|\\_\\ \r\n\r\n\r\n");
 
   //===========================================
   //====================USB====================
   //===========================================
+  //===========================================
+  //====================HID====================
+  //===========================================
+  
+  // HID Gamepad
+  //usb_gamepad.setPollInterval(2);
+  //usb_gamepad.setReportDescriptor(desc_gamepad_report, sizeof(desc_gamepad_report));
+  //usb_gamepad.setStringDescriptor("PMK");
+  //usb_gamepad.begin();
+  //// HID Mouse
+  usb_mouse.setPollInterval(2);
+  usb_mouse.setBootProtocol(HID_ITF_PROTOCOL_MOUSE);
+  usb_mouse.setReportDescriptor(desc_mouse_report, sizeof(desc_mouse_report));
+  usb_mouse.setStringDescriptor("PMK");
+  usb_mouse.begin();
+  //HID Keyboard
+  usb_keyboard.setPollInterval(2);
+  usb_keyboard.setBootProtocol(HID_ITF_PROTOCOL_KEYBOARD);
+  usb_keyboard.setReportDescriptor(desc_keyboard_report, sizeof(desc_keyboard_report));
+  usb_keyboard.setStringDescriptor("PMK");
+  usb_keyboard.begin();
+
+
+
+  // Set up output report (on control endpoint) for Capslock indicator
+  Serial.printf("Waiting for USB HID to be mounted...\r\n");
+  while( !TinyUSBDevice.mounted() ) delay(1);
+
+
   Serial.print("Starting keyboard\r\n");
   //Keyboard.begin();
   Serial.print("Starting mouse\r\n");
@@ -187,7 +162,6 @@ void setup()
   //===========================================
   //====================Config=================
   //===========================================
-  while(!Serial){}
 
   uint8_t numberOfDeviceToConfig = getNumberOfDevices();
 
@@ -208,22 +182,25 @@ void setup()
     File32 configRoot = fatfs.open(directory.name(), O_READ);
 
     //Now inside device config folder
-    String deviceName = directory.name();
+    char deviceName[32];
+    directory.getName(deviceName, sizeof(deviceName));
     Serial.printf("Device name to configure: %s \r\n", deviceName);
-    uint8_t deviceNameLength = deviceName.length();
+    uint8_t deviceNameLength = sizeof(deviceName);
 
     File32 folder = directory.openNextFile();
 
     while(folder)
     {
       String fileName = folder.name();
-
-      Serial.printf("File name: %s\r\n", folder.name());
-      String filePathString = "/" + deviceName + "/" + deviceName + ".json";
+      char name[32];
+      folder.getName(name, sizeof(name));
+      Serial.printf("File name: %s\r\n", name);
+      String deviceNameString = convertToString(deviceName, sizeof(deviceName) / sizeof(char));
+      String filePathString = "/" + deviceNameString + "/" + deviceName + ".json";
       const char* filePath = new char[filePathString.length() + 1];
       strcpy(const_cast<char*>(filePath), filePathString.c_str());
 
-      if(fileName == String(deviceName + ".json"))
+      if(fileName == String(deviceNameString + ".json"))
       {
         Serial.printf("Config name: %s \r\n", getAttribute(filePath, "deviceName"));
         Serial.printf("Device ID: %s \r\n", getAttribute(filePath, "deviceID"));
@@ -231,13 +208,13 @@ void setup()
         addDeviceAddress(filePath); 
       }
 
-      else if (fileName == String(deviceName + "-key.json"))
+      else if (fileName == String(deviceNameString + "-key.json"))
       {
 
 
       }
 
-      else if (fileName == String(deviceName + "-led.json"))
+      else if (fileName == String(deviceNameString + "-led.json"))
       {
 
 
@@ -255,9 +232,47 @@ void setup()
 }
 
 
-
 void loop()
 {
+  Serial.printf("loop\r\n");
+
+  if (usb_gamepad.ready())
+  {
+    // Random touch
+    Serial.println("Random touch");
+    gp.x       = random(-127, 128);
+    gp.y       = random(-127, 128);
+    gp.z       = random(-127, 128);
+    gp.rz      = random(-127, 128);
+    gp.rx      = random(-127, 128);
+    gp.ry      = random(-127, 128);
+    gp.hat     = random(0,      9);
+    gp.buttons = random(0, 0xffff);
+    usb_gamepad.sendReport(0, &gp, sizeof(gp));
+  }
+
+  if (usb_mouse.ready())
+  {
+    int8_t const delta = 5;
+    usb_mouse.mouseMove(0, delta, delta); // right + down
+  }
+
+  ///*------------- Keyboard -------------*/
+  //if (usb_keyboard.ready())
+  //{
+  //  // use to send key release report
+  //  uint8_t keycode[6] = { 0 };
+  //  keycode[0] = HID_KEY_A;
+//
+  //  usb_keyboard.keyboardReport(0, 0, keycode);
+  //  delay(2);
+  //  usb_keyboard.keyboardRelease(0);
+  //}
+
+  delay(2000);
+
+
+
   //Receive ESP-NOW packet
 
   //Figure out which command it is

@@ -11,6 +11,18 @@
 
 #include "configHandle.h"
 
+// converts character array
+// to string and returns it
+String convertToString(char* a, int size)
+{
+    int i;
+    String s = "";
+    for (i = 0; i < size; i++) {
+        s = s + a[i];
+    }
+    return s;
+}
+
 void listDir(FatVolume &fs, const char * dirname, uint8_t levels){
     Serial.printf("Listing directory: %s\r\n", dirname);
 

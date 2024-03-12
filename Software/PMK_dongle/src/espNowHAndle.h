@@ -1,3 +1,6 @@
+#ifndef ESPNOWHANDLE_H
+#define ESPNOWHANDLE_H
+
 #include "Arduino.h"
 
 esp_now_peer_info_t peerInfo;
@@ -71,3 +74,4 @@ void OnEspNowDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len)
   handleReceivedPacket(receivedPacket);
 }
 
+#endif
