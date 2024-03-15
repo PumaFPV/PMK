@@ -138,7 +138,7 @@ void setup()
   }
   else
   {
-    Serial.printf("Succesfully initiated ESP-NOW\r\n");
+    Serial.printf("Succesfully initiated ESP-NOW\r\n\r\n");
   }
 
   esp_now_register_send_cb(OnEspNowDataSent);
@@ -160,6 +160,7 @@ void setup()
   File32 root = fatfs.open("/");
   for(uint8_t deviceNumber = 0; deviceNumber < numberOfDeviceToConfig; deviceNumber++)
   {
+
     Serial.printf("Configuring device number %d\r\n", deviceNumber);
 
     File32 directory = root.openNextFile();
@@ -174,46 +175,60 @@ void setup()
     //Now inside device config folder
     char deviceName[32];
     directory.getName(deviceName, sizeof(deviceName));
-    Serial.printf("Device name to configure: %s \r\n", deviceName);
-    uint8_t deviceNameLength = sizeof(deviceName);
-
-    File32 folder = directory.openNextFile();
-
-    while(folder)
+    
+    if(strcmp(deviceName, "System Volume Information"))
     {
-      String fileName = folder.name();
-      char name[32];
-      folder.getName(name, sizeof(name));
-      Serial.printf("File name: %s\r\n", name);
-      String deviceNameString = convertToString(deviceName, sizeof(deviceName) / sizeof(char));
-      String filePathString = "/" + deviceNameString + "/" + deviceName + ".json";
-      const char* filePath = new char[filePathString.length() + 1];
-      strcpy(const_cast<char*>(filePath), filePathString.c_str());
+      Serial.printf("Device name to configure: %s \r\n", deviceName);
 
-      if(fileName == String(deviceNameString + ".json"))
+      File32 folder = directory.openNextFile();
+
+      while(folder)
       {
-        Serial.printf("Config name: %s \r\n", getAttribute(filePath, "deviceName"));
-        Serial.printf("Device ID: %s \r\n", getAttribute(filePath, "deviceID"));
+        char name[32];
+        folder.getName(name, sizeof(name));
+        Serial.printf("File name: %s\r\n", name);
+        Serial.printf("Current position: %i\r\n", folder.curPosition());
+        String deviceNameString = convertToString(deviceName, sizeof(deviceName) / sizeof(char));
+        String filePathString = "/" + deviceNameString + "/" + deviceName + ".json";
+        char filePath[64];
+        strcat(filePath, "/");
+        strcat(filePath, deviceName);
+        strcat(filePath, "/");
+        strcat(filePath, deviceName);
+        strcat(filePath, ".json");
+        //const char* filePath = new char[filePathString.length() + 1];
+        //strcpy(const_cast<char*>(filePath), filePathString.c_str());
+        Serial.printf("File path: %s \r\n", filePath);
 
-        addDeviceAddress(filePath); 
-      }
+        if(name == strcat(deviceName,".json"))
+        {
+          Serial.printf("Config name: %s \r\n", getAttribute(filePath, "deviceName"));
+          Serial.printf("Device ID: %s \r\n", getAttribute(filePath, "deviceID"));
 
-      else if (fileName == String(deviceNameString + "-key.json"))
-      {
+          addDeviceAddress(filePath); 
+        }
+
+        else if (name == strcat(deviceName, "-key.json"))
+        {
 
 
-      }
+        }
 
-      else if (fileName == String(deviceNameString + "-led.json"))
-      {
+        else if (name == strcat(deviceName, "-led.json"))
+        {
 
 
+        }
+        
+        folder = directory.openNextFile();
       }
       
-      folder = directory.openNextFile();
+      Serial.printf("\n\r");
     }
-    
-    Serial.printf("\n\r");
+    else
+    {
+      Serial.printf("This is system volume information folder... Skipping config\r\n\r\n");
+    }
 
   }
   

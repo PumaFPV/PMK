@@ -4,6 +4,8 @@
 #include "variables.h"
 #include "fsHandle.h"
 
+char systemVolumeInformation[32] = "System Volume Information";
+
 uint8_t getNumberOfDevices()
 {
     uint8_t numberOfDevices = 0;
@@ -12,9 +14,11 @@ uint8_t getNumberOfDevices()
     File32 directory = root.openNextFile();
     while(directory)
     {
-      Serial.printf("Directory: %s \r\n", directory);
-        if(directory.isDirectory())
+      char directoryName[32]; //At least 26 needed for System Volume Information
+      directory.getName(directoryName, sizeof(directoryName));
+        if(directory.isDirectory() && strcmp(directoryName, systemVolumeInformation))
         {
+            Serial.printf("Directory: %s \r\n", directoryName);
             numberOfDevices++;
         }
         directory = root.openNextFile();
