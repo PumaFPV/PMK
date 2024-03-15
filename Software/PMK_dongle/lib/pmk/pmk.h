@@ -257,7 +257,10 @@ void handleKeyboard()
     {
         if(keyboardPacket.key[i] != 0xFF && layerID != settingLayerID) //TODO change layer management
         {
-            //Keyboard.press(keyIDtoChar(keyboardPacket.key[i], layerID)); //TODO add deviceID to keyIDtoChar function
+            if(usb_hid.ready())
+            {
+                usb_hid.keyboardPress(RID_KEYBOARD, keyIDtoChar(keyboardPacket.key[i], layerID));   //TODO add deviceID to keyIDtoChar function
+            }
             //Serial.print("Pressing: 0x");
             //Serial.print(keyboardPacket.key[i]);
             //Serial.println(keyIDtoChar(keyboardPacket.key[i], layerID), HEX);
@@ -302,7 +305,7 @@ void handleKeyboard()
         {
             if(releaseKeys[i] != 255)
             {
-                //Keyboard.release(keyIDtoChar(releaseKeys[i], layerID));
+                usb_hid.keyboardRelease(RID_KEYBOARD);
             }
         }   
 
@@ -312,51 +315,9 @@ void handleKeyboard()
 
 void handleMouse()
 {
-    //Mouse.move(mousePacket.x, mousePacket.y, mousePacket.w, mousePacket.p);
-    
-    if(mousePacket.key && 0b00001)
+    if(usb_hid.ready())
     {
-        //Mouse.press(MOUSE_BUTTON_LEFT);
-    }
-    else
-    {
-        //Mouse.release(MOUSE_BUTTON_LEFT);
-    }
-
-    if(mousePacket.key && 0b00010)
-    {
-        //Mouse.press(MOUSE_BUTTON_RIGHT);
-    }
-    else
-    {
-        //Mouse.release(MOUSE_BUTTON_RIGHT);
-    }
-    
-    if(mousePacket.key && 0b00100)
-    {
-        //Mouse.press(MOUSE_BUTTON_MIDDLE);
-    }
-    else
-    {
-        //Mouse.release(MOUSE_BUTTON_MIDDLE);
-    }
-
-    if(mousePacket.key && 0b01000)
-    {
-        //Mouse.press(MOUSE_BUTTON_BACKWARD);
-    }
-    else
-    {
-        //Mouse.release(MOUSE_BUTTON_BACKWARD);
-    }
-
-    if(mousePacket.key && 0b10000)
-    {
-        //Mouse.press(MOUSE_BUTTON_FORWARD);
-    }
-    else
-    {
-        //Mouse.release(MOUSE_BUTTON_FORWARD);
+        usb_hid.mouseReport(RID_MOUSE, mousePacket.key, mousePacket.x, mousePacket.y, mousePacket.w, mousePacket.p);
     }
 }
 

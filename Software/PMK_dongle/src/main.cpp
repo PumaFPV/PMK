@@ -240,36 +240,6 @@ void loop()
   //  usb_hid.sendReport(4, &gp, sizeof(gp));
   //}
   
-  //===========================================
-  //==================Mouse====================
-  //===========================================  
-  if (usb_hid.ready())
-  {
-    Serial.printf("mouse OK\r\n");
-    int8_t const delta = 5;
-    usb_hid.mouseMove(RID_MOUSE, delta, delta); // right + down
-  }
-
-  delay(3); //This delay is needed between 2 HID report...
-
-  //===========================================
-  //==================Keyboard=================
-  //===========================================
-  if (usb_hid.ready())
-  {
-    Serial.printf("KB OK\r\n");
-    // use to send key release report
-    uint8_t keycode[6] = { 0 };
-    keycode[0] = HID_KEY_A;
-
-    usb_hid.keyboardReport(RID_KEYBOARD, 0, keycode);
-    delay(10);
-    usb_hid.keyboardRelease(RID_KEYBOARD);
-  }
-
-  delay(2000);
-
-
 
   //Receive ESP-NOW packet
 
