@@ -1,0 +1,11 @@
+{
+	"Layer2":
+	[
+		"KEY_F5","KEY_F4","KEY_F3","KEY_F2","KEY_F1","0","KEY_ESC",
+		"KEY_TAB","0","0","KEY_UP_ARROW","0","0","0",
+		"0","0","KEY_RIGHT_ARROW","KEY_DOWN_ARROW","KEY_LEFT_ARROW","0","KEY_CAPS_LOCK",
+		"KEY_LEFT_SHIFT","0","0","0","0","0","0",
+		"0","KEY_LEFT_GUI","KEY_LEFT_ALT","KEY_LEFT_CTRL","KEY_RETURN","",
+		"KEY_DELETE","KEY_BACKSPACE","0","0","0","0"
+	]
+}

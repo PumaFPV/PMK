@@ -126,7 +126,7 @@ void setup()
   //====================================================
   //====================Wifi/ESP Now====================
   //====================================================
-  while(!Serial){}  //Optional debug helpw
+  //while(!Serial){}  //Optional debug helpw
   Serial.printf("Starting WiFi\r\n");
   WiFi.mode(WIFI_STA);
   Serial.print("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
@@ -158,7 +158,9 @@ void setup()
   Serial.printf("Number of devices to config: %d \r\n\r\n", numberOfDeviceToConfig);
   
   File32 root = fatfs.open("/");
-  for(uint8_t deviceNumber = 0; deviceNumber < numberOfDeviceToConfig; deviceNumber++)
+  //root.ls(&Serial, 0, 0);
+
+  for(uint8_t deviceNumber = 0; deviceNumber <= numberOfDeviceToConfig; deviceNumber++)
   {
 
     Serial.printf("Configuring device number %d\r\n", deviceNumber);
@@ -167,30 +169,33 @@ void setup()
     
     if(!directory.isDirectory())
     {
-      Serial.printf("There is a file in root, please reupload file system");
+      Serial.printf("There is a file in root, please reupload file system\r\n");
     }
 
-    File32 configRoot = fatfs.open(directory.name(), O_READ);
-
-    //Now inside device config folder
     char deviceName[32];
     directory.getName(deviceName, sizeof(deviceName));
-    
+
     if(strcmp(deviceName, "System Volume Information"))
     {
       Serial.printf("Device name to configure: %s \r\n", deviceName);
+            
+      //File32 configRoot = fatfs.open(directory.name(), O_READ);
 
       File32 folder = directory.openNextFile();
+      folder.ls(&Serial, 0, 1);
 
+
+      //Now inside device config folder
       while(folder)
       {
+        //Serial.printf("The folder is dir: %i\r\n", folder.isDir());
         char name[32];
         folder.getName(name, sizeof(name));
         Serial.printf("File name: %s\r\n", name);
-        Serial.printf("Current position: %i\r\n", folder.curPosition());
-        String deviceNameString = convertToString(deviceName, sizeof(deviceName) / sizeof(char));
-        String filePathString = "/" + deviceNameString + "/" + deviceName + ".json";
-        char filePath[64];
+        //Serial.printf("Current position: %i\r\n", folder.curPosition());  //Seems useless for now...
+        //String deviceNameString = convertToString(deviceName, sizeof(deviceName) / sizeof(char));
+        //String filePathString = "/" + deviceNameString + "/" + deviceName + ".json";
+        char filePath[64] = "\0";
         strcat(filePath, "/");
         strcat(filePath, deviceName);
         strcat(filePath, "/");
@@ -198,9 +203,21 @@ void setup()
         strcat(filePath, ".json");
         //const char* filePath = new char[filePathString.length() + 1];
         //strcpy(const_cast<char*>(filePath), filePathString.c_str());
-        Serial.printf("File path: %s \r\n", filePath);
+        if(!folder.isDirectory())
+        {
+          //We are at the config json file that contains MAC address, etc...
+          Serial.printf("File path: %s \r\n", filePath);
+          Serial.printf("Device ID: %s \r\n", getAttribute(filePath, "deviceID"));
+          Serial.printf("Config name: %s \r\n", getAttribute(filePath, "deviceName"));
+          addDeviceAddress(filePath);
+        }
+        else
+        {
 
-        if(name == strcat(deviceName,".json"))
+          Serial.printf("File is not file, it is directory\r\n\r\n");
+        }
+
+        if(name == deviceName)
         {
           Serial.printf("Config name: %s \r\n", getAttribute(filePath, "deviceName"));
           Serial.printf("Device ID: %s \r\n", getAttribute(filePath, "deviceID"));
@@ -208,13 +225,13 @@ void setup()
           addDeviceAddress(filePath); 
         }
 
-        else if (name == strcat(deviceName, "-key.json"))
+        else if (name == deviceName)
         {
 
 
         }
 
-        else if (name == strcat(deviceName, "-led.json"))
+        else if (name == deviceName)
         {
 
 
@@ -232,8 +249,7 @@ void setup()
 
   }
   
-  listDir(fatfs, "/", 3);
-
+  //listDir(fatfs, "/", 3);
 }
 
 

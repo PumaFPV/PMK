@@ -1,7 +1,8 @@
 {
     "deviceName": "rightKB",
     "deviceID": "2",
-    "deviceAddress": ["0x84", "0xF7", "0x03", "0xF0", "0xF0", "0xBE"],
+    "deviceAddress": ["0x58", "0xCF", "0x79", "0xA3", "0x98", "0xCE"],
+
     "isKeyboard": "true",
     "isMouse": "true",
     "isGamepad": "false",
@@ -9,5 +10,19 @@
     "isKnob": "false",
     "isActuator": "false",
     "isDisplay": "false",
-    "isSerial": "false"
+    "isSerial": "false",
+	
+	"layerModifier":
+	{
+		"layer+": "",
+		"layer-": "",
+		"layer1": "",
+		"layer2": "",
+		"layer3": "",
+		"layer4": "",
+		"layer5": "",
+		"layer6": "",
+		"layer7": "",
+		"layer8": ""
+	}
 }

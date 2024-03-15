@@ -1,0 +1,14 @@
+{
+    "deviceName": "wcsGP",
+    "deviceID": "5",
+    "deviceAddress": ["0x84", "0xF7", "0x03", "0xF0", "0xF0", "0xB8"],
+
+    "isKeyboard": "true",
+    "isMouse": "true",
+    "isGamepad": "true",
+    "isLed": "false",
+    "isKnob": "false",
+    "isActuator": "false",
+    "isDisplay": "false",
+    "isSerial": "false"
+}

@@ -1,8 +1,8 @@
 {
     "deviceName": "leftKB",
     "deviceID": "1",
-    "deviceAddress": ["0x84", "0xF7", "0x03", "0xF0", "0xF0", "0xB8"],
-
+    "deviceAddress": ["0x58", "0xCF", "0x79", "0xA3", "0x98", "0xCC"],
+	
     "isKeyboard": "true",
     "isMouse": "true",
     "isGamepad": "false",

@@ -46,6 +46,7 @@ void setup()
 
   currentPalette = RainbowColors_p;
   currentBlending = LINEARBLEND;
+  //while(!Serial){}  //Optional debug helpw
 
 
   //-----ESP NOW
@@ -144,10 +145,10 @@ void loop()
       for(uint8_t packet = 0; packet < 4; packet++)
       {
         spiPacket[packet] = 0xFF - srSpi->transfer(0);
-        //Serial.print(spiPacket[packet], BIN);
-        //Serial.print(" ");
+        Serial.print(spiPacket[packet], BIN);
+        Serial.print(" ");
       }
-      //Serial.println();
+      Serial.println();
 
       digitalWrite(SR_CE, HIGH);
       digitalWrite(SR_PL, LOW);
@@ -182,7 +183,8 @@ void loop()
           if(numberOfPressedKeys == 8)
           {
             telemetryPacket.error = tooManyKeysPressed;
-            Serial.println("Too many keys pressed");
+            return;
+            //Serial.println("Too many keys pressed");
           }
         }
       }
