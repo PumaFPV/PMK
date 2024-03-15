@@ -44,7 +44,7 @@ typedef struct mouseStruct {
     int8_t y;
     int8_t w;
     int8_t p;
-    uint8_t key;  //5 possible buttons, 8 bits be smart u dumbass, dont use an array.  
+    uint8_t key;  //5 possible buttons, 8 bits be smart u dumbass, dont use an array. (I used an array before)
 }   mouseStruct;
 
 typedef struct gamepadStruct {

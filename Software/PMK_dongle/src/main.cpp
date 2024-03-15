@@ -24,13 +24,16 @@
 
 
 
-void loopCount();
+void loopCount(); //For function telemetry purpose / Homemade Ultra lite RTOS
 
-const char compileDate[] = __DATE__ " " __TIME__;
+const char compileDate[] = __DATE__ " " __TIME__; //For Serial info
+
 
 
 //===========================================
+//===========================================
 //====================Setup==================
+//===========================================
 //===========================================
 void setup()
 {
@@ -72,13 +75,13 @@ void setup()
 
   if ( !fs_formatted )
   {
-    Serial.println("Failed to init files system, flash may not be formatted");
+    Serial.printf("Failed to init files system, flash may not be formatted\r\n");
   }  
 
   //===========================================
   //====================INIT===================
   //===========================================  
-  //while(!Serial){}
+  //while(!Serial){}  //Optional debug help
 
   pinMode(LED_DATA_PIN, OUTPUT);
   digitalWrite(LED_DATA_PIN, 1);
@@ -100,26 +103,12 @@ void setup()
   //===========================================
   //====================HID====================
   //===========================================
-  
-  // HID Gamepad
-  //usb_gamepad.setPollInterval(2);
-  //usb_gamepad.setReportDescriptor(desc_gamepad_report, sizeof(desc_gamepad_report));
-  //usb_gamepad.setStringDescriptor("PMK");
-  //usb_gamepad.begin();
-  //// HID Mouse
-  usb_mouse.setPollInterval(2);
-  usb_mouse.setBootProtocol(HID_ITF_PROTOCOL_MOUSE);
-  usb_mouse.setReportDescriptor(desc_mouse_report, sizeof(desc_mouse_report));
-  usb_mouse.setStringDescriptor("PMK");
-  usb_mouse.begin();
-  //HID Keyboard
-  usb_keyboard.setPollInterval(2);
-  usb_keyboard.setBootProtocol(HID_ITF_PROTOCOL_KEYBOARD);
-  usb_keyboard.setReportDescriptor(desc_keyboard_report, sizeof(desc_keyboard_report));
-  usb_keyboard.setStringDescriptor("PMK");
-  usb_keyboard.begin();
+  // Set up HID
+  usb_hid.setPollInterval(2);
+  usb_hid.setReportDescriptor(desc_hid_report, sizeof(desc_hid_report));
+  usb_hid.setStringDescriptor("TinyUSB HID Composite");
 
-
+  usb_hid.begin();
 
   // Set up output report (on control endpoint) for Capslock indicator
   Serial.printf("Waiting for USB HID to be mounted...\r\n");
@@ -236,38 +225,47 @@ void loop()
 {
   Serial.printf("loop\r\n");
 
-  if (usb_gamepad.ready())
-  {
-    // Random touch
-    Serial.println("Random touch");
-    gp.x       = random(-127, 128);
-    gp.y       = random(-127, 128);
-    gp.z       = random(-127, 128);
-    gp.rz      = random(-127, 128);
-    gp.rx      = random(-127, 128);
-    gp.ry      = random(-127, 128);
-    gp.hat     = random(0,      9);
-    gp.buttons = random(0, 0xffff);
-    usb_gamepad.sendReport(0, &gp, sizeof(gp));
-  }
-
-  if (usb_mouse.ready())
-  {
-    int8_t const delta = 5;
-    usb_mouse.mouseMove(0, delta, delta); // right + down
-  }
-
-  ///*------------- Keyboard -------------*/
-  //if (usb_keyboard.ready())
+  //if (usb_hid.ready())
   //{
-  //  // use to send key release report
-  //  uint8_t keycode[6] = { 0 };
-  //  keycode[0] = HID_KEY_A;
-//
-  //  usb_keyboard.keyboardReport(0, 0, keycode);
-  //  delay(2);
-  //  usb_keyboard.keyboardRelease(0);
+  //  // Random touch
+  //  Serial.println("Random touch");
+  //  gp.x       = random(-127, 128);
+  //  gp.y       = random(-127, 128);
+  //  gp.z       = random(-127, 128);
+  //  gp.rz      = random(-127, 128);
+  //  gp.rx      = random(-127, 128);
+  //  gp.ry      = random(-127, 128);
+  //  gp.hat     = random(0,      9);
+  //  gp.buttons = random(0, 0xffff);
+  //  usb_hid.sendReport(4, &gp, sizeof(gp));
   //}
+  
+  //===========================================
+  //==================Mouse====================
+  //===========================================  
+  if (usb_hid.ready())
+  {
+    Serial.printf("mouse OK\r\n");
+    int8_t const delta = 5;
+    usb_hid.mouseMove(RID_MOUSE, delta, delta); // right + down
+  }
+
+  delay(3); //This delay is needed between 2 HID report...
+
+  //===========================================
+  //==================Keyboard=================
+  //===========================================
+  if (usb_hid.ready())
+  {
+    Serial.printf("KB OK\r\n");
+    // use to send key release report
+    uint8_t keycode[6] = { 0 };
+    keycode[0] = HID_KEY_A;
+
+    usb_hid.keyboardReport(RID_KEYBOARD, 0, keycode);
+    delay(10);
+    usb_hid.keyboardRelease(RID_KEYBOARD);
+  }
 
   delay(2000);
 
