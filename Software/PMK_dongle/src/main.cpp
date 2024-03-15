@@ -126,6 +126,7 @@ void setup()
   //====================================================
   //====================Wifi/ESP Now====================
   //====================================================
+  while(!Serial){}  //Optional debug helpw
   Serial.printf("Starting WiFi\r\n");
   WiFi.mode(WIFI_STA);
   Serial.print("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
@@ -223,7 +224,7 @@ void setup()
 
 void loop()
 {
-  Serial.printf("loop\r\n");
+  //Serial.printf("loop\r\n");
 
   //if (usb_hid.ready())
   //{

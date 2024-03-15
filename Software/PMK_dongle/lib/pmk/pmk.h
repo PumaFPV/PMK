@@ -2,15 +2,10 @@
 #define pmk_h
 
 #include "Arduino.h"
-//#include "USBHIDKeyboard.h"
-//#include "USBHIDMouse.h"
-//#include "USBHIDGamepad.h"
-#include "Adafruit_TinyUSB.h"
-#include "config.h"
 
-//USBHIDKeyboard Keyboard;
-//USBHIDMouse Mouse;
-//USBHIDGamepad Gamepad;
+#include "Adafruit_TinyUSB.h"
+#include "variables.h"
+#include "config.h"
 
 uint8_t ledBrightness = 0;
 
