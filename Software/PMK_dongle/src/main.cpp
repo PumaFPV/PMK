@@ -126,7 +126,7 @@ void setup()
   //====================================================
   //====================Wifi/ESP Now====================
   //====================================================
-  //while(!Serial){}  //Optional debug helpw
+  while(!Serial){}  //Optional debug helpw
   Serial.printf("Starting WiFi\r\n");
   WiFi.mode(WIFI_STA);
   Serial.print("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
@@ -165,86 +165,86 @@ void setup()
 
     Serial.printf("Configuring device number %d\r\n", deviceNumber);
 
-    File32 directory = root.openNextFile();
+    File32 deviceDirectory = root.openNextFile();
     
-    if(!directory.isDirectory())
+    if(!deviceDirectory.isDirectory())
     {
       Serial.printf("There is a file in root, please reupload file system\r\n");
     }
 
     char deviceName[32];
-    directory.getName(deviceName, sizeof(deviceName));
+    deviceDirectory.getName(deviceName, sizeof(deviceName));
 
-    if(strcmp(deviceName, "System Volume Information"))
+    if(strcmp(deviceName, "System Volume Information")) //Current folder is a device config folder
     {
       Serial.printf("Device name to configure: %s \r\n", deviceName);
             
-      //File32 configRoot = fatfs.open(directory.name(), O_READ);
+      //File32 configRoot = fatfs.open(deviceDirectory.name(), O_READ);
 
-      File32 folder = directory.openNextFile();
-      folder.ls(&Serial, 0, 1);
+      File32 configFolder = deviceDirectory.openNextFile();
+      configFolder.ls(&Serial, 0, 1);
 
 
       //Now inside device config folder
-      while(folder)
+      while(configFolder)
       {
-        //Serial.printf("The folder is dir: %i\r\n", folder.isDir());
+        //Serial.printf("The folder is dir: %i\r\n", configFolderisDir());
         char name[32];
-        folder.getName(name, sizeof(name));
+        configFolder.getName(name, sizeof(name));
         Serial.printf("File name: %s\r\n", name);
-        //Serial.printf("Current position: %i\r\n", folder.curPosition());  //Seems useless for now...
-        //String deviceNameString = convertToString(deviceName, sizeof(deviceName) / sizeof(char));
-        //String filePathString = "/" + deviceNameString + "/" + deviceName + ".json";
+
         char filePath[64] = "\0";
         strcat(filePath, "/");
         strcat(filePath, deviceName);
         strcat(filePath, "/");
         strcat(filePath, deviceName);
         strcat(filePath, ".json");
-        //const char* filePath = new char[filePathString.length() + 1];
-        //strcpy(const_cast<char*>(filePath), filePathString.c_str());
-        if(!folder.isDirectory())
+
+        if(!configFolder.isDirectory())
         {
           //We are at the config json file that contains MAC address, etc...
           Serial.printf("File path: %s \r\n", filePath);
-          Serial.printf("Device ID: %s \r\n", getAttribute(filePath, "deviceID"));
+          Serial.printf("Device ID: %s \r\n", getAttribute(filePath, "deviceID"));  //Used to check if we can properly read attributes
           Serial.printf("Config name: %s \r\n", getAttribute(filePath, "deviceName"));
-          addDeviceAddress(filePath);
+          addDeviceAddress(filePath); //Add the device address to the array of ESP-NOW devices
         }
         else
         {
-
           Serial.printf("File is not file, it is directory\r\n\r\n");
+          //Then it is either keymap or led folder
+          File32 configFile = configFolder.openNextFile();
+          configFile.ls(&Serial, 0, 2);
+          
+          while(configFile)
+          {
+            char configFileName[16] =  "\0";
+            configFile.getName(configFileName, sizeof(configFileName));
+            Serial.printf("Config file name: %s\r\n", configFileName);
+
+            //If keyboard then configure keypress
+            if(strstr(configFileName, "kb-l"))
+            {
+              Serial.printf("Config file is kb\r\n");
+            }
+
+            //If led configure led profile
+            else if(strstr(configFileName, "led-l"))
+            {
+              Serial.printf("Config file is led\r\n");
+            }
+            configFile.openNextFile();
+          }
+
         }
 
-        if(name == deviceName)
-        {
-          Serial.printf("Config name: %s \r\n", getAttribute(filePath, "deviceName"));
-          Serial.printf("Device ID: %s \r\n", getAttribute(filePath, "deviceID"));
-
-          addDeviceAddress(filePath); 
-        }
-
-        else if (name == deviceName)
-        {
-
-
-        }
-
-        else if (name == deviceName)
-        {
-
-
-        }
-        
-        folder = directory.openNextFile();
+        configFolder = deviceDirectory.openNextFile();
       }
       
       Serial.printf("\n\r");
     }
     else
     {
-      Serial.printf("This is system volume information folder... Skipping config\r\n\r\n");
+      Serial.printf("This is system volume information configFolder.. Skipping config\r\n\r\n");
     }
 
   }
