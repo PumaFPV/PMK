@@ -13,6 +13,9 @@
 
 
 //--------------------------------------------------Define--------------------------------------------------
+#define NUMBER_OF_SR 4  //TODO Add to config file
+#define MAX_NUMBER_OF_KEYS 8
+
 //----------Global values
 #define MIRCOS2SECONDS 1000000
 
@@ -42,8 +45,7 @@
 #define SR_CE 9
 #define SR_PL 5
 
-static const int srSpiClk = 10000000; // 10MHz
-
+static const int srSpiClk = 1000000; // 1MHz
 
 //--------------------------------------------------Initialize libraries--------------------------------------------------
 SPIClass * srSpi = NULL;
@@ -76,8 +78,8 @@ struct Func
 };
 
 Func ledTask = {0, 0, 0, 0, 0, 10000, 0, 0};
-Func srTask = {0, 0, 0, 0, 0, 1000, 0, 0};
-Func espnowTask = {0, 0, 0, 0, 0, 1000, 0, 0};
+Func srTask = {0, 0, 0, 0, 0, 100000, 0, 0};
+Func espnowTask = {0, 0, 0, 0, 0, 1000000, 0, 0};
 Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
 
 struct NoDelay

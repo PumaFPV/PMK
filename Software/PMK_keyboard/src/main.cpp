@@ -34,6 +34,7 @@ void setup()
   pinMode(SR_CE, OUTPUT);
 
 
+
   //Initialize SPI for SR
   srSpi = new SPIClass(SR_SPI_BUS);
   srSpi->begin(SR_CLK, SR_MISO, -1, SR_CE);
@@ -139,12 +140,14 @@ void loop()
       //Read SPI from shift register
 
       srSpi->beginTransaction(settingsA);
-      digitalWrite(SR_CE, LOW);
-      digitalWrite(SR_PL, HIGH);
-          
-      for(uint8_t packet = 0; packet < 4; packet++)
+      digitalWrite(SR_CE, LOW);   //CLK_INH
+      delay(10);
+
+      digitalWrite(SR_PL, HIGH);  //SH/_LD
+
+      for(uint8_t packet = 0; packet < NUMBER_OF_SR; packet++)
       {
-        spiPacket[packet] = 0xFF - srSpi->transfer(0);
+        spiPacket[packet] = /*0xFF -*/ srSpi->transfer(0);
         Serial.print(spiPacket[packet], BIN);
         Serial.print(" ");
       }
@@ -159,16 +162,16 @@ void loop()
 
       for(uint8_t i = 0; i < 8; i++)
       {
-        keyboardPacket.key[i] = 255;
+        keyboardPacket.key[i] = 0;
       }
 
-      for(uint8_t packet = 0; packet < 4; packet++)
+      for(uint8_t packet = 0; packet < NUMBER_OF_SR; packet++)
       {
         for(uint8_t bit = 0; bit < 8; bit++)
         {
           bool isKeyPressed = spiPacket[packet] & (0b1 << bit);
 
-          if(isKeyPressed == 1 && numberOfPressedKeys < 8)
+          if(isKeyPressed == 1 && numberOfPressedKeys < MAX_NUMBER_OF_KEYS)
           {
             keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit;
 
