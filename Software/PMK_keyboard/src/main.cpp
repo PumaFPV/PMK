@@ -31,8 +31,6 @@ void setup()
 
   //-----Shift register
   pinMode(SR_PL, OUTPUT);
-  pinMode(SR_CE, OUTPUT);
-
 
 
   //Initialize SPI for SR
@@ -141,17 +139,15 @@ void loop()
 
       srSpi->beginTransaction(settingsA);
       digitalWrite(SR_CE, LOW);   //CLK_INH
-      delay(10);
-
       digitalWrite(SR_PL, HIGH);  //SH/_LD
 
       for(uint8_t packet = 0; packet < NUMBER_OF_SR; packet++)
       {
-        spiPacket[packet] = /*0xFF -*/ srSpi->transfer(0);
-        Serial.print(spiPacket[packet], BIN);
-        Serial.print(" ");
+        spiPacket[packet] = 0xFF - srSpi->transfer(0);
+        //Serial.print(spiPacket[packet], BIN);
+        //Serial.print(" ");
       }
-      Serial.println();
+      //Serial.println();
 
       digitalWrite(SR_CE, HIGH);
       digitalWrite(SR_PL, LOW);
