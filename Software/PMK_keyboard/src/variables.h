@@ -20,6 +20,8 @@
 #define MIRCOS2SECONDS 1000000
 
 //----------GPI
+#define RE_A 15
+#define RE_B 16
 
 //----------GPO
 

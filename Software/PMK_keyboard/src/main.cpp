@@ -39,6 +39,11 @@ void setup()
   pinMode(srSpi->pinSS(), OUTPUT);
 
 
+  //-----Rotary Encoder
+  pinMode(RE_A, INPUT_PULLUP);
+  pinMode(RE_B, INPUT_PULLUP);
+
+
   //-----Leds
   FastLED.addLeds<WS2812B, LED_DATA_PIN, GRB>(leds, NUM_LEDS);
   FastLED.setBrightness(250);
