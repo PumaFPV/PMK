@@ -55,6 +55,15 @@ void setup()
 
   //-----ESP NOW
   WiFi.mode(WIFI_STA);
+
+  Serial.printf("WiFi power: ");
+  Serial.println(WiFi.getTxPower());
+
+  WiFi.setTxPower(WIFI_POWER_MINUS_1dBm);
+  Serial.printf("New WiFi power: ");
+  Serial.println(WiFi.getTxPower());
+
+  Serial.printf("Keyboard MAC address: ");
   Serial.println(WiFi.macAddress());
 
   if(esp_now_init() != ESP_OK) {

@@ -106,7 +106,7 @@ void setup()
   // Set up HID
   usb_hid.setPollInterval(2);
   usb_hid.setReportDescriptor(desc_hid_report, sizeof(desc_hid_report));
-  usb_hid.setStringDescriptor("TinyUSB HID Composite");
+  usb_hid.setStringDescriptor("PMK Dongle");
 
   usb_hid.begin();
 
@@ -129,7 +129,10 @@ void setup()
   while(!Serial){}  //Optional debug helpw
   Serial.printf("Starting WiFi\r\n");
   WiFi.mode(WIFI_STA);
-  Serial.print("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
+  WiFi.setTxPower(WIFI_POWER_MINUS_1dBm);
+  Serial.printf("New WiFi power: ");
+  Serial.println(WiFi.getTxPower());
+  Serial.printf("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
 
   if (esp_now_init() != ESP_OK) 
   {
