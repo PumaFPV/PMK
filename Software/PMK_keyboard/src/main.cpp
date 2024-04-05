@@ -25,6 +25,13 @@ void setup()
 
   //-----Serial
   Serial.begin(115200);
+  while(!Serial){}  //Optional debug help
+
+  //-----CPU
+  Serial.println("CPU Freq: " + getCpuFrequencyMhz());
+  Serial.println("XTAL Freq: " + getXtalFrequencyMhz());
+  setCpuFrequencyMhz(10);
+  Serial.println("CPU Freq: " + getCpuFrequencyMhz());
 
 
   //-----USB
@@ -46,11 +53,10 @@ void setup()
 
   //-----Leds
   FastLED.addLeds<WS2812B, LED_DATA_PIN, GRB>(leds, NUM_LEDS);
-  FastLED.setBrightness(250);
+  FastLED.setBrightness(0);
 
   currentPalette = RainbowColors_p;
   currentBlending = LINEARBLEND;
-  //while(!Serial){}  //Optional debug helpw
 
 
   //-----ESP NOW
