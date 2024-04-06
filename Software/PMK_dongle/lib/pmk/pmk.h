@@ -223,62 +223,44 @@ void convertPacket2Serial(packetStruct packet)
 
 void handleKeyboard()
 {
-
-    //Figure out if any key layer change is pressed
-    for(uint8_t i = 0; i < 8; i++)
+    if(memcmp(keyboardPacket.key, previousKeyboardPacket.key, sizeof(keyboardPacket.key)) == 0)
     {
-        for(uint8_t j = 0; j < 2; j++)
-        {
-            if(keyboardPacket.key[i] == layerKeyID[j])
-            {
-                if(j == 0 && layerID > 0)
-                {
-                    layerID--;
-                    delay(200);
-                }
-                else if (j == 1 && layerID < 7)
-                {
-                    layerID++;
-                    delay(200);
-                }
-                keyboardPacket.key[i] = 0xFF;
-                i = 9;
-                j = 2;
-            }
-        }
-    }
-
-    for(uint8_t i = 0; i < 8; i++) //Go through the 8 sent keys
+        Serial.printf("Packets are the same, no need to send new report\r\n");
+        digitalWrite(LED_DATA_PIN, 0);
+        return;
+    } 
+    else
     {
-        if(keyboardPacket.key[i] != 0xFF && layerID != settingLayerID) //TODO change layer management
-        {
-            if(usb_hid.ready())
-            {
-                usb_hid.keyboardPress(RID_KEYBOARD, keyIDtoChar(keyboardPacket.key[i], layerID));   //TODO add deviceID to keyIDtoChar function
-            }
-            //Serial.print("Pressing: 0x");
-            //Serial.print(keyboardPacket.key[i]);
-            //Serial.println(keyIDtoChar(keyboardPacket.key[i], layerID), HEX);
-        }
-        else if (keyboardPacket.key[i] != 0xFF && layerID == settingLayerID)
-        {
-            switch (keyboardPacket.key[i])
-            {
-                case 0x09:
-                    if(ledBrightness < 255)
-                    {
-                        ledBrightness++;
-                    }   
-                break;
+        digitalWrite(LED_DATA_PIN, 1);
 
-                case 0x11:
-                    if(ledBrightness > 0)
-                    {
-                        ledBrightness--;
-                    }
-                break;
+        Serial.printf("Packet is different\r\n");
+        if(TinyUSBDevice.suspended())
+        {
+            TinyUSBDevice.remoteWakeup();
+        }
+
+        for(uint8_t i = 0; i < 8; i++) //Go through the 8 sent keys
+        {
+            if(keyboardPacket.key[i] != 0x00)
+            {
+                if(usb_hid.ready())
+                {
+                    Serial.printf("usb ready\r\n");
+                    //usb_hid.keyboardPress(RID_KEYBOARD, keyIDtoChar(keyboardPacket.key[i], layerID));   //TODO add deviceID to keyIDtoChar function
+                    uint8_t keycode[6] = { 0 };
+                    keycode[0] = HID_KEY_A;
+                    usb_hid.keyboardReport(RID_KEYBOARD, 0, keycode);
+                }
+                else
+                {
+                    Serial.printf("usb not ready\r\n");
+                }
+                Serial.printf("Pressing: 0x%i, Equivalent: %c\r\n", keyboardPacket.key[i], keyIDtoChar(keyboardPacket.key[i], layerID));
             }
-        }        
+            else
+            {
+                Serial.printf("");
+            } 
         }
 
         //Press/Release management
@@ -291,20 +273,23 @@ void handleKeyboard()
             {
                 if(previousKeyboardPacket.key[i] == keyboardPacket.key[j])
                 {
-                    releaseKeys[i] = 255;
+                    releaseKeys[i] = 0;
                 }
             }
         }
 
         for(uint8_t i = 0; i < 8; i++)
         {
-            if(releaseKeys[i] != 255)
+            if(releaseKeys[i] != 0)
             {
-                usb_hid.keyboardRelease(RID_KEYBOARD);
+                //usb_hid.keyboardRelease(RID_KEYBOARD);
             }
         }   
 
-    memcpy(previousKeyboardPacket.key, keyboardPacket.key, 8);
+        memcpy(previousKeyboardPacket.key, keyboardPacket.key, 8);
+    }
+
+
 
 }
 

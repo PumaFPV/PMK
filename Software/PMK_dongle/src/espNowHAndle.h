@@ -9,20 +9,18 @@ String success;
 
 void handleReceivedPacket(packetStruct receivedPacket)
 {
+  //Serial.printf("Received packet from: %i, type :%i \r\n", receivedPacket.deviceID, receivedPacket.packetType);
   switch(receivedPacket.packetType)
   {
   case 255: 
     //default packet
     break;
   case 0:
-    Serial.println("Telem Packet");
+    Serial.printf("Telem Packet\r\n");
     convertPacket2Telemetry(receivedPacket);
     break;
   case 1: //Keyboard
-    digitalWrite(LED_DATA_PIN, 1);
     convertPacket2Keyboard(receivedPacket);
-    handleKeyboard();
-    digitalWrite(LED_DATA_PIN, 0);
     break;
   case 2: //Mouse
     convertPacket2Mouse(receivedPacket);

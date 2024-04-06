@@ -106,7 +106,7 @@ uint8_t ledIDtoKeyID(uint8_t ledID)
   return keyID[ledID];
 };
 
-uint8_t keyIDtoChar(uint8_t keyID, uint8_t layer)
+char keyIDtoChar(uint8_t keyID, uint8_t layer)
 {
   uint8_t keyChar[8][40] = 
   {

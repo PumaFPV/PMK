@@ -97,9 +97,12 @@ void addDeviceAddress(const char* filename)
 
   if(esp_now_add_peer(&peerInfo) != ESP_OK)
   {
-    Serial.printf("Failed to add peer ");
+    Serial.printf("Failed to add peer\r\n");
   }
-  Serial.printf("\r\n");
+  else
+  {
+    Serial.printf("Successfully added %s to ESP NOW list\r\n", filename);
+  }
 }
 
 #endif

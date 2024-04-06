@@ -25,13 +25,16 @@ void setup()
 
   //-----Serial
   Serial.begin(115200);
-  while(!Serial){}  //Optional debug help
+  //while(!Serial){}  //Optional debug help
+  //delay(100);
 
   //-----CPU
-  Serial.println("CPU Freq: " + getCpuFrequencyMhz());
-  Serial.println("XTAL Freq: " + getXtalFrequencyMhz());
-  setCpuFrequencyMhz(10);
-  Serial.println("CPU Freq: " + getCpuFrequencyMhz());
+  Serial.printf("CPU Freq: %i", getCpuFrequencyMhz());
+  Serial.printf("XTAL Freq: %i", getXtalFrequencyMhz());
+
+  setCpuFrequencyMhz(80);
+  Serial.printf("CPU Freq: %i", getCpuFrequencyMhz());
+
 
 
   //-----USB
@@ -53,20 +56,19 @@ void setup()
 
   //-----Leds
   FastLED.addLeds<WS2812B, LED_DATA_PIN, GRB>(leds, NUM_LEDS);
-  FastLED.setBrightness(0);
+  FastLED.setBrightness(255);
 
   currentPalette = RainbowColors_p;
   currentBlending = LINEARBLEND;
 
 
   //-----ESP NOW
+
   WiFi.mode(WIFI_STA);
+  delay(10);
+  WiFi.setTxPower(WIFI_POWER_13dBm);
 
   Serial.printf("WiFi power: ");
-  Serial.println(WiFi.getTxPower());
-
-  WiFi.setTxPower(WIFI_POWER_MINUS_1dBm);
-  Serial.printf("New WiFi power: ");
   Serial.println(WiFi.getTxPower());
 
   Serial.printf("Keyboard MAC address: ");
@@ -107,7 +109,10 @@ void loop()
   //Serial.println("loop");
   loopCount();
 
+
+  //------------------------------------------------------
   //------------------------------------------------------ledTask
+  //------------------------------------------------------
   if(micros() - ledTask.beginTime >= ledTask.interval)
   {
     ledTask.beginTime = micros();
@@ -149,7 +154,10 @@ void loop()
     ledTask.duration = ledTask.endTime - ledTask.beginTime;
   }
 
+
+  //------------------------------------------------------
   //------------------------------------------------------srTask
+  //------------------------------------------------------
   if(micros() - srTask.beginTime >= srTask.interval)
   {
     srTask.beginTime = micros();
@@ -189,7 +197,7 @@ void loop()
 
           if(isKeyPressed == 1 && numberOfPressedKeys < MAX_NUMBER_OF_KEYS)
           {
-            keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit;
+            keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit + 1; //+1 so we dont have a keyID = 0
 
             Serial.print("KeyID: 0x");
             Serial.println(keyboardPacket.key[numberOfPressedKeys], HEX);
@@ -213,8 +221,10 @@ void loop()
     srTask.duration = srTask.endTime - srTask.beginTime;
   }
   
-  //send packet
+
+  //------------------------------------------------------
   //------------------------------------------------------espnowTask
+  //------------------------------------------------------
   if(micros() - espnowTask.beginTime >= espnowTask.interval)
   {
     espnowTask.beginTime = micros();
@@ -228,7 +238,7 @@ void loop()
         
       if (result == ESP_OK) 
       {
-        //Serial.println("Sent with success");
+        Serial.println("Sent with success");
       }
       else 
       {
@@ -249,6 +259,8 @@ void loop()
   //Serial.println(getCpuFrequencyMhz());
   
 }
+
+
 
 void loopCount()
 {

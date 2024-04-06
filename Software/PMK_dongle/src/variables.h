@@ -57,7 +57,7 @@ uint8_t const desc_hid_report[] = {
 // USB HID object.
 Adafruit_USBD_HID usb_hid;
 
-hid_gamepad_report_t gp;
+//hid_gamepad_report_t gp;
 
 // ESP32 use same flash device that store code.
 // Therefore there is no need to specify the SPI and SS
@@ -91,7 +91,7 @@ struct Func
 
 Func ledTask = {0, 0, 0, 0, 0, 10000, 0, 0};
 Func espnowTask = {0, 0, 0, 0, 0, 1000, 0, 0};
-Func keyboardTask = {0, 0, 0, 0, 0, 1000, 0, 0};
+Func keyboardTask = {0, 0, 0, 0, 0, 1000000, 0, 0};
 Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
 Func fsTask = {0, 0, 0, 0, 0, 2000000, 0, 0};
 Func telemetryTask = {0, 0, 0, 0, 0, 2000000, 0, 0};

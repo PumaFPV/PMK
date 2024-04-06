@@ -85,7 +85,7 @@ void setup()
 
   pinMode(LED_DATA_PIN, OUTPUT);
   digitalWrite(LED_DATA_PIN, 1);
-  delay(10);
+
   Serial.printf("Dongle is booting\r\n");
   Serial.printf("Firmware rev: %s\r\n", FIRMWARE_REV);
   Serial.printf("Firmware was built the: %s at %s\r\n\r\n", __DATE__, __TIME__);
@@ -107,6 +107,7 @@ void setup()
   usb_hid.setPollInterval(2);
   usb_hid.setReportDescriptor(desc_hid_report, sizeof(desc_hid_report));
   usb_hid.setStringDescriptor("PMK Dongle");
+  usb_hid.setReportCallback(NULL, hid_report_callback);
 
   usb_hid.begin();
 
@@ -126,13 +127,17 @@ void setup()
   //====================================================
   //====================Wifi/ESP Now====================
   //====================================================
-  while(!Serial){}  //Optional debug helpw
+  //while(!Serial){}  //Optional debug helpw
   Serial.printf("Starting WiFi\r\n");
   WiFi.mode(WIFI_STA);
-  WiFi.setTxPower(WIFI_POWER_MINUS_1dBm);
+  //WiFi.mode(WIFI_AP);
+  //WiFi.disconnect();
+  //WiFi.softAP("PMK", nullptr, 6);
+  //WiFi.softAPdisconnect(false);
+  WiFi.setTxPower(WIFI_POWER_11dBm);
   Serial.printf("New WiFi power: ");
   Serial.println(WiFi.getTxPower());
-  Serial.printf("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
+  Serial.print("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
 
   if (esp_now_init() != ESP_OK) 
   {
@@ -212,7 +217,7 @@ void setup()
           addDeviceAddress(filePath); //Add the device address to the array of ESP-NOW devices
         }
         else
-        {
+        {/*
           Serial.printf("File is not file, it is directory\r\n\r\n");
           //Then it is either keymap or led folder
           File32 configFile = configFolder.openNextFile();
@@ -237,7 +242,7 @@ void setup()
             }
             configFile.openNextFile();
           }
-
+*/
         }
 
         configFolder = deviceDirectory.openNextFile();
@@ -319,6 +324,7 @@ void loop()
     keyboardTask.beginTime = micros();
     keyboardTask.inBetweenTime = keyboardTask.beginTime - keyboardTask.endTime;
 
+    handleKeyboard();
 
 
     //Keyboard functions end
@@ -367,7 +373,7 @@ void loop()
     telemetryTask.inBetweenTime = telemetryTask.beginTime - telemetryTask.endTime;
 
     //**functions
-    //Serial.printf("Proc temp: %.1f °C\r\n", temperatureRead());
+    Serial.printf("Proc temp: %.1f °C\r\n", temperatureRead());
 
     telemetryTask.endTime = micros();
     telemetryTask.counter++;
