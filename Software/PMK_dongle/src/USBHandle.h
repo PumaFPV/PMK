@@ -32,7 +32,7 @@ void hid_report_callback(uint8_t report_id, hid_report_type_t report_type, uint8
   uint8_t ledIndicator = buffer[0];
 
   // turn on LED if capslock is set
-  digitalWrite(LED_DATA_PIN, ledIndicator & KEYBOARD_LED_CAPSLOCK);
+  digitalWrite(LED_DATA_PIN, ledIndicator);
 }
 
 

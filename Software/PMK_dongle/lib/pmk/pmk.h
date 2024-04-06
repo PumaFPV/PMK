@@ -225,7 +225,7 @@ void handleKeyboard()
 {
     if(memcmp(keyboardPacket.key, previousKeyboardPacket.key, sizeof(keyboardPacket.key)) == 0)
     {
-        Serial.printf("Packets are the same, no need to send new report\r\n");
+        //Serial.printf("Packets are the same, no need to send new report\r\n");
         digitalWrite(LED_DATA_PIN, 0);
         return;
     } 
@@ -233,7 +233,7 @@ void handleKeyboard()
     {
         digitalWrite(LED_DATA_PIN, 1);
 
-        Serial.printf("Packet is different\r\n");
+        //Serial.printf("Packet is different\r\n");
         if(TinyUSBDevice.suspended())
         {
             TinyUSBDevice.remoteWakeup();
@@ -243,23 +243,19 @@ void handleKeyboard()
         {
             if(keyboardPacket.key[i] != 0x00)
             {
-                if(usb_hid.ready())
-                {
-                    Serial.printf("usb ready\r\n");
-                    //usb_hid.keyboardPress(RID_KEYBOARD, keyIDtoChar(keyboardPacket.key[i], layerID));   //TODO add deviceID to keyIDtoChar function
-                    uint8_t keycode[6] = { 0 };
-                    keycode[0] = HID_KEY_A;
-                    usb_hid.keyboardReport(RID_KEYBOARD, 0, keycode);
-                }
-                else
-                {
-                    Serial.printf("usb not ready\r\n");
-                }
-                Serial.printf("Pressing: 0x%i, Equivalent: %c\r\n", keyboardPacket.key[i], keyIDtoChar(keyboardPacket.key[i], layerID));
+                //Serial.printf("Pressing: 0x%i, Equivalent: %c\r\n", keyboardPacket.key[i], keyIDtoChar(keyboardPacket.key[i], layerID));
+                if( !usb_hid.ready() ) return;
+
+                //Serial.printf("usb ready\r\n");
+                //usb_hid.keyboardPress(RID_KEYBOARD, keyIDtoChar(keyboardPacket.key[i], layerID));   //TODO add deviceID to keyIDtoChar function
+                uint8_t keycode[6] = { 0 };
+                keycode[0] = HID_KEY_A;
+                usb_hid.keyboardReport(0, 0, keycode);
+
             }
             else
             {
-                Serial.printf("");
+                //Serial.printf("");
             } 
         }
 
@@ -282,7 +278,7 @@ void handleKeyboard()
         {
             if(releaseKeys[i] != 0)
             {
-                //usb_hid.keyboardRelease(RID_KEYBOARD);
+                usb_hid.keyboardRelease(0);
             }
         }   
 

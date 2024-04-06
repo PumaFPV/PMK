@@ -56,7 +56,6 @@ void setup()
 
   //-----Leds
   FastLED.addLeds<WS2812B, LED_DATA_PIN, GRB>(leds, NUM_LEDS);
-  FastLED.setBrightness(255);
 
   currentPalette = RainbowColors_p;
   currentBlending = LINEARBLEND;
@@ -119,6 +118,34 @@ void loop()
     ledTask.inBetweenTime = ledTask.beginTime - ledTask.endTime;
 
       setLedColorProfile(layerID);
+      //FastLED.setBrightness(ledBrightness);
+      //Serial.printf("Brightness: %i\r\n", ledBrightness);
+      static bool rising = false;
+      const uint8_t minBrightness = 20;
+      const uint8_t maxBrightness = 120;
+
+      if(rising) 
+      {
+        if(ledBrightness < maxBrightness)
+        {
+          ledBrightness++;
+        }
+        else
+        {
+          rising = false;
+        }
+      } 
+      else
+      {
+        if(ledBrightness > minBrightness) 
+        {
+          ledBrightness--;
+        }
+        else
+        {
+          rising = true;
+        }
+      }
 
       /*leds[ledNumber] = CRGB::pulsarPurple;
       leds[ledNumber-1] = CRGB::pulsarBlue;

@@ -47,11 +47,14 @@ enum
 };
 
 // HID report descriptor using TinyUSB's template
+//uint8_t const desc_hid_report[] = {
+//  TUD_HID_REPORT_DESC_KEYBOARD( HID_REPORT_ID(RID_KEYBOARD) ),
+//  TUD_HID_REPORT_DESC_MOUSE   ( HID_REPORT_ID(RID_MOUSE) ),
+//  TUD_HID_REPORT_DESC_CONSUMER( HID_REPORT_ID(RID_CONSUMER_CONTROL) )//,
+//  //TUD_HID_REPORT_DESC_GAMEPAD() //Not yet working...
+//};
 uint8_t const desc_hid_report[] = {
-  TUD_HID_REPORT_DESC_KEYBOARD( HID_REPORT_ID(RID_KEYBOARD) ),
-  TUD_HID_REPORT_DESC_MOUSE   ( HID_REPORT_ID(RID_MOUSE) ),
-  TUD_HID_REPORT_DESC_CONSUMER( HID_REPORT_ID(RID_CONSUMER_CONTROL) )//,
-  //TUD_HID_REPORT_DESC_GAMEPAD() //Not yet working...
+  TUD_HID_REPORT_DESC_KEYBOARD()
 };
 
 // USB HID object.
@@ -91,7 +94,7 @@ struct Func
 
 Func ledTask = {0, 0, 0, 0, 0, 10000, 0, 0};
 Func espnowTask = {0, 0, 0, 0, 0, 1000, 0, 0};
-Func keyboardTask = {0, 0, 0, 0, 0, 1000000, 0, 0};
+Func keyboardTask = {0, 0, 0, 0, 0, 10000, 0, 0};
 Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
 Func fsTask = {0, 0, 0, 0, 0, 2000000, 0, 0};
 Func telemetryTask = {0, 0, 0, 0, 0, 2000000, 0, 0};
