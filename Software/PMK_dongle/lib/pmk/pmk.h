@@ -223,7 +223,10 @@ void convertPacket2Serial(packetStruct packet)
 
 void handleKeyboard()
 {
-    if(memcmp(keyboardPacket.key, previousKeyboardPacket.key, sizeof(keyboardPacket.key)) == 0)
+    int packetCompare = memcmp(keyboardPacket.key, previousKeyboardPacket.key, sizeof(keyboardPacket.key));
+    //Serial.printf("Diff= %i\r\n", packetCompare);
+
+    if(packetCompare == 0)
     {
         //Serial.printf("Packets are the same, no need to send new report\r\n");
         digitalWrite(LED_DATA_PIN, 0);
@@ -233,7 +236,7 @@ void handleKeyboard()
     {
         digitalWrite(LED_DATA_PIN, 1);
 
-        //Serial.printf("Packet is different\r\n");
+        Serial.printf("Packet is different\r\n");
         if(TinyUSBDevice.suspended())
         {
             TinyUSBDevice.remoteWakeup();
@@ -243,15 +246,14 @@ void handleKeyboard()
         {
             if(keyboardPacket.key[i] != 0x00)
             {
-                //Serial.printf("Pressing: 0x%i, Equivalent: %c\r\n", keyboardPacket.key[i], keyIDtoChar(keyboardPacket.key[i], layerID));
+                Serial.printf("Pressing: 0x%i, on layer: %i, Equivalent: %c\r\n", keyboardPacket.key[i], layerID, keyIDtoChar(keyboardPacket.key[i], layerID));
                 if( !usb_hid.ready() ) return;
 
-                //Serial.printf("usb ready\r\n");
-                //usb_hid.keyboardPress(RID_KEYBOARD, keyIDtoChar(keyboardPacket.key[i], layerID));   //TODO add deviceID to keyIDtoChar function
-                uint8_t keycode[6] = { 0 };
-                keycode[0] = HID_KEY_A;
-                usb_hid.keyboardReport(0, 0, keycode);
-
+                Serial.printf("usb ready\r\n");
+                usb_hid.keyboardPress(0, keyIDtoChar(keyboardPacket.key[i], 0));   //TODO add deviceID to keyIDtoChar function
+                //uint8_t keycode[6] = { 0 };
+                //keycode[0] = HID_KEY_A;
+                //usb_hid.keyboardReport(0, 0, keycode);
             }
             else
             {
@@ -284,9 +286,6 @@ void handleKeyboard()
 
         memcpy(previousKeyboardPacket.key, keyboardPacket.key, 8);
     }
-
-
-
 }
 
 void handleMouse()

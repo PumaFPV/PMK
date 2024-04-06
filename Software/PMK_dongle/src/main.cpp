@@ -38,7 +38,7 @@ const char compileDate[] = __DATE__ " " __TIME__; //For Serial info
 void setup()
 {
 
-  //Serial.begin(115200);
+  Serial.begin(115200);
 
   //===========================================
   //====================FatFS==================
@@ -47,12 +47,12 @@ void setup()
   //Initiate flash
   if(!flash.begin())
   {
-    //Serial.printf("An Error has occurred while mounting FatFS\r\n");
+    Serial.printf("An Error has occurred while mounting FatFS\r\n");
     return;
   }
   else
   {
-    //Serial.printf("File system is ok\r\n");
+    Serial.printf("File system is ok\r\n");
   }
   
   // Set disk vendor id, product id and revision with string up to 8, 16, 4 characters respectively
@@ -75,7 +75,7 @@ void setup()
 
   if ( !fs_formatted )
   {
-    //Serial.printf("Failed to init files system, flash may not be formatted\r\n");
+    Serial.printf("Failed to init files system, flash may not be formatted\r\n");
   }  
 
   //===========================================
@@ -86,16 +86,16 @@ void setup()
   pinMode(LED_DATA_PIN, OUTPUT);
   digitalWrite(LED_DATA_PIN, 1);
 
-  //Serial.printf("Dongle is booting\r\n");
-  //Serial.printf("Firmware rev: %s\r\n", FIRMWARE_REV);
-  //Serial.printf("Firmware was built the: %s at %s\r\n\r\n", __DATE__, __TIME__);
+  Serial.printf("Dongle is booting\r\n");
+  Serial.printf("Firmware rev: %s\r\n", FIRMWARE_REV);
+  Serial.printf("Firmware was built the: %s at %s\r\n\r\n", __DATE__, __TIME__);
 
-  //Serial.printf("__          __  _                            _          _____  __  __ _  __ \r\n");
-  //Serial.printf("\\ \\        / / | |                          | |        |  __ \\|  \\/  | |/ / \r\n");
-  //Serial.printf(" \\ \\  /\\  / /__| | ___ ___  _ __ ___   ___  | |_ ___   | |__) | \\  / | ' /  \r\n");
-  //Serial.printf("  \\ \\/  \\/ / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ | __/ _ \\  |  ___/| |\\/| |  <   \r\n");
-  //Serial.printf("   \\  /\\  /  __/ | (_| (_) | | | | | |  __/ | || (_) | | |    | |  | | . \\  \r\n");
-  //Serial.printf("    \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___| \\__ \\___/  |_|    |_|  |_|_|\\_\\ \r\n\r\n\r\n");
+  Serial.printf("__          __  _                            _          _____  __  __ _  __ \r\n");
+  Serial.printf("\\ \\        / / | |                          | |        |  __ \\|  \\/  | |/ / \r\n");
+  Serial.printf(" \\ \\  /\\  / /__| | ___ ___  _ __ ___   ___  | |_ ___   | |__) | \\  / | ' /  \r\n");
+  Serial.printf("  \\ \\/  \\/ / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ | __/ _ \\  |  ___/| |\\/| |  <   \r\n");
+  Serial.printf("   \\  /\\  /  __/ | (_| (_) | | | | | |  __/ | || (_) | | |    | |  | | . \\  \r\n");
+  Serial.printf("    \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___| \\__ \\___/  |_|    |_|  |_|_|\\_\\ \r\n\r\n\r\n");
 
   //===========================================
   //====================USB====================
@@ -131,25 +131,25 @@ void setup()
   //====================Wifi/ESP Now====================
   //====================================================
   //while(!Serial){}  //Optional debug helpw
-  //Serial.printf("Starting WiFi\r\n");
+  Serial.printf("Starting WiFi\r\n");
   WiFi.mode(WIFI_STA);
   //WiFi.mode(WIFI_AP);
   //WiFi.disconnect();
   //WiFi.softAP("PMK", nullptr, 6);
   //WiFi.softAPdisconnect(false);
   WiFi.setTxPower(WIFI_POWER_11dBm);
-  //Serial.printf("New WiFi power: ");
-  //Serial.println(WiFi.getTxPower());
-  //Serial.print("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
+  Serial.printf("New WiFi power: ");
+  Serial.println(WiFi.getTxPower());
+  Serial.print("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
 
   if (esp_now_init() != ESP_OK) 
   {
-    //Serial.printf("Error initializing ESP-NOW\r\n");
+    Serial.printf("Error initializing ESP-NOW\r\n");
     return;
   }
   else
   {
-    //Serial.printf("Succesfully initiated ESP-NOW\r\n\r\n");
+    Serial.printf("Succesfully initiated ESP-NOW\r\n\r\n");
   }
 
   esp_now_register_send_cb(OnEspNowDataSent);
@@ -166,7 +166,7 @@ void setup()
 
   uint8_t numberOfDeviceToConfig = getNumberOfDevices();
 
-  //Serial.printf("Number of devices to config: %d \r\n\r\n", numberOfDeviceToConfig);
+  Serial.printf("Number of devices to config: %d \r\n\r\n", numberOfDeviceToConfig);
   
   File32 root = fatfs.open("/");
   //root.ls(&Serial, 0, 0);
@@ -174,13 +174,13 @@ void setup()
   for(uint8_t deviceNumber = 0; deviceNumber <= numberOfDeviceToConfig; deviceNumber++)
   {
 
-    //Serial.printf("Configuring device number %d\r\n", deviceNumber);
+    Serial.printf("Configuring device number %d\r\n", deviceNumber);
 
     File32 deviceDirectory = root.openNextFile();
     
     if(!deviceDirectory.isDirectory())
     {
-      //Serial.printf("There is a file in root, please reupload file system\r\n");
+      Serial.printf("There is a file in root, please reupload file system\r\n");
     }
 
     char deviceName[32];
@@ -188,7 +188,7 @@ void setup()
 
     if(strcmp(deviceName, "System Volume Information")) //Current folder is a device config folder
     {
-      //Serial.printf("Device name to configure: %s \r\n", deviceName);
+      Serial.printf("Device name to configure: %s \r\n", deviceName);
             
       //File32 configRoot = fatfs.open(deviceDirectory.name(), O_READ);
 
@@ -202,7 +202,7 @@ void setup()
         //Serial.printf("The folder is dir: %i\r\n", configFolderisDir());
         char name[32];
         configFolder.getName(name, sizeof(name));
-        //Serial.printf("File name: %s\r\n", name);
+        Serial.printf("File name: %s\r\n", name);
 
         char filePath[64] = "\0";
         strcat(filePath, "/");
@@ -214,14 +214,14 @@ void setup()
         if(!configFolder.isDirectory())
         {
           //We are at the config json file that contains MAC address, etc...
-          //Serial.printf("File path: %s \r\n", filePath);
-          //Serial.printf("Device ID: %s \r\n", getAttribute(filePath, "deviceID"));  //Used to check if we can properly read attributes
-          //Serial.printf("Config name: %s \r\n", getAttribute(filePath, "deviceName"));
+          Serial.printf("File path: %s \r\n", filePath);
+          Serial.printf("Device ID: %s \r\n", getAttribute(filePath, "deviceID"));  //Used to check if we can properly read attributes
+          Serial.printf("Config name: %s \r\n", getAttribute(filePath, "deviceName"));
           addDeviceAddress(filePath); //Add the device address to the array of ESP-NOW devices
         }
         else
         {/*
-          //Serial.printf("File is not file, it is directory\r\n\r\n");
+          Serial.printf("File is not file, it is directory\r\n\r\n");
           //Then it is either keymap or led folder
           File32 configFile = configFolder.openNextFile();
           configFile.ls(&Serial, 0, 2);
@@ -251,11 +251,11 @@ void setup()
         configFolder = deviceDirectory.openNextFile();
       }
       
-      //Serial.printf("\n\r");
+      Serial.printf("\n\r");
     }
     else
     {
-      //Serial.printf("This is system volume information configFolder.. Skipping config\r\n\r\n");
+      Serial.printf("This is system volume information configFolder.. Skipping config\r\n\r\n");
     }
 
   }
