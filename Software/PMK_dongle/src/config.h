@@ -111,10 +111,10 @@ char keyIDtoChar(uint8_t keyID, uint8_t layer)
   uint8_t keyChar[8][40] = 
   {
     {
-      '5','4','3','2','1','0',HID_KEY_ESCAPE,
-      HID_KEY_TAB,'z','q','w','e','r','t',
-      'g','f','d','s','a',0,HID_KEY_CAPS_LOCK,
-      HID_KEY_SHIFT_LEFT,'<','y','x','c','v','b',
+      HID_KEY_5,HID_KEY_4,HID_KEY_3,HID_KEY_2,HID_KEY_1,HID_KEY_0,HID_KEY_ESCAPE,
+      HID_KEY_TAB,HID_KEY_Z,HID_KEY_Q,HID_KEY_W,HID_KEY_E,HID_KEY_R,HID_KEY_T,
+      HID_KEY_G,HID_KEY_F,HID_KEY_D,HID_KEY_S,HID_KEY_A,0,HID_KEY_CAPS_LOCK,
+      HID_KEY_SHIFT_LEFT,HID_KEY_COMMA,HID_KEY_Y,HID_KEY_X,HID_KEY_C,HID_KEY_V,HID_KEY_B,
       0,HID_KEY_GUI_LEFT,HID_KEY_ALT_LEFT,HID_KEY_CONTROL_LEFT,HID_KEY_RETURN,' ',
       HID_KEY_DELETE,HID_KEY_BACKSPACE,0,0,0,0
     },

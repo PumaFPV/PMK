@@ -242,24 +242,47 @@ void handleKeyboard()
             TinyUSBDevice.remoteWakeup();
         }
 
-        for(uint8_t i = 0; i < 8; i++) //Go through the 8 sent keys
-        {
-            if(keyboardPacket.key[i] != 0x00)
-            {
-                Serial.printf("Pressing: 0x%i, on layer: %i, Equivalent: %c\r\n", keyboardPacket.key[i], layerID, keyIDtoChar(keyboardPacket.key[i], layerID));
+        //for(uint8_t i = 0; i < 8; i++) //Go through the 8 sent keys
+        //{
+            //if(keyboardPacket.key[i] != 0x00)
+            //{
+                //Serial.printf("Pressing: 0x%i, on layer: %i, Equivalent: %c\r\n", keyboardPacket.key[i], layerID, keyIDtoChar(keyboardPacket.key[i], layerID));
                 if( !usb_hid.ready() ) return;
 
                 Serial.printf("usb ready\r\n");
-                usb_hid.keyboardPress(0, keyIDtoChar(keyboardPacket.key[i], 0));   //TODO add deviceID to keyIDtoChar function
+
+                //usb_hid.keyboardPress(0, keyIDtoChar(keyboardPacket.key[i], 0));   //TODO add deviceID to keyIDtoChar function
+                uint8_t keycode[6] = {0};
+                uint8_t keycodeNumber = 0;
+                uint8_t modifier = 0x00;
+
+                for(uint8_t i = 0; i < 8; i++)
+                {
+                    uint8_t key = keyIDtoChar(keyboardPacket.key[i], 0);
+
+                    if(0xDF < key && key < 0xE8)  //
+                    {
+                        //We have a modifier
+                        modifier = modifier | (1 << (key - 0xE0));   //First modifier is 0xE0 Left control
+                        Serial.printf("Modifier is: %02X", modifier);
+                    }
+                    if(key < 0xA5)
+                    {
+                        keycode[keycodeNumber] = key;
+                        keycodeNumber++;
+                    }
+                }
+
+                usb_hid.keyboardReport(0, modifier, keycode);
                 //uint8_t keycode[6] = { 0 };
                 //keycode[0] = HID_KEY_A;
                 //usb_hid.keyboardReport(0, 0, keycode);
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 //Serial.printf("");
-            } 
-        }
+            //}
+        //}
 
         //Press/Release management
         uint8_t releaseKeys[8];
