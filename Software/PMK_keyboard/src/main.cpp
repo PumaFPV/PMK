@@ -117,7 +117,12 @@ void loop()
     ledTask.beginTime = micros();
     ledTask.inBetweenTime = ledTask.beginTime - ledTask.endTime;
 
-      setLedColorProfile(layerID);
+      //setLedColorProfile(layerID);
+      static uint8_t i = 0;
+
+      leds[i] = CRGB::White;
+      i++;
+
       //FastLED.setBrightness(ledBrightness);
       //Serial.printf("Brightness: %i\r\n", ledBrightness);
       static bool rising = false;
@@ -174,6 +179,15 @@ void loop()
       //pulsar();
       FastLED.setBrightness(ledBrightness);
       FastLED.show();
+
+      if(i == 29)
+      {
+        i = 0;
+        for(uint8_t j = 0; j < 29; j++)
+        {
+          leds[j] = CRGB::Black;
+        }
+      }
       //FastLED.delay(1000 / UPDATES_PER_SECOND);
 
     ledTask.endTime = micros();

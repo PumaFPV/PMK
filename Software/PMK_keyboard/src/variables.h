@@ -79,7 +79,7 @@ struct Func
   unsigned long inBetweenTime;
 };
 
-Func ledTask = {0, 0, 0, 0, 0, 20000, 0, 0};
+Func ledTask = {0, 0, 0, 0, 0, 40000, 0, 0};
 Func srTask = {0, 0, 0, 0, 0, 10000, 0, 0};
 Func espnowTask = {0, 0, 0, 0, 0, 10000, 0, 0};
 Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
