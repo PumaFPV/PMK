@@ -279,7 +279,7 @@ void loop()
         
       if (result == ESP_OK) 
       {
-        Serial.println("Sent with success");
+        //Serial.println("Sent with success");
       }
       else 
       {
