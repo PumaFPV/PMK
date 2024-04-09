@@ -168,7 +168,7 @@ void loop()
     ledTask.beginTime = micros();
     ledTask.inBetweenTime = ledTask.beginTime - ledTask.endTime;
 
-      setLedColorProfile(layerID);
+      setLedColorProfile(0);
 
       //FastLED.setBrightness(ledBrightness);
       //Serial.printf("Brightness: %i\r\n", ledBrightness);

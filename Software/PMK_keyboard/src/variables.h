@@ -79,6 +79,12 @@ struct Func
   unsigned long inBetweenTime;
 };
 
+typedef enum {
+  pulsarPurple = 0xfd26e9,
+  pulsarBlue = 0x00f1ff,
+  pulsarPurpleBlue = 0xada8f0
+} HTMLColorCode;
+
 Func ledTask = {0, 0, 0, 0, 0, 20000, 0, 0};
 Func srTask = {0, 0, 0, 0, 0, 10000, 0, 0};
 Func espnowTask = {0, 0, 0, 0, 0, 10000, 0, 0};

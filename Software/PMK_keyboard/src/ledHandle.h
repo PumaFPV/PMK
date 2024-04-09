@@ -73,24 +73,24 @@ void SetupPurpleAndGreenPalette()
 // which is stored in PROGMEM (flash), which is almost always more
 // plentiful than RAM.  A static PROGMEM palette like this
 // takes up 64 bytes of flash.
-const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM =
+const TProgmemPalette16 pulsarPalette PROGMEM =
 {
-    CRGB::pulsarPurple,
+    pulsarPurple,
     CRGB::Gray, // 'white' is too bright compared to red and blue
-    CRGB::pulsarBlue,
+    pulsarBlue,
     CRGB::Black,
     
-    CRGB::pulsarPurple,
+    pulsarPurple,
     CRGB::Gray,
-    CRGB::pulsarBlue,
+    pulsarBlue,
     CRGB::Black,
     
-    CRGB::pulsarPurple,
-    CRGB::pulsarPurple,
+    pulsarPurple,
+    pulsarPurple,
     CRGB::Gray,
     CRGB::Gray,
-    CRGB::pulsarBlue,
-    CRGB::pulsarBlue,
+    pulsarBlue,
+    pulsarBlue,
     CRGB::Black,
     CRGB::Black
 };
@@ -167,7 +167,7 @@ void pulsar(uint8_t minBrightness, uint8_t maxBrightness, bool breathingSide /*0
       for(uint8_t y = 0; y < 7; y++)
       {
         uint8_t ledID = keyCoordinatesToLedID(y,x);
-        leds[ledID] = CRGB::pulsarPurple;
+        leds[ledID] = pulsarPurple;
       }
     }
     for(uint8_t x = 3; x < 4; x++)
@@ -175,7 +175,7 @@ void pulsar(uint8_t minBrightness, uint8_t maxBrightness, bool breathingSide /*0
       for(uint8_t y = 0; y < 7; y++)
       {
         uint8_t ledID = keyCoordinatesToLedID(y,x);
-        leds[ledID] = CRGB::pulsarPurpleBlue;
+        leds[ledID] = pulsarPurpleBlue;
       }
     }      
     for(uint8_t x = 4; x < 9; x++)
@@ -183,7 +183,7 @@ void pulsar(uint8_t minBrightness, uint8_t maxBrightness, bool breathingSide /*0
       for(uint8_t y = 0; y < 7; y++)
       {
         uint8_t ledID = keyCoordinatesToLedID(y,x);
-        leds[ledID] = CRGB::pulsarBlue;
+        leds[ledID] = pulsarBlue;
         leds[ledID].subtractFromRGB(brightness);
       }
     }

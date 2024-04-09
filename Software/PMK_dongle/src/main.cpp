@@ -130,7 +130,7 @@ void setup()
   //====================================================
   //====================Wifi/ESP Now====================
   //====================================================
-  //while(!Serial){}  //Optional debug helpw
+  while(!Serial){}  //Optional debug helpw
   Serial.printf("Starting WiFi\r\n");
   WiFi.mode(WIFI_STA);
   //WiFi.mode(WIFI_AP);
