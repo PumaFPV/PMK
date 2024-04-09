@@ -11,6 +11,8 @@ uint8_t ledBrightness = 0;
 
 uint8_t layerID = 0;
 
+uint8_t keyboardDeviceID = 255;
+
 typedef struct packetStruct {
     uint8_t deviceID;
     uint8_t packetType = 255;
@@ -104,7 +106,7 @@ enum errorID {
     internalSensorFailure
 };
 
-keyboardStruct  keyboardPacket;
+keyboardStruct  keyboardPacket[8];
 mouseStruct     mousePacket;
 gamepadStruct   gamepadPacket;
 ledStruct       ledPacket;
@@ -116,7 +118,7 @@ serialStruct    serialPacket;
 
 packetStruct receivedPacket;
 
-keyboardStruct previousKeyboardPacket;
+keyboardStruct previousKeyboardPacket[8];
 
 
 void convertPacket2Telemetry(packetStruct packet)
@@ -139,15 +141,16 @@ void convertPacket2Telemetry(packetStruct packet)
 
 void convertPacket2Keyboard(packetStruct packet)
 {
-    keyboardPacket.deviceID = packet.deviceID;
-    keyboardPacket.key[0] = packet.data[0];
-    keyboardPacket.key[1] = packet.data[1];
-    keyboardPacket.key[2] = packet.data[2];
-    keyboardPacket.key[3] = packet.data[3];
-    keyboardPacket.key[4] = packet.data[4];
-    keyboardPacket.key[5] = packet.data[5];
-    keyboardPacket.key[6] = packet.data[6];
-    keyboardPacket.key[7] = packet.data[7];
+    keyboardPacket[packet.deviceID].deviceID = packet.deviceID;
+    keyboardDeviceID = packet.deviceID;
+    keyboardPacket[packet.deviceID].key[0] = packet.data[0];
+    keyboardPacket[packet.deviceID].key[1] = packet.data[1];
+    keyboardPacket[packet.deviceID].key[2] = packet.data[2];
+    keyboardPacket[packet.deviceID].key[3] = packet.data[3];
+    keyboardPacket[packet.deviceID].key[4] = packet.data[4];
+    keyboardPacket[packet.deviceID].key[5] = packet.data[5];
+    keyboardPacket[packet.deviceID].key[6] = packet.data[6];
+    keyboardPacket[packet.deviceID].key[7] = packet.data[7];
 }
 
 void convertPacket2Mouse(packetStruct packet)
@@ -221,9 +224,9 @@ void convertPacket2Serial(packetStruct packet)
     }
 }
 
-void handleKeyboard()
+void handleKeyboard(uint8_t deviceID)
 {
-    int packetCompare = memcmp(keyboardPacket.key, previousKeyboardPacket.key, sizeof(keyboardPacket.key));
+    int packetCompare = memcmp(keyboardPacket[deviceID].key, previousKeyboardPacket[deviceID].key, sizeof(keyboardPacket[deviceID].key));
     //Serial.printf("Diff= %i\r\n", packetCompare);
 
     if(packetCompare == 0)
@@ -242,7 +245,7 @@ void handleKeyboard()
             TinyUSBDevice.remoteWakeup();
         }
 
-        if( !usb_hid.ready() ) return;
+        if(!usb_hid.ready()) return;
         //Serial.printf("usb ready\r\n");
         
         uint8_t keycode[6] = {0};
@@ -251,7 +254,7 @@ void handleKeyboard()
 
         for(uint8_t i = 0; i < 8; i++)
         {
-            uint8_t key = keyIDtoChar(keyboardPacket.key[i], 0);
+            uint8_t key = keyIDtoChar(keyboardPacket[deviceID].key[i], 0);
 
             if(0xDF < key && key < 0xE8)  //
             {
@@ -271,7 +274,7 @@ void handleKeyboard()
 
         usb_hid.keyboardReport(0, modifier, keycode);
 
-        memcpy(previousKeyboardPacket.key, keyboardPacket.key, 8);  //Not really useful but nice to have for detection of new keys. Remove .key and put 10 to compare whole packet
+        memcpy(previousKeyboardPacket[deviceID].key, keyboardPacket[deviceID].key, 8);  //Not really useful but nice to have for detection of new keys. Remove .key and put 10 to compare whole packet
     }
 }
 
