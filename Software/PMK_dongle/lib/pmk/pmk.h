@@ -236,78 +236,65 @@ void handleKeyboard()
     {
         digitalWrite(LED_DATA_PIN, 1);
 
-        Serial.printf("Packet is different\r\n");
+        //Serial.printf("Packet is different\r\n");
         if(TinyUSBDevice.suspended())
         {
             TinyUSBDevice.remoteWakeup();
         }
 
-        //for(uint8_t i = 0; i < 8; i++) //Go through the 8 sent keys
-        //{
-            //if(keyboardPacket.key[i] != 0x00)
-            //{
-                //Serial.printf("Pressing: 0x%i, on layer: %i, Equivalent: %c\r\n", keyboardPacket.key[i], layerID, keyIDtoChar(keyboardPacket.key[i], layerID));
-                if( !usb_hid.ready() ) return;
-
-                Serial.printf("usb ready\r\n");
-
-                //usb_hid.keyboardPress(0, keyIDtoChar(keyboardPacket.key[i], 0));   //TODO add deviceID to keyIDtoChar function
-                uint8_t keycode[6] = {0};
-                uint8_t keycodeNumber = 0;
-                uint8_t modifier = 0x00;
-
-                for(uint8_t i = 0; i < 8; i++)
-                {
-                    uint8_t key = keyIDtoChar(keyboardPacket.key[i], 0);
-
-                    if(0xDF < key && key < 0xE8)  //
-                    {
-                        //We have a modifier
-                        modifier = modifier | (1 << (key - 0xE0));   //First modifier is 0xE0 Left control
-                        Serial.printf("Modifier is: %02X", modifier);
-                    }
-                    if(key < 0xA5)
-                    {
-                        keycode[keycodeNumber] = key;
-                        keycodeNumber++;
-                    }
-                }
-
-                usb_hid.keyboardReport(0, modifier, keycode);
-                //uint8_t keycode[6] = { 0 };
-                //keycode[0] = HID_KEY_A;
-                //usb_hid.keyboardReport(0, 0, keycode);
-            //}
-            //else
-            //{
-                //Serial.printf("");
-            //}
-        //}
-
-        //Press/Release management
-        uint8_t releaseKeys[8];
-        memcpy(releaseKeys, previousKeyboardPacket.key, 8);
+        if( !usb_hid.ready() ) return;
+        //Serial.printf("usb ready\r\n");
+        
+        uint8_t keycode[6] = {0};
+        uint8_t keycodeNumber = 0;
+        uint8_t modifier = 0x00;
 
         for(uint8_t i = 0; i < 8; i++)
         {
-            for(uint8_t j = 0; j < 8; j++)
+            uint8_t key = keyIDtoChar(keyboardPacket.key[i], 0);
+
+            if(0xDF < key && key < 0xE8)  //
             {
-                if(previousKeyboardPacket.key[i] == keyboardPacket.key[j])
-                {
-                    releaseKeys[i] = 0;
-                }
+                //We have a modifier
+                modifier = modifier | (1 << (key - 0xE0));   //First modifier is 0xE0 Left control
+                //Serial.printf("Modifier is: %02X\r\n", modifier);
+            }
+            if(key < 0xA5 && key != 0xFF)
+            {
+                //Serial.printf("Pressing: 0x%u, on layer: %i, Equivalent HID: %u\r\n", keyboardPacket.key[i], layerID, keyIDtoChar(keyboardPacket.key[i], layerID));
+
+                //We have a non modifier key
+                keycode[keycodeNumber] = key;
+                keycodeNumber++;
             }
         }
 
-        for(uint8_t i = 0; i < 8; i++)
-        {
-            if(releaseKeys[i] != 0)
-            {
-                usb_hid.keyboardRelease(0);
-            }
-        }   
+        usb_hid.keyboardReport(0, modifier, keycode);
 
-        memcpy(previousKeyboardPacket.key, keyboardPacket.key, 8);
+        //Press/Release management
+        //uint8_t releaseKeys[8];
+        //memcpy(releaseKeys, previousKeyboardPacket.key, 8);
+//
+        //for(uint8_t i = 0; i < 8; i++)
+        //{
+        //    for(uint8_t j = 0; j < 8; j++)
+        //    {
+        //        if(previousKeyboardPacket.key[i] == keyboardPacket.key[j])
+        //        {
+        //            releaseKeys[i] = 0;
+        //        }
+        //    }
+        //}
+//
+        //for(uint8_t i = 0; i < 8; i++)
+        //{
+        //    if(releaseKeys[i] != 0)
+        //    {
+        //        usb_hid.keyboardRelease(0);
+        //    }
+        //}   
+//
+        //memcpy(previousKeyboardPacket.key, keyboardPacket.key, 8);
     }
 }
 
