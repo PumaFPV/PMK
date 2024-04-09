@@ -271,30 +271,7 @@ void handleKeyboard()
 
         usb_hid.keyboardReport(0, modifier, keycode);
 
-        //Press/Release management
-        //uint8_t releaseKeys[8];
-        //memcpy(releaseKeys, previousKeyboardPacket.key, 8);
-//
-        //for(uint8_t i = 0; i < 8; i++)
-        //{
-        //    for(uint8_t j = 0; j < 8; j++)
-        //    {
-        //        if(previousKeyboardPacket.key[i] == keyboardPacket.key[j])
-        //        {
-        //            releaseKeys[i] = 0;
-        //        }
-        //    }
-        //}
-//
-        //for(uint8_t i = 0; i < 8; i++)
-        //{
-        //    if(releaseKeys[i] != 0)
-        //    {
-        //        usb_hid.keyboardRelease(0);
-        //    }
-        //}   
-//
-        //memcpy(previousKeyboardPacket.key, keyboardPacket.key, 8);
+        memcpy(previousKeyboardPacket.key, keyboardPacket.key, 8);  //Not really useful but nice to have for detection of new keys. Remove .key and put 10 to compare whole packet
     }
 }
 

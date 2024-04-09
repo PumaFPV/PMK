@@ -220,32 +220,8 @@ void setup()
           addDeviceAddress(filePath); //Add the device address to the array of ESP-NOW devices
         }
         else
-        {/*
-          Serial.printf("File is not file, it is directory\r\n\r\n");
-          //Then it is either keymap or led folder
-          File32 configFile = configFolder.openNextFile();
-          configFile.ls(&Serial, 0, 2);
+        {
           
-          while(configFile)
-          {
-            char configFileName[16] =  "\0";
-            configFile.getName(configFileName, sizeof(configFileName));
-            //Serial.printf("Config file name: %s\r\n", configFileName);
-
-            //If keyboard then configure keypress
-            if(strstr(configFileName, "kb-l"))
-            {
-              //Serial.printf("Config file is kb\r\n");
-            }
-
-            //If led configure led profile
-            else if(strstr(configFileName, "led-l"))
-            {
-              //Serial.printf("Config file is led\r\n");
-            }
-            configFile.openNextFile();
-          }
-*/
         }
 
         configFolder = deviceDirectory.openNextFile();
