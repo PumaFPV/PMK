@@ -17,6 +17,53 @@
 
 void loopCount();
 
+int rotary = 0;
+
+void IRAM_ATTR rotaryEncoderISR()
+{
+  static unsigned long time = xTaskGetTickCount();
+  const unsigned long interval = 10;
+
+  if(xTaskGetTickCount() - time > interval)
+  {
+    //Serial.printf("B: %i\r\n", digitalRead(RE_B));
+    if(digitalRead(RE_B))
+    {
+      rotary--;
+    }
+    else
+    {
+      rotary++;
+    }
+    time = xTaskGetTickCount();
+  }
+  else
+  {
+    //Serial.printf("Too soon\r\n");
+  }
+}
+
+//volatile int rotary = 0; // Variable to hold encoder count
+//volatile int lastEncoded = 0;
+//volatile long lastMillis = 0;
+//
+//void handleEncoder() {
+//  int MSB = digitalRead(RE_A);
+//  int LSB = digitalRead(RE_B);
+//  int encoded = (MSB << 1) | LSB;
+//  int sum = (lastEncoded << 2) | encoded;
+//  
+//  if ((millis() - lastMillis) > 2) { // debounce
+//    if (sum == 0b1101 || sum == 0b0100 || sum == 0b0010 || sum == 0b1011) {
+//      rotary++;
+//    } else if (sum == 0b1110 || sum == 0b0111 || sum == 0b0001 || sum == 0b1000) {
+//      rotary--;
+//    }
+//    lastMillis = millis();
+//  }
+//
+//  lastEncoded = encoded;
+//}
 
 void setup() 
 {
@@ -48,10 +95,14 @@ void setup()
   srSpi->begin(SR_CLK, SR_MISO, -1, SR_CE);
   pinMode(srSpi->pinSS(), OUTPUT);
 
-
+  
   //-----Rotary Encoder
   pinMode(RE_A, INPUT_PULLUP);
   pinMode(RE_B, INPUT_PULLUP);
+
+  attachInterrupt(RE_A, rotaryEncoderISR, RISING);
+  //attachInterrupt(digitalPinToInterrupt(RE_A), handleEncoder, CHANGE);
+  //attachInterrupt(digitalPinToInterrupt(RE_B), handleEncoder, CHANGE);
 
 
   //-----Leds
@@ -117,11 +168,7 @@ void loop()
     ledTask.beginTime = micros();
     ledTask.inBetweenTime = ledTask.beginTime - ledTask.endTime;
 
-      //setLedColorProfile(layerID);
-      static uint8_t i = 0;
-
-      leds[i] = CRGB::White;
-      i++;
+      setLedColorProfile(layerID);
 
       //FastLED.setBrightness(ledBrightness);
       //Serial.printf("Brightness: %i\r\n", ledBrightness);
@@ -179,7 +226,7 @@ void loop()
       //pulsar();
       FastLED.setBrightness(ledBrightness);
       FastLED.show();
-
+      /*
       if(i == 29)
       {
         i = 0;
@@ -187,7 +234,7 @@ void loop()
         {
           leds[j] = CRGB::Black;
         }
-      }
+      }*/
       //FastLED.delay(1000 / UPDATES_PER_SECOND);
 
     ledTask.endTime = micros();
@@ -292,8 +339,22 @@ void loop()
 
   }
 
-  //Deal with LED
+  //------------------------------------------------------Rotary Encoder Task
+  if(micros() - reTask.beginTime >= reTask.interval)
+  {
+    reTask.beginTime = micros();
+    reTask.inBetweenTime = reTask.beginTime - reTask.endTime;
 
+    //**functions
+
+
+    //Serial.printf("%i\r\n", rotary);
+
+    reTask.endTime = micros();
+    reTask.counter++;
+    reTask.duration = reTask.endTime - reTask.beginTime;
+
+  }
   //Deal with other stuff
   //Serial.println(getXtalFrequencyMhz());
   //Serial.println(getApbFrequency());
@@ -305,7 +366,7 @@ void loop()
 
 void loopCount()
 {
-  //Task frequency counter
+  //ledTask frequency counter
   if(ledTask.counter == 0)
   {
     ledTask.startCounterTime = micros();
@@ -339,6 +400,18 @@ void loopCount()
     espnowTask.frequency = espnowTask.counter;
     //Serial.println(espnowTask.counter);
     espnowTask.counter = 0;
+  }
+
+  //reTask frequency counter
+  if(reTask.counter == 0)
+  {
+    reTask.startCounterTime = micros();
+  }
+  if(micros() - reTask.startCounterTime > 1000000)
+  {
+    reTask.frequency = reTask.counter;
+    //Serial.println(reTask.counter);
+    reTask.counter = 0;
   }
 }
 
