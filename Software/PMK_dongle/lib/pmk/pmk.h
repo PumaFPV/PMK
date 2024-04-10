@@ -251,10 +251,11 @@ void handleKeyboard(uint8_t deviceID)
         uint8_t keycode[6] = {0};
         uint8_t keycodeNumber = 0;
         uint8_t modifier = 0x00;
-
+        
         for(uint8_t i = 0; i < 8; i++)
         {
-            uint8_t key = keyIDtoChar(keyboardPacket[deviceID].key[i], 0);
+            uint8_t key = keyIDtoHID(keyboardPacket[deviceID].key[i], 0);
+            //key = 0xFF when no key pressed
 
             if(0xDF < key && key < 0xE8)  //
             {
@@ -262,11 +263,11 @@ void handleKeyboard(uint8_t deviceID)
                 modifier = modifier | (1 << (key - 0xE0));   //First modifier is 0xE0 Left control
                 //Serial.printf("Modifier is: %02X\r\n", modifier);
             }
-            if(key < 0xA5 && key != 0xFF)
+            if(key < 0xA5)
             {
+                //We have a non modifier key
                 //Serial.printf("Pressing: 0x%u, on layer: %i, Equivalent HID: %u\r\n", keyboardPacket.key[i], layerID, keyIDtoChar(keyboardPacket.key[i], layerID));
 
-                //We have a non modifier key
                 keycode[keycodeNumber] = key;
                 keycodeNumber++;
             }
