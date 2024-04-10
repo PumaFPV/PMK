@@ -70,7 +70,7 @@ void IRAM_ATTR rotaryEncoderISR()
 void setup() 
 {
 
-  keyboardPacket.deviceID = 1; 
+  keyboardPacket.deviceID = 0; 
 
   //-----Serial
   Serial.begin(115200);
