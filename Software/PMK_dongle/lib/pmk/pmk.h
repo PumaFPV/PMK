@@ -238,8 +238,8 @@ void handleKeyboard(uint8_t deviceID)
     else
     {
         digitalWrite(LED_DATA_PIN, 1);
-
         //Serial.printf("Packet is different\r\n");
+        
         if(TinyUSBDevice.suspended())
         {
             TinyUSBDevice.remoteWakeup();

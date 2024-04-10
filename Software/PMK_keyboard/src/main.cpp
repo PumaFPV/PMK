@@ -21,11 +21,12 @@ int rotary = 0;
 
 void IRAM_ATTR rotaryEncoderISR()
 {
+  detachInterrupt(RE_A);
   static unsigned long time = xTaskGetTickCount();
   const unsigned long interval = 10;
 
-  if(xTaskGetTickCount() - time > interval)
-  {
+  //if(xTaskGetTickCount() - time > interval)
+  //{
     //Serial.printf("B: %i\r\n", digitalRead(RE_B));
     if(digitalRead(RE_B))
     {
@@ -36,11 +37,12 @@ void IRAM_ATTR rotaryEncoderISR()
       rotary++;
     }
     time = xTaskGetTickCount();
-  }
-  else
-  {
+  //}
+  //else
+  //{
     //Serial.printf("Too soon\r\n");
-  }
+  //}
+  attachInterrupt(RE_A, rotaryEncoderISR, RISING);
 }
 
 //volatile int rotary = 0; // Variable to hold encoder count
@@ -116,7 +118,7 @@ void setup()
 
   WiFi.mode(WIFI_STA);
   delay(10);
-  WiFi.setTxPower(WIFI_POWER_13dBm);
+  WiFi.setTxPower(WIFI_POWER_15dBm);
 
   Serial.printf("WiFi power: ");
   Serial.println(WiFi.getTxPower());
