@@ -235,6 +235,8 @@ void setup()
     }
 
   }
+
+  setupPMK();
   
   //listDir(fatfs, "/", 3);
 }
@@ -303,7 +305,7 @@ void loop()
     keyboardTask.beginTime = micros();
     keyboardTask.inBetweenTime = keyboardTask.beginTime - keyboardTask.endTime;
 
-    handleKeyboard(keyboardDeviceID);
+    handleKeyboard();
 
 
 

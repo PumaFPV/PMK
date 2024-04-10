@@ -1,0 +1,13 @@
+Schematic:
+	Fix PSoM pinout
+	Add A,B from RE to SR with R series
+	Add capa for A, B
+	Add LED to RE
+	Edge connector for peripherals
+	remove cirque connector
+	
+Routing:
+	Move SR away from switch (aluminium plate)
+	Move RE up
+	Remove test points from under PSoM
+	

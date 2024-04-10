@@ -120,6 +120,18 @@ packetStruct receivedPacket;
 
 keyboardStruct previousKeyboardPacket[8];
 
+void setupPMK()
+{
+    for(uint8_t deviceID = 0; deviceID < 8; deviceID++)
+    {
+        keyboardPacket[deviceID].deviceID = deviceID;
+
+        for(uint8_t keyID = 0; keyID < 8; keyID++)
+        {
+            keyboardPacket[deviceID].key[keyID] = 0;
+        }
+    }
+}
 
 void convertPacket2Telemetry(packetStruct packet)
 {
@@ -142,7 +154,6 @@ void convertPacket2Telemetry(packetStruct packet)
 void convertPacket2Keyboard(packetStruct packet)
 {
     keyboardPacket[packet.deviceID].deviceID = packet.deviceID;
-    keyboardDeviceID = packet.deviceID;
     keyboardPacket[packet.deviceID].key[0] = packet.data[0];
     keyboardPacket[packet.deviceID].key[1] = packet.data[1];
     keyboardPacket[packet.deviceID].key[2] = packet.data[2];
@@ -224,59 +235,135 @@ void convertPacket2Serial(packetStruct packet)
     }
 }
 
-void handleKeyboard(uint8_t deviceID)
+uint8_t nonZeroSize(uint8_t arr[])
 {
-    int packetCompare = memcmp(keyboardPacket[deviceID].key, previousKeyboardPacket[deviceID].key, sizeof(keyboardPacket[deviceID].key));
-    //Serial.printf("Diff= %i\r\n", packetCompare);
+    uint8_t count = 0;
 
-    if(packetCompare == 0)
+    for(uint8_t i = 0; i < 8; i++)
     {
-        //Serial.printf("Packets are the same, no need to send new report\r\n");
-        digitalWrite(LED_DATA_PIN, 0);
-        return;
-    } 
-    else
-    {
-        digitalWrite(LED_DATA_PIN, 1);
-        //Serial.printf("Packet is different\r\n");
-        
-        if(TinyUSBDevice.suspended())
+        if(arr[i] == 0)
         {
-            TinyUSBDevice.remoteWakeup();
+            return i;
         }
+    }
+}
 
-        if(!usb_hid.ready()) return;
-        //Serial.printf("usb ready\r\n");
-        
-        uint8_t keycode[6] = {0};
-        uint8_t keycodeNumber = 0;
-        uint8_t modifier = 0x00;
-        
-        for(uint8_t i = 0; i < 8; i++)
+void handleKeyboard()
+{
+
+    if(TinyUSBDevice.suspended())
+    {
+        TinyUSBDevice.remoteWakeup();
+    }
+
+    if(!usb_hid.ready()) return;
+    //Serial.printf("usb ready\r\n");
+    
+    static uint8_t keycode[6] = {0};
+    uint8_t keycodeNumber = 0;
+    static uint8_t modifier = 0x00;
+    static uint8_t keyToPress[64] = {0};
+    uint8_t keyToPressID = 0;
+
+    uint8_t keyNotPressed[64] = {0};
+
+    //Compare keyToPress with all previousKeyboardPacket and remove unpressed keys
+    for(uint8_t deviceID = 0; deviceID < 8; deviceID++)
+    {
+        int checkDifference = memcmp(previousKeyboardPacket[deviceID].key, keyboardPacket[deviceID].key, sizeof(keyboardPacket[deviceID].key)); //Output 0 if no difference
+        if(checkDifference) //Do nothing if no diff
         {
-            uint8_t key = keyIDtoHID(keyboardPacket[deviceID].key[i], 0);
+            //There is a diff
+            int k = 0;
+            for(int i = 0; i < 8; i++)
+            {
+                int f = 0;
+                for(int j = 0; j < 8; j++)
+                {
+                    if(previousKeyboardPacket[deviceID].key[i] == keyboardPacket[deviceID].key[j])
+                    {
+                        f = 1;
+                    }
+                }
+                if(!f)
+                {
+                    keyNotPressed[k++] = previousKeyboardPacket[deviceID].key[i];
+                }
+            }
+        }
+    }
+
+    //Deal with pressed keys
+    for(uint8_t deviceID = 0; deviceID < 8; deviceID++)
+    {
+        uint8_t key = 0xFF;
+        uint8_t numberOfKeysToCheck = nonZeroSize(keyboardPacket[deviceID].key);
+        //Serial.printf("Device ID: %i, Number of pressed keys: %i, Keys: %02X %02X %02X %02X %02X %02X %02X %02X\r\n", deviceID, numberOfKeysToCheck, keyboardPacket[deviceID].key[0], keyboardPacket[deviceID].key[1], keyboardPacket[deviceID].key[2],keyboardPacket[deviceID].key[3], keyboardPacket[deviceID].key[4], keyboardPacket[deviceID].key[5], keyboardPacket[deviceID].key[6], keyboardPacket[deviceID].key[7]);
+
+        for(uint8_t i = 0; i < numberOfKeysToCheck; i++)
+        {
+            key = keyIDtoHID(keyboardPacket[deviceID].key[i], layerID);
             //key = 0xFF when no key pressed
 
-            if(0xDF < key && key < 0xE8)  //
-            {
-                //We have a modifier
-                modifier = modifier | (1 << (key - 0xE0));   //First modifier is 0xE0 Left control
-                //Serial.printf("Modifier is: %02X\r\n", modifier);
-            }
-            if(key < 0xA5)
-            {
-                //We have a non modifier key
-                //Serial.printf("Pressing: 0x%u, on layer: %i, Equivalent HID: %u\r\n", keyboardPacket.key[i], layerID, keyIDtoChar(keyboardPacket.key[i], layerID));
+            //Check if key is already pressed by someone else
+            uint8_t currentKeyToPressSize = nonZeroSize(keyToPress);    //Maybe more optimized to put 64 here...
+            bool addKeyToKeyToPress = 1;    //Add key to array by default, only dont add it if present
 
-                keycode[keycodeNumber] = key;
-                keycodeNumber++;
+            for(uint8_t j = 0; j < currentKeyToPressSize; j++)
+            {   
+                if(key == keyToPress[j])
+                {
+                    addKeyToKeyToPress = 0;
+                }
             }
+            if(addKeyToKeyToPress)
+            {
+                keyToPress[keyToPressID] = key;
+                keyToPressID++;
+            }
+
         }
-
-        usb_hid.keyboardReport(0, modifier, keycode);
 
         memcpy(previousKeyboardPacket[deviceID].key, keyboardPacket[deviceID].key, 8);  //Not really useful but nice to have for detection of new keys. Remove .key and put 10 to compare whole packet
     }
+    
+
+    //Deal with the sliding of keyToPress values when some keys are released
+    for(uint8_t i = 0; i < keyToPressID; i++)
+    {
+        if(keyToPress[i] == 0)  //One key is released, shift all values left
+        {
+            for(uint8_t j = i; j < keyToPressID - 1; j++)
+            {
+                keyToPress[j] = keyToPress[j+1];
+            }
+        }
+    }
+
+    uint8_t numberOfKeyToPress = keyToPressID;
+    for(uint8_t i = i; i < numberOfKeyToPress; i++) //Add the final keyToPress to the report / deal with modifiers
+    {
+        uint8_t HIDKey = keyToPress[i];
+
+        if(0xDF < HIDKey && HIDKey < 0xE8)  //
+        {
+            //We have a modifier
+            modifier = modifier | (1 << (HIDKey - 0xE0));   //First modifier is 0xE0 Left control
+            //Serial.printf("Modifier is: %02X\r\n", modifier);
+        }
+        if(HIDKey < 0xA5 && keycodeNumber < 7)
+        {
+            //We have a non modifier key
+            //Serial.printf("Pressing: 0x%u, on layer: %i, Equivalent HID: %u\r\n", keyboardPacket.key[i], layerID, keyIDtoChar(keyboardPacket.key[i], layerID));
+
+            keycode[keycodeNumber] = HIDKey;
+            keycodeNumber++;
+        }
+    }
+
+    Serial.printf("Report: %02X %02X %02X %02X %02X %02X modifier: %02X\r\n", keycode[0], keycode[1], keycode[2], keycode[3], keycode[4], keycode[5], modifier);
+    //usb_hid.keyboardReport(0, modifier, keycode);
+
 }
 
 void handleMouse()
