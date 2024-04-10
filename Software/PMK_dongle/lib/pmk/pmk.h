@@ -252,7 +252,6 @@ uint8_t nonZeroSize(uint8_t arr[])
 
 void handleKeyboard()
 {
-
     if(TinyUSBDevice.suspended())
     {
         TinyUSBDevice.remoteWakeup();
@@ -287,20 +286,38 @@ void handleKeyboard()
     for(uint8_t i = i; i < numberOfKeyToPress; i++) //Add the final keyToPress to the report / deal with modifiers
     {
         uint8_t HIDKey = keyToPress[i];
-
         if(0xDF < HIDKey && HIDKey < 0xE8)  //
         {
             //We have a modifier
             modifier = modifier | (1 << (HIDKey - 0xE0));   //First modifier is 0xE0 Left control
             //Serial.printf("Modifier is: %02X\r\n", modifier);
         }
-        if(HIDKey < 0xA5 && keycodeNumber < 6)
+
+        if(HIDKey < 0xA5 )
         {
             //We have a non modifier key
             //Serial.printf("Pressing: 0x%u, on layer: %i, Equivalent HID: %u\r\n", keyboardPacket.key[i], layerID, keyIDtoChar(keyboardPacket.key[i], layerID));
+            if(keycodeNumber < 6)
+            {
+                keycode[keycodeNumber] = HIDKey;
+            }
 
-            keycode[keycodeNumber] = HIDKey;
             keycodeNumber++;
+        }
+
+        if(HIDKey < 0xA5 && keycodeNumber > 6)
+        {
+            //6KRO error
+            for(uint8_t j = 0; j < 6; j++)
+            {
+                keycode[j] = 0x01;
+            }
+        }
+
+        //Deal here with special keys (layers, brightness, etc...)
+        if(HIDKey > 0xE8)
+        {
+
         }
     }
 
