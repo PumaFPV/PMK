@@ -9,6 +9,9 @@
 #include "variables.h"
 #include "config.h"
 
+#define LAYER_PLUS 0xF1
+#define LAYER_MINUS 0xF0
+
 uint8_t ledBrightness = 0;
 
 uint8_t layerID = 0;
@@ -265,6 +268,24 @@ void handleKeyboard()
     uint8_t modifier = 0x00;
     std::vector<uint8_t> keyToPress{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,};
     uint8_t keyToPressID = 0;
+    layerID = 0;
+
+    //Need to check for layer change key before going further
+    for(uint8_t deviceID = 0; deviceID < 8; deviceID++)
+    {
+        for(uint8_t i = 0; i < 8; i++)
+        {
+            switch(keyIDtoHID(keyboardPacket[deviceID].key[i], layerID, deviceID))
+            {
+                case LAYER_MINUS:
+                    layerID = 1;
+                    break;
+                case LAYER_PLUS:
+                    layerID = 2;
+                    break;
+            }
+        }
+    }
 
     //Convert key[8] to HID[64]
     for(uint8_t deviceID = 0; deviceID < 8; deviceID++)
