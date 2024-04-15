@@ -251,6 +251,7 @@ uint8_t nonZeroSize(uint8_t arr[])
             return i;
         }
     }
+    return 255;
 }
 
 void handleKeyboard()

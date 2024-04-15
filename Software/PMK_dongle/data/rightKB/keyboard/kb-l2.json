@@ -1,11 +1,11 @@
 {
-	"Layer2":
+	"Layer":
 	[
-		"KEY_F5","KEY_F4","KEY_F3","KEY_F2","KEY_F1","0","KEY_ESC",
-		"KEY_TAB","0","0","KEY_UP_ARROW","0","0","0",
-		"0","0","KEY_RIGHT_ARROW","KEY_DOWN_ARROW","KEY_LEFT_ARROW","0","KEY_CAPS_LOCK",
-		"KEY_LEFT_SHIFT","0","0","0","0","0","0",
-		"0","KEY_LEFT_GUI","KEY_LEFT_ALT","KEY_LEFT_CTRL","KEY_RETURN","",
-		"KEY_DELETE","KEY_BACKSPACE","0","0","0","0"
+		"0x22", "0x21", "0x20", "0x1F", "0x1E", "x29",
+		"0x2B", "0x14", "0x1A", "0x08", "0x15", "0x17", 
+		"0x0A", "0x09", "0x07", "0x16", "0x04", "0x39", 
+		"0xE1", "0x1C", "0x1B", "0x06", "0x19", "0x05", 
+		"0x2C", "0xF0", "0xE2", "0xE3", "0xE0", "0", 
+		"0", "0"
 	]
 }

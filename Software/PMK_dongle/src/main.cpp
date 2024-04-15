@@ -1,4 +1,7 @@
 #include <Arduino.h>
+#include <string>
+#include <cstring>
+#include <cstdint>
 
 //TO DO delete this file
 #include "config.h"
@@ -21,8 +24,6 @@
 #include "espNowHandle.h"
 #include "fsHandle.h"
 #include "MSCHandle.h"
-
-
 
 void loopCount(); //For function telemetry purpose / Homemade Ultra lite RTOS
 
@@ -130,7 +131,7 @@ void setup()
   //====================================================
   //====================Wifi/ESP Now====================
   //====================================================
-  //while(!Serial){}  //Optional debug helpw
+  while(!Serial){}  //Optional debug helpw
   Serial.printf("Starting WiFi\r\n");
   WiFi.mode(WIFI_STA);
   //WiFi.mode(WIFI_AP);
@@ -185,16 +186,16 @@ void setup()
 
     char deviceName[32];
     deviceDirectory.getName(deviceName, sizeof(deviceName));
+    bool isConfigFolder = strcmp(deviceName, "System Volume Information");  //Will output something else than 0 if not sys volume info
 
-    if(strcmp(deviceName, "System Volume Information")) //Current folder is a device config folder
+    if(isConfigFolder) //Current folder is a device config folder
     {
       Serial.printf("Device name to configure: %s \r\n", deviceName);
             
       //File32 configRoot = fatfs.open(deviceDirectory.name(), O_READ);
 
       File32 configFolder = deviceDirectory.openNextFile();
-      configFolder.ls(&Serial, 0, 1);
-
+      //configFolder.ls(&Serial, 0, 1);
 
       //Now inside device config folder
       while(configFolder)
@@ -221,7 +222,38 @@ void setup()
         }
         else
         {
-          
+          //We have a directory, most likely keyboard or led
+          if(strcmp(name, "keyboard") == 0)
+          {
+            //Serial.printf("We have a keyboard config folder\r\n");
+            for(uint8_t currentLayer = 0; currentLayer < 8; currentLayer++)
+            {
+              char kbLayerFile[64] ="\0";
+              char currentLayerChar[1];
+              sprintf(currentLayerChar, "%hhu", currentLayer);
+              strcat(kbLayerFile, "/");
+              strcat(kbLayerFile, deviceName);
+              strcat(kbLayerFile, "/keyboard/kb-l");
+              strcat(kbLayerFile, currentLayerChar);
+              strcat(kbLayerFile, ".json");
+
+              File32 layerFolder;
+              if(layerFolder.open(kbLayerFile))
+              {
+                Serial.printf("Successfully opened %s\r\n", kbLayerFile);
+                uint8_t deviceID = static_cast<uint8_t>(std::atoi(getAttribute(filePath, "deviceID")));
+                loadConfig(kbLayerFile, deviceID, currentLayer);
+              }
+              else
+              {
+                Serial.printf("Couldnt open %s\r\n", kbLayerFile);
+              }
+            }
+          }
+          if(strcmp(name, "led") == 0)
+          {
+
+          }
         }
 
         configFolder = deviceDirectory.openNextFile();
