@@ -93,7 +93,7 @@ void setup()
 
   WiFi.mode(WIFI_STA);
   delay(10);
-  WiFi.setTxPower(WIFI_POWER_15dBm);
+  WiFi.setTxPower(WIFI_POWER_19_5dBm);
 
   Serial.printf("WiFi power: ");
   Serial.println(WiFi.getTxPower());

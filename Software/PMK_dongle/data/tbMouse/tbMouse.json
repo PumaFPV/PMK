@@ -1,0 +1,14 @@
+{
+    "deviceName": "tbMouse",
+    "deviceID": "3",
+    "deviceAddress": ["0x84","0xF7","0x03","0xF0","0xEF","0x72"],
+
+    "isKeyboard": "false",
+    "isMouse": "true",
+    "isGamepad": "false",
+    "isLed": "true",
+    "isKnob": "false",
+    "isActuator": "false",
+    "isDisplay": "false",
+    "isSerial": "false"
+}

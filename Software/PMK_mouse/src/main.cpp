@@ -22,20 +22,15 @@ int8_t radius = 5;
 
 void setup() 
 {
+  //Start Serial port for debugging. 
   Serial.begin(115200);
 
-  keyboardPacket.deviceID = 2;
+  keyboardPacket.deviceID = 3;
   //while(!Serial){}
-  //delay(1000);
-  Serial.print("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
+  Serial.print("Mouse MAC address: " + WiFi.macAddress() + "\r\n");
 
-  //Start Serial port for debugging. 
-
-  //Mouse.begin();
-  //USB.begin();
-
+  pinModeDef();
   ledSetup();
-  pinMode(9, OUTPUT);
 
   WiFi.mode(WIFI_STA);
 
@@ -72,10 +67,6 @@ void loop()
 {  
 
   loopCount();
-  digitalWrite(9, ledState);
-
-  ledState =! ledState;
-
 
   if(micros() - gpioTask.beginTime >= gpioTask.interval)
   {
@@ -87,8 +78,9 @@ void loop()
       trackballUpCurrentState    = digitalRead(PIN_TRACKBALL_UP);
       trackballDownCurrentState  = digitalRead(PIN_TRACKBALL_DOWN);
 
-      //Check for button click. If present, print to Serial monitor.
-      trackballButtonCurrentState = digitalRead(PIN_TRACKBALL_BUTTON);
+      //Check for button click
+      trackballButtonCurrentState = !digitalRead(PIN_TRACKBALL_BUTTON);
+      //Serial.printf("Button %i\r\n", trackballButtonCurrentState);
 
     gpioTask.endTime = micros();
     gpioTask.counter++;
@@ -103,25 +95,25 @@ void loop()
       //Deals with movement
       if (trackballLeftPreviousState != trackballLeftCurrentState)
       {
-        Serial.println("Left");
+        //Serial.println("Left");
         xPosition= --xPosition;
         trackballLeftPreviousState = trackballLeftCurrentState;
       }
       if (trackballRightPreviousState != trackballRightCurrentState)
       {
-        Serial.println("Right");
+        //Serial.println("Right");
         xPosition= ++xPosition;
         trackballRightPreviousState = trackballRightCurrentState;
       }
       if (trackballUpPreviousState != trackballUpCurrentState)
       {
-        Serial.println("Up");
+        //Serial.println("Up");
         yPosition= --yPosition;
         trackballUpPreviousState = trackballUpCurrentState;
       }
       if (trackballDownPreviousState != trackballDownCurrentState)
       {
-        Serial.println("Down");
+        //Serial.println("Down");
         yPosition= ++yPosition;
         trackballDownPreviousState = trackballDownCurrentState;
       }
@@ -140,16 +132,16 @@ void loop()
     pmkTask.beginTime = micros();
     pmkTask.inBetweenTime = pmkTask.beginTime - pmkTask.endTime;
 
-      //mousePacket.x = xDistance;
-      //mousePacket.y = yDistance;
-      if(deg == 360)
-      {
-        deg = 0;
-      }
-      mousePacket.x = cos(deg*DEG_TO_RAD)*radius;//(cos(float(deg * DEG_TO_RAD)) - cos(float((deg-1) * DEG_TO_RAD)))*radius;
-      mousePacket.y = sin(deg*DEG_TO_RAD)*radius;//(sin(float(deg* DEG_TO_RAD)) - sin(float((deg-1)*DEG_TO_RAD)))*radius;
-      Serial.printf("deg: %i, x: %i, y: %i\r\n", deg, mousePacket.x, mousePacket.y);
-      deg = deg + 5;
+      mousePacket.x = xDistance;
+      mousePacket.y = yDistance;
+      //if(deg == 360)
+      //{
+      //  deg = 0;
+      //}
+      //mousePacket.x = cos(deg*DEG_TO_RAD)*radius;//(cos(float(deg * DEG_TO_RAD)) - cos(float((deg-1) * DEG_TO_RAD)))*radius;
+      //mousePacket.y = sin(deg*DEG_TO_RAD)*radius;//(sin(float(deg* DEG_TO_RAD)) - sin(float((deg-1)*DEG_TO_RAD)))*radius;
+      //Serial.printf("deg: %i, x: %i, y: %i\r\n", deg, mousePacket.x, mousePacket.y);
+      //deg = deg + 5;
       mousePacket.key = trackballButtonCurrentState;
       xPosition = 0;
       yPosition = 0;
@@ -161,7 +153,7 @@ void loop()
       {
         //Serial.println("Sent with success");
       }
-      else 
+      else
       {
         Serial.println("Error sending the data");
       }

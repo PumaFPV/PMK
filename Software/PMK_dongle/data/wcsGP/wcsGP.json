@@ -1,6 +1,6 @@
 {
     "deviceName": "wcsGP",
-    "deviceID": "5",
+    "deviceID": "6",
     "deviceAddress": ["0x84", "0xF7", "0x03", "0xF0", "0xF0", "0xB8"],
 
     "isKeyboard": "true",

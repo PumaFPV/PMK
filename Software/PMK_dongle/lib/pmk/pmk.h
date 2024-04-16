@@ -261,7 +261,11 @@ void handleKeyboard()
         TinyUSBDevice.remoteWakeup();
     }
 
-    if(!usb_hid.ready()) return;
+    if(!usb_hid.ready())
+    {
+        Serial.printf("not ready \r\n");
+        return;
+    } 
     //Serial.printf("usb ready\r\n");
     
     uint8_t keycode[6] = {0};
@@ -343,8 +347,8 @@ void handleKeyboard()
         }
     }
 
-    //Serial.printf("Report: %02X %02X %02X %02X %02X %02X modifier: %02X\r\n", keycode[0], keycode[1], keycode[2], keycode[3], keycode[4], keycode[5], modifier);
-    usb_hid.keyboardReport(0, modifier, keycode);
+    Serial.printf("Report: %02X %02X %02X %02X %02X %02X modifier: %02X\r\n", keycode[0], keycode[1], keycode[2], keycode[3], keycode[4], keycode[5], modifier);
+    usb_hid.keyboardReport(RID_KEYBOARD, modifier, keycode);
 
 }
 
@@ -352,6 +356,7 @@ void handleMouse()
 {
     if(usb_hid.ready())
     {
+        Serial.printf("x: %i, y: %i, key: %u, wheel: %i, pan: %i", mousePacket.x, mousePacket.y, mousePacket.key,mousePacket.w, mousePacket.p);
         usb_hid.mouseReport(RID_MOUSE, mousePacket.key, mousePacket.x, mousePacket.y, mousePacket.w, mousePacket.p);
     }
 }

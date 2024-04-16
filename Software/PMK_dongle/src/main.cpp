@@ -105,10 +105,10 @@ void setup()
   //====================HID====================
   //===========================================
   // Set up HID
-  usb_hid.setBootProtocol(HID_ITF_PROTOCOL_KEYBOARD);
+  //usb_hid.setBootProtocol(HID_ITF_PROTOCOL_KEYBOARD);
   usb_hid.setPollInterval(2);
   usb_hid.setReportDescriptor(desc_hid_report, sizeof(desc_hid_report));
-  usb_hid.setStringDescriptor("TinyUSB Keyboard");
+  usb_hid.setStringDescriptor("PMK");
 
   // Set up output report (on control endpoint) for Capslock indicator
   usb_hid.setReportCallback(NULL, hid_report_callback);

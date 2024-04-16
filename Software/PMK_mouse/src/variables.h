@@ -13,7 +13,7 @@
 #define PIN_TRACKBALL_LED_RED   38
 #define PIN_TRACKBALL_LED_BLUE  40
 
-uint8_t dongleAddress[] = {0x58, 0xCF, 0x79, 0xA3, 0x98, 0xC2};
+uint8_t dongleAddress[] = {0x58, 0xCF, 0x79, 0xA3, 0x98, 0xC8}; //C2 - C8
 
 //Define variables used in sketch
 bool trackballButtonCurrentState = 0;
