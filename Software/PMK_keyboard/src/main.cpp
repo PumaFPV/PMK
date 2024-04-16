@@ -1,3 +1,6 @@
+#define LEFT_KB 0
+#define RIGHT_KB 1
+
 #include <Arduino.h>
 
 #include "config.h"
@@ -25,52 +28,24 @@ void IRAM_ATTR rotaryEncoderISR()
   static unsigned long time = xTaskGetTickCount();
   const unsigned long interval = 10;
 
-  //if(xTaskGetTickCount() - time > interval)
-  //{
-    //Serial.printf("B: %i\r\n", digitalRead(RE_B));
-    if(digitalRead(RE_B))
-    {
-      rotary--;
-    }
-    else
-    {
-      rotary++;
-    }
-    time = xTaskGetTickCount();
-  //}
-  //else
-  //{
-    //Serial.printf("Too soon\r\n");
-  //}
+  if(digitalRead(RE_B))
+  {
+    rotary--;
+  }
+  else
+  {
+    rotary++;
+  }
+  time = xTaskGetTickCount();
+
   attachInterrupt(RE_A, rotaryEncoderISR, RISING);
 }
 
-//volatile int rotary = 0; // Variable to hold encoder count
-//volatile int lastEncoded = 0;
-//volatile long lastMillis = 0;
-//
-//void handleEncoder() {
-//  int MSB = digitalRead(RE_A);
-//  int LSB = digitalRead(RE_B);
-//  int encoded = (MSB << 1) | LSB;
-//  int sum = (lastEncoded << 2) | encoded;
-//  
-//  if ((millis() - lastMillis) > 2) { // debounce
-//    if (sum == 0b1101 || sum == 0b0100 || sum == 0b0010 || sum == 0b1011) {
-//      rotary++;
-//    } else if (sum == 0b1110 || sum == 0b0111 || sum == 0b0001 || sum == 0b1000) {
-//      rotary--;
-//    }
-//    lastMillis = millis();
-//  }
-//
-//  lastEncoded = encoded;
-//}
 
 void setup() 
 {
 
-  keyboardPacket.deviceID = 0; 
+  keyboardPacket.deviceID = LEFT_KB; 
 
   //-----Serial
   Serial.begin(115200);

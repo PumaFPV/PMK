@@ -57,7 +57,7 @@ uint8_t const desc_hid_report[] = {
   TUD_HID_REPORT_DESC_KEYBOARD()
 };
 
-// USB HID object.
+// USB HID object
 Adafruit_USBD_HID usb_hid;
 
 //hid_gamepad_report_t gp;

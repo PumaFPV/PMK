@@ -131,13 +131,9 @@ void setup()
   //====================================================
   //====================Wifi/ESP Now====================
   //====================================================
-  while(!Serial){}  //Optional debug helpw
+  //while(!Serial){}  //Optional debug helpw
   Serial.printf("Starting WiFi\r\n");
   WiFi.mode(WIFI_STA);
-  //WiFi.mode(WIFI_AP);
-  //WiFi.disconnect();
-  //WiFi.softAP("PMK", nullptr, 6);
-  //WiFi.softAPdisconnect(false);
   WiFi.setTxPower(WIFI_POWER_11dBm);
   Serial.printf("New WiFi power: ");
   Serial.println(WiFi.getTxPower());
@@ -170,7 +166,6 @@ void setup()
   Serial.printf("Number of devices to config: %d \r\n\r\n", numberOfDeviceToConfig);
   
   File32 root = fatfs.open("/");
-  //root.ls(&Serial, 0, 0);
 
   for(uint8_t deviceNumber = 0; deviceNumber <= numberOfDeviceToConfig; deviceNumber++)
   {
@@ -226,7 +221,7 @@ void setup()
           if(strcmp(name, "keyboard") == 0)
           {
             //Serial.printf("We have a keyboard config folder\r\n");
-            for(uint8_t currentLayer = 0; currentLayer < 8; currentLayer++)
+            for(uint8_t currentLayer = 0; currentLayer < MAX_NUMBER_OF_LAYERS; currentLayer++)
             {
               char kbLayerFile[64] ="\0";
               char currentLayerChar[1];
@@ -242,7 +237,7 @@ void setup()
               {
                 Serial.printf("Successfully opened %s\r\n", kbLayerFile);
                 uint8_t deviceID = static_cast<uint8_t>(std::atoi(getAttribute(filePath, "deviceID")));
-                loadConfig(kbLayerFile, deviceID, currentLayer);
+                loadKeyConfig(kbLayerFile, deviceID, currentLayer);
               }
               else
               {
@@ -252,7 +247,30 @@ void setup()
           }
           if(strcmp(name, "led") == 0)
           {
+            //Serial.printf("We have a led config folder\r\n");
+            for(uint8_t currentLayer = 0; currentLayer < MAX_NUMBER_OF_LAYERS; currentLayer++)
+            {
+              char ledLayerFile[64] ="\0";
+              char currentLayerChar[1];
+              sprintf(currentLayerChar, "%hhu", currentLayer);
+              strcat(ledLayerFile, "/");
+              strcat(ledLayerFile, deviceName);
+              strcat(ledLayerFile, "/led/led-l");
+              strcat(ledLayerFile, currentLayerChar);
+              strcat(ledLayerFile, ".json");
 
+              File32 layerFolder;
+              if(layerFolder.open(ledLayerFile))
+              {
+                Serial.printf("Successfully opened %s\r\n", ledLayerFile);
+                uint8_t deviceID = static_cast<uint8_t>(std::atoi(getAttribute(filePath, "deviceID")));
+                loadLedConfig(ledLayerFile, deviceID, currentLayer);
+              }
+              else
+              {
+                Serial.printf("Couldnt open %s\r\n", ledLayerFile);
+              }
+            }
           }
         }
 

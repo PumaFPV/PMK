@@ -111,9 +111,9 @@ void addDeviceAddress(const char* filename)
 
 
 
-void loadConfig(const char* filename, uint8_t deviceID, uint8_t layerID)
+void loadKeyConfig(const char* filename, uint8_t deviceID, uint8_t layerID)
 {
-  Serial.printf("Loading config for %s, deviceID: %u, layer ID: %u\r\n", filename, deviceID, layerID);
+  Serial.printf("Loading Key config for %s, deviceID: %u, layer ID: %u\r\n", filename, deviceID, layerID);
   File32 file = fatfs.open(filename, O_READ);
   if(!file) 
   {
@@ -131,31 +131,66 @@ void loadConfig(const char* filename, uint8_t deviceID, uint8_t layerID)
   DeserializationError error = deserializeJson(doc, buf.get());
   if(error) 
   {
-    Serial.println("Failed to parse JSON");
+    Serial.printf("Failed to parse JSON\r\n");
     return;
   }
 
   JsonArray layerJsonArray = doc["Layer"];
-  if(layerJsonArray.size() != 32) 
+  
+  if(layerJsonArray.size() > MAX_NUMBER_OF_KEYS) 
   {
-    Serial.println("Invalid layer config size");
+    Serial.printf("Too many keys configured, not configuring it\r\n");
     return;
   }
 
-  uint8_t layerArray[32];
-  for(int i = 0; i < 32; i++) 
+  for(uint8_t i = 0; i < layerJsonArray.size(); i++) 
   {
     String hexStr = layerJsonArray[i].as<String>();
-    layerArray[i] = strtoul(hexStr.c_str(), NULL, 16);
+    keyChar[deviceID-1][layerID][i] = strtoul(hexStr.c_str(), NULL, 16);
+    //Serial.printf("Loading %u\r\n", keyChar[deviceID-1][layerID][i]);
   }
-
-  for(uint8_t i = 0; i < 32; i++)
-  {
-    keyChar[deviceID-1][layerID-1][i] = layerArray[i];
-    Serial.printf("Loading %u\r\n", layerArray[i]);
-  }
-
 }
 
+
+
+void loadLedConfig(const char* filename, uint8_t deviceID, uint8_t layerID)
+{
+  Serial.printf("Loading LED config for %s, deviceID: %u, layer ID: %u\r\n", filename, deviceID, layerID);
+  File32 file = fatfs.open(filename, O_READ);
+  if(!file) 
+  {
+    Serial.println("Failed to open file for reading");
+    return;
+  }
+
+  size_t size = file.size();
+  std::unique_ptr<char[]> buf(new char[size]);
+
+  file.readBytes(buf.get(), size);
+  file.close();
+
+  DynamicJsonDocument doc(1024);
+  DeserializationError error = deserializeJson(doc, buf.get());
+  if(error) 
+  {
+    Serial.printf("Failed to parse JSON\r\n");
+    return;
+  }
+
+  JsonArray layerJsonArray = doc["Layer"];
+  
+  if(layerJsonArray.size() > MAX_NUMBER_OF_LEDS) 
+  {
+    Serial.printf("Too many LED configured, not configuring it\r\n");
+    return;
+  }
+
+  for(uint8_t i = 0; i < layerJsonArray.size(); i++) 
+  {
+    String hexStr = layerJsonArray[i].as<String>();
+    ledColorProfile[deviceID-1][layerID][i] = strtoul(hexStr.c_str(), NULL, 16);
+    //Serial.printf("Loading %u\r\n", keyChar[deviceID-1][layerID][i]);
+  }
+}
 
 #endif

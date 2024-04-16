@@ -5,6 +5,7 @@ Schematic:
 	Add LED to RE
 	Edge connector for peripherals
 	remove cirque connector
+	Qi charger
 	
 Routing:
 	Move SR away from switch (aluminium plate)
