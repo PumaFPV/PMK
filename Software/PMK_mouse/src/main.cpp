@@ -12,24 +12,43 @@
 #include "pmk.h"
 
 
-//USBHIDMouse Mouse;
-//mouseStruct mousePacket;
 
 void loopCount();
-bool ledState = 0;
-int16_t deg = 0;
-int8_t radius = 5;
+
+
 
 void setup() 
 {
+  keyboardPacket.deviceID = 3;
+
   //Start Serial port for debugging. 
   Serial.begin(115200);
 
-  keyboardPacket.deviceID = 3;
-  //while(!Serial){}
   Serial.print("Mouse MAC address: " + WiFi.macAddress() + "\r\n");
 
-  pinModeDef();
+  //Define pin functionality on the Arduino
+  pinMode(PIN_TRACKBALL_BUTTON,    INPUT);
+  pinMode(PIN_TRACKBALL_LEFT,      INPUT);
+  pinMode(PIN_TRACKBALL_RIGHT,     INPUT);
+  pinMode(PIN_TRACKBALL_UP,        INPUT);
+  pinMode(PIN_TRACKBALL_DOWN,      INPUT);
+
+  attachInterrupt(PIN_TRACKBALL_UP, upISR, RISING);
+  attachInterrupt(PIN_TRACKBALL_DOWN, downISR, RISING);
+  attachInterrupt(PIN_TRACKBALL_RIGHT, rightISR, RISING);
+  attachInterrupt(PIN_TRACKBALL_LEFT, leftISR, RISING);
+
+  pinMode(PIN_TRACKBALL_LED_WHITE, OUTPUT);
+  pinMode(PIN_TRACKBALL_LED_GREEN, OUTPUT);
+  pinMode(PIN_TRACKBALL_LED_RED,   OUTPUT);
+  pinMode(PIN_TRACKBALL_LED_BLUE,  OUTPUT);
+
+  //Pull LED pins low to prevent flickering
+  digitalWrite(PIN_TRACKBALL_LED_WHITE, LOW);
+  digitalWrite(PIN_TRACKBALL_LED_GREEN, LOW);
+  digitalWrite(PIN_TRACKBALL_LED_RED,   LOW);
+  digitalWrite(PIN_TRACKBALL_LED_BLUE,  LOW);  
+  
   ledSetup();
 
   WiFi.mode(WIFI_STA);
@@ -73,67 +92,18 @@ void loop()
     gpioTask.beginTime = micros();
     gpioTask.inBetweenTime = gpioTask.beginTime - gpioTask.endTime;
 
-      trackballLeftCurrentState  = digitalRead(PIN_TRACKBALL_LEFT);
-      trackballRightCurrentState = digitalRead(PIN_TRACKBALL_RIGHT);
-      trackballUpCurrentState    = digitalRead(PIN_TRACKBALL_UP);
-      trackballDownCurrentState  = digitalRead(PIN_TRACKBALL_DOWN);
-
-      //Check for button click
-      trackballButtonCurrentState = !digitalRead(PIN_TRACKBALL_BUTTON);
-      //Serial.printf("Button %i\r\n", trackballButtonCurrentState);
+      mousePacket.key = !digitalRead(PIN_TRACKBALL_BUTTON);
 
     gpioTask.endTime = micros();
     gpioTask.counter++;
     gpioTask.duration = gpioTask.endTime - gpioTask.beginTime;
   }
 
-  if(micros() - trackballTask.beginTime >= trackballTask.interval)
-  {
-    trackballTask.beginTime = micros();
-    trackballTask.inBetweenTime = trackballTask.beginTime - trackballTask.endTime;
-
-      //Deals with movement
-      if (trackballLeftPreviousState != trackballLeftCurrentState)
-      {
-        //Serial.println("Left");
-        xPosition= --xPosition;
-        trackballLeftPreviousState = trackballLeftCurrentState;
-      }
-      if (trackballRightPreviousState != trackballRightCurrentState)
-      {
-        //Serial.println("Right");
-        xPosition= ++xPosition;
-        trackballRightPreviousState = trackballRightCurrentState;
-      }
-      if (trackballUpPreviousState != trackballUpCurrentState)
-      {
-        //Serial.println("Up");
-        yPosition= --yPosition;
-        trackballUpPreviousState = trackballUpCurrentState;
-      }
-      if (trackballDownPreviousState != trackballDownCurrentState)
-      {
-        //Serial.println("Down");
-        yPosition= ++yPosition;
-        trackballDownPreviousState = trackballDownCurrentState;
-      }
-
-      xDistance = xPosition * range;
-      yDistance = yPosition * range;
-
-    trackballTask.endTime = micros();
-    trackballTask.counter++;
-    trackballTask.duration = trackballTask.endTime - trackballTask.beginTime;
-  }
-
-
   if(micros() - pmkTask.beginTime >= pmkTask.interval)
   {
     pmkTask.beginTime = micros();
     pmkTask.inBetweenTime = pmkTask.beginTime - pmkTask.endTime;
 
-      mousePacket.x = xDistance;
-      mousePacket.y = yDistance;
       //if(deg == 360)
       //{
       //  deg = 0;
@@ -142,11 +112,12 @@ void loop()
       //mousePacket.y = sin(deg*DEG_TO_RAD)*radius;//(sin(float(deg* DEG_TO_RAD)) - sin(float((deg-1)*DEG_TO_RAD)))*radius;
       //Serial.printf("deg: %i, x: %i, y: %i\r\n", deg, mousePacket.x, mousePacket.y);
       //deg = deg + 5;
-      mousePacket.key = trackballButtonCurrentState;
+
+      mousePacket.x = xPosition;
+      mousePacket.y = yPosition;
       xPosition = 0;
       yPosition = 0;
-      xDistance = 0;
-      yDistance = 0;
+
       esp_err_t result = esp_now_send(dongleAddress, (uint8_t *) &mousePacket, sizeof(mousePacket));
 
       if (result == ESP_OK)
@@ -157,36 +128,7 @@ void loop()
       {
         Serial.println("Error sending the data");
       }
-      
-      /*
-        // if the mouse button is pressed:
-      if (trackballButtonCurrentState == LOW) {
-        // if the mouse is not pressed, press it:
-        if (!Mouse.isPressed(MOUSE_LEFT)) {
-          Mouse.press(MOUSE_LEFT);
-        }
-      }
-      // else the mouse button is not pressed:
-      else {
-        // if the mouse is pressed, release it:
-        if (Mouse.isPressed(MOUSE_LEFT)) {
-          Mouse.release(MOUSE_LEFT);
-        }
-      }
-  
-      // if X or Y is non-zero, move:
-      if ((xDistance != 0) || (yDistance != 0)) {
-        Serial.print(xDistance);
-        Serial.print(" ");
-        Serial.print(yDistance);
-        Serial.println();
-        Mouse.move(xDistance, yDistance, 0);
-        xPosition = 0;
-        yPosition = 0;
-        xDistance = 0;
-        yDistance = 0;
-      }
-      */
+
     pmkTask.endTime = micros();
     pmkTask.counter++;
     pmkTask.duration = pmkTask.endTime - pmkTask.beginTime;
@@ -207,17 +149,6 @@ void loopCount()
     gpioTask.frequency = gpioTask.counter;
     //Serial.println(gpioTask.counter);
     gpioTask.counter = 0;
-  }
-
-  if(trackballTask.counter == 0)
-  {
-    trackballTask.startCounterTime = micros();
-  }
-  if(micros() - trackballTask.startCounterTime > 1000000)
-  {
-    trackballTask.frequency = trackballTask.counter;
-    //Serial.println(trackballTask.counter);
-    trackballTask.counter = 0;
   }
 
   if(pmkTask.counter == 0)
