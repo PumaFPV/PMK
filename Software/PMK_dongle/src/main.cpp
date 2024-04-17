@@ -356,7 +356,7 @@ void loop()
     keyboardTask.inBetweenTime = keyboardTask.beginTime - keyboardTask.endTime;
 
     handleKeyboard();
-
+    handleGamepad();
 
 
     //Keyboard functions end

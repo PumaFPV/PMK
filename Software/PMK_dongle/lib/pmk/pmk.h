@@ -343,7 +343,7 @@ void handleKeyboard()
         //Deal here with special keys (layers, brightness, etc...)
         if(HIDKey > 0xE8)
         {
-
+            usb_hid.sendReport16(RID_CONSUMER_CONTROL, HIDKey);
         }
     }
 
@@ -356,54 +356,61 @@ void handleMouse()
 {
     if(usb_hid.ready())
     {
-        Serial.printf("x: %i, y: %i, key: %u, wheel: %i, pan: %i", mousePacket.x, mousePacket.y, mousePacket.key,mousePacket.w, mousePacket.p);
+        //Serial.printf("x: %i, y: %i, key: %u, wheel: %i, pan: %i", mousePacket.x, mousePacket.y, mousePacket.key,mousePacket.w, mousePacket.p);
         usb_hid.mouseReport(RID_MOUSE, mousePacket.key, mousePacket.x, mousePacket.y, mousePacket.w, mousePacket.p);
     }
 }
 
 void handleGamepad()
 {
-    uint8_t gamepadHat;
-    switch(gamepadPacket.dpad)
+    if(usb_hid.ready())
     {
-        case 0b00000001:
-            gamepadHat = GAMEPAD_HAT_CENTERED;
-            break;
-        case 0b00000010:
-            gamepadHat = GAMEPAD_HAT_UP;
-            break;  
-        case 0b00000110:
-            gamepadHat = GAMEPAD_HAT_UP_RIGHT;
-            break;
-        case 0b00000100:
-            gamepadHat = GAMEPAD_HAT_RIGHT;
-            break;
-        case 0b00001100:
-            gamepadHat = GAMEPAD_HAT_DOWN_RIGHT;
-            break;
-        case 0b00001000:
-            gamepadHat = GAMEPAD_HAT_DOWN;
-            break;
-        case 0b00011000:
-            gamepadHat = GAMEPAD_HAT_DOWN_LEFT;
-            break;
-        case 0b00010000:
-            gamepadHat = GAMEPAD_HAT_LEFT;
-            break;
-        case 0b00010010:
-            gamepadHat = GAMEPAD_HAT_UP_LEFT;
-            break;
+        uint8_t gamepadHat;
+        switch(gamepadPacket.dpad)
+        {
+            case 0b00000001:
+                gamepadHat = GAMEPAD_HAT_CENTERED;
+                break;
+            case 0b00000010:
+                gamepadHat = GAMEPAD_HAT_UP;
+                break;  
+            case 0b00000110:
+                gamepadHat = GAMEPAD_HAT_UP_RIGHT;
+                break;
+            case 0b00000100:
+                gamepadHat = GAMEPAD_HAT_RIGHT;
+                break;
+            case 0b00001100:
+                gamepadHat = GAMEPAD_HAT_DOWN_RIGHT;
+                break;
+            case 0b00001000:
+                gamepadHat = GAMEPAD_HAT_DOWN;
+                break;
+            case 0b00011000:
+                gamepadHat = GAMEPAD_HAT_DOWN_LEFT;
+                break;
+            case 0b00010000:
+                gamepadHat = GAMEPAD_HAT_LEFT;
+                break;
+            case 0b00010010:
+                gamepadHat = GAMEPAD_HAT_UP_LEFT;
+                break;
+        }
+
+        uint32_t gamePadButtons = gamepadPacket.buttons[0] | (gamepadPacket.buttons[1] << 8) | (gamepadPacket.buttons[2] << 16) | (gamepadPacket.buttons[3] << 24);
+
+
+        gp.x       = gamepadPacket.leftX;
+        gp.y       = gamepadPacket.leftY;
+        gp.z       = gamepadPacket.rightX;
+        gp.rz      = gamepadPacket.rightY;
+        gp.rx      = gamepadPacket.leftTrigger;
+        gp.ry      = gamepadPacket.rightTrigger;
+        gp.hat     = gamepadHat;
+        gp.buttons = gamePadButtons;
+        
+        usb_hid.sendReport(RID_GAMEPAD, &gp, sizeof(gp));
     }
-
-    uint32_t gamePadButtons = gamepadPacket.buttons[0] | (gamepadPacket.buttons[1] << 8) | (gamepadPacket.buttons[2] << 16) | (gamepadPacket.buttons[3] << 24);
-    
-    //Gamepad.send(
-    //    gamepadPacket.leftX, gamepadPacket.leftY, 
-    //    gamepadPacket.rightX, gamepadPacket.rightY, 
-    //    gamepadPacket.leftTrigger, gamepadPacket.rightTrigger, 
-    //    gamepadHat, gamePadButtons
-    //);
-
 }
 
 void handleKnob()

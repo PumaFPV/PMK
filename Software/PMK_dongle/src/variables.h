@@ -44,24 +44,23 @@ enum
   RID_KEYBOARD = 1,
   RID_MOUSE,
   RID_CONSUMER_CONTROL, // Media, volume etc ..
+  RID_GAMEPAD
 };
 
 // HID report descriptor using TinyUSB's template
 uint8_t const desc_hid_report[] = {
   TUD_HID_REPORT_DESC_KEYBOARD(HID_REPORT_ID(RID_KEYBOARD)),
-  TUD_HID_REPORT_DESC_MOUSE   (HID_REPORT_ID(RID_MOUSE))//,
-  //TUD_HID_REPORT_DESC_CONSUMER( HID_REPORT_ID(RID_CONSUMER_CONTROL) )//,
-  //TUD_HID_REPORT_DESC_GAMEPAD() //Not yet working...
+  TUD_HID_REPORT_DESC_MOUSE   (HID_REPORT_ID(RID_MOUSE)),
+  TUD_HID_REPORT_DESC_CONSUMER( HID_REPORT_ID(RID_CONSUMER_CONTROL) ),
+  TUD_HID_REPORT_DESC_GAMEPAD( HID_REPORT_ID(RID_GAMEPAD)) //Not yet working...
 };
 
-//uint8_t const desc_hid_report[] = {
-//  TUD_HID_REPORT_DESC_KEYBOARD()
-//};
+
 
 // USB HID object
 Adafruit_USBD_HID usb_hid;
 
-//hid_gamepad_report_t gp;
+hid_gamepad_report_t gp;
 
 // ESP32 use same flash device that store code.
 // Therefore there is no need to specify the SPI and SS
