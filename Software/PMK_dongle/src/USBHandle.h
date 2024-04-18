@@ -30,7 +30,7 @@ void hid_report_callback(uint8_t report_id, hid_report_type_t report_type, uint8
   // The LED bit map is as follows: (also defined by KEYBOARD_LED_* )
   // Kana (4) | Compose (3) | ScrollLock (2) | CapsLock (1) | Numlock (0)
   uint8_t ledIndicator = buffer[0];
-
+  //Serial.printf("bufsize: %i, sizeof buffer: %i\r\n", bufsize, sizeof(buffer));
   // turn on LED if capslock is set
   digitalWrite(LED_DATA_PIN, ledIndicator);
 }

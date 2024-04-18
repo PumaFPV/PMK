@@ -342,11 +342,17 @@ void handleKeyboard()
         }
 
         //Deal here with special keys (layers, brightness, etc...)
-        if(HIDKey > 0x1000)
+        //Consummer needs debounce
+        static unsigned long previousConsumerControlTime = 0; 
+        if(HIDKey > 0x1000 && previousConsumerControlTime + 200 < millis()
+            || HIDKey == 0x10EA && previousConsumerControlTime + 20 < millis()
+            || HIDKey == 0x10E9 && previousConsumerControlTime + 20 < millis()
+        )
         {
             HIDKey = HIDKey - 0x1000;
             //Serial.printf("Consummer control: %04X\r\n", HIDKey);
             usb_hid.sendReport16(RID_CONSUMER_CONTROL, HIDKey);
+            previousConsumerControlTime = millis();
         }
     }
 
