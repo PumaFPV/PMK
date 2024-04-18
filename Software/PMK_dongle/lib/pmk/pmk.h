@@ -271,7 +271,7 @@ void handleKeyboard()
     uint8_t keycode[6] = {0};
     uint8_t keycodeNumber = 0;
     uint8_t modifier = 0x00;
-    std::vector<uint8_t> keyToPress{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,};
+    std::vector<uint16_t> keyToPress{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,};
     uint8_t keyToPressID = 0;
     layerID = 0;
 
@@ -307,22 +307,23 @@ void handleKeyboard()
 
     //Serial.printf("%02X %02X %02X %02X %02X %02X\r\n", keyToPress[0], keyToPress[1], keyToPress[2], keyToPress[3], keyToPress[4], keyToPress[5]);
 
-    uint8_t numberOfKeyToPress = std::find(keyToPress.begin(), keyToPress.end(), 255) - keyToPress.begin();
+    uint8_t numberOfKeyToPress = std::find(keyToPress.begin(), keyToPress.end(), 0xFFFF) - keyToPress.begin();
+    //Serial.printf("Number of keys to press: %i\r\n", numberOfKeyToPress);
 
     for(uint8_t i = i; i < numberOfKeyToPress; i++) //Add the final keyToPress to the report / deal with modifiers
     {
-        uint8_t HIDKey = keyToPress[i];
+        uint16_t HIDKey = keyToPress[i];
         if(0xDF < HIDKey && HIDKey < 0xE8)  //
         {
             //We have a modifier
             modifier = modifier | (1 << (HIDKey - 0xE0));   //First modifier is 0xE0 Left control
             //Serial.printf("Modifier is: %02X\r\n", modifier);
         }
+        //Serial.printf("Pressing: 0x%u, on layer: %i, Equivalent HID: %u\r\n", keyboardPacket.key[i], layerID, keyIDtoChar(keyboardPacket.key[i], layerID));
 
         if(HIDKey < 0xA5 )
         {
             //We have a non modifier key
-            //Serial.printf("Pressing: 0x%u, on layer: %i, Equivalent HID: %u\r\n", keyboardPacket.key[i], layerID, keyIDtoChar(keyboardPacket.key[i], layerID));
             if(keycodeNumber < 6)
             {
                 keycode[keycodeNumber] = HIDKey;
@@ -341,8 +342,10 @@ void handleKeyboard()
         }
 
         //Deal here with special keys (layers, brightness, etc...)
-        if(HIDKey > 0xE8)
+        if(HIDKey > 0x1000)
         {
+            HIDKey = HIDKey - 0x1000;
+            //Serial.printf("Consummer control: %04X\r\n", HIDKey);
             usb_hid.sendReport16(RID_CONSUMER_CONTROL, HIDKey);
         }
     }
