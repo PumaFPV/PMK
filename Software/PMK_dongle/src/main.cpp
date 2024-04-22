@@ -41,6 +41,7 @@ void setup()
 
   Serial.begin(115200);
 
+
   //===========================================
   //====================FatFS==================
   //===========================================
@@ -79,6 +80,7 @@ void setup()
     Serial.printf("Failed to init files system, flash may not be formatted\r\n");
   }  
 
+
   //===========================================
   //====================INIT===================
   //===========================================
@@ -97,6 +99,7 @@ void setup()
   Serial.printf("  \\ \\/  \\/ / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ | __/ _ \\  |  ___/| |\\/| |  <   \r\n");
   Serial.printf("   \\  /\\  /  __/ | (_| (_) | | | | | |  __/ | || (_) | | |    | |  | | . \\  \r\n");
   Serial.printf("    \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___| \\__ \\___/  |_|    |_|  |_|_|\\_\\ \r\n\r\n\r\n");
+
 
   //===========================================
   //====================USB====================
@@ -120,18 +123,10 @@ void setup()
   while( !TinyUSBDevice.mounted() ) delay(1);
 
 
-  //Serial.print("Starting keyboard\r\n");
-  //Keyboard.begin();
-  //Serial.print("Starting mouse\r\n");
-  //Mouse.begin();
-  //Serial.print("Starting gamepad\r\n");
-  //Gamepad.begin();
-
-
   //====================================================
   //====================Wifi/ESP Now====================
   //====================================================
-  //while(!Serial){}  //Optional debug helpw
+  //while(!Serial){}  //Optional debug help
   Serial.printf("Starting WiFi\r\n");
   WiFi.mode(WIFI_STA);
   WiFi.setTxPower(WIFI_POWER_11dBm);
@@ -157,14 +152,14 @@ void setup()
   peerInfo.channel = 0;  
   peerInfo.encrypt = false;
 
+
   //===========================================
   //====================Config=================
   //===========================================
 
   uint8_t numberOfDeviceToConfig = getNumberOfDevices();
-
   Serial.printf("Number of devices to config: %d \r\n\r\n", numberOfDeviceToConfig);
-  
+
   File32 root = fatfs.open("/");
 
   for(uint8_t deviceNumber = 0; deviceNumber <= numberOfDeviceToConfig; deviceNumber++)
@@ -173,7 +168,7 @@ void setup()
     Serial.printf("Configuring device number %d\r\n", deviceNumber);
 
     File32 deviceDirectory = root.openNextFile();
-    
+
     if(!deviceDirectory.isDirectory())
     {
       Serial.printf("There is a file in root, please reupload file system\r\n");
@@ -186,8 +181,6 @@ void setup()
     if(isConfigFolder) //Current folder is a device config folder
     {
       Serial.printf("Device name to configure: %s \r\n", deviceName);
-            
-      //File32 configRoot = fatfs.open(deviceDirectory.name(), O_READ);
 
       File32 configFolder = deviceDirectory.openNextFile();
       //configFolder.ls(&Serial, 0, 1);
@@ -288,37 +281,11 @@ void setup()
 
   setupPMK();
   
-  //listDir(fatfs, "/", 3);
 }
 
 
 void loop()
 {
-  //Serial.printf("loop\r\n");
-
-  //if (usb_hid.ready())
-  //{
-  //  // Random touch
-  //  //Serial.println("Random touch");
-  //  gp.x       = random(-127, 128);
-  //  gp.y       = random(-127, 128);
-  //  gp.z       = random(-127, 128);
-  //  gp.rz      = random(-127, 128);
-  //  gp.rx      = random(-127, 128);
-  //  gp.ry      = random(-127, 128);
-  //  gp.hat     = random(0,      9);
-  //  gp.buttons = random(0, 0xffff);
-  //  usb_hid.sendReport(4, &gp, sizeof(gp));
-  //}
-  
-
-  //Receive ESP-NOW packet
-
-  //Figure out which command it is
-
-  //If special key (shift / fn / other) than choose correct kb layout
-
-  //if USB command  -> send
 
   //------------------------------------------------------ledTask
   if(micros() - ledTask.beginTime >= ledTask.interval)
