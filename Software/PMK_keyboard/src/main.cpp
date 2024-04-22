@@ -34,11 +34,11 @@ void IRAM_ATTR rotaryEncoderISR()
 
     if(digitalRead(RE_B))
     {
-      rotary++;
+      rotary--;
     }
     else
     {
-      rotary--;
+      rotary++;
     }
     time = xTaskGetTickCount();
 
@@ -51,7 +51,7 @@ void IRAM_ATTR rotaryEncoderISR()
 void setup() 
 {
 
-  keyboardPacket.deviceID = RIGHT_KB; 
+  keyboardPacket.deviceID = LEFT_KB; 
 
   //-----Serial
   Serial.begin(115200);
