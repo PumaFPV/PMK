@@ -24,22 +24,28 @@ int rotary = 0;
 
 void IRAM_ATTR rotaryEncoderISR()
 {
-  detachInterrupt(RE_A);
-  static unsigned long time = xTaskGetTickCount();
+
+  static unsigned long time = 0;
   const unsigned long interval = 10;
 
-  if(digitalRead(RE_B))
+  if(xTaskGetTickCount() - time > interval)
   {
-    rotary--;
-  }
-  else
-  {
-    rotary++;
-  }
-  time = xTaskGetTickCount();
+    detachInterrupt(RE_A);
 
-  attachInterrupt(RE_A, rotaryEncoderISR, RISING);
+    if(digitalRead(RE_B))
+    {
+      rotary--;
+    }
+    else
+    {
+      rotary++;
+    }
+    time = xTaskGetTickCount();
+
+    attachInterrupt(RE_A, rotaryEncoderISR, RISING);
+  }
 }
+
 
 
 void setup() 
@@ -218,6 +224,7 @@ void loop()
     ledTask.counter++;
     ledTask.duration = ledTask.endTime - ledTask.beginTime;
   }
+
 
 
   //------------------------------------------------------

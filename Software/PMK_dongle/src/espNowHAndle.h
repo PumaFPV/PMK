@@ -21,6 +21,7 @@ void handleReceivedPacket(packetStruct receivedPacket)
     break;
   case 1: //Keyboard
     convertPacket2Keyboard(receivedPacket);
+    handleKeyboard();
     break;
   case 2: //Mouse
     convertPacket2Mouse(receivedPacket);

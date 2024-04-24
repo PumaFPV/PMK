@@ -36,7 +36,7 @@ typedef struct telemetryStruct {
 typedef struct keyboardStruct {
     uint8_t deviceID;
     const uint8_t packetType = 1;
-    uint8_t key[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+    uint8_t key[8] = {0};
 }   keyboardStruct;
 
 typedef struct mouseStruct {
@@ -52,12 +52,12 @@ typedef struct mouseStruct {
 typedef struct gamepadStruct {
     uint8_t deviceID;
     const uint8_t packetType = 3;
-    uint8_t leftX;
-    uint8_t leftY;
-    uint8_t rightX;
-    uint8_t rightY;
-    uint8_t leftTrigger;
-    uint8_t rightTrigger;
+    int8_t leftX;
+    int8_t leftY;
+    int8_t rightX;
+    int8_t rightY;
+    int8_t leftTrigger;
+    int8_t rightTrigger;
     uint8_t dpad;   //0b000ldruc - Left - Down - Right - Up - Center
     uint8_t buttons[4];
 }   gamepadStruct;
@@ -113,7 +113,7 @@ enum errorID {
 
 keyboardStruct  keyboardPacket[8];
 mouseStruct     mousePacket;
-gamepadStruct   gamepadPacket;
+gamepadStruct   gamepadPacket[8];
 ledStruct       ledPacket;
 knobStruct      knobPacket;
 actuatorStruct  actuatorPacket;
@@ -123,7 +123,6 @@ serialStruct    serialPacket;
 
 packetStruct receivedPacket;
 
-keyboardStruct previousKeyboardPacket[8];
 
 void setupPMK()
 {
@@ -135,8 +134,16 @@ void setupPMK()
         {
             keyboardPacket[deviceID].key[keyID] = 0;
         }
+
+        gamepadPacket[deviceID].rightX = -128;
+        gamepadPacket[deviceID].rightY = -128;
+        gamepadPacket[deviceID].leftX = -128;
+        gamepadPacket[deviceID].leftY = -128;
+        gamepadPacket[deviceID].leftTrigger = -128;
+        gamepadPacket[deviceID].rightTrigger = -128;
     }
 }
+
 
 void convertPacket2Telemetry(packetStruct packet)
 {
@@ -156,6 +163,7 @@ void convertPacket2Telemetry(packetStruct packet)
     telemetryPacket.error[4] = packet.data[12];
 }
 
+
 void convertPacket2Keyboard(packetStruct packet)
 {
     keyboardPacket[packet.deviceID].deviceID = packet.deviceID;
@@ -169,6 +177,7 @@ void convertPacket2Keyboard(packetStruct packet)
     keyboardPacket[packet.deviceID].key[7] = packet.data[7];
 }
 
+
 void convertPacket2Mouse(packetStruct packet)
 {
     mousePacket.deviceID = packet.deviceID;
@@ -179,22 +188,24 @@ void convertPacket2Mouse(packetStruct packet)
     mousePacket.key = packet.data[4];
 }
 
+
 void convertPacket2Gamepad(packetStruct packet)
 {
-    gamepadPacket.deviceID = packet.deviceID;
-    gamepadPacket.leftX = packet.data[0];
-    gamepadPacket.leftY = packet.data[1];
-    gamepadPacket.rightX = packet.data[2];
-    gamepadPacket.rightY = packet.data[3];
-    gamepadPacket.leftTrigger = packet.data[4];
-    gamepadPacket.rightTrigger = packet.data[5];
-    gamepadPacket.dpad = packet.data[6];
+    gamepadPacket[packet.deviceID].deviceID = packet.deviceID;
+    gamepadPacket[packet.deviceID].leftX = packet.data[0];
+    gamepadPacket[packet.deviceID].leftY = packet.data[1];
+    gamepadPacket[packet.deviceID].rightX = packet.data[2];
+    gamepadPacket[packet.deviceID].rightY = packet.data[3];
+    gamepadPacket[packet.deviceID].leftTrigger = packet.data[4];
+    gamepadPacket[packet.deviceID].rightTrigger = packet.data[5];
+    gamepadPacket[packet.deviceID].dpad = packet.data[6];
 
     for(uint8_t i = 0; i < 4; ++i)
     {
-        gamepadPacket.buttons[i] = packet.data[7+i];
+        gamepadPacket[packet.deviceID].buttons[i] = packet.data[7+i];
     }
 }
+
 
 void convertPacket2Led(packetStruct packet)
 {
@@ -205,6 +216,7 @@ void convertPacket2Led(packetStruct packet)
     ledPacket.blue = packet.data[3];
 }
 
+
 void convertPacket2Knob(packetStruct packet)
 {
     knobPacket.deviceID = packet.deviceID;  
@@ -214,6 +226,7 @@ void convertPacket2Knob(packetStruct packet)
     }
 }
 
+
 void convertPacket2Actuator(packetStruct packet)
 {
     actuatorPacket.deviceID = packet.deviceID;
@@ -221,6 +234,7 @@ void convertPacket2Actuator(packetStruct packet)
     actuatorPacket.position = packet.data[1];
     actuatorPacket.command = packet.data[2];
 }
+
 
 void convertPacket2Display(packetStruct packet)
 {
@@ -231,6 +245,7 @@ void convertPacket2Display(packetStruct packet)
     displayPacket.brightness = packet.data[3];
 } 
 
+
 void convertPacket2Serial(packetStruct packet)
 {
     serialPacket.deviceID = packet.deviceID;
@@ -239,6 +254,7 @@ void convertPacket2Serial(packetStruct packet)
       serialPacket.packet[i] = packet.data[i];
     }
 }
+
 
 uint8_t nonZeroSize(uint8_t arr[])
 {
@@ -253,6 +269,7 @@ uint8_t nonZeroSize(uint8_t arr[])
     }
     return 255;
 }
+
 
 void handleKeyboard()
 {
@@ -361,6 +378,7 @@ void handleKeyboard()
 
 }
 
+
 void handleMouse()
 {
     if(usb_hid.ready())
@@ -374,49 +392,50 @@ void handleGamepad()
 {
     if(usb_hid.ready())
     {
-        uint8_t gamepadHat;
-        switch(gamepadPacket.dpad)
+        gp.hat = 0;
+        gp.buttons = 0;
+        gp.rx = 0;
+        gp.ry = 0;
+        gp.rz = 0;
+        gp.x = 0;
+        gp.y = 0;
+        gp.z = 0;
+
+        for(uint8_t deviceID = 0; deviceID < 8; deviceID++)
         {
-            case 0b00000001:
-                gamepadHat = GAMEPAD_HAT_CENTERED;
-                break;
-            case 0b00000010:
-                gamepadHat = GAMEPAD_HAT_UP;
-                break;  
-            case 0b00000110:
-                gamepadHat = GAMEPAD_HAT_UP_RIGHT;
-                break;
-            case 0b00000100:
-                gamepadHat = GAMEPAD_HAT_RIGHT;
-                break;
-            case 0b00001100:
-                gamepadHat = GAMEPAD_HAT_DOWN_RIGHT;
-                break;
-            case 0b00001000:
-                gamepadHat = GAMEPAD_HAT_DOWN;
-                break;
-            case 0b00011000:
-                gamepadHat = GAMEPAD_HAT_DOWN_LEFT;
-                break;
-            case 0b00010000:
-                gamepadHat = GAMEPAD_HAT_LEFT;
-                break;
-            case 0b00010010:
-                gamepadHat = GAMEPAD_HAT_UP_LEFT;
-                break;
+            gp.hat |= gamepadPacket[deviceID].dpad;
+            gp.buttons |= gamepadPacket[deviceID].buttons[0] | (gamepadPacket[deviceID].buttons[1] << 8) | (gamepadPacket[deviceID].buttons[2] << 16) | (gamepadPacket[deviceID].buttons[3] << 24);
+
+            if(gamepadPacket[deviceID].rightX != -128)
+            {
+                gp.x = gamepadPacket[deviceID].rightX;
+            }
+            
+            if(gamepadPacket[deviceID].rightY != -128)
+            {
+                gp.y = gamepadPacket[deviceID].rightY;
+            }
+            
+            if(gamepadPacket[deviceID].leftX != -128)
+            {
+                gp.z = gamepadPacket[deviceID].leftX;
+            }
+            
+            if(gamepadPacket[deviceID].leftY != -128)
+            {
+                gp.rx = gamepadPacket[deviceID].leftY;
+            }
+            
+            if(gamepadPacket[deviceID].rightTrigger != -128)
+            {
+                gp.ry = gamepadPacket[deviceID].rightTrigger;
+            }
+            
+            if(gamepadPacket[deviceID].leftTrigger != -128)
+            {
+                gp.rz = gamepadPacket[deviceID].leftTrigger;
+            }
         }
-
-        uint32_t gamePadButtons = gamepadPacket.buttons[0] | (gamepadPacket.buttons[1] << 8) | (gamepadPacket.buttons[2] << 16) | (gamepadPacket.buttons[3] << 24);
-
-
-        gp.x       = gamepadPacket.leftX;
-        gp.y       = gamepadPacket.leftY;
-        gp.z       = gamepadPacket.rightX;
-        gp.rz      = gamepadPacket.rightY;
-        gp.rx      = gamepadPacket.leftTrigger;
-        gp.ry      = gamepadPacket.rightTrigger;
-        gp.hat     = gamepadHat;
-        gp.buttons = gamePadButtons;
         
         usb_hid.sendReport(RID_GAMEPAD, &gp, sizeof(gp));
     }

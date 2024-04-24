@@ -22,7 +22,8 @@ void setup()
 
   //-----Serial
   Serial.begin(115200);
-
+  //while(!Serial){};
+  delay(100);
 
   //-----Shift register
   Serial.printf("Initialising GPIO\r\n");
@@ -40,8 +41,8 @@ void setup()
 
   //-----ESP NOW
   WiFi.mode(WIFI_STA);
-  Serial.printf("MAC Address: %s\r\n", WiFi.macAddress());
-
+  Serial.print("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
+  
   if(esp_now_init() != ESP_OK)
   {
     Serial.printf("Error initializing ESP-NOW \r\n");
@@ -68,6 +69,12 @@ void setup()
   // Register for a callback function that will be called when data is received
   Serial.printf("Registering OnDataRecv CB\r\n");
   esp_now_register_recv_cb(OnDataRecv);
+
+  gamepadPacket.z = -128;
+  gamepadPacket.rx = -128;
+  gamepadPacket.ry = -128;
+  gamepadPacket.rz = -128;
+
 
 }
 

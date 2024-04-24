@@ -61,6 +61,13 @@ void setup()
   // Register for a callback function that will be called when data is received
   esp_now_register_recv_cb(OnDataRecv);
 
+  //Set unused bytes
+  gamepadPacket.leftX = -128;
+  gamepadPacket.rightX = -128;
+  gamepadPacket.rightY = -128;
+  gamepadPacket.leftTrigger = -128;
+  gamepadPacket.rightTrigger = -128;
+
 }
 
 
@@ -78,9 +85,8 @@ void loop()
     gpioTask.beginTime = micros();
     gpioTask.inBetweenTime = gpioTask.beginTime - gpioTask.endTime;
 
-      gamepadPacket.z = map(constrain(analogRead(THROTTLE_PIN), 0, 4095), 0, 4095, -128, 127);
-      gamepadPacket.buttons[0] = !digitalRead(ANNULAR_PIN) << 4 | !digitalRead(MIDDLE_PIN) << 5 | !digitalRead(INDEX_PIN) << 6 | !digitalRead(THUMB1_PIN) << 7;
-      gamepadPacket.buttons[1] = !digitalRead(THUMB2_PIN) | !digitalRead(THUMB3_PIN) << 1 | !digitalRead(DOWN_PIN) << 2 | !digitalRead(UP_PIN) << 3;
+      gamepadPacket.leftY = map(constrain(analogRead(THROTTLE_PIN), 0, 4095), 0, 4095, -128, 127);
+      gamepadPacket.buttons[2] = !digitalRead(THUMB2_PIN) | !digitalRead(THUMB3_PIN) << 1 | !digitalRead(DOWN_PIN) << 2 | !digitalRead(UP_PIN) << 3 | !digitalRead(ANNULAR_PIN) << 4 | !digitalRead(MIDDLE_PIN) << 5 | !digitalRead(INDEX_PIN) << 6 | !digitalRead(THUMB1_PIN) << 7;
 
     gpioTask.endTime = micros();
     gpioTask.counter++;

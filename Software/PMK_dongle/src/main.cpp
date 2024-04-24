@@ -322,8 +322,8 @@ void loop()
     keyboardTask.beginTime = micros();
     keyboardTask.inBetweenTime = keyboardTask.beginTime - keyboardTask.endTime;
 
-    handleKeyboard();
-    handleGamepad();
+    //handleKeyboard();
+    //handleGamepad();
 
 
     //Keyboard functions end

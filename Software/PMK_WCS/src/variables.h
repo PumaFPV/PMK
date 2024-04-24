@@ -40,8 +40,8 @@
 //--------------------------------------------------Initialize libraries--------------------------------------------------
 esp_now_peer_info_t peerInfo;
 
-telemetryStruct telemetryPacket;
-gamepadStruct gamepadPacket;
+//telemetryStruct telemetryPacket;
+//gamepadStruct gamepadPacket;
 
 //--------------------------------------------------Structs--------------------------------------------------
 struct Func

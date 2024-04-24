@@ -78,7 +78,7 @@ struct Debounce
 };
 
 //--------------------------------------------------Variables--------------------------------------------------
-uint8_t dongleAddress[] = {0x58, 0xCF, 0x79, 0xA3, 0x98, 0xC2};
+uint8_t dongleAddress[] = {0x58, 0xCF, 0x79, 0xA3, 0x98, 0xC8};
 
 uint8_t receivedData[16];
 String success;
