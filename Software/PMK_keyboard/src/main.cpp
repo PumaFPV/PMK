@@ -116,16 +116,23 @@ void setup()
   // get the status of Trasnmitted packet
   esp_now_register_send_cb(OnDataSent);
 
-  // Register peer
-  memcpy(peerInfo.peer_addr, dongleAddress, 6);
-  peerInfo.channel = 0;  
-  peerInfo.encrypt = false;
+  // Register dongles
+  for(uint8_t i = 0; i < 3; i++)
+  {
+    memcpy(peerInfo.peer_addr, dongleAddress, 6);
+    peerInfo.channel = 0;  
+    peerInfo.encrypt = false;
 
-  // Add peer        
-  if (esp_now_add_peer(&peerInfo) != ESP_OK){
-    Serial.println("Failed to add peer");
-    return;
+    // Add dongle        
+    if(esp_now_add_peer(&peerInfo) != ESP_OK)
+    {
+      Serial.printf("Failed to add dongle: %i\r\n", i);
+      return;
+    }
   }
+
+
+
   // Register for a callback function that will be called when data is received
   esp_now_register_recv_cb(OnDataRecv);
 
