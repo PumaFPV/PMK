@@ -2,6 +2,7 @@ Schematic:
 	Fix PSoM pinout
 	Add A,B from RE to SR with R series
 	Add capa for A, B
+	Add debounce to RE
 	Add LED to RE
 	Edge connector for peripherals
 	remove cirque connector
