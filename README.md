@@ -5,8 +5,8 @@ The goal is to make a suit of wireless devices such as "smart keyboard" (combine
 The first step is to make a wireless split keyboard, and then we will see later...
 
 ## Dongle
-The dongle is master ESP32S2/S3, appears as HID (keyboard, mouse and joystick) and as Mass Storage device Class with right.json, left.json to store and update configuration of each connected devices.
-Maybe also store password manager.  
+The dongle is "master" ESP32S2/S3, appears as HID (keyboard, mouse and joystick) and as Mass Storage device Class with config files inside.
+Maybe also store password manager....
 
 <img src="/Documentation/Images/Dongle_HW00_recto.jpg" width="231" height="225"><img src="/Documentation/Images/Dongle_HW00_verso.jpg" width="255" height="195"><img src="/Documentation/Images/Dongle_HW00_PCB_bottom.jpg" width="225" height="300">
 
@@ -25,41 +25,44 @@ As the dongle is the master of PMK, it hosts the config files for each devices. 
 		|  |--keyboard  
 		|  |  |- kb-l1.json  
 		|  |  |- kb-l2.json  
-		|  |--mouse  
-		|  |  |- ms-l1.json  
-		|  |  |- ms-l2.json
+
 		
 For more details about devices configurations / capabilities check the Protocol chapter.
 
 ## Devices
-Can run on any espressif chip that can run ESP-NOW.
-The plan is to run the same firmware on all devices and being able to configure them via their corresponding .json files on the master dongle. 
-Each device should be configurable via UART (set device ID, set dongle MAC address, and read device MAC address)
+Can run on any espressif chip that can run ESP-NOW. (Will later add support for nRF52 chips for lower power consumption)
+The plan is to run the simplest firmware on all devices and being able to configure them via their corresponding .json files on the master dongle. 
+Each device should be configurable via UART (set device ID, set dongle MAC address, and read device MAC address). 
+See sample device code for example. (TODO)
 
 ### Keyboard
-For example a keyboard would send pressed keys number "0x04, 0xA1", which the dongle then reads in the .json as coordinates for returning desired key "a,b", if special key is pressed (shift, Fn, …) then use 2nd line of array “A”.  
+For example a keyboard would send pressed keys number "0x04, 0xA1", which the dongle then reads in the .json as coordinates for returning desired key "a,b" pr modifier key., if special key is pressed (volume up, brighntess control...) then do the appropriate consummer control action.
 
 <img src="/Layout/keyboard-layout.jpg" width="536" height="242">
 
 ### Mouse
 Mouse can send x,y movement, wheel, pan scrolling and mouse buttons (left, middle, right, forward, backward). Each button is encoded as a bit in the "key" byte of the packet.
+No configuration needed on the dongle appart from the DPI setting.
 
 ### Gamepad
-Gamepad can send 2 analog joysticks, 2 analog triggers, dpad buttons, and 32 additionnal buttons.
+Gamepad can send 2 analog joysticks, 2 analog triggers, dpad buttons, and 32 additionnal buttons. No additionnal configuration needed on the dongle.
 
 ### LED
-Hopefully processing key press and led function on dongle and send data to kb is fast enough, otherwise we will have to run led function on keyboard.  
-Buildin keyboard functions: all kb, breath, swipe wave (single color or rainbow), key wave, single key...
+Hopefully processing key press and led function on dongle and send data to device is fast enough, otherwise we will have to run led function on keyboard. (TODO)
+Buildin keyboard functions: all kb, breath, swipe wave (single color or rainbow), key wave, single key... (TODO / Partially implemented...)
 
 <img src="/Documentation/Images/PKB_HW00_pulsar.png" width="700" height="394">
 
 ### Knob
-Knobs are in absolute position going from 0 to 255. 
+Knobs are in absolute position going from 0 to 255. Could be used for Deej.
 
 For encoder knobs, this is handled on the device and enumerates as a keyboard pressing one key for clockwise and another for counterclockwise rotation.
 
 
-## Protocol
+## Protocols
+
+### ESP-NOW - Device to Dongle
+This is the packet sent via ESP-NOW. 
 Packet structure is: 
 | Byte | 1 | 2 | 3-16 |
 | ---- | - | - | - |
@@ -79,5 +82,23 @@ Devices should send data as simple as possible, keyboard sends key IDs pressed (
 | 0x07 | Display | send image to display using wifi for faster refresh rate? or store on local mem | 6 | dID 07 imgNumber x y brightness | Display img number n at coordinates x,y and brightness b. Might change later |
 | 0x08 | Serial | send up to 8 bytes of data | 10 | dID 08 aa bb cc dd ee ff gg hh | Sending 8 bytes of data |
 | 0x09 |  |  |  |  |  |
+
+### Serial config - Dongle to PC
+The dongle supports a few serial commands, they only consist on a string, no CR/LF should be send or the command won't be recongnised.
+Here is the list of supported commands:
+- getMacAddress : Returns the dongle MAC address
+- cpu : Returns data about CPU (frequencies, flash size...)
+- version : Returns firmware version and build date
+- power : Return WiFi power output in ESP manner
+- format : Format flash in FatFS format
+- restart : Restarts the dongle
+- l-1 / l7 : Forces current layer to layer x as specified by lx. Send l-1 to turn off force layer feature (keypress change layer will reset the force layer)
+
+### Serial config - Device to PC (TODO)
+Before being able to communicate with the dongle, the device has to know the dongle MAC address, and must own a deviceID. You will also need to know the device MAC address to give it to the dongle.
+Here is the list of supported commands:
+- getMacAddress : Returns the device MAC address
+- setDongleMacAddress + dongle MAC address : Set the dongle MAC address in device memory 
+- setDeviceID + deviceID : Give the device its ID used to link to configuration file in the dongle
 
 More info on [Notion](https://swamp-zydeco-907.notion.site/PumaKeyBoard-b41d42fec8c74b02bc73637fae3648d7)

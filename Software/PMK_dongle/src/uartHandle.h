@@ -14,6 +14,7 @@
 #include "ff.h"
 #include "diskio.h"
 
+#include "variables.h"
 
 
 // const char formatName[] = "PMK Dongle";
@@ -61,7 +62,7 @@ void format_fat12(void)
 
   // Setting label
   Serial.printf("Setting disk label to: %c\r\n", DISK_LABEL);
-  //r = f_setlabel(DISK_LABEL);
+  // r = f_setlabel(DISK_LABEL);  // TODO to fix...
   if (r != FR_OK) {
     Serial.print(F("Error, f_setlabel failed with error code: ")); 
     Serial.println(r, DEC);
@@ -102,7 +103,7 @@ void handleUart() //TODO
 
     switch(hashCommand)
     {
-        case 2318435644: //macaddress
+        case 1311181436: //macaddress
           Serial.print("Dongle MAC address is: ");
           Serial.println(WiFi.macAddress());
           break;
