@@ -4,6 +4,8 @@ PMK - a Full wireless HID ecosystem for split keyboards and other fun devices
 The goal is to make a suit of wireless devices such as "smart keyboard" (combined mouse and keyboard), LEDs, knobs, display, etc  
 The first step is to make a wireless split keyboard, and then we will see later...
 
+Currently, you can connect up to 8 (software limited) devices per dongle, each of them having up to 8 (software limited) layers. Layers only affect keyboards and LED.
+
 ## Dongle
 The dongle is "master" ESP32S2/S3, appears as HID (keyboard, mouse and joystick) and as Mass Storage device Class with config files inside.
 Maybe also store password manager....
@@ -37,19 +39,25 @@ See sample device code for example. (TODO)
 
 ### Keyboard
 For example a keyboard would send pressed keys number "0x04, 0xA1", which the dongle then reads in the .json as coordinates for returning desired key "a,b" pr modifier key., if special key is pressed (volume up, brighntess control...) then do the appropriate consummer control action.
+Keys are read with 74HC165 shift registers so theoratically you could have A LOT of keys per keyboard. Current limitation is the max value of keyID which is 255, so there could be a maximum of 255 keys per keyboard (+8 layers...).
+As of today the keyboard is at the HW01 stage, and uses the sofle layout (which I do like). It uses 29 hot swappable Kailh Choc switches + one rotary encoder. The MCU is a PSoM module (homemade SoM) with an ESP32S2 inside. The SoM allows for quick swap of different MCU to try out different feature. Today the ESP32S2 is used for the ease of software developpement. Its power consumption is bad I am aware. But at least software works. I plan to design a casing + metal grid + foam for it. 
+HW02 will be coming soon too as I have a few adjustements to make. It support module on the thumb side (Circle trackpad and 3D mouse will be the first modules to come).
 
 <img src="/Layout/keyboard-layout.jpg" width="536" height="242">
 
 ### Mouse
 Mouse can send x,y movement, wheel, pan scrolling and mouse buttons (left, middle, right, forward, backward). Each button is encoded as a bit in the "key" byte of the packet.
 No configuration needed on the dongle appart from the DPI setting.
+I plan on retro fitting a wired Logitech G300 with PMK so that it frees up a USB port + becomes wireless. It will be a great first POC.
 
 ### Gamepad
 Gamepad can send 2 analog joysticks, 2 analog triggers, dpad buttons, and 32 additionnal buttons. No additionnal configuration needed on the dongle.
+I current upgraded an old thrustmaster sim set (FCS & WCS) from 1992 with PMK. They used to have an ADB port, but now are fully wireless and appears as one gamepad on the computer. The update is a bit crude as it was first though as a POC for trying out the gamepad feature. But since it works fine, I kept it this way.
 
 ### LED
 Hopefully processing key press and led function on dongle and send data to device is fast enough, otherwise we will have to run led function on keyboard. (TODO)
 Buildin keyboard functions: all kb, breath, swipe wave (single color or rainbow), key wave, single key... (TODO / Partially implemented...)
+Uses the WS2812 kind of LED IC.
 
 <img src="/Documentation/Images/PKB_HW00_pulsar.png" width="700" height="394">
 
