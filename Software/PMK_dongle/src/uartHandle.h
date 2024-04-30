@@ -168,6 +168,9 @@ void handleUart() //TODO
           Serial.printf("Flash formatted successfully\r\n");
           break;
 
+        case 1059716234: // restart
+          ESP.restart();
+          break;
     }
   }
 }
