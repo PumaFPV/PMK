@@ -24,11 +24,10 @@
 #include "espNowHandle.h"
 #include "fsHandle.h"
 #include "MSCHandle.h"
+#include "uartHandle.h"
 
 void loopCount(); //For function telemetry purpose / Homemade Ultra lite RTOS
-
-const char compileDate[] = __DATE__ " " __TIME__; //For Serial info
-
+void uartHandle();
 
 
 //===========================================
@@ -341,6 +340,7 @@ void loop()
     uartTask.inBetweenTime = uartTask.beginTime - uartTask.endTime;
 
     //**functions
+    handleUart();
 
     uartTask.endTime = micros();
     uartTask.counter++;
@@ -456,24 +456,3 @@ void loopCount()
 }
 
 
-/*
-void uartHandle() //TODO
-{
-  if(Serial.available())
-  {
-    String macAddressCommand = "macaddress";
-    String command = //Serial.readString();
-    //Serial.println(command);
-    
-    if(command == macAddressCommand)
-    {
-      //Serial.print("Device MAC address is: ");
-      //Serial.println(WiFi.macAddress());
-    }
-    else
-    {
-      //Serial.println("Invalid command");
-    }
-  }
-}
-*/

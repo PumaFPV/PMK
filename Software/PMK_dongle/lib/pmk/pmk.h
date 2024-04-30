@@ -18,6 +18,8 @@ uint8_t layerID = 0;
 
 uint8_t keyboardDeviceID = 255;
 
+int8_t forceLayer = -1;
+
 typedef struct packetStruct {
     uint8_t deviceID;
     uint8_t packetType = 255;
@@ -280,7 +282,7 @@ void handleKeyboard()
 
     if(!usb_hid.ready())
     {
-        Serial.printf("not ready \r\n");
+        //Serial.printf("not ready \r\n");
         return;
     } 
     //Serial.printf("usb ready\r\n");
@@ -301,13 +303,21 @@ void handleKeyboard()
             {
                 case LAYER_MINUS:
                     layerID = 1;
+                    forceLayer = -1;
                     break;
                 case LAYER_PLUS:
                     layerID = 2;
+                    forceLayer = -1;
                     break;
             }
         }
     }
+
+    if(forceLayer != -1)
+    {
+        layerID = forceLayer;
+    }
+    //Serial.printf("Current layer is: %i\r\n", layerID);
 
     //Convert key[8] to HID[64]
     for(uint8_t deviceID = 0; deviceID < 8; deviceID++)
