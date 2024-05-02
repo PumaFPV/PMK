@@ -65,6 +65,7 @@ telemetryStruct telemetryPacket;
 keyboardStruct keyboardPacket;
 keyboardStruct previousKeyboardPacket;
 keyboardStruct releaseKeyboardPacket;
+mouseStruct mousePacket;
 
 //--------------------------------------------------Structs--------------------------------------------------
 struct Func

@@ -51,7 +51,8 @@ void IRAM_ATTR rotaryEncoderISR()
 void setup() 
 {
 
-  keyboardPacket.deviceID = LEFT_KB; 
+  keyboardPacket.deviceID = RIGHT_KB; 
+  mousePacket.deviceID = RIGHT_KB;
 
   //-----Serial
   Serial.begin(115200);
@@ -313,7 +314,20 @@ void loop()
       
       //Send all pressed keys to packet
       // Send message via ESP-NOW
-      esp_err_t result = esp_now_send(dongleAddress, (uint8_t *) &keyboardPacket, sizeof(keyboardPacket));
+      static bool kb = 0;
+
+      esp_err_t result;
+
+      if(kb)
+      {
+        result = esp_now_send(dongleAddress, (uint8_t *) &keyboardPacket, sizeof(keyboardPacket));
+        kb = 0;
+      }
+      else
+      {
+        result = esp_now_send(dongleAddress, (uint8_t *) &mousePacket, sizeof(mousePacket));
+        kb = 1;
+      }
         
       if (result == ESP_OK) 
       {
@@ -338,6 +352,16 @@ void loop()
 
     //**functions
 
+    if(mousePacket.deviceID == LEFT_KB)
+    {
+      mousePacket.x = rotary;
+      rotary = 0;
+    }
+    if(mousePacket.deviceID == RIGHT_KB)
+    {
+      mousePacket.y = rotary;
+      rotary = 0;
+    }
 
     //Serial.printf("%i\r\n", rotary);
 
