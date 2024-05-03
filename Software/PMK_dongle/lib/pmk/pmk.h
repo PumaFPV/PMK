@@ -368,18 +368,30 @@ void handleKeyboard()
             }
         }
 
-        //Deal here with special keys (layers, brightness, etc...)
+        //Deal here with special keys (brightness, volume, etc...)
         //Consummer needs debounce
         static unsigned long previousConsumerControlTime = 0; 
-        if(HIDKey > 0x1000 && previousConsumerControlTime + 200 < millis()
-            || HIDKey == 0x10EA && previousConsumerControlTime + 20 < millis()
-            || HIDKey == 0x10E9 && previousConsumerControlTime + 20 < millis()
+        if((0x1000 <= HIDKey && HIDKey < 0x2000 && previousConsumerControlTime + 200 < millis())
+
+            || (HIDKey == 0x10EA && previousConsumerControlTime + 20 < millis())
+            || (HIDKey == 0x10E9 && previousConsumerControlTime + 20 < millis())
         )
         {
-            HIDKey = HIDKey - 0x1000;
+            HIDKey -= 0x1000;
             //Serial.printf("Consummer control: %04X\r\n", HIDKey);
             usb_hid.sendReport16(RID_CONSUMER_CONTROL, HIDKey);
             previousConsumerControlTime = millis();
+        }
+
+        //Mouse key
+        static unsigned long previousMouseTime = 0;
+        if(0x2000 <= HIDKey && HIDKey < 0x3000 && previousMouseTime + 200 < millis())
+        {
+            HIDKey -= 0x2000;
+            HIDKey = 1 << HIDKey;
+            usb_hid.mouseReport(RID_MOUSE, HIDKey, mousePacket.x, mousePacket.y, mousePacket.w, mousePacket.p);
+            
+            previousMouseTime = millis();
         }
     }
 
