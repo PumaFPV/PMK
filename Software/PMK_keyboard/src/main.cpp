@@ -52,7 +52,7 @@ void setup()
 {
 
   keyboardPacket.deviceID = RIGHT_KB; 
-  mousePacket.deviceID = RIGHT_KB;
+  mousePacket.deviceID = keyboardPacket.deviceID;
 
   //-----Serial
   Serial.begin(115200);
@@ -131,8 +131,6 @@ void setup()
       return;
     }
   }
-
-
 
   // Register for a callback function that will be called when data is received
   esp_now_register_recv_cb(OnDataRecv);
@@ -251,7 +249,7 @@ void loop()
 
       for(uint8_t packet = 0; packet < NUMBER_OF_SR; packet++)
       {
-        spiPacket[packet] = 0xFF - srSpi->transfer(0);
+        spiPacket[packet] = srSpi->transfer(0);
         //Serial.print(spiPacket[packet], BIN);
         //Serial.print(" ");
       }
@@ -273,9 +271,9 @@ void loop()
       {
         for(uint8_t bit = 0; bit < 8; bit++)
         {
-          bool isKeyPressed = spiPacket[packet] & (0b1 << bit);
+          bool isKeyPressed = spiPacket[packet] & (0b1 << (7 - bit));
 
-          if(isKeyPressed == 1 && numberOfPressedKeys < MAX_NUMBER_OF_KEYS)
+          if(isKeyPressed == 0 && numberOfPressedKeys < MAX_NUMBER_OF_KEYS)
           {
             keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit + 1; //+1 so we dont have a keyID = 0
 

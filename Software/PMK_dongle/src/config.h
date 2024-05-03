@@ -46,7 +46,7 @@ uint16_t keyIDtoHID(uint8_t keyID, uint8_t layer, uint8_t deviceID)
   }
 
   //Serial.printf("KeyID: %u, LED ID: %u\r\n", keyID, keyIDtoLedID(keyID));
-  return keyChar[deviceID][layer][keyIDtoLedID(keyID)];
+  return keyChar[deviceID][layer][keyID-1];
 };
 
 #endif

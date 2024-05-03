@@ -389,7 +389,7 @@ void handleKeyboard()
         {
             HIDKey -= 0x2000;
             HIDKey = 1 << HIDKey;
-            usb_hid.mouseReport(RID_MOUSE, HIDKey, mousePacket.x, mousePacket.y, mousePacket.w, mousePacket.p);
+            usb_hid.mouseReport(RID_MOUSE, HIDKey, 0, 0, 0, 0);
             
             previousMouseTime = millis();
         }

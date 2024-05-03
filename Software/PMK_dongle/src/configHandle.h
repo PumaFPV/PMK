@@ -129,7 +129,7 @@ void loadKeyConfig(const char* filename, uint8_t deviceID, uint8_t layerID)
 
   DynamicJsonDocument doc(1024);
   DeserializationError error = deserializeJson(doc, buf.get());
-  if(error) 
+  if(error)
   {
     Serial.printf("Failed to parse JSON\r\n");
     return;
