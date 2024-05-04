@@ -9,6 +9,10 @@
 #include "variables.h"
 #include "config.h"
 
+int8_t forceLayer = -1;
+
+#include "uartHandle.h"
+
 #define LAYER_PLUS 0xF1
 #define LAYER_MINUS 0xF0
 
@@ -18,7 +22,6 @@ uint8_t layerID = 0;
 
 uint8_t keyboardDeviceID = 255;
 
-int8_t forceLayer = -1;
 
 typedef struct packetStruct {
     uint8_t deviceID;
@@ -372,7 +375,6 @@ void handleKeyboard()
         //Consummer needs debounce
         static unsigned long previousConsumerControlTime = 0; 
         if((0x1000 <= HIDKey && HIDKey < 0x2000 && previousConsumerControlTime + 200 < millis())
-
             || (HIDKey == 0x10EA && previousConsumerControlTime + 20 < millis())
             || (HIDKey == 0x10E9 && previousConsumerControlTime + 20 < millis())
         )

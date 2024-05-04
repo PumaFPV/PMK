@@ -27,7 +27,6 @@
 #include "uartHandle.h"
 
 void loopCount(); //For function telemetry purpose / Homemade Ultra lite RTOS
-void uartHandle();
 
 
 //===========================================
