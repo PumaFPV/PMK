@@ -14,11 +14,18 @@
 
 #include "variables.h"
 
+uint8_t deviceID;
+#define FIRMWARE_REV "dev"
+
+#include "uartHandle.h"
 #include "USBHandle.h"
 #include "espNowHandle.h"
 #include "ledHandle.h"
 
+
+
 void loopCount();
+
 
 int rotary = 0;
 
@@ -366,6 +373,21 @@ void loop()
     reTask.endTime = micros();
     reTask.counter++;
     reTask.duration = reTask.endTime - reTask.beginTime;
+
+  }
+
+  //------------------------------------------------------uartTask
+  if(micros() - uartTask.beginTime >= uartTask.interval)
+  {
+    uartTask.beginTime = micros();
+    uartTask.inBetweenTime = uartTask.beginTime - uartTask.endTime;
+
+    //**functions
+    handleUart();
+
+    uartTask.endTime = micros();
+    uartTask.counter++;
+    uartTask.duration = uartTask.endTime - uartTask.beginTime;
 
   }
   //Deal with other stuff
