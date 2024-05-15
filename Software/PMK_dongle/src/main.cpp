@@ -39,7 +39,6 @@ void setup()
 
   Serial.begin(115200);
 
-
   //===========================================
   //====================FatFS==================
   //===========================================
@@ -73,7 +72,7 @@ void setup()
   // Init file system on the flash
   fs_formatted = fatfs.begin(&flash);
 
-  if ( !fs_formatted )
+  if (!fs_formatted)
   {
     Serial.printf("Failed to init files system, flash may not be formatted\r\n");
   }  
