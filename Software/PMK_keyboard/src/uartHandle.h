@@ -96,10 +96,12 @@ void handleUart()
         break;
         
       case 4159936206:  // setdeviceid
-        Serial.printf("Ready to set device ID\r\n");
+        Serial.printf("Enter device ID:\r\n");
         while(!Serial.available()){}
-        deviceID = Serial.read();
-        Serial.printf("DeviceID: %u\r\n", deviceID);
+        deviceID = Serial.read() - 48;
+        Serial.printf("Setting deviceID to: %u\r\n", deviceID);
+        EEPROM.write(0, deviceID);
+        EEPROM.commit();
         break;
 
       case 4169026269: // debug1

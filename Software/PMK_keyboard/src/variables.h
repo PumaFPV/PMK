@@ -15,6 +15,7 @@
 //--------------------------------------------------Define--------------------------------------------------
 #define NUMBER_OF_SR 4  //TODO Add to config file
 #define MAX_NUMBER_OF_KEYS 8
+#define EEPROM_SIZE 1
 
 //----------Global values
 #define MIRCOS2SECONDS 1000000

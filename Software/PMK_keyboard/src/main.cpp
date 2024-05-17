@@ -8,14 +8,14 @@
 #include "SPI.h"
 #include "WiFi.h"
 #include "esp_now.h"
-#include "LittleFS.h"
 #include "FastLED.h"
+#include "EEPROM.h"
 #include "pmk.h"
 
 #include "variables.h"
 
-uint8_t deviceID;
 #define FIRMWARE_REV "dev"
+uint8_t deviceID;
 
 #include "uartHandle.h"
 #include "USBHandle.h"
@@ -57,10 +57,6 @@ void IRAM_ATTR rotaryEncoderISR()
 
 void setup() 
 {
-
-  keyboardPacket.deviceID = RIGHT_KB; 
-  mousePacket.deviceID = keyboardPacket.deviceID;
-
   //-----Serial
   Serial.begin(115200);
   //while(!Serial){}  //Optional debug help
@@ -101,6 +97,11 @@ void setup()
 
   currentPalette = RainbowColors_p;
   currentBlending = LINEARBLEND;
+
+
+  //-----EEPROM
+  EEPROM.begin(EEPROM_SIZE);
+  deviceID = EEPROM.read(0);
 
 
   //-----ESP NOW
