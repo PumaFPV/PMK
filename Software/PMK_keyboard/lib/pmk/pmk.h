@@ -4,12 +4,10 @@
 #include "Arduino.h"
 
 #include "config.h"
-#include "pmkDevice.h"
+//#include "pmkDevice.h"
 #define DEVICEID_ADDRESS 0
 
-//#include "variables.h"
-
-struct packetStruct {
+typedef struct packetStruct {
     uint8_t deviceID;
     uint8_t packetType;
     uint8_t data[16];
@@ -57,6 +55,8 @@ typedef struct ledStruct {
     uint8_t deviceID;
     const uint8_t packetType = 4;
     uint8_t function;
+    uint8_t ledNumberStart;
+    uint8_t ledNumberEnd;
     uint8_t red;
     uint8_t green;
     uint8_t blue;
@@ -93,9 +93,12 @@ typedef struct serialStruct {
 
 enum errorID {
     none, 
-    tooManyKeysPressed
+    tooManyKeysPressed,
+    overTemperature,
+    lowBattery,
+    invalidPacket,
+    internalSensorFailure
 };
-
 
 
 #endif

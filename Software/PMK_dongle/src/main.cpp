@@ -153,7 +153,8 @@ void setup()
   //===========================================
   //====================Config=================
   //===========================================
-
+  //while(!Serial){}  //Optional debug help
+  
   uint8_t numberOfDeviceToConfig = getNumberOfDevices();
   Serial.printf("Number of devices to config: %d \r\n\r\n", numberOfDeviceToConfig);
 
@@ -180,7 +181,6 @@ void setup()
       Serial.printf("Device name to configure: %s \r\n", deviceName);
 
       File32 configFolder = deviceDirectory.openNextFile();
-      //configFolder.ls(&Serial, 0, 1);
 
       //Now inside device config folder
       while(configFolder)
@@ -191,7 +191,7 @@ void setup()
         Serial.printf("File name: %s\r\n", name);
 
         char filePath[64] = "\0";
-        strcat(filePath, "/");
+        strcat(filePath, "/");  // TODO make this clean one day
         strcat(filePath, deviceName);
         strcat(filePath, "/");
         strcat(filePath, deviceName);
@@ -215,7 +215,7 @@ void setup()
             {
               char kbLayerFile[64] ="\0";
               char currentLayerChar[1];
-              sprintf(currentLayerChar, "%hhu", currentLayer);
+              sprintf(currentLayerChar, "%hhu", currentLayer);  // TODO make this clean one day
               strcat(kbLayerFile, "/");
               strcat(kbLayerFile, deviceName);
               strcat(kbLayerFile, "/keyboard/kb-l");
@@ -226,12 +226,12 @@ void setup()
               if(layerFolder.open(kbLayerFile))
               {
                 Serial.printf("Successfully opened %s\r\n", kbLayerFile);
-                uint8_t deviceID = static_cast<uint8_t>(std::atoi(getAttribute(filePath, "deviceID")));
+                uint8_t deviceID = static_cast<uint8_t>(std::atoi(getAttribute(filePath, "deviceID"))); // TODO make this clean one day
                 loadKeyConfig(kbLayerFile, deviceID, currentLayer);
               }
               else
               {
-                Serial.printf("Couldnt open %s\r\n", kbLayerFile);
+                //Serial.printf("Couldnt open %s\r\n", kbLayerFile);
               }
             }
           }
@@ -258,7 +258,34 @@ void setup()
               }
               else
               {
-                Serial.printf("Couldnt open %s\r\n", ledLayerFile);
+                //Serial.printf("Couldnt open %s\r\n", ledLayerFile);
+              }
+            }
+          }
+          if(strcmp(name, "mouse") == 0)
+          {
+            Serial.printf("We have a mouse config folder\r\n");
+            for(uint8_t currentLayer = 0; currentLayer < MAX_NUMBER_OF_LAYERS; currentLayer++)
+            {
+              char mouseLayerFile[64] ="\0";
+              char currentLayerChar[1];
+              sprintf(currentLayerChar, "%hhu", currentLayer);
+              strcat(mouseLayerFile, "/");
+              strcat(mouseLayerFile, deviceName);
+              strcat(mouseLayerFile, "/mouse/m-l");
+              strcat(mouseLayerFile, currentLayerChar);
+              strcat(mouseLayerFile, ".json");
+
+              File32 layerFolder;
+              if(layerFolder.open(mouseLayerFile))
+              {
+                Serial.printf("Successfully opened %s\r\n", mouseLayerFile);
+                uint8_t deviceID = static_cast<uint8_t>(std::atoi(getAttribute(filePath, "deviceID")));
+                loadMouseConfig(mouseLayerFile, deviceID, currentLayer);
+              }
+              else
+              {
+                //Serial.printf("Couldnt open %s\r\n", mouseLayerFile);
               }
             }
           }

@@ -408,7 +408,7 @@ void handleMouse()
     if(usb_hid.ready())
     {
         //Serial.printf("x: %i, y: %i, key: %u, wheel: %i, pan: %i", mousePacket.x, mousePacket.y, mousePacket.key,mousePacket.w, mousePacket.p);
-        usb_hid.mouseReport(RID_MOUSE, mousePacket.key, mousePacket.x, mousePacket.y, mousePacket.w, mousePacket.p);
+        usb_hid.mouseReport(RID_MOUSE, mousePacket.key, mousePacket.x*dpi[mousePacket.deviceID][layerID], mousePacket.y*dpi[mousePacket.deviceID][layerID], mousePacket.w, mousePacket.p);
     }
 }
 

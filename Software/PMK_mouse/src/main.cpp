@@ -2,14 +2,18 @@
 
 #include "WiFi.h"
 #include "esp_now.h"
+#include "EEPROM.h"
+#include "pmk.h"
 
 #include "variables.h"
 
+#define FIRMWARE_REV "dev"
+uint8_t deviceID;
+
+#include "uartHandle.h"
 #include "gpioHandle.h"
 #include "ledHandle.h"
 #include "espNowHandle.h"
-
-#include "pmk.h"
 
 
 
@@ -19,8 +23,6 @@ void loopCount();
 
 void setup() 
 {
-  keyboardPacket.deviceID = 3;
-
   //Start Serial port for debugging. 
   Serial.begin(115200);
 
@@ -51,6 +53,13 @@ void setup()
   
   ledSetup();
 
+
+  //-----EEPROM
+  EEPROM.begin(EEPROM_SIZE);
+  deviceID = EEPROM.read(DEVICEID_ADDRESS);
+  mousePacket.deviceID = deviceID;
+
+  //-----ESP NOW
   WiFi.mode(WIFI_STA);
 
   if(esp_now_init() != ESP_OK) 
@@ -132,6 +141,21 @@ void loop()
     pmkTask.endTime = micros();
     pmkTask.counter++;
     pmkTask.duration = pmkTask.endTime - pmkTask.beginTime;
+
+  }
+
+  //------------------------------------------------------uartTask
+  if(micros() - uartTask.beginTime >= uartTask.interval)
+  {
+    uartTask.beginTime = micros();
+    uartTask.inBetweenTime = uartTask.beginTime - uartTask.endTime;
+
+    //**functions
+    handleUart();
+
+    uartTask.endTime = micros();
+    uartTask.counter++;
+    uartTask.duration = uartTask.endTime - uartTask.beginTime;
 
   }
 }

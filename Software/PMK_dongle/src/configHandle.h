@@ -146,7 +146,7 @@ void loadKeyConfig(const char* filename, uint8_t deviceID, uint8_t layerID)
   for(uint8_t i = 0; i < layerJsonArray.size(); i++) 
   {
     String hexStr = layerJsonArray[i].as<String>();
-    keyChar[deviceID-1][layerID][i] = strtoul(hexStr.c_str(), NULL, 16);
+    keyChar[deviceID][layerID][i] = strtoul(hexStr.c_str(), NULL, 16);
     //Serial.printf("Loading %u\r\n", keyChar[deviceID-1][layerID][i]);
   }
 }
@@ -193,4 +193,20 @@ void loadLedConfig(const char* filename, uint8_t deviceID, uint8_t layerID)
   }
 }
 
+
+
+void loadMouseConfig(const char* filename, uint8_t deviceID, uint8_t layerID)
+{
+  Serial.printf("Loading mouse config from %s, deviceID: %u, layer ID: %u\r\n", filename, deviceID, layerID);
+  File32 file = fatfs.open(filename, O_READ);
+  if(!file) 
+  {
+    Serial.println("Failed to open file for reading");
+    return;
+  }
+
+  dpi[deviceID][layerID] = static_cast<int8_t>(std::atoi(getAttribute(filename, "dpi")));
+  Serial.printf("Setting DPI to %i for device: %u layer %u\r\n", dpi[deviceID][layerID], deviceID, layerID);
+
+}
 #endif

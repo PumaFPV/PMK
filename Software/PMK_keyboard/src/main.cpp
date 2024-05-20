@@ -1,5 +1,5 @@
-#define LEFT_KB 0
-#define RIGHT_KB 1
+#define LEFT_KB 1
+#define RIGHT_KB 2
 
 #include <Arduino.h>
 
