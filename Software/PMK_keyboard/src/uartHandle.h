@@ -35,13 +35,14 @@ void help()
 {
   Serial.printf("List of available commands:\r\n");
   Serial.printf("   h / help : display available commands\r\n");
-  Serial.printf("   macaddress : display dongle MAC address\r\n");
+  Serial.printf("   macaddress : display device MAC address\r\n");
+  Serial.printf("   setdonglemacaddress : update dongle MAC address, be sure to send values in HEX mode\r\n");
+  Serial.printf("   getdonglemacaddress : return the current dongle MAC address\r\n");
+  Serial.printf("   setdeviceid : update deviceID to new value\r\n");
   Serial.printf("   version : display build date and version\r\n");
   Serial.printf("   power : display RF Tx power\r\n");
-  Serial.printf("   format : format file system\r\n");
+  Serial.printf("   cpu : get CPU info\r\n");
   Serial.printf("   restart : restart the dongle\r\n");
-  Serial.printf("   l0 / l1 / l2... : Force the current layer to... If one keybind moves to new layer it will be ignored use l-1 command to reset force layer\r\n");
-  Serial.printf("   l-1 : disable forced layer\r\n");
   Serial.printf("   debug1 / debug2... : Toggle debug output. Different kind of debug available\r\n");
 }
 
@@ -63,23 +64,59 @@ void handleUart()
         help();
         break;
 
+
       case 2090324718: // help
         help();
         break;
 
-      case 1311181436: //macaddress
+
+      case 1311181436: // macaddress
         Serial.print("Device MAC address is: ");
         Serial.println(WiFi.macAddress());
         break;
       
-      case 1929407563:  //version
+
+      case 2910204353: // setdonglemacaddress
+        Serial.printf("Enter dongle MAC address:\r\n");
+        Serial.printf("Be carefull to send in HEX mode, not ASCII\r\n");
+        
+        for(uint8_t i = 0; i < 6; i++)
+        {
+          while(!Serial.available()){}
+          Serial.printf("New value:\r\n");
+          dongleAddress[i] = Serial.read();
+        }
+        Serial.printf("Recevied dongle MAC address: ");
+        for(uint8_t i = 0; i < 6; i++)
+        {
+          Serial.print(dongleAddress[i], HEX);
+          Serial.printf(" ");
+        }
+        Serial.printf("\r\n");
+        break;
+
+
+      case 1664706229:  // getdonglemacaddress
+        Serial.printf("Current dongle MAC address is set to: ");
+        for(uint8_t i = 0; i < 6; i++)
+        {
+          Serial.print(dongleAddress[i], HEX);
+          Serial.printf(" ");
+        }
+        Serial.printf("\r\n");
+        break;
+
+
+      case 1929407563:  // version
         Serial.printf("Version: %s build the: %s at %s\r\n", FIRMWARE_REV,  __DATE__, __TIME__);
         break;
+
 
       case 271097426: // power
         Serial.printf("WiFi power: ");
         Serial.println(WiFi.getTxPower());
         break;
+
 
       case 193488621: // cpu
         Serial.printf("Chip model: %s, chip revision: %u\r\n", ESP.getChipModel(), ESP.getChipRevision());
@@ -91,51 +128,65 @@ void handleUart()
         Serial.printf("Sketch size: %u\r\n", ESP.getSketchSize());
         break;
 
+
       case 1059716234: // restart
         ESP.restart();
         break;
         
+
       case 4159936206:  // setdeviceid
-        Serial.printf("Enter device ID:\r\n");
+        Serial.printf("Current device ID is: %u\r\n", deviceID);
+        Serial.printf("Enter new device ID:\r\n");
         while(!Serial.available()){}
         deviceID = Serial.read() - 48;
         Serial.printf("Setting deviceID to: %u\r\n", deviceID);
-        EEPROM.write(0, deviceID);
+        EEPROM.write(DEVICEID_ADDRESS, deviceID);
         EEPROM.commit();
+        keyboardPacket.deviceID = deviceID;
+        mousePacket.deviceID = deviceID;
         break;
+
 
       case 4169026269: // debug1
         debug1 = !debug1;
         Serial.printf("debug1 swapped to %i\r\n", debug1);
         break;
 
+
       case 4169026270: // debug2
         debug2 = ! debug2;
         break;
+
 
       case 4169026271: // debug3
         debug3 = !debug3;
         break;
 
+
       case 4169026272: // debug4
         debug4 = !debug4;
         break;
+
 
       case 4169026273: // debug5
         debug5 = !debug5;
         break;
 
+
       case 4169026274: // debug6
         debug6 = !debug6;
         break;
+
 
       case 4169026275: // debug7
         debug7 = !debug7;
         break;
 
+
       case 4169026276: // debug8
         debug8 = !debug8;
         break;
+
 
     }
   }

@@ -101,11 +101,12 @@ void setup()
 
   //-----EEPROM
   EEPROM.begin(EEPROM_SIZE);
-  deviceID = EEPROM.read(0);
+  deviceID = EEPROM.read(DEVICEID_ADDRESS);
+  keyboardPacket.deviceID = deviceID;
+  mousePacket.deviceID = deviceID;
 
 
   //-----ESP NOW
-
   WiFi.mode(WIFI_STA);
   delay(10);
   WiFi.setTxPower(WIFI_POWER_19_5dBm);
@@ -142,6 +143,7 @@ void setup()
 
   // Register for a callback function that will be called when data is received
   esp_now_register_recv_cb(OnDataRecv);
+
 
   //-----PMK
 
@@ -183,7 +185,7 @@ void loop()
         {
           rising = false;
         }
-      } 
+      }
       else
       {
         if(ledBrightness > minBrightness) 
@@ -274,7 +276,7 @@ void loop()
       {
         keyboardPacket.key[i] = 0;
       }
-
+      
       for(uint8_t packet = 0; packet < NUMBER_OF_SR; packet++)
       {
         for(uint8_t bit = 0; bit < 8; bit++)

@@ -4,6 +4,8 @@
 #include "Arduino.h"
 
 #include "config.h"
+#include "pmkDevice.h"
+#define DEVICEID_ADDRESS 0
 
 //#include "variables.h"
 
