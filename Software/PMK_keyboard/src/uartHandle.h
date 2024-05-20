@@ -34,14 +34,16 @@ unsigned long hash(const char *str)
 void help()
 {
   Serial.printf("List of available commands:\r\n");
-  Serial.printf("   h / help : display available commands\r\n");
-  Serial.printf("   macaddress : display device MAC address\r\n");
+  Serial.printf("   h / help : returns available commands\r\n");
+  Serial.printf("   macaddress : returns device MAC address\r\n");
   Serial.printf("   setdonglemacaddress : update dongle MAC address, be sure to send values in HEX mode\r\n");
-  Serial.printf("   getdonglemacaddress : return the current dongle MAC address\r\n");
+  Serial.printf("   getdonglemacaddress : returns the current dongle MAC address\r\n");
   Serial.printf("   setdeviceid : update deviceID to new value\r\n");
-  Serial.printf("   version : display build date and version\r\n");
-  Serial.printf("   power : display RF Tx power\r\n");
-  Serial.printf("   cpu : get CPU info\r\n");
+  Serial.printf("   getdeviceid : returns currently set deviceID");
+  Serial.printf("   version : returns build date and version\r\n");
+  Serial.printf("   power : returns RF Tx power\r\n");
+  Serial.printf("   cpu : returns CPU info\r\n");
+  Serial.printf("   setcpufreq : set new CPU frequency\r\n");
   Serial.printf("   restart : restart the dongle\r\n");
   Serial.printf("   debug1 / debug2... : Toggle debug output. Different kind of debug available\r\n");
 }
@@ -82,9 +84,11 @@ void handleUart()
         
         for(uint8_t i = 0; i < 6; i++)
         {
-          while(!Serial.available()){}
           Serial.printf("New value:\r\n");
+          while(!Serial.available()){}
           dongleAddress[i] = Serial.read();
+          EEPROM.write(DONGLE_MACADDRESS_ADDRESS + i, dongleAddress[i]);
+          EEPROM.commit();
         }
         Serial.printf("Recevied dongle MAC address: ");
         for(uint8_t i = 0; i < 6; i++)
@@ -129,6 +133,16 @@ void handleUart()
         break;
 
 
+      case 3688920455: // setcpufreq
+        Serial.printf("Current CPU frequency: %u MHz\r\n", getCpuFrequencyMhz());
+        Serial.printf("Enter new frequency in MHz (MUST BE DEC mode):\r\n");
+        Serial.printf("Can be: 240, 160, 80, 40, 20, 10\r\n");
+        while(!Serial.available()){}
+        setCpuFrequencyMhz(Serial.read());
+        Serial.printf("New CPU frequency set to: %u MHZ\r\n", getCpuFrequencyMhz());
+        break;
+
+
       case 1059716234: // restart
         ESP.restart();
         break;
@@ -146,6 +160,9 @@ void handleUart()
         mousePacket.deviceID = deviceID;
         break;
 
+      case 3080394690:  // getdeviceid
+        Serial.printf("Device ID is set to: %u\r\n", deviceID);        
+        break;
 
       case 4169026269: // debug1
         debug1 = !debug1;

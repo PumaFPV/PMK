@@ -105,6 +105,10 @@ void setup()
   keyboardPacket.deviceID = deviceID;
   mousePacket.deviceID = deviceID;
 
+  for(uint8_t i = 0; i < MAC_ADDRESS_SIZE; i++)
+  {
+    dongleAddress[i] = EEPROM.read(DONGLE_MACADDRESS_ADDRESS + i);
+  }
 
   //-----ESP NOW
   WiFi.mode(WIFI_STA);
@@ -129,7 +133,7 @@ void setup()
   // Register dongles
   for(uint8_t i = 0; i < 3; i++)
   {
-    memcpy(peerInfo.peer_addr, dongleAddress, 6);
+    memcpy(peerInfo.peer_addr, dongleAddress, MAC_ADDRESS_SIZE);
     peerInfo.channel = 0;  
     peerInfo.encrypt = false;
 

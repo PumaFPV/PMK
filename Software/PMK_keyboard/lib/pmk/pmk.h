@@ -6,6 +6,8 @@
 #include "config.h"
 //#include "pmkDevice.h"
 #define DEVICEID_ADDRESS 0
+#define DONGLE_MACADDRESS_ADDRESS 1 // 6 bits long
+#define MAC_ADDRESS_SIZE 6
 
 typedef struct packetStruct {
     uint8_t deviceID;
