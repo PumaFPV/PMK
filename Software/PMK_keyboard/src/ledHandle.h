@@ -1,9 +1,69 @@
 #ifndef ledHandle_h
 #define ledHandle_h
 
-#include "pmk.h"
 
+
+#include "pmk.h"
 #include "variables.h"
+
+
+
+uint32_t ledColorProfile[8][NUM_LEDS] = 
+{
+  {
+    0x000000, 0x000000, 0xFF0000, 0xFF0000, 0xFF0000, 0xFF0000, 0xDEB887,
+    0x9966CC, 0x32CD32, 0xFFFF00, 0x32CD32, 0xFFFF00, 0xFF0000, 0xDEB887, 
+    0xFF0000, 0x0000FF, 0x32CD32, 0x32CD32, 0x32CD32, 0x000000, 0x32CD32, 
+    0x32CD32, 0xFF0000, 0x000000, 0xEE82EE , 0x32CD32, 0x111111, 0xFF0000, 
+    0x000000
+  },
+  {
+    0x00FF00, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x00FF00,
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111
+  },
+  {
+    0x00FF00, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x00FF00,
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111
+  },  {
+    0x00FF00, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x00FF00,
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111
+  },  {
+    0x00FF00, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x00FF00,
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111
+  },  {
+    0x00FF00, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x00FF00,
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111
+  },  {
+    0x00FF00, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x00FF00,
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111
+  },  {
+    0x00FF00, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x00FF00,
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 0x111111, 
+    0x111111
+  }
+};
+
+
 
 void FillLEDsFromPaletteColors(uint8_t colorIndex);
 void SetupTotallyRandomPalette();
@@ -11,6 +71,7 @@ void SetupBlackAndWhiteStripedPalette();
 void SetupPurpleAndGreenPalette();
 void ChangePalettePeriodically();
 void pulsar(uint8_t minBrightness, uint8_t maxBrightness);
+
 
 
 void FillLEDsFromPaletteColors( uint8_t colorIndex)
@@ -23,6 +84,8 @@ void FillLEDsFromPaletteColors( uint8_t colorIndex)
     }
 }
 
+
+
 // There are several different palettes of colors demonstrated here.
 //
 // FastLED provides several 'preset' palettes: RainbowColors_p, RainbowStripeColors_p,
@@ -31,6 +94,8 @@ void FillLEDsFromPaletteColors( uint8_t colorIndex)
 // Additionally, you can manually define your own color palettes, or you can write
 // code that creates color palettes on the fly.  All are shown here.
 
+
+
 // This function fills the palette with totally random colors.
 void SetupTotallyRandomPalette()
 {
@@ -38,6 +103,8 @@ void SetupTotallyRandomPalette()
         currentPalette[i] = CHSV( random8(), 255, random8());
     }
 }
+
+
 
 // This function sets up a palette of black and white stripes,
 // using code.  Since the palette is effectively an array of
@@ -55,6 +122,8 @@ void SetupBlackAndWhiteStripedPalette()
     
 }
 
+
+
 // This function sets up a palette of purple and green stripes.
 void SetupPurpleAndGreenPalette()
 {
@@ -68,6 +137,8 @@ void SetupPurpleAndGreenPalette()
                                    green,  green,  black,  black,
                                    purple, purple, black,  black );
 }
+
+
 
 // This example shows how to set up a static color palette
 // which is stored in PROGMEM (flash), which is almost always more
@@ -94,6 +165,8 @@ const TProgmemPalette16 pulsarPalette PROGMEM =
     CRGB::Black,
     CRGB::Black
 };
+
+
 
 // Additional notes on FastLED compact palettes:
 //
@@ -137,6 +210,8 @@ void ChangePalettePeriodically()
     }
 }
 
+
+
 uint8_t keyCoordinatesToLedID(uint8_t x, uint8_t y)
 {
   uint8_t ledID[6][9] =
@@ -151,6 +226,8 @@ uint8_t keyCoordinatesToLedID(uint8_t x, uint8_t y)
     };
     return ledID[x][y];
 };
+
+
 
 void pulsar(uint8_t minBrightness, uint8_t maxBrightness, bool breathingSide /*0=left - 1=right*/)
 {
@@ -204,6 +281,8 @@ void pulsar(uint8_t minBrightness, uint8_t maxBrightness, bool breathingSide /*0
   }
 }
 
+
+
 void setLedColorProfile(uint8_t profile)
 {
   switch (profile)
@@ -235,5 +314,80 @@ void setLedColorProfile(uint8_t profile)
 
   }
 };
+
+
+
+void ledLoop()
+{
+  setLedColorProfile(0);
+
+  //FastLED.setBrightness(ledBrightness);
+  //Serial.printf("Brightness: %i\r\n", ledBrightness);
+  static bool rising = false;
+  const uint8_t minBrightness = 20;
+  const uint8_t maxBrightness = 120;
+
+  if(rising) 
+  {
+    if(ledBrightness < maxBrightness)
+    {
+      ledBrightness++;
+    }
+    else
+    {
+      rising = false;
+    }
+  }
+  else
+  {
+    if(ledBrightness > minBrightness) 
+    {
+      ledBrightness--;
+    }
+    else
+    {
+      rising = true;
+    }
+  }
+
+  /*leds[ledNumber] = CRGB::pulsarPurple;
+  leds[ledNumber-1] = CRGB::pulsarBlue;
+  
+  ledNumber++;
+  if(ledNumber == NUM_LEDS)
+  {
+    ledNumber = 0;
+    leds[38] = CRGB::pulsarBlue;
+  }*/
+  
+  /*
+  for(uint8_t i = 0; i < 7; i++)
+  {
+    leds[keyIDtoLedID(keyboardPacket.key[i])] = CRGB::pulsarBlue;
+  }    
+  */
+
+  //ChangePalettePeriodically();
+
+  //currentPalette = myRedWhiteBluePalette_p; currentBlending = NOBLEND;    static uint8_t startIndex = 0;
+  //startIndex = startIndex + 1; /* motion speed */
+
+  //FillLEDsFromPaletteColors( startIndex);
+
+  //pulsar();
+  FastLED.setBrightness(ledBrightness);
+  FastLED.show();
+  /*
+  if(i == 29)
+  {
+    i = 0;
+    for(uint8_t j = 0; j < 29; j++)
+    {
+      leds[j] = CRGB::Black;
+    }
+  }*/
+  //FastLED.delay(1000 / UPDATES_PER_SECOND);
+}
+
 
 #endif

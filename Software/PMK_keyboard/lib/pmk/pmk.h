@@ -1,7 +1,11 @@
 #ifndef pmk_h
 #define pmk_h
 
+
+
 #include "Arduino.h"
+
+
 
 #include "config.h"
 //#include "pmkDevice.h"
@@ -9,11 +13,13 @@
 #define DONGLE_MACADDRESS_ADDRESS 1 // 6 bits long
 #define MAC_ADDRESS_SIZE 6
 
-typedef struct packetStruct {
+
+
+typedef struct {
     uint8_t deviceID;
     uint8_t packetType;
     uint8_t data[16];
-};
+}   packetStruct;
 
 typedef struct {
     uint8_t deviceID;
@@ -30,7 +36,7 @@ typedef struct {
     uint8_t key[8];
 }   keyboardStruct;
 
-typedef struct mouseStruct {
+typedef struct {
     uint8_t deviceID;
     const uint8_t packetType = 2;
     uint8_t x;
@@ -40,7 +46,7 @@ typedef struct mouseStruct {
     uint8_t k;  
 }   mouseStruct;
 
-typedef struct gamepadStruct {
+typedef struct {
     uint8_t deviceID;
     const uint8_t packetType = 3;
     uint8_t x;
@@ -53,7 +59,7 @@ typedef struct gamepadStruct {
     uint8_t buttons[5];
 }   gamepadStruct;
 
-typedef struct ledStruct {
+typedef struct {
     uint8_t deviceID;
     const uint8_t packetType = 4;
     uint8_t function;
@@ -64,13 +70,13 @@ typedef struct ledStruct {
     uint8_t blue;
 }   ledStruct;
 
-typedef struct knobStruct {
+typedef struct {
     uint8_t deviceID;
     const uint8_t packetType = 5;
     uint8_t knob[8];
 }   knobStruct;
 
-typedef struct actuatorStruct {
+typedef struct {
     uint8_t deviceID;
     const uint8_t packetType = 6;
     uint8_t function;
@@ -78,7 +84,7 @@ typedef struct actuatorStruct {
     uint8_t command;
 }   actuatorStruct;
 
-typedef struct displayStruct {
+typedef struct {
     uint8_t deviceID;
     const uint8_t packetType = 7;
     uint8_t image;
@@ -87,7 +93,7 @@ typedef struct displayStruct {
     uint8_t brightness;
 }   displayStruct;
 
-typedef struct serialStruct {
+typedef struct {
     uint8_t deviceID;
     const uint8_t packetType = 9;
     uint8_t packet[8];
@@ -101,6 +107,7 @@ enum errorID {
     invalidPacket,
     internalSensorFailure
 };
+
 
 
 #endif
