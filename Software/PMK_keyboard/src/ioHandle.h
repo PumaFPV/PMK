@@ -18,9 +18,9 @@ void srLoop()
 
     for(uint8_t packet = 0; packet < NUMBER_OF_SR; packet++)
     {
-    spiPacket[packet] = srSpi->transfer(0);
-    //Serial.print(spiPacket[packet], BIN);
-    //Serial.print(" ");
+      spiPacket[packet] = srSpi->transfer(0);
+      //Serial.print(spiPacket[packet], BIN);
+      //Serial.print(" ");
     }
     //Serial.println();
 
@@ -33,37 +33,37 @@ void srLoop()
 
     for(uint8_t i = 0; i < 8; i++)
     {
-    keyboardPacket.key[i] = 0;
+      keyboardPacket.key[i] = 0;
     }
 
     for(uint8_t packet = 0; packet < NUMBER_OF_SR; packet++)
     {
-    for(uint8_t bit = 0; bit < 8; bit++)
-    {
-        bool isKeyPressed = spiPacket[packet] & (0b1 << (7 - bit));
+      for(uint8_t bit = 0; bit < 8; bit++)
+      {
+          bool isKeyPressed = spiPacket[packet] & (0b1 << (7 - bit));
 
-        if(isKeyPressed == 0 && numberOfPressedKeys < MAX_NUMBER_OF_KEYS)
-        {
-        keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit + 1; //+1 so we dont have a keyID = 0
-        
-        if(debug1)
-        {
-            Serial.print("KeyID: 0x");
-            Serial.println(keyboardPacket.key[numberOfPressedKeys], HEX);
-        }
-        
-        numberOfPressedKeys++;
+          if(isKeyPressed == 0 && numberOfPressedKeys < MAX_NUMBER_OF_KEYS)
+          {
+            keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit + 1; //+1 so we dont have a keyID = 0
+            
+            if(debug1)
+            {
+              Serial.print("KeyID: 0x");
+              Serial.println(keyboardPacket.key[numberOfPressedKeys], HEX);
+            }
+            
+            numberOfPressedKeys++;
 
-        //Serial.print("  Number of pressed keys: ");
-        //Serial.println(numberOfPressedKeys);
-        }
-        if(numberOfPressedKeys == 8)
-        {
-        telemetryPacket.error = tooManyKeysPressed;
-        return;
-        //Serial.println("Too many keys pressed");
-        }
-    }
+            //Serial.print("  Number of pressed keys: ");
+            //Serial.println(numberOfPressedKeys);
+          }
+          if(numberOfPressedKeys == 8)
+          {
+            telemetryPacket.error = tooManyKeysPressed;
+            return;
+            //Serial.println("Too many keys pressed");
+          }
+      }
     }
 }
 
@@ -97,6 +97,8 @@ void IRAM_ATTR rotaryEncoderISR()
 
 void reLoop()
 {
+  knobPacket.knob[0] = rotary;
+  /* 
     if(mousePacket.deviceID == LEFT_KB)
     {
       mousePacket.x = rotary;
@@ -107,6 +109,7 @@ void reLoop()
       mousePacket.y = rotary;
       rotary = 0;
     }
+    */
 }
 
 

@@ -30,17 +30,8 @@ void espnowLoop()
 
   esp_err_t result;
 
-  if(kb)
-  {
-    result = esp_now_send(dongleAddress, (uint8_t *) &keyboardPacket, sizeof(keyboardPacket));
-    kb = 0;
-  }
-  else
-  {
-    result = esp_now_send(dongleAddress, (uint8_t *) &mousePacket, sizeof(mousePacket));
-    kb = 1;
-  }
-  
+  result = esp_now_send(dongleAddress, (uint8_t *) &keyboardPacket, sizeof(keyboardPacket));
+
   if(debug2)
   {
     if (result == ESP_OK) 
@@ -53,6 +44,26 @@ void espnowLoop()
     }
   }
 }
+
+
+
+void registerDongle()
+{
+  for(uint8_t i = 0; i < 1; i++)  // TODO add support for multiple dongles
+  {
+    memcpy(peerInfo.peer_addr, dongleAddress, MAC_ADDRESS_SIZE);
+    peerInfo.channel = 0;
+    peerInfo.encrypt = false;
+
+    // Add dongle
+    if(esp_now_add_peer(&peerInfo) != ESP_OK)
+    {
+      Serial.printf("Failed to add dongle: %i\r\n", i);
+      return;
+    }
+  }
+}
+
 
 
 #endif

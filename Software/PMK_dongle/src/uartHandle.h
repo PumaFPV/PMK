@@ -134,7 +134,7 @@ void handleUart()
         help();
         break;
 
-      case 1311181436: //macaddress
+      case 2318435644: //macaddress
         Serial.print("Dongle MAC address is: ");
         Serial.println(WiFi.macAddress());
         break;

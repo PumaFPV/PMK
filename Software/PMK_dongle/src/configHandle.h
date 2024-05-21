@@ -4,7 +4,7 @@
 #include "variables.h"
 #include "fsHandle.h"
 #include "config.h"
-
+#include "pmk.h"
 
 
 char systemVolumeInformation[32] = "System Volume Information";
@@ -209,4 +209,44 @@ void loadMouseConfig(const char* filename, uint8_t deviceID, uint8_t layerID)
   Serial.printf("Setting DPI to %i for device: %u layer %u\r\n", dpi[deviceID][layerID], deviceID, layerID);
 
 }
+
+
+void configDeej()
+{
+  File32 deejConfigFile = fatfs.open("/deej.json", O_READ);
+  if(!deejConfigFile)
+  {
+    Serial.printf("No deej config file\r\n");
+    return;
+  }
+
+  size_t size = deejConfigFile.size();
+  std::unique_ptr<char[]> buf(new char[size]);
+
+  deejConfigFile.readBytes(buf.get(), size);
+  deejConfigFile.close();
+
+  DynamicJsonDocument doc(1024);
+  DeserializationError error = deserializeJson(doc, buf.get());
+  if(error) 
+  {
+    Serial.println("Failed to parse JSON");
+    return;
+  }
+
+  JsonArray deejJsonArray = doc["deej"];
+
+  Serial.printf("Number of knobs configured for deej: %u\r\n", deejJsonArray.size());
+  Serial.printf("Knobs to use:");
+  for(int i = 0; i < deejJsonArray.size(); i++) 
+  {
+    String hexStr = deejJsonArray[i].as<String>();
+    knobIDToDeej[i] = strtoul(hexStr.c_str(), NULL, 16);
+    Serial.printf(" %u,", knobIDToDeej[i]);
+  }
+  Serial.printf("\r\n");
+}
+
+
+
 #endif

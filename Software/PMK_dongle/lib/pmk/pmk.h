@@ -1,6 +1,8 @@
 #ifndef pmk_h
 #define pmk_h
 
+#define MAX_NUMBER_OF_DEEJ_KNOBS 8
+
 #include "Arduino.h"
 #include <vector>
 #include <algorithm>
@@ -22,12 +24,16 @@ uint8_t layerID = 0;
 
 uint8_t keyboardDeviceID = 255;
 
+uint8_t knobIDToDeej[MAX_NUMBER_OF_DEEJ_KNOBS] = {0};
+
 
 typedef struct packetStruct {
     uint8_t deviceID;
     uint8_t packetType = 255;
     uint8_t data[16];
 }   packetStruct;
+
+
 
 typedef struct telemetryStruct {
     uint8_t deviceID;
@@ -38,11 +44,15 @@ typedef struct telemetryStruct {
     uint8_t error[5];
 }   telemetryStruct;
 
+
+
 typedef struct keyboardStruct {
     uint8_t deviceID;
     const uint8_t packetType = 1;
     uint8_t key[8] = {0};
 }   keyboardStruct;
+
+
 
 typedef struct mouseStruct {
     uint8_t deviceID;
@@ -53,6 +63,8 @@ typedef struct mouseStruct {
     int8_t p;
     uint8_t key;  //5 possible buttons, 8 bits be smart u dumbass, dont use an array. (I used an array before)
 }   mouseStruct;
+
+
 
 typedef struct gamepadStruct {
     uint8_t deviceID;
@@ -67,6 +79,8 @@ typedef struct gamepadStruct {
     uint8_t buttons[4];
 }   gamepadStruct;
 
+
+
 typedef struct ledStruct {
     uint8_t deviceID;
     const uint8_t packetType = 4;
@@ -78,11 +92,15 @@ typedef struct ledStruct {
     uint8_t blue;
 }   ledStruct;
 
+
+
 typedef struct knobStruct {
     uint8_t deviceID;
     const uint8_t packetType = 5;
     uint8_t knob[8];
 }   knobStruct;
+
+
 
 typedef struct actuatorStruct {
     uint8_t deviceID;
@@ -91,6 +109,8 @@ typedef struct actuatorStruct {
     uint8_t command;    //Sent by Master
     uint8_t position;   //Returned by device
 }   actuatorStruct;
+
+
 
 typedef struct displayStruct {
     uint8_t deviceID;
@@ -101,11 +121,15 @@ typedef struct displayStruct {
     uint8_t brightness;
 }   displayStruct;
 
+
+
 typedef struct serialStruct {
     uint8_t deviceID;
     const uint8_t packetType = 8;
     uint8_t packet[8];
 }   serialStruct;
+
+
 
 enum errorID {
     none, 
@@ -116,17 +140,20 @@ enum errorID {
     internalSensorFailure
 };
 
+
+
 keyboardStruct  keyboardPacket[8];
 mouseStruct     mousePacket;
 gamepadStruct   gamepadPacket[8];
 ledStruct       ledPacket;
-knobStruct      knobPacket;
+knobStruct      knobPacket[8];
 actuatorStruct  actuatorPacket;
 displayStruct   displayPacket;
 telemetryStruct telemetryPacket;
 serialStruct    serialPacket;
 
 packetStruct receivedPacket;
+
 
 
 void setupPMK()
@@ -138,6 +165,7 @@ void setupPMK()
         for(uint8_t keyID = 0; keyID < 8; keyID++)
         {
             keyboardPacket[deviceID].key[keyID] = 0;
+            knobPacket[deviceID].knob[keyID] = 0;   // not really a keyID but you get the idea
         }
 
         gamepadPacket[deviceID].rightX = -128;
@@ -148,6 +176,7 @@ void setupPMK()
         gamepadPacket[deviceID].rightTrigger = -128;
     }
 }
+
 
 
 void convertPacket2Telemetry(packetStruct packet)
@@ -169,6 +198,7 @@ void convertPacket2Telemetry(packetStruct packet)
 }
 
 
+
 void convertPacket2Keyboard(packetStruct packet)
 {
     keyboardPacket[packet.deviceID].deviceID = packet.deviceID;
@@ -183,6 +213,7 @@ void convertPacket2Keyboard(packetStruct packet)
 }
 
 
+
 void convertPacket2Mouse(packetStruct packet)
 {
     mousePacket.deviceID = packet.deviceID;
@@ -192,6 +223,7 @@ void convertPacket2Mouse(packetStruct packet)
     mousePacket.p = packet.data[3];
     mousePacket.key = packet.data[4];
 }
+
 
 
 void convertPacket2Gamepad(packetStruct packet)
@@ -212,6 +244,7 @@ void convertPacket2Gamepad(packetStruct packet)
 }
 
 
+
 void convertPacket2Led(packetStruct packet)
 {
     ledPacket.deviceID = packet.deviceID;
@@ -222,14 +255,16 @@ void convertPacket2Led(packetStruct packet)
 }
 
 
+
 void convertPacket2Knob(packetStruct packet)
 {
-    knobPacket.deviceID = packet.deviceID;  
+    knobPacket[packet.deviceID].deviceID = packet.deviceID;  
     for(uint8_t i = 0; i < 7; ++i)
     {
-      knobPacket.knob[i] = packet.data[i];
+      knobPacket[packet.deviceID].knob[i] = packet.data[i];
     }
 }
+
 
 
 void convertPacket2Actuator(packetStruct packet)
@@ -239,6 +274,7 @@ void convertPacket2Actuator(packetStruct packet)
     actuatorPacket.position = packet.data[1];
     actuatorPacket.command = packet.data[2];
 }
+
 
 
 void convertPacket2Display(packetStruct packet)
@@ -251,6 +287,7 @@ void convertPacket2Display(packetStruct packet)
 } 
 
 
+
 void convertPacket2Serial(packetStruct packet)
 {
     serialPacket.deviceID = packet.deviceID;
@@ -259,6 +296,7 @@ void convertPacket2Serial(packetStruct packet)
       serialPacket.packet[i] = packet.data[i];
     }
 }
+
 
 
 uint8_t nonZeroSize(uint8_t arr[])
@@ -274,6 +312,7 @@ uint8_t nonZeroSize(uint8_t arr[])
     }
     return 255;
 }
+
 
 
 void handleKeyboard()
@@ -403,6 +442,7 @@ void handleKeyboard()
 }
 
 
+
 void handleMouse()
 {
     if(usb_hid.ready())
@@ -411,6 +451,8 @@ void handleMouse()
         usb_hid.mouseReport(RID_MOUSE, mousePacket.key, mousePacket.x*dpi[mousePacket.deviceID][layerID], mousePacket.y*dpi[mousePacket.deviceID][layerID], mousePacket.w, mousePacket.p);
     }
 }
+
+
 
 void handleGamepad()
 {
@@ -465,9 +507,48 @@ void handleGamepad()
     }
 }
 
+
+
+void handleDeej(uint8_t volume[MAX_NUMBER_OF_DEEJ_KNOBS])
+{
+    String builtString = String("");
+
+    for (int i = 0; i < MAX_NUMBER_OF_DEEJ_KNOBS; i++) 
+    {
+        builtString += String((int)volume[i]*4);
+
+        if (i < MAX_NUMBER_OF_DEEJ_KNOBS - 1)
+        {
+            builtString += String("|");
+        }
+    }
+  
+  Serial.println(builtString);  // TODO only send when different
+}
+
+
+
 void handleKnob()
 {
+    uint8_t aggregatedKnobs[8*MAX_NUMBER_OF_DEVICES];
 
+    for(uint8_t deviceID = 0; deviceID < MAX_NUMBER_OF_DEVICES; deviceID++)
+    {
+        for(uint8_t knobID = 0; knobID < 8; knobID++)
+        {
+            aggregatedKnobs[deviceID * 8 + knobID] = knobPacket[deviceID+1].knob[knobID];
+        }
+    }
+
+    uint8_t volume[MAX_NUMBER_OF_DEEJ_KNOBS];
+    for(uint8_t knobID = 0; knobID < MAX_NUMBER_OF_DEEJ_KNOBS; knobID++)
+    {
+        volume[knobID] = aggregatedKnobs[knobIDToDeej[knobID]]; // deej json contains the knobID from aggreagatedKnobs to use for volume
+    }
+
+    handleDeej(volume);
 }
+
+
 
 #endif

@@ -6,7 +6,7 @@
 //TO DO delete this file
 #include "config.h"
 
-#define FIRMWARE_REV "dev"
+#define FIRMWARE_REV "dongle-dev"
 
 //Include library
 #include "WiFi.h"
@@ -143,7 +143,6 @@ void setup()
 
   esp_now_register_send_cb(OnEspNowDataSent);
 
-  esp_now_register_recv_cb(OnEspNowDataRecv);
   
   //Register peer
   peerInfo.channel = 0;  
@@ -303,8 +302,14 @@ void setup()
 
   }
 
+
+
+  configDeej();
+
   setupPMK();
-  
+
+  esp_now_register_recv_cb(OnEspNowDataRecv);
+
 }
 
 

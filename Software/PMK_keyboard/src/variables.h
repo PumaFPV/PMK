@@ -63,6 +63,7 @@ esp_now_peer_info_t peerInfo;
 telemetryStruct telemetryPacket;
 keyboardStruct keyboardPacket;
 mouseStruct mousePacket;
+knobStruct knobPacket;
 
 //--------------------------------------------------Structs--------------------------------------------------
 struct Func
@@ -100,7 +101,7 @@ NoDelay pulsarNoDelay = {6, 0, 0};
 
 
 //--------------------------------------------------Variables--------------------------------------------------
-uint8_t dongleAddress[] = {};
+uint8_t dongleAddress[MAC_ADDRESS_SIZE] = {};
 
 extern CRGBPalette16 myRedWhiteBluePalette;
 extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
@@ -116,6 +117,6 @@ uint8_t ledBrightness = 255;
 
 uint8_t layerID = 0;
 
-int rotary = 0;
+uint8_t rotary = 0;
 
 #endif

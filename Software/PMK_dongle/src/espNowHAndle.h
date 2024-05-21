@@ -41,6 +41,7 @@ void handleReceivedPacket(packetStruct receivedPacket)
       break;
     case 5: //Knob
       convertPacket2Knob(receivedPacket);
+      handleKnob();
       break;
     case 6: //Actuator
       convertPacket2Actuator(receivedPacket);

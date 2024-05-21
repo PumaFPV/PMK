@@ -17,6 +17,10 @@ static bool debug8 = 0;
 
 
 
+#include "espnowHandle.h"
+
+
+
 unsigned long hash(const char *str) 
 {
     unsigned long hash = 5381;
@@ -69,6 +73,7 @@ void setdonglemacaddress()
     Serial.printf("New value:\r\n");
     while(!Serial.available()){}
     dongleAddress[i] = Serial.read();
+    Serial.print(dongleAddress[i], HEX);
     EEPROM.write(DONGLE_MACADDRESS_ADDRESS + i, dongleAddress[i]);
     EEPROM.commit();
   }
@@ -79,16 +84,23 @@ void setdonglemacaddress()
     Serial.printf(" ");
   }
   Serial.printf("\r\n");
+  registerDongle();
 }
+
 
 
 void getdonglemacaddress()
 {
   Serial.printf("Current dongle MAC address is set to: ");
-  for(uint8_t i = 0; i < 6; i++)
+  for(uint8_t i = 0; i < MAC_ADDRESS_SIZE; i++)
   {
     Serial.print(dongleAddress[i], HEX);
     Serial.printf(" ");
+  }
+  for(uint8_t i = 0; i < MAC_ADDRESS_SIZE; i++)
+  {
+    dongleAddress[i] = EEPROM.read(DONGLE_MACADDRESS_ADDRESS + i);
+    Serial.print(dongleAddress[i], HEX);
   }
   Serial.printf("\r\n");
 }

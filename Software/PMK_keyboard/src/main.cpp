@@ -9,7 +9,7 @@
 
 #include "variables.h"
 
-#define FIRMWARE_REV "dev"
+#define FIRMWARE_REV "keyboard-dev"
 uint8_t deviceID;
 
 #include "uartHandle.h"
@@ -64,11 +64,15 @@ void setup()
   deviceID = EEPROM.read(DEVICEID_ADDRESS);
   keyboardPacket.deviceID = deviceID;
   mousePacket.deviceID = deviceID;
-
+  knobPacket.deviceID = deviceID;
+  
   for(uint8_t i = 0; i < MAC_ADDRESS_SIZE; i++)
   {
     dongleAddress[i] = EEPROM.read(DONGLE_MACADDRESS_ADDRESS + i);
+    delay(50);
+    Serial.print(dongleAddress[i], HEX);
   }
+  Serial.printf("\r\n");
 
 
 
@@ -87,19 +91,7 @@ void setup()
   esp_now_register_send_cb(OnDataSent);
 
   // Register dongles
-  for(uint8_t i = 0; i < 3; i++)  // TODO add support for multiple dongles
-  {
-    memcpy(peerInfo.peer_addr, dongleAddress, MAC_ADDRESS_SIZE);
-    peerInfo.channel = 0;  
-    peerInfo.encrypt = false;
-
-    // Add dongle        
-    if(esp_now_add_peer(&peerInfo) != ESP_OK)
-    {
-      Serial.printf("Failed to add dongle: %i\r\n", i);
-      return;
-    }
-  }
+  registerDongle();
 
   // Register for a callback function that will be called when data is received
   esp_now_register_recv_cb(OnDataRecv);
@@ -171,6 +163,7 @@ void loop()
     reTask.inBetweenTime = reTask.beginTime - reTask.endTime;
 
       reLoop();
+      esp_now_send(dongleAddress, (uint8_t *) &knobPacket, sizeof(knobPacket));
 
     reTask.endTime = micros();
     reTask.counter++;
