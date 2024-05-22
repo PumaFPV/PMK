@@ -3,20 +3,8 @@
 
 #include "Arduino.h"
 #include "variables.h"
-//#include "USB.h"
 
-// HID report descriptor using TinyUSB's template
-uint8_t const desc_keyboard_report[] = {
-  TUD_HID_REPORT_DESC_KEYBOARD()
-};
 
-uint8_t const desc_mouse_report[] = {
-  TUD_HID_REPORT_DESC_MOUSE()
-};
-
-uint8_t const desc_gamepad_report[] = {
-  TUD_HID_REPORT_DESC_GAMEPAD()
-};
 
 // Output report callback for LED indicator such as Caplocks
 void hid_report_callback(uint8_t report_id, hid_report_type_t report_type, uint8_t const* buffer, uint16_t bufsize)

@@ -26,7 +26,10 @@
 #include "MSCHandle.h"
 #include "uartHandle.h"
 
+
+
 void loopCount(); //For function telemetry purpose / Homemade Ultra lite RTOS
+
 
 
 //===========================================
@@ -115,7 +118,6 @@ void setup()
 
   usb_hid.begin();
 
-  // Set up output report (on control endpoint) for Capslock indicator
   //Serial.printf("Waiting for USB HID to be mounted...\r\n");
   while( !TinyUSBDevice.mounted() ) delay(1);
 
@@ -310,6 +312,8 @@ void setup()
 
   esp_now_register_recv_cb(OnEspNowDataRecv);
 
+
+
 }
 
 
@@ -371,6 +375,8 @@ void loop()
 
     //**functions
     handleUart();
+
+    
 
     uartTask.endTime = micros();
     uartTask.counter++;
