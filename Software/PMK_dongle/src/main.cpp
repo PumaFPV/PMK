@@ -355,8 +355,20 @@ void loop()
     keyboardTask.beginTime = micros();
     keyboardTask.inBetweenTime = keyboardTask.beginTime - keyboardTask.endTime;
 
-    //handleKeyboard();
-    //handleGamepad();
+    //uint16_t trans_report[3];
+    //uint16_t rot_report[3];
+    //uint8_t buttons_report[6];
+
+    //trans_report[0] = 100;
+    //trans_report[1] = 100;
+    //trans_report[2] = 100;
+    //rot_report[0] =   100;
+    //rot_report[1] =   100;
+    //rot_report[2] =   100;
+
+    //usb_hid.sendReport(1, trans_report, 6);
+    //usb_hid.sendReport(2, rot_report, 6);
+    //usb_hid.sendReport(3, buttons_report, 6);
 
 
     //Keyboard functions end
