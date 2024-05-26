@@ -34,9 +34,11 @@ uint8_t getNumberOfDevices()
 
 
 
-const char* getAttribute(const char* filename, const char* attributeName) {
+const char* getAttribute(const char* filename, const char* attributeName) 
+{
   File32 file = fatfs.open(filename, O_READ);
-  if (!file) {
+  if(!file)
+  {
     Serial.printf("Failed to open file for reading\r\n");
     return 0;
   }

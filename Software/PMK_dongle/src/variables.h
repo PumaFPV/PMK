@@ -267,6 +267,7 @@ bool fs_changed;    // Set to true when browser write to flash
 File32 fsUploadFile;
 
 
+
 //--------------------------------------------------Structs--------------------------------------------------
 struct Func
 {
@@ -287,7 +288,8 @@ Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
 Func fsTask = {0, 0, 0, 0, 0, 2000000, 0, 0};
 Func telemetryTask = {0, 0, 0, 0, 0, 2000000, 0, 0};
 
-    
+
+
 //--------------------------------------------------Variables--------------------------------------------------
 
 uint8_t receivedData[16];

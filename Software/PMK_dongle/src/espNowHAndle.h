@@ -77,6 +77,11 @@ void OnEspNowDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len)
 {
   memcpy(&receivedPacket, incomingData, sizeof(receivedPacket));
   handleReceivedPacket(receivedPacket);
+
+  Serial.printf("RSSI: %u\r\n", WiFi.RSSI());
+  
 }
+
+
 
 #endif
