@@ -26,6 +26,9 @@
 #include "MSCHandle.h"
 #include "uartHandle.h"
 
+// Default USB Settings
+
+
 
 
 void loopCount(); //For function telemetry purpose / Homemade Ultra lite RTOS
@@ -115,7 +118,7 @@ void setup()
 
   // Set up output report (on control endpoint) for Capslock indicator
   usb_hid.setReportCallback(NULL, hid_report_callback);
-
+  
   usb_hid.begin();
 
   //Serial.printf("Waiting for USB HID to be mounted...\r\n");
@@ -355,20 +358,29 @@ void loop()
     keyboardTask.beginTime = micros();
     keyboardTask.inBetweenTime = keyboardTask.beginTime - keyboardTask.endTime;
 
-    //uint16_t trans_report[3];
-    //uint16_t rot_report[3];
-    //uint8_t buttons_report[6];
+    uint16_t trans_report[3];
+    uint16_t rot_report[3];
+    uint8_t buttons_report[2];
+    static uint8_t leftButtonBit = 0;
+    static uint8_t rightButtonBit = 1;
+    uint8_t rightButtonStatus = 1;
+    uint8_t leftButtonStatus = 1;
 
-    //trans_report[0] = 100;
-    //trans_report[1] = 100;
-    //trans_report[2] = 100;
-    //rot_report[0] =   100;
-    //rot_report[1] =   100;
-    //rot_report[2] =   100;
+    buttons_report[0] = (rightButtonStatus << rightButtonBit) | (leftButtonStatus << leftButtonBit);
 
-    //usb_hid.sendReport(1, trans_report, 6);
-    //usb_hid.sendReport(2, rot_report, 6);
-    //usb_hid.sendReport(3, buttons_report, 6);
+    trans_report[0] = 100;
+    trans_report[1] = 100;
+    trans_report[2] = 100;
+    rot_report[0] =   100;
+    rot_report[1] =   100;
+    rot_report[2] =   100;
+
+    usb_hid.sendReport(1, trans_report, 6);
+    delay(10);
+    usb_hid.sendReport(2, rot_report, 6);
+    delay(10);
+    //usb_hid.sendReport(3, buttons_report, 2);
+
 
 
     //Keyboard functions end
