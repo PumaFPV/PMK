@@ -34,11 +34,11 @@ void espnowLoop()
 
   if(debug2)
   {
-    if (result == ESP_OK) 
+    if (result == ESP_OK)
     {
       Serial.println("Sent with success");
     }
-    else 
+    else
     {
       Serial.println("Error sending the data");
     }
