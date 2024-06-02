@@ -66,6 +66,8 @@ Knobs are in absolute position going from 0 to 255. Could be used for Deej.
 
 For encoder knobs, this is handled on the device and enumerates as a keyboard pressing one key for clockwise and another for counterclockwise rotation.
 
+### Space mouse
+Mostly inspired from [Magellan](https://github.com/jfedor2/magellan-spacemouse/tree/master) and from reports analysed from a 3DConnexion Space mouse with [hid-tool](https://gitlab.freedesktop.org/libevdev/hid-tools) 
 
 ## Protocols
 

@@ -52,6 +52,9 @@ void handleReceivedPacket(packetStruct receivedPacket)
     case 8: //Serial
       convertPacket2Serial(receivedPacket);
       break;
+    case 9: //SpaceMouse
+      convertPacket2SpaceMouse(receivedPacket);
+      break;
   }
 }
 

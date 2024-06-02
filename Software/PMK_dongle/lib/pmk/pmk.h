@@ -15,8 +15,16 @@ int8_t forceLayer = -1;
 
 #include "uartHandle.h"
 
+
+
+#define PMK_DEVICE_ID_BYTE 0
+#define PMK_PACKET_TYPE_BYTE 1
+#define PMK_DATA_BYTE 2
+
 #define LAYER_PLUS 0xF1
 #define LAYER_MINUS 0xF0
+
+
 
 uint8_t ledBrightness = 0;
 
@@ -25,6 +33,7 @@ uint8_t layerID = 0;
 uint8_t keyboardDeviceID = 255;
 
 uint8_t knobIDToDeej[MAX_NUMBER_OF_DEEJ_KNOBS] = {0};
+
 
 
 typedef struct packetStruct {
@@ -131,6 +140,14 @@ typedef struct serialStruct {
 
 
 
+typedef struct spaceMouseStruct {
+    uint8_t deviceID;
+    const uint8_t packetType = 9;
+    int8_t trans[3];
+    int8_t rot[3];
+}   spaceMouseStruct;
+
+
 enum errorID {
     none, 
     tooManyKeysPressed,
@@ -142,15 +159,17 @@ enum errorID {
 
 
 
-keyboardStruct  keyboardPacket[8];
-mouseStruct     mousePacket;
-gamepadStruct   gamepadPacket[8];
-ledStruct       ledPacket;
-knobStruct      knobPacket[8];
-actuatorStruct  actuatorPacket;
-displayStruct   displayPacket;
-telemetryStruct telemetryPacket;
-serialStruct    serialPacket;
+keyboardStruct   keyboardPacket[8];
+mouseStruct      mousePacket;
+gamepadStruct    gamepadPacket[8];
+ledStruct        ledPacket;
+knobStruct       knobPacket[8];
+actuatorStruct   actuatorPacket;
+displayStruct    displayPacket;
+telemetryStruct  telemetryPacket;
+serialStruct     serialPacket;
+spaceMouseStruct spaceMousePacket;
+
 
 packetStruct receivedPacket;
 
@@ -291,9 +310,21 @@ void convertPacket2Display(packetStruct packet)
 void convertPacket2Serial(packetStruct packet)
 {
     serialPacket.deviceID = packet.deviceID;
-    for(uint8_t i = 0; i < 7; ++i)
+    for(uint8_t i = 0; i < 8; i++)
     {
       serialPacket.packet[i] = packet.data[i];
+    }
+}
+
+
+
+void convertPacket2SpaceMouse(packetStruct packet)
+{
+    spaceMousePacket.deviceID = packet.deviceID;
+    for(uint8_t i = 0; i < 3; i++)
+    {
+        spaceMousePacket.trans[i] = packet.data[i];
+        spaceMousePacket.rot[i] = packet.data[i + 3];
     }
 }
 
@@ -550,5 +581,29 @@ void handleKnob()
 }
 
 
+
+void handleSpaceMouse()
+{
+    int16_t trans_report[3];
+    int16_t rot_report[3];
+
+    for(uint8_t i = 0; i < 3; i++)
+    {
+        trans_report[i] = map(spaceMousePacket.trans[i], -128, 127, -1400, 1400);
+        rot_report[i] = map(spaceMousePacket.rot[i], -128, 127, -1400, 1400);
+    }
+
+    if(usb_hid.ready())
+    {
+        usb_hid.sendReport(1, trans_report, 6);
+        delay(10);  // TODO FIX THIS DELAY
+    }
+    
+    if(usb_hid.ready())
+    {
+        usb_hid.sendReport(2, rot_report, 6);
+        delay(10);
+    }
+}
 
 #endif
