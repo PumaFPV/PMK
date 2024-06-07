@@ -1,0 +1,11 @@
+Schematic:
+	Fix PSoM pinout
+	Add capa for A, B
+	Add debounce to RE
+	Edge connector for peripherals
+	
+Routing:
+	Move SR away from switch (aluminium plate)
+	Move RE up
+	Remove test points from under PSoM
+	
