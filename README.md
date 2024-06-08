@@ -91,7 +91,7 @@ Devices should send data as simple as possible, keyboard sends key IDs pressed (
 | 0x06 | Actuator | Choose command type (torque, speed, position) | 5 | dID 06 01 |  |
 | 0x07 | Display | send image to display using wifi for faster refresh rate? or store on local mem | 6 | dID 07 imgNumber x y brightness | Display img number n at coordinates x,y and brightness b. Might change later |
 | 0x08 | Serial | send up to 8 bytes of data | 10 | dID 08 aa bb cc dd ee ff gg hh | Sending 8 bytes of data |
-| 0x09 |  |  |  |  |  |
+| 0x09 | SpaceMouse | send 3 bytes for translation (x, y, z) and 3 bytes for rotation (x, y, z), signed intergers | 6 | dID 7F 00 00 FF 00 00 | Positive translation on x and negative rotation on x |
 
 ### Serial config - Dongle to PC
 The dongle supports a few serial commands, they only consist on a string, no CR/LF should be send or the command won't be recongnised.

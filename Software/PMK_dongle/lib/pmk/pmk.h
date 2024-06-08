@@ -602,7 +602,7 @@ void handleSpaceMouse()
     if(usb_hid.ready())
     {
         usb_hid.sendReport(2, rot_report, 6);
-        delay(10);
+        delay(10);  // TODO FIX THIS DELAY
     }
 }
 
