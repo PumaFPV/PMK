@@ -319,7 +319,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 124.46) (xy 124.46 76.2)
+			(xy 124.46 124.46) (xy 124.46 78.74)
 		)
 		(stroke
 			(width 0)
@@ -419,7 +419,7 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 73.66) (xy 121.92 73.66)
+			(xy 119.38 76.2) (xy 121.92 76.2)
 		)
 		(stroke
 			(width 0)
@@ -449,7 +449,7 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 73.66) (xy 121.92 121.92)
+			(xy 121.92 76.2) (xy 121.92 121.92)
 		)
 		(stroke
 			(width 0)
@@ -559,6 +559,16 @@
 	)
 	(wire
 		(pts
+			(xy 119.38 73.66) (xy 162.56 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cac8e446-938d-47d4-82fa-f7a2c3d489a3")
+	)
+	(wire
+		(pts
 			(xy 215.9 30.48) (xy 215.9 33.02)
 		)
 		(stroke
@@ -649,7 +659,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 76.2) (xy 119.38 76.2)
+			(xy 124.46 78.74) (xy 119.38 78.74)
 		)
 		(stroke
 			(width 0)
@@ -1503,6 +1513,16 @@
 			)
 			(uuid "147d9e3d-873c-4411-a43d-7f822a016850")
 		)
+		(pin "DR" input
+			(at 162.56 73.66 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "4005fc5b-e401-46d2-a126-06218cfac735")
+		)
 		(instances
 			(project "PMK_Keyboard_02.kicad_pro"
 				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722"
@@ -1770,7 +1790,7 @@
 			(uuid "3c10775a-d215-4ea4-a22c-bda9145e4cab")
 		)
 		(pin "B" input
-			(at 119.38 76.2 0)
+			(at 119.38 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1780,7 +1800,7 @@
 			(uuid "3424b37f-f7b0-4a64-991a-065bc232edbb")
 		)
 		(pin "A" input
-			(at 119.38 73.66 0)
+			(at 119.38 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1798,6 +1818,16 @@
 				(justify right)
 			)
 			(uuid "5e40b748-a952-4b25-b779-f69247234221")
+		)
+		(pin "DR" input
+			(at 119.38 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "37ca81b7-6e28-4774-824c-a3b737259cdd")
 		)
 		(instances
 			(project "PMK_Keyboard_02.kicad_pro"
