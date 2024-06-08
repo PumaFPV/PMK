@@ -1880,16 +1880,6 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 73.66) (xy 203.2 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "115aff16-b7fb-4340-838a-8ed1964a46ef")
-	)
-	(wire
-		(pts
 			(xy 71.12 144.78) (xy 73.66 144.78)
 		)
 		(stroke
@@ -1940,16 +1930,6 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 73.66) (xy 205.74 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2182d51b-1756-4851-abd0-e18b3d155a03")
-	)
-	(wire
-		(pts
 			(xy 50.8 111.76) (xy 50.8 109.22)
 		)
 		(stroke
@@ -1967,16 +1947,6 @@
 			(type default)
 		)
 		(uuid "422a3f32-790c-496d-b6b6-074907985b80")
-	)
-	(wire
-		(pts
-			(xy 200.66 78.74) (xy 205.74 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "46ff5b8d-1e39-486f-a0dd-3955409d6b6e")
 	)
 	(wire
 		(pts
@@ -2290,16 +2260,6 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 83.82) (xy 162.56 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b66472eb-a253-4677-a8ac-606bc8700353")
-	)
-	(wire
-		(pts
 			(xy 271.78 66.04) (xy 274.32 66.04)
 		)
 		(stroke
@@ -2307,16 +2267,6 @@
 			(type default)
 		)
 		(uuid "b8cf3da8-3dc8-470e-b620-d0d41b2e3485")
-	)
-	(wire
-		(pts
-			(xy 162.56 81.28) (xy 165.1 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b8d0cff7-af67-4770-bc9b-516ef1ff6cfc")
 	)
 	(wire
 		(pts
@@ -2407,16 +2357,6 @@
 			(type default)
 		)
 		(uuid "df2d73ed-5b19-4e8e-8901-ca8a083e5cff")
-	)
-	(wire
-		(pts
-			(xy 200.66 76.2) (xy 205.74 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e0ce75f4-ce7b-4477-a9c1-b3b9f93b2bf2")
 	)
 	(wire
 		(pts
@@ -2696,17 +2636,6 @@
 		)
 		(uuid "3ff1a210-3839-40fb-9a1b-409d79f70615")
 	)
-	(label "SCL"
-		(at 200.66 78.74 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "475b2e00-341f-408b-aa89-4e3711e4b005")
-	)
 	(label "NCS"
 		(at 271.78 81.28 180)
 		(fields_autoplaced yes)
@@ -2761,17 +2690,6 @@
 			(justify right bottom)
 		)
 		(uuid "668c643e-cb7b-4b76-a709-7f0a45b29a80")
-	)
-	(label "SDA"
-		(at 200.66 76.2 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "6d9a3ef0-3f75-4471-8f2c-34c48ada8b54")
 	)
 	(label "SCLK"
 		(at 271.78 76.2 180)
@@ -3629,7 +3547,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 162.56 83.82 0)
+		(at 162.56 104.14 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3638,7 +3556,7 @@
 		(fields_autoplaced yes)
 		(uuid "866f4759-31e9-4347-8150-3ffb0e7d77a0")
 		(property "Reference" "#PWR0320"
-			(at 162.56 90.17 0)
+			(at 162.56 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3647,7 +3565,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 162.56 88.2634 0)
+			(at 162.56 108.5834 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3655,7 +3573,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 162.56 83.82 0)
+			(at 162.56 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3664,7 +3582,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 162.56 83.82 0)
+			(at 162.56 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3673,7 +3591,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 162.56 83.82 0)
+			(at 162.56 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4032,7 +3950,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 203.2 106.68 0)
+		(at 180.34 104.14 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4041,7 +3959,7 @@
 		(fields_autoplaced yes)
 		(uuid "b04cc6f4-c732-4115-878e-7eb0b3a9fb94")
 		(property "Reference" "#PWR0324"
-			(at 203.2 113.03 0)
+			(at 180.34 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4050,7 +3968,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 203.2 111.1234 0)
+			(at 180.34 108.5834 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4058,7 +3976,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 203.2 106.68 0)
+			(at 180.34 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4067,7 +3985,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 203.2 106.68 0)
+			(at 180.34 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4076,7 +3994,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 203.2 106.68 0)
+			(at 180.34 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)

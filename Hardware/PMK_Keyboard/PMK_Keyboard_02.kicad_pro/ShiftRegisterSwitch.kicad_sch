@@ -422,6 +422,142 @@
 				)
 			)
 		)
+		(symbol "Component_lib:C"
+			(pin_numbers hide)
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "C"
+				(at 0.635 -1.27 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "C"
+				(at 0.635 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0.9652 -7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Unpolarized capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "C_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "C_0_1"
+				(polyline
+					(pts
+						(xy -2.032 -4.572) (xy 2.032 -4.572)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.032 -3.048) (xy 2.032 -3.048)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C_1_1"
+				(pin passive line
+					(at 0 0 270)
+					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -7.62 90)
+					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "Component_lib:R"
 			(pin_numbers hide)
 			(pin_names
@@ -1355,12 +1491,12 @@
 				)
 			)
 		)
-		(symbol "Component_lib:SN74LVC3G04DCTR"
+		(symbol "Component_lib:SN74LVC2G04DBVRG4"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "U"
-				(at 21.59 7.62 0)
+				(at 5.08 7.62 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1368,8 +1504,8 @@
 					(justify left top)
 				)
 			)
-			(property "Value" "SN74LVC3G04DCTR"
-				(at 21.59 5.08 0)
+			(property "Value" "SN74LVC2G04DBVRG4"
+				(at 5.08 5.08 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1377,7 +1513,7 @@
 					(justify left top)
 				)
 			)
-			(property "Footprint" "SOP65P400X130-8N"
+			(property "Footprint" "SOP95P280X145-6N"
 				(at 21.59 -94.92 0)
 				(effects
 					(font
@@ -1387,7 +1523,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "http://www.ti.com/lit/gpn/sn74lvc3g04"
+			(property "Datasheet" "http://www.ti.com/lit/ds/symlink/sn74lvc2g04.pdf"
 				(at 21.59 -194.92 0)
 				(effects
 					(font
@@ -1397,8 +1533,8 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Triple Inverter Gate"
-				(at 11.176 5.842 0)
+			(property "Description" "Inverters Dual Inverter"
+				(at 10.16 -10.16 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1406,7 +1542,7 @@
 					(hide yes)
 				)
 			)
-			(property "Height" "1.3"
+			(property "Height" "1.45"
 				(at 21.59 -394.92 0)
 				(effects
 					(font
@@ -1416,7 +1552,7 @@
 					(hide yes)
 				)
 			)
-			(property "Mouser Part Number" "595-SN74LVC3G04DCTR"
+			(property "Mouser Part Number" "595-74LVC2G04DBVRG4"
 				(at 21.59 -494.92 0)
 				(effects
 					(font
@@ -1426,7 +1562,7 @@
 					(hide yes)
 				)
 			)
-			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Texas-Instruments/SN74LVC3G04DCTR?qs=DcvZ7Fltd5xgtUoI16LLCQ%3D%3D"
+			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Texas-Instruments/SN74LVC2G04DBVRG4?qs=glQR3cLZh260tFicjpfSow%3D%3D"
 				(at 21.59 -594.92 0)
 				(effects
 					(font
@@ -1446,7 +1582,7 @@
 					(hide yes)
 				)
 			)
-			(property "Manufacturer_Part_Number" "SN74LVC3G04DCTR"
+			(property "Manufacturer_Part_Number" "SN74LVC2G04DBVRG4"
 				(at 21.59 -794.92 0)
 				(effects
 					(font
@@ -1456,10 +1592,10 @@
 					(hide yes)
 				)
 			)
-			(symbol "SN74LVC3G04DCTR_1_1"
+			(symbol "SN74LVC2G04DBVRG4_1_1"
 				(rectangle
 					(start 2.54 2.54)
-					(end 15.24 -10.16)
+					(end 17.78 -7.62)
 					(stroke
 						(width 0.254)
 						(type default)
@@ -1468,7 +1604,7 @@
 						(type background)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 0 0 0)
 					(length 2.54)
 					(name "1A"
@@ -1486,10 +1622,10 @@
 						)
 					)
 				)
-				(pin output line
-					(at 0 -2.54 0)
+				(pin passive line
+					(at 0 -5.08 0)
 					(length 2.54)
-					(name "3Y"
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1504,8 +1640,8 @@
 						)
 					)
 				)
-				(pin input line
-					(at 0 -5.08 0)
+				(pin passive line
+					(at 0 -2.54 0)
 					(length 2.54)
 					(name "2A"
 						(effects
@@ -1522,10 +1658,10 @@
 						)
 					)
 				)
-				(pin power_in line
-					(at 0 -7.62 0)
+				(pin passive line
+					(at 20.32 -5.08 180)
 					(length 2.54)
-					(name "GND"
+					(name "2Y"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1540,10 +1676,10 @@
 						)
 					)
 				)
-				(pin output line
-					(at 17.78 -7.62 180)
+				(pin passive line
+					(at 20.32 0 180)
 					(length 2.54)
-					(name "2Y"
+					(name "VCC"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1558,26 +1694,8 @@
 						)
 					)
 				)
-				(pin input line
-					(at 17.78 -5.08 180)
-					(length 2.54)
-					(name "3A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 17.78 -2.54 180)
+				(pin passive line
+					(at 20.32 -2.54 180)
 					(length 2.54)
 					(name "1Y"
 						(effects
@@ -1586,25 +1704,7 @@
 							)
 						)
 					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 17.78 0 180)
-					(length 2.54)
-					(name "VCC"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
+					(number "6"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2043,6 +2143,12 @@
 		(uuid "21f4ae53-75e2-4d7a-9a90-b2b98885840b")
 	)
 	(junction
+		(at 391.16 149.86)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2409b251-4b0d-490d-b8c5-99b87d8193de")
+	)
+	(junction
 		(at 243.84 213.3229)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2191,6 +2297,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "79f28674-567b-4125-8158-e8f01244eca6")
+	)
+	(junction
+		(at 347.98 149.86)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7ac52168-cc46-4e66-ba54-e612eb559eec")
 	)
 	(junction
 		(at 243.84 175.26)
@@ -2361,6 +2473,12 @@
 		(uuid "b2b1b9a5-62de-4fe6-965d-2595adf6718a")
 	)
 	(junction
+		(at 360.68 149.86)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b6f43021-2e60-4097-b68a-725401582701")
+	)
+	(junction
 		(at 63.5 213.36)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2487,6 +2605,12 @@
 		(uuid "ec43d861-09b3-43f2-a2d9-edd87fc0f20e")
 	)
 	(junction
+		(at 378.46 149.86)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ed4c32b9-8a33-475b-89d4-f04dd722f87c")
+	)
+	(junction
 		(at 264.16 185.42)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2564,7 +2688,7 @@
 	)
 	(wire
 		(pts
-			(xy 304.8 170.18) (xy 307.34 170.18)
+			(xy 365.76 182.88) (xy 368.3 182.88)
 		)
 		(stroke
 			(width 0)
@@ -2594,7 +2718,7 @@
 	)
 	(wire
 		(pts
-			(xy 292.1 208.28) (xy 297.18 208.28)
+			(xy 302.26 149.86) (xy 307.34 149.86)
 		)
 		(stroke
 			(width 0)
@@ -2671,6 +2795,26 @@
 			(type default)
 		)
 		(uuid "0c2d0ba2-fc03-4399-8abc-34edb9885db9")
+	)
+	(wire
+		(pts
+			(xy 302.26 190.5) (xy 302.26 193.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0ec5ab1d-b941-4d3e-84ab-592ef2c444ad")
+	)
+	(wire
+		(pts
+			(xy 391.16 160.02) (xy 391.16 162.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0ecdad77-aeb6-4bec-93ac-db3354134979")
 	)
 	(wire
 		(pts
@@ -2804,6 +2948,16 @@
 	)
 	(wire
 		(pts
+			(xy 327.66 182.88) (xy 327.66 185.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1588dc90-4be7-498b-bf28-6e9f624fec6c")
+	)
+	(wire
+		(pts
 			(xy 86.36 132.08) (xy 83.82 132.08)
 		)
 		(stroke
@@ -2831,6 +2985,26 @@
 			(type default)
 		)
 		(uuid "16d9b6c2-9c64-4cf0-aaae-bc3adaa9d821")
+	)
+	(wire
+		(pts
+			(xy 360.68 160.02) (xy 360.68 162.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "17597c21-b16a-4119-8ec3-54bf7c8f9d67")
+	)
+	(wire
+		(pts
+			(xy 378.46 137.16) (xy 378.46 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "17941c7d-2550-4e2f-9593-426d1b144a00")
 	)
 	(wire
 		(pts
@@ -2951,6 +3125,16 @@
 			(type default)
 		)
 		(uuid "21e4ecc1-58e5-4f1f-8cb8-a2d233cbf9bd")
+	)
+	(wire
+		(pts
+			(xy 391.16 149.86) (xy 391.16 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "22bc61ac-ee85-4e29-939f-f69e609f94d7")
 	)
 	(wire
 		(pts
@@ -3111,6 +3295,26 @@
 			(type default)
 		)
 		(uuid "367a43c2-1001-4735-aa17-4d8973821eee")
+	)
+	(wire
+		(pts
+			(xy 345.44 149.86) (xy 347.98 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "376b2810-a087-4655-b39b-9bb7fe77dfed")
+	)
+	(wire
+		(pts
+			(xy 347.98 149.86) (xy 350.52 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "38a0e1f8-e6eb-4612-9d19-81d66ab5d591")
 	)
 	(wire
 		(pts
@@ -3291,6 +3495,16 @@
 			(type default)
 		)
 		(uuid "48072c36-5e8d-4745-8ecb-23fccea0ff35")
+	)
+	(wire
+		(pts
+			(xy 325.12 187.96) (xy 327.66 187.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "483d2136-30ee-4686-9b80-74bd484178c7")
 	)
 	(wire
 		(pts
@@ -3614,6 +3828,16 @@
 	)
 	(wire
 		(pts
+			(xy 342.9 193.04) (xy 342.9 195.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "65132064-9b45-4693-baa6-cecd9dd149d8")
+	)
+	(wire
+		(pts
 			(xy 142.24 205.74) (xy 142.24 213.36)
 		)
 		(stroke
@@ -3794,13 +4018,23 @@
 	)
 	(wire
 		(pts
-			(xy 312.42 208.28) (xy 317.5 208.28)
+			(xy 322.58 149.86) (xy 327.66 149.86)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "74a8739d-6cdc-4146-a073-2182c4220238")
+	)
+	(wire
+		(pts
+			(xy 391.16 149.86) (xy 393.7 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "74a9200a-7c06-4d9b-8212-191124d5173b")
 	)
 	(wire
 		(pts
@@ -3824,7 +4058,7 @@
 	)
 	(wire
 		(pts
-			(xy 312.42 203.2) (xy 314.96 203.2)
+			(xy 322.58 144.78) (xy 325.12 144.78)
 		)
 		(stroke
 			(width 0)
@@ -3894,6 +4128,26 @@
 	)
 	(wire
 		(pts
+			(xy 378.46 149.86) (xy 381 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7b6ffac5-1ae7-44fe-bf5b-f48a3f5cf718")
+	)
+	(wire
+		(pts
+			(xy 304.8 190.5) (xy 302.26 190.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7bb67de9-29ec-41e6-ab56-63ef8cc83ba5")
+	)
+	(wire
+		(pts
 			(xy 205.74 213.36) (xy 200.66 213.36)
 		)
 		(stroke
@@ -3921,6 +4175,16 @@
 			(type default)
 		)
 		(uuid "7d8d2ed9-c788-4a88-b978-7f3e56f4af45")
+	)
+	(wire
+		(pts
+			(xy 302.26 187.96) (xy 304.8 187.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7dd2a684-1f5b-4006-9521-0269b5f63dcc")
 	)
 	(wire
 		(pts
@@ -4034,6 +4298,16 @@
 	)
 	(wire
 		(pts
+			(xy 375.92 149.86) (xy 378.46 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "86f879b8-e09c-4472-b52d-b8fa803cea14")
+	)
+	(wire
+		(pts
 			(xy 160.02 177.8) (xy 162.56 177.8)
 		)
 		(stroke
@@ -4044,7 +4318,7 @@
 	)
 	(wire
 		(pts
-			(xy 314.96 180.34) (xy 317.5 180.34)
+			(xy 375.92 193.04) (xy 378.46 193.04)
 		)
 		(stroke
 			(width 0)
@@ -4084,7 +4358,17 @@
 	)
 	(wire
 		(pts
-			(xy 292.1 203.2) (xy 297.18 203.2)
+			(xy 360.68 149.86) (xy 363.22 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8be9349b-497a-4534-9587-fa6b54c0aadf")
+	)
+	(wire
+		(pts
+			(xy 302.26 144.78) (xy 307.34 144.78)
 		)
 		(stroke
 			(width 0)
@@ -4124,7 +4408,7 @@
 	)
 	(wire
 		(pts
-			(xy 314.96 203.2) (xy 314.96 210.82)
+			(xy 325.12 144.78) (xy 325.12 152.4)
 		)
 		(stroke
 			(width 0)
@@ -4221,6 +4505,16 @@
 			(type default)
 		)
 		(uuid "99c63572-675d-4161-b440-f2be7f8eea7c")
+	)
+	(wire
+		(pts
+			(xy 302.26 185.42) (xy 304.8 185.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "99e40455-9a45-4d6a-9bc8-791855d11d9b")
 	)
 	(wire
 		(pts
@@ -4394,6 +4688,16 @@
 	)
 	(wire
 		(pts
+			(xy 325.12 190.5) (xy 327.66 190.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a41e0d01-c257-4f81-82cc-cbdda0597234")
+	)
+	(wire
+		(pts
 			(xy 279.4 160.02) (xy 279.4 177.8)
 		)
 		(stroke
@@ -4444,6 +4748,16 @@
 	)
 	(wire
 		(pts
+			(xy 360.68 149.86) (xy 360.68 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aa9780c8-a692-48c9-a230-b0d69427a4c6")
+	)
+	(wire
+		(pts
 			(xy 238.76 175.26) (xy 243.84 175.26)
 		)
 		(stroke
@@ -4451,6 +4765,16 @@
 			(type default)
 		)
 		(uuid "abaf8df2-380c-4262-ba04-e8b9c6dc517e")
+	)
+	(wire
+		(pts
+			(xy 388.62 149.86) (xy 391.16 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac0db0ad-ef19-4711-b5fe-13c6046a420c")
 	)
 	(wire
 		(pts
@@ -4464,6 +4788,26 @@
 	)
 	(wire
 		(pts
+			(xy 327.66 185.42) (xy 325.12 185.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b07e22df-9a5e-48aa-9635-97d43cc930a0")
+	)
+	(wire
+		(pts
+			(xy 347.98 137.16) (xy 347.98 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b0b19b20-7d54-4519-a815-b33b4dc206c2")
+	)
+	(wire
+		(pts
 			(xy 111.76 170.18) (xy 127 170.18)
 		)
 		(stroke
@@ -4474,7 +4818,7 @@
 	)
 	(wire
 		(pts
-			(xy 294.64 205.74) (xy 294.64 210.82)
+			(xy 304.8 147.32) (xy 304.8 152.4)
 		)
 		(stroke
 			(width 0)
@@ -4594,7 +4938,7 @@
 	)
 	(wire
 		(pts
-			(xy 304.8 180.34) (xy 307.34 180.34)
+			(xy 365.76 193.04) (xy 368.3 193.04)
 		)
 		(stroke
 			(width 0)
@@ -4671,6 +5015,16 @@
 			(type default)
 		)
 		(uuid "bfce8ce5-ad32-47c5-bc5e-583d0b84f28f")
+	)
+	(wire
+		(pts
+			(xy 358.14 149.86) (xy 360.68 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c048d33a-6303-4515-bfc8-e0d5782db85e")
 	)
 	(wire
 		(pts
@@ -4794,13 +5148,23 @@
 	)
 	(wire
 		(pts
-			(xy 297.18 205.74) (xy 294.64 205.74)
+			(xy 307.34 147.32) (xy 304.8 147.32)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "cb3810b3-763a-4d78-8d05-31cf41939a0e")
+	)
+	(wire
+		(pts
+			(xy 347.98 147.32) (xy 347.98 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cbd96f6c-665b-4184-bfe4-4d95f36a4fb1")
 	)
 	(wire
 		(pts
@@ -4941,6 +5305,16 @@
 			(type default)
 		)
 		(uuid "db57e6d9-454e-4b08-b2ba-370745dc279b")
+	)
+	(wire
+		(pts
+			(xy 378.46 147.32) (xy 378.46 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dc0deab2-1831-493e-9609-cb1bc9db7cb6")
 	)
 	(wire
 		(pts
@@ -5164,6 +5538,16 @@
 	)
 	(wire
 		(pts
+			(xy 342.9 182.88) (xy 342.9 185.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eef31d5c-4ce3-460b-9070-613fbd49a6ba")
+	)
+	(wire
+		(pts
 			(xy 88.9 160.02) (xy 88.9 177.8)
 		)
 		(stroke
@@ -5274,7 +5658,7 @@
 	)
 	(wire
 		(pts
-			(xy 314.96 170.18) (xy 317.5 170.18)
+			(xy 375.92 182.88) (xy 378.46 182.88)
 		)
 		(stroke
 			(width 0)
@@ -5408,7 +5792,7 @@
 		(uuid "158758c6-d5da-4449-b203-2e207dc52ab5")
 	)
 	(label "31"
-		(at 317.5 170.18 0)
+		(at 378.46 182.88 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5462,6 +5846,17 @@
 		)
 		(uuid "31b16d30-1d1b-4a49-a28f-434cbc46c609")
 	)
+	(label "DB_A"
+		(at 327.66 187.96 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "33b8bf99-dcf8-458f-a313-0b75ae327610")
+	)
 	(label "8"
 		(at 88.9 162.56 0)
 		(fields_autoplaced yes)
@@ -5473,8 +5868,8 @@
 		)
 		(uuid "3686f155-c7e0-4953-a91e-f339517b71a4")
 	)
-	(label "A"
-		(at 304.8 170.18 180)
+	(label "DB_A"
+		(at 365.76 182.88 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5484,8 +5879,8 @@
 		)
 		(uuid "38a1acb6-ff80-4474-ba0e-195d0318c9c9")
 	)
-	(label "B"
-		(at 304.8 180.34 180)
+	(label "DB_B"
+		(at 365.76 193.04 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5572,6 +5967,17 @@
 		)
 		(uuid "61637e5f-e883-4b3b-83ce-5589b81f8277")
 	)
+	(label "B"
+		(at 375.92 149.86 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "638c0922-ecba-4b10-bd43-a4a0af2aeca1")
+	)
 	(label "13"
 		(at 137.16 162.56 0)
 		(fields_autoplaced yes)
@@ -5606,7 +6012,7 @@
 		(uuid "6c3a466c-4214-4937-81a0-4ff8d3b5d61f")
 	)
 	(label "A"
-		(at 292.1 203.2 180)
+		(at 302.26 144.78 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5650,7 +6056,7 @@
 		(uuid "7970187b-6592-4344-af0b-9856fd748f6f")
 	)
 	(label "B"
-		(at 292.1 208.28 180)
+		(at 302.26 149.86 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5693,7 +6099,7 @@
 		)
 		(uuid "81f3de7c-8e83-49f8-9478-8430c5727e64")
 	)
-	(label "A"
+	(label "DB_A"
 		(at 383.54 58.42 180)
 		(fields_autoplaced yes)
 		(effects
@@ -5715,8 +6121,19 @@
 		)
 		(uuid "84d0a5dc-df15-4cd0-99d1-e0638146edc5")
 	)
+	(label "F_A"
+		(at 363.22 149.86 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8595e448-77c3-4979-9883-71a813ee0568")
+	)
 	(label "30"
-		(at 317.5 208.28 0)
+		(at 327.66 149.86 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5725,6 +6142,17 @@
 			(justify left bottom)
 		)
 		(uuid "88843f46-34e6-4975-b336-e8890b1cb08a")
+	)
+	(label "F_B"
+		(at 393.7 149.86 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8998c822-b21f-452d-a008-3ab883d20398")
 	)
 	(label "22"
 		(at 205.74 162.56 0)
@@ -5736,6 +6164,28 @@
 			(justify left bottom)
 		)
 		(uuid "8f8f1bb4-6189-4ee0-ba50-1ca43b29d10f")
+	)
+	(label "A"
+		(at 345.44 149.86 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "9119c6f9-16f6-44b3-9409-ffc2b0be6c20")
+	)
+	(label "F_B"
+		(at 302.26 187.96 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "976c381b-de1b-431f-b384-1e94d78f99bd")
 	)
 	(label "10"
 		(at 121.92 162.56 0)
@@ -5769,6 +6219,17 @@
 			(justify left bottom)
 		)
 		(uuid "a3a0c730-227d-4d3c-a596-eac22d846569")
+	)
+	(label "F_A"
+		(at 302.26 185.42 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "a469853e-a4cb-47dd-849e-fb4f0c2677c6")
 	)
 	(label "23"
 		(at 210.82 162.56 0)
@@ -5804,7 +6265,7 @@
 		(uuid "abd14604-3f66-40d6-8898-25b1ca308894")
 	)
 	(label "32"
-		(at 317.5 180.34 0)
+		(at 378.46 193.04 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5869,7 +6330,7 @@
 		)
 		(uuid "d9a61cf4-16af-4dca-ba74-e9c0834a5ea4")
 	)
-	(label "B"
+	(label "DB_B"
 		(at 383.54 63.5 180)
 		(fields_autoplaced yes)
 		(effects
@@ -5956,6 +6417,17 @@
 			(justify right bottom)
 		)
 		(uuid "f7b549ea-51e1-48c6-93fd-78abe2ab4afd")
+	)
+	(label "DB_B"
+		(at 327.66 190.5 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "fcb9e0a0-790e-4cf9-87d7-48e987f41651")
 	)
 	(hierarchical_label "B"
 		(shape output)
@@ -6218,7 +6690,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 294.64 210.82 0)
+		(at 304.8 152.4 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6227,7 +6699,7 @@
 		(fields_autoplaced yes)
 		(uuid "013e8037-dc2b-42b7-85e5-60c48cceb7b1")
 		(property "Reference" "#PWR0423"
-			(at 294.64 217.17 0)
+			(at 304.8 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6236,7 +6708,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 294.64 215.2634 0)
+			(at 304.8 156.8434 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6244,7 +6716,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 294.64 210.82 0)
+			(at 304.8 152.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6253,7 +6725,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 294.64 210.82 0)
+			(at 304.8 152.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6262,7 +6734,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 294.64 210.82 0)
+			(at 304.8 152.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6351,6 +6823,73 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
+		(at 378.46 137.16 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "07a0290a-08a7-4be3-8679-17c64e4d3d88")
+		(property "Reference" "#PWR0217"
+			(at 378.46 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 378.46 133.5842 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 378.46 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 378.46 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 378.46 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "175d3b47-7076-4035-a83e-969b3b88efa2")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "#PWR0217")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
 		(at 142.24 132.08 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6410,6 +6949,209 @@
 			(project "PMK_Keyboard_02.kicad_pro"
 				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
 					(reference "#PWR0413")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 342.9 182.88 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "19f60e5f-fd89-4b2b-85d0-b04d41520f26")
+		(property "Reference" "#PWR0219"
+			(at 342.9 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 342.9 179.3042 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 342.9 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 342.9 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 342.9 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "eaf955d4-2bb3-4903-9583-a5dd14b0ec3e")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "#PWR0219")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Component_lib:C")
+		(at 360.68 152.4 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1eccd6d9-3f23-4552-a60a-9ff8d179170e")
+		(property "Reference" "C401"
+			(at 364.49 154.9399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10n"
+			(at 364.49 157.4799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 359.7148 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 360.68 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 360.68 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "79b50054-abf1-4d5c-b3ba-7e4286707f46")
+		)
+		(pin "2"
+			(uuid "005d0e22-1b78-4d8f-a665-36b73ce5a6d6")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "C401")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 302.26 193.04 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1f7c6172-9086-4eea-8c1f-d5320e3d5d71")
+		(property "Reference" "#PWR0213"
+			(at 302.26 199.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 302.26 197.4834 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 302.26 193.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 302.26 193.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 302.26 193.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1aa0b11a-0ee9-4c7d-a33a-8d5613d9d2f7")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "#PWR0213")
 					(unit 1)
 				)
 			)
@@ -6748,25 +7490,26 @@
 		)
 	)
 	(symbol
-		(lib_id "Component_lib:R")
-		(at 307.34 180.34 90)
+		(lib_id "power:GND")
+		(at 360.68 162.56 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom no)
+		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "2b3e3baa-7ce4-4ff8-b8cf-bb1e0bb4a024")
-		(property "Reference" "R402"
-			(at 311.15 173.99 90)
+		(uuid "2770d137-d45b-4f79-b6ee-f4e014c066a6")
+		(property "Reference" "#PWR0216"
+			(at 360.68 168.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
-		(property "Value" "R"
-			(at 311.15 176.53 90)
+		(property "Value" "GND"
+			(at 360.68 167.0034 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6774,7 +7517,72 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 311.15 182.118 90)
+			(at 360.68 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 360.68 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 360.68 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c534cba4-6839-4503-83ee-2ae0da294262")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "#PWR0216")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Component_lib:R")
+		(at 368.3 193.04 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp yes)
+		(fields_autoplaced yes)
+		(uuid "2b3e3baa-7ce4-4ff8-b8cf-bb1e0bb4a024")
+		(property "Reference" "R406"
+			(at 372.11 186.69 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "R"
+			(at 372.11 189.23 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 372.11 194.818 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6783,7 +7591,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 311.15 180.34 0)
+			(at 372.11 193.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6792,7 +7600,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 307.34 180.34 0)
+			(at 368.3 193.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6809,7 +7617,7 @@
 		(instances
 			(project "PMK_Keyboard_02.kicad_pro"
 				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-					(reference "R402")
+					(reference "R406")
 					(unit 1)
 				)
 			)
@@ -7217,6 +8025,72 @@
 	)
 	(symbol
 		(lib_id "power:GND")
+		(at 391.16 162.56 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "41e4299b-8562-4b84-8997-9bf4f9a0439a")
+		(property "Reference" "#PWR0218"
+			(at 391.16 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 391.16 167.0034 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 391.16 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 391.16 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 391.16 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fc6e3291-43ef-45ee-b961-72000832ab88")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "#PWR0218")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
 		(at 213.36 132.08 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7349,6 +8223,77 @@
 		)
 	)
 	(symbol
+		(lib_id "Component_lib:C")
+		(at 342.9 185.42 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4b0137c7-bbf8-4626-b5dd-ffc16220d9fd")
+		(property "Reference" "C403"
+			(at 346.71 187.9599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "100n"
+			(at 346.71 190.4999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 341.9348 193.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 342.9 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 342.9 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "32e1ec39-0346-4f6c-b229-55f893fad0dc")
+		)
+		(pin "2"
+			(uuid "bd4a7a5c-ee84-478b-b2d6-55d586e0bc83")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "C403")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
 		(at 383.54 30.48 0)
 		(unit 1)
@@ -7415,53 +8360,18 @@
 		)
 	)
 	(symbol
-		(lib_id "Component_lib:SN74LVC3G04DCTR")
-		(at 342.9 205.74 0)
+		(lib_id "power:+3V3")
+		(at 347.98 137.16 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "59dd782f-45e7-4b04-a619-209d9455cdd7")
-		(property "Reference" "U201"
-			(at 351.79 198.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SN74LVC3G04DCTR"
-			(at 351.79 200.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "SOP65P400X130-8N"
-			(at 364.49 300.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.ti.com/lit/gpn/sn74lvc3g04"
-			(at 364.49 400.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Description" "Triple Inverter Gate"
-			(at 354.076 199.898 0)
+		(uuid "5535380f-c7bd-4b38-acb2-4c40b4293bcd")
+		(property "Reference" "#PWR0215"
+			(at 347.98 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7469,84 +8379,114 @@
 				(hide yes)
 			)
 		)
-		(property "Height" "1.3"
-			(at 364.49 600.66 0)
+		(property "Value" "+3V3"
+			(at 347.98 133.5842 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left top)
-				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "595-SN74LVC3G04DCTR"
-			(at 364.49 700.66 0)
+		(property "Footprint" ""
+			(at 347.98 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left top)
 				(hide yes)
 			)
 		)
-		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Texas-Instruments/SN74LVC3G04DCTR?qs=DcvZ7Fltd5xgtUoI16LLCQ%3D%3D"
-			(at 364.49 800.66 0)
+		(property "Datasheet" ""
+			(at 347.98 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left top)
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Name" "Texas Instruments"
-			(at 364.49 900.66 0)
+		(property "Description" ""
+			(at 347.98 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left top)
 				(hide yes)
 			)
-		)
-		(property "Manufacturer_Part_Number" "SN74LVC3G04DCTR"
-			(at 364.49 1000.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(pin "4"
-			(uuid "8a950116-97d9-44b3-b4db-1d978130322a")
-		)
-		(pin "7"
-			(uuid "a70860f2-9413-4cd6-944e-5a75b5051745")
-		)
-		(pin "6"
-			(uuid "8670c946-06fb-419f-9689-a5b45950726c")
-		)
-		(pin "8"
-			(uuid "e5716ab0-6344-4970-87e7-6866fa6f6635")
-		)
-		(pin "3"
-			(uuid "3727a828-0d2c-4a31-9fde-1319a24d010b")
 		)
 		(pin "1"
-			(uuid "d7231306-9635-43f1-8c46-421d648f6ac7")
-		)
-		(pin "2"
-			(uuid "97e543fa-25da-489b-bb67-81e5096385c0")
-		)
-		(pin "5"
-			(uuid "0733efe9-d2d2-4110-8699-313e84d5ef90")
+			(uuid "199bb7d5-8745-40dd-8ef5-e4d1a31aff4e")
 		)
 		(instances
 			(project "PMK_Keyboard_02.kicad_pro"
 				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-					(reference "U201")
+					(reference "#PWR0215")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 327.66 182.88 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "617d737f-9c19-4420-9978-b64e1d740c1a")
+		(property "Reference" "#PWR0214"
+			(at 327.66 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 327.66 179.3042 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 327.66 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 327.66 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 327.66 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "141ee3b4-765e-4c31-8940-3dd8acbb3005")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "#PWR0214")
 					(unit 1)
 				)
 			)
@@ -7688,7 +8628,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 304.8 213.36 0)
+		(at 314.96 154.94 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7697,7 +8637,7 @@
 		(fields_autoplaced yes)
 		(uuid "6f659790-7c98-4d08-aae9-6dac4877b2bb")
 		(property "Reference" "#PWR0425"
-			(at 304.8 219.71 0)
+			(at 314.96 161.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7706,7 +8646,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 304.8 217.8034 0)
+			(at 314.96 159.3834 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7714,7 +8654,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 304.8 213.36 0)
+			(at 314.96 154.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7723,7 +8663,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 304.8 213.36 0)
+			(at 314.96 154.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7732,7 +8672,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 304.8 213.36 0)
+			(at 314.96 154.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7820,7 +8760,7 @@
 	)
 	(symbol
 		(lib_id "Component_lib:RIC11-22S10D5S-TH")
-		(at 304.8 205.74 0)
+		(at 314.96 147.32 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7828,7 +8768,7 @@
 		(dnp no)
 		(uuid "72af2df9-cb37-494f-bec7-a7742847db12")
 		(property "Reference" "SW430"
-			(at 304.8 195.58 0)
+			(at 314.96 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7836,7 +8776,7 @@
 			)
 		)
 		(property "Value" "RIC11-22S10D5S-TH"
-			(at 304.8 198.12 0)
+			(at 314.96 139.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7844,7 +8784,7 @@
 			)
 		)
 		(property "Footprint" "Component_lib:RIC11-22S10D5S-TH"
-			(at 300.99 201.676 0)
+			(at 311.15 143.256 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7853,7 +8793,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.mouser.ch/ProductDetail/CUI-Devices/RIC11-22S10D5S-TH?qs=HoCaDK9Nz5fxypdms%252BmQUg%3D%3D"
-			(at 304.8 199.136 0)
+			(at 314.96 140.716 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7862,7 +8802,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 304.8 205.74 0)
+			(at 314.96 147.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7892,6 +8832,72 @@
 			(project "PMK_Keyboard_02.kicad_pro"
 				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
 					(reference "SW430")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 342.9 195.58 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7348920e-d3b6-4ae2-8d12-2a067f4c76e3")
+		(property "Reference" "#PWR0220"
+			(at 342.9 201.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 342.9 200.0234 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 342.9 195.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 342.9 195.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 342.9 195.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0838464c-d158-4aaf-8325-0c92bcc9d40f")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "#PWR0220")
 					(unit 1)
 				)
 			)
@@ -8031,8 +9037,77 @@
 		)
 	)
 	(symbol
+		(lib_id "Component_lib:R")
+		(at 388.62 149.86 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "796b903b-2508-4d7e-a51d-028f685a81a3")
+		(property "Reference" "R404"
+			(at 384.81 143.51 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 384.81 146.05 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 384.81 151.638 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 384.81 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 388.62 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "1922203a-b588-4acc-b296-1f7a92e26546")
+		)
+		(pin "1"
+			(uuid "dda6257a-9461-456e-ab25-b33ec69b0535")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "R404")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
-		(at 314.96 210.82 0)
+		(at 325.12 152.4 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8041,7 +9116,7 @@
 		(fields_autoplaced yes)
 		(uuid "7af2c7eb-0597-43c1-84fc-923c7cbfff94")
 		(property "Reference" "#PWR0424"
-			(at 314.96 217.17 0)
+			(at 325.12 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8050,7 +9125,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 314.96 215.2634 0)
+			(at 325.12 156.8434 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8058,7 +9133,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 314.96 210.82 0)
+			(at 325.12 152.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8067,7 +9142,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 314.96 210.82 0)
+			(at 325.12 152.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8076,7 +9151,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 314.96 210.82 0)
+			(at 325.12 152.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8091,6 +9166,278 @@
 			(project "PMK_Keyboard_02.kicad_pro"
 				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
 					(reference "#PWR0424")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Component_lib:R")
+		(at 358.14 149.86 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7c4144ee-1296-48bf-a8f4-2ad1f25f3486")
+		(property "Reference" "R402"
+			(at 354.33 143.51 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 354.33 146.05 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 354.33 151.638 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 354.33 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 358.14 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "5fd6238a-9675-4dbe-ab38-7c067e91f368")
+		)
+		(pin "1"
+			(uuid "82f646e4-16d1-4c7c-b7e3-2403aaa5b4d3")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "R402")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Component_lib:C")
+		(at 391.16 152.4 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "825b901a-eddd-40b5-8eeb-2d76e609ccd6")
+		(property "Reference" "C402"
+			(at 394.97 154.9399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10n"
+			(at 394.97 157.4799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 390.1948 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 391.16 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 391.16 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "729a6eba-1880-4686-8157-f4ef7770f363")
+		)
+		(pin "2"
+			(uuid "fcbe87d2-ba63-4227-b761-0c7fe769c7c9")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "C402")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Component_lib:SN74LVC2G04DBVRG4")
+		(at 304.8 185.42 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "83ea3a7b-c553-4b48-9104-980a62d53055")
+		(property "Reference" "U405"
+			(at 314.96 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SN74LVC2G04DBVRG4"
+			(at 314.96 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "SOP95P280X145-6N"
+			(at 326.39 280.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/sn74lvc2g04.pdf"
+			(at 326.39 380.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" "Inverters Dual Inverter"
+			(at 314.96 195.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Height" "1.45"
+			(at 326.39 580.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "595-74LVC2G04DBVRG4"
+			(at 326.39 680.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Texas-Instruments/SN74LVC2G04DBVRG4?qs=glQR3cLZh260tFicjpfSow%3D%3D"
+			(at 326.39 780.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Name" "Texas Instruments"
+			(at 326.39 880.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "SN74LVC2G04DBVRG4"
+			(at 326.39 980.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "5"
+			(uuid "de7720c6-f34c-43a2-a1af-6f28224c90aa")
+		)
+		(pin "1"
+			(uuid "8f3c7906-075e-4deb-98e6-7141c91e818a")
+		)
+		(pin "3"
+			(uuid "b00a4b06-e8cd-43a7-bbf7-b052d35c9a17")
+		)
+		(pin "4"
+			(uuid "84c59ee0-b199-4343-9f74-ec5b668d6ade")
+		)
+		(pin "2"
+			(uuid "c536458d-46ac-47a2-930c-d16a1fb22ba8")
+		)
+		(pin "6"
+			(uuid "bfb80ab1-048c-4578-bb12-0d88ee51b3a2")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "U405")
 					(unit 1)
 				)
 			)
@@ -8164,6 +9511,77 @@
 		)
 	)
 	(symbol
+		(lib_id "Component_lib:R")
+		(at 347.98 147.32 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "867fd8a7-1589-426d-a3af-09a54f7977c7")
+		(property "Reference" "R401"
+			(at 345.44 142.2399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10k"
+			(at 345.44 144.7799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 346.202 143.51 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 347.98 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 347.98 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "3302292c-ee9a-4fe8-9468-7b9da5cc83e6")
+		)
+		(pin "1"
+			(uuid "b16bfd04-dda1-4bcd-979e-79b96201b59e")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "R401")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
 		(at 96.52 165.1 0)
 		(unit 1)
@@ -8231,32 +9649,35 @@
 	)
 	(symbol
 		(lib_id "Component_lib:R")
-		(at 307.34 170.18 90)
+		(at 378.46 147.32 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom no)
+		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "9a8d5dc3-dc00-4eaa-bc4c-b1aec140bc54")
-		(property "Reference" "R401"
-			(at 311.15 163.83 90)
+		(uuid "9798efd9-6952-439d-ba0d-9a7f7fd78185")
+		(property "Reference" "R403"
+			(at 375.92 142.2399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
-		(property "Value" "R"
-			(at 311.15 166.37 90)
+		(property "Value" "10k"
+			(at 375.92 144.7799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 311.15 171.958 90)
+			(at 376.682 143.51 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8265,7 +9686,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 311.15 170.18 0)
+			(at 378.46 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8274,7 +9695,75 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 307.34 170.18 0)
+			(at 378.46 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "9a747c48-2f41-4c68-914a-15de29985b29")
+		)
+		(pin "1"
+			(uuid "54557d78-0cf6-496e-819e-6b9536df1e36")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
+					(reference "R403")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Component_lib:R")
+		(at 368.3 182.88 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp yes)
+		(fields_autoplaced yes)
+		(uuid "9a8d5dc3-dc00-4eaa-bc4c-b1aec140bc54")
+		(property "Reference" "R405"
+			(at 372.11 176.53 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "R"
+			(at 372.11 179.07 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 372.11 184.658 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 372.11 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 368.3 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8291,7 +9780,7 @@
 		(instances
 			(project "PMK_Keyboard_02.kicad_pro"
 				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/2ae89e7d-b59a-451e-9e36-5967d907d91f"
-					(reference "R401")
+					(reference "R405")
 					(unit 1)
 				)
 			)

@@ -1,7 +1,5 @@
 Schematic:
 	Fix PSoM pinout
-	Add capa for A, B
-	Add debounce to RE
 	Edge connector for peripherals
 	
 Routing:

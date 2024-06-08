@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "PMK_Keyboard")
-		(date "2024-02-11")
-		(rev "HW01")
+		(date "2024-06-08")
+		(rev "HW02")
 		(company "PumaCorp")
 		(comment 1 "Design by: NdG")
 	)
