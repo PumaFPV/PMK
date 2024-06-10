@@ -3388,7 +3388,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Component_lib:PMK_Side_Conn_F"
 			(at 182.88 88.9 0)
 			(effects
 				(font
@@ -3616,7 +3616,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 			(at 43.18 114.3 0)
 			(effects
 				(font

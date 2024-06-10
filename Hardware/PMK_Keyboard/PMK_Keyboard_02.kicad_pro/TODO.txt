@@ -1,6 +1,4 @@
 Schematic:
-	Fix PSoM pinout
-	Edge connector for peripherals
 	
 Routing:
 	Move SR away from switch (aluminium plate)

@@ -7049,7 +7049,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 359.7148 160.02 0)
 			(effects
 				(font
@@ -7581,7 +7581,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 372.11 194.818 90)
 			(effects
 				(font
@@ -8251,7 +8251,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 341.9348 193.04 0)
 			(effects
 				(font
@@ -9063,7 +9063,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 384.81 151.638 90)
 			(effects
 				(font
@@ -9198,7 +9198,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 354.33 151.638 90)
 			(effects
 				(font
@@ -9269,7 +9269,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 390.1948 160.02 0)
 			(effects
 				(font
@@ -9337,7 +9337,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SOP95P280X145-6N"
+		(property "Footprint" "Component_lib:SOP95P280X145-6N"
 			(at 326.39 280.34 0)
 			(effects
 				(font
@@ -9539,7 +9539,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 346.202 143.51 90)
 			(effects
 				(font
@@ -9676,7 +9676,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 376.682 143.51 90)
 			(effects
 				(font
@@ -9744,7 +9744,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 372.11 184.658 90)
 			(effects
 				(font
