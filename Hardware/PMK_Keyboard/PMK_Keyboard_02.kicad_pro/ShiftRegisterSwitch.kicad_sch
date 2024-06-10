@@ -5791,7 +5791,7 @@
 		)
 		(uuid "158758c6-d5da-4449-b203-2e207dc52ab5")
 	)
-	(label "31"
+	(label "30"
 		(at 378.46 182.88 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6132,7 +6132,7 @@
 		)
 		(uuid "8595e448-77c3-4979-9883-71a813ee0568")
 	)
-	(label "30"
+	(label "32"
 		(at 327.66 149.86 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6264,7 +6264,7 @@
 		)
 		(uuid "abd14604-3f66-40d6-8898-25b1ca308894")
 	)
-	(label "32"
+	(label "31"
 		(at 378.46 193.04 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6429,7 +6429,7 @@
 		)
 		(uuid "fcb9e0a0-790e-4cf9-87d7-48e987f41651")
 	)
-	(hierarchical_label "B"
+	(hierarchical_label "DB_B"
 		(shape output)
 		(at 386.08 63.5 0)
 		(fields_autoplaced yes)
@@ -6501,7 +6501,7 @@
 		)
 		(uuid "b7553ac2-34fb-4c24-bc58-93e12750ba85")
 	)
-	(hierarchical_label "A"
+	(hierarchical_label "DB_A"
 		(shape output)
 		(at 386.08 58.42 0)
 		(fields_autoplaced yes)

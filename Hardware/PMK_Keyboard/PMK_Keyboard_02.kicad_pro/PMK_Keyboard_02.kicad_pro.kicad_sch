@@ -1315,17 +1315,7 @@
 			)
 			(uuid "474c21d3-c7ee-48e8-9ad4-4c482a80170d")
 		)
-		(pin "B" output
-			(at 119.38 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-			(uuid "d9bd2159-ef17-422f-b9e2-3a4fdcd05aa4")
-		)
-		(pin "A" output
+		(pin "DB_A" output
 			(at 119.38 121.92 0)
 			(effects
 				(font
@@ -1333,7 +1323,17 @@
 				)
 				(justify right)
 			)
-			(uuid "6e1a6edc-b872-4ac8-bcdd-46d56cdbd7f1")
+			(uuid "1a07c997-e4ed-4093-a9fb-dc4c364fa801")
+		)
+		(pin "DB_B" output
+			(at 119.38 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "a1bb1607-18f6-4a8a-9a58-858202194f1a")
 		)
 		(instances
 			(project "PMK_Keyboard_02.kicad_pro"
