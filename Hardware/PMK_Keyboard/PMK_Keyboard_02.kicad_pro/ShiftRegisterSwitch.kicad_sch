@@ -6779,7 +6779,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 68.58 200.66 0)
 			(effects
 				(font
@@ -7314,7 +7314,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 63.5 200.66 0)
 			(effects
 				(font
@@ -7381,7 +7381,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 83.82 200.66 0)
 			(effects
 				(font
@@ -7648,7 +7648,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 93.98 200.66 0)
 			(effects
 				(font
@@ -7715,7 +7715,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 58.42 200.66 0)
 			(effects
 				(font
@@ -7914,7 +7914,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 210.82 200.66 0)
 			(effects
 				(font
@@ -7981,7 +7981,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 121.92 200.66 0)
 			(effects
 				(font
@@ -8180,7 +8180,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 137.16 200.66 0)
 			(effects
 				(font
@@ -8517,7 +8517,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 205.74 200.66 0)
 			(effects
 				(font
@@ -8584,7 +8584,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 220.98 200.66 0)
 			(effects
 				(font
@@ -8994,7 +8994,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 264.16 200.66 0)
 			(effects
 				(font
@@ -9468,7 +9468,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 88.9 200.66 0)
 			(effects
 				(font
@@ -9811,7 +9811,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 185.42 200.66 0)
 			(effects
 				(font
@@ -10042,7 +10042,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 195.58 200.66 0)
 			(effects
 				(font
@@ -10109,7 +10109,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 157.48 200.66 0)
 			(effects
 				(font
@@ -10176,7 +10176,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 254 200.66 0)
 			(effects
 				(font
@@ -10309,7 +10309,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 269.24 200.66 0)
 			(effects
 				(font
@@ -10376,7 +10376,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 200.66 200.66 0)
 			(effects
 				(font
@@ -10443,7 +10443,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 259.08 200.66 0)
 			(effects
 				(font
@@ -10674,7 +10674,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 127 200.66 0)
 			(effects
 				(font
@@ -10807,7 +10807,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 78.74 200.66 0)
 			(effects
 				(font
@@ -11267,7 +11267,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 152.4 200.66 0)
 			(effects
 				(font
@@ -11334,7 +11334,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 190.5 200.66 0)
 			(effects
 				(font
@@ -11401,7 +11401,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 215.9 200.66 0)
 			(effects
 				(font
@@ -11666,7 +11666,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 132.08 200.66 0)
 			(effects
 				(font
@@ -11733,7 +11733,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 142.24 200.66 0)
 			(effects
 				(font
@@ -11800,7 +11800,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 147.32 200.66 0)
 			(effects
 				(font
@@ -11867,7 +11867,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 248.92 200.66 0)
 			(effects
 				(font
@@ -12162,7 +12162,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible"
+		(property "Footprint" "Component_lib:Kailh_socket_PG1350_reversible_V1V2"
 			(at 73.66 200.66 0)
 			(effects
 				(font
