@@ -306,339 +306,443 @@
 				)
 			)
 		)
-		(symbol "Component_lib:FH12-12S-0.5SH_55_"
+		(symbol "Component_lib:FFC2B28-12-G"
 			(pin_names
-				(offset 0.762)
+				(offset 1.016)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "J"
-				(at 2.54 2.54 0)
+				(at -5.08 18.542 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
+					(justify left bottom)
 				)
 			)
-			(property "Value" "FH12-12S-0.5SH_55_"
-				(at 7.62 2.54 0)
+			(property "Value" "FFC2B28-12-G"
+				(at -5.08 -22.86 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
+					(justify left bottom)
 				)
 			)
-			(property "Footprint" "FH12-12S-0.5SH(55)"
-				(at 17.78 -2.54 0)
+			(property "Footprint" "FFC2B28-12-G:GCT_FFC2B28-12-G"
+				(at -2.54 22.86 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
+					(justify bottom)
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "https://datasheet.datasheetarchive.com/originals/distributors/SFDatasheet-1/sf-00023459.pdf"
-				(at 17.78 -2.54 0)
+			(property "Datasheet" ""
+				(at 0 22.86 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 					(hide yes)
 				)
 			)
-			(property "Description" "HIROSE(HRS) - FH12-12S-0.5SH(55) - SOCKET FFC/FPC, ZIF, 0.5MM, 12WAY"
-				(at 17.78 -7.62 0)
+			(property "Description" ""
+				(at 0 22.86 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 					(hide yes)
 				)
 			)
-			(property "Height" ""
-				(at 3.81 -20.32 0)
+			(property "DigiKey_Part_Number" "2073-FFC2B28-12-GTR-ND"
+				(at -2.54 22.86 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
+					(justify bottom)
 					(hide yes)
 				)
 			)
-			(property "Mouser Part Number" "798-FH12-12S-0.5SH55"
-				(at 17.78 -12.7 0)
+			(property "MF" "Global Connector Technology"
+				(at -2.54 22.86 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
+					(justify bottom)
 					(hide yes)
 				)
 			)
-			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Hirose-Connector/FH12-12S-0.5SH55?qs=Ux3WWAnHpjA1i1nP49r1%2FQ%3D%3D"
-				(at 17.78 -15.24 0)
+			(property "MAXIMUM_PACKAGE_HEIGHT" "1.75mm"
+				(at 0 22.86 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
+					(justify bottom)
 					(hide yes)
 				)
 			)
-			(property "Manufacturer_Name" "Hirose"
-				(at 17.78 -17.78 0)
+			(property "Package" "None"
+				(at 0 22.86 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
+					(justify bottom)
 					(hide yes)
 				)
 			)
-			(property "Manufacturer_Part_Number" "FH12-12S-0.5SH(55)"
-				(at 17.78 -20.32 0)
+			(property "Check_prices" "https://www.snapeda.com/parts/FFC2B28-12-G/Global+Connector+Technology/view-part/?ref=eda"
+				(at 5.08 22.86 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
+					(justify bottom)
 					(hide yes)
 				)
 			)
-			(symbol "FH12-12S-0.5SH_55__0_0"
+			(property "STANDARD" "Manufacturer Recommendations"
+				(at -2.54 22.86 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "PARTREV" "A"
+				(at 0 22.86 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "SnapEDA_Link" "https://www.snapeda.com/parts/FFC2B28-12-G/Global+Connector+Technology/view-part/?ref=snap"
+				(at 5.08 22.86 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MP" "FFC2B28-12-G"
+				(at 0 22.86 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=4223061&manufacturer=Global Connector Technology&part_name=FFC2B28-12-G&search_term=ffc2b28-12-g"
+				(at 5.08 22.86 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Description_1" "\n12 Position FFC, FPC Connector Contacts, Top and Bottom 0.020 (0.50mm) Surface Mount, Right Angle\n"
+				(at 5.08 22.86 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MANUFACTURER" "GCT"
+				(at 0 22.86 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(symbol "FFC2B28-12-G_0_0"
+				(rectangle
+					(start -5.08 -20.32)
+					(end 5.08 17.78)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "FFC2B28-12-G_1_0"
 				(pin passive line
-					(at 0 0 0)
+					(at -7.62 15.24 0)
 					(length 2.54)
 					(name "1"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "1"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
 				(pin passive line
-					(at 0 -22.86 0)
+					(at -7.62 -7.62 0)
 					(length 2.54)
 					(name "10"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "10"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
 				(pin passive line
-					(at 0 -25.4 0)
+					(at -7.62 -10.16 0)
 					(length 2.54)
 					(name "11"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "11"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
 				(pin passive line
-					(at 0 -27.94 0)
+					(at -7.62 -12.7 0)
 					(length 2.54)
 					(name "12"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "12"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
 				(pin passive line
-					(at 0 -2.54 0)
+					(at -7.62 12.7 0)
 					(length 2.54)
 					(name "2"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "2"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
 				(pin passive line
-					(at 0 -5.08 0)
+					(at -7.62 10.16 0)
 					(length 2.54)
 					(name "3"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "3"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
 				(pin passive line
-					(at 0 -7.62 0)
+					(at -7.62 7.62 0)
 					(length 2.54)
 					(name "4"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "4"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
 				(pin passive line
-					(at 0 -10.16 0)
+					(at -7.62 5.08 0)
 					(length 2.54)
 					(name "5"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "5"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
 				(pin passive line
-					(at 0 -12.7 0)
+					(at -7.62 2.54 0)
 					(length 2.54)
 					(name "6"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "6"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
 				(pin passive line
-					(at 0 -15.24 0)
+					(at -7.62 0 0)
 					(length 2.54)
 					(name "7"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "7"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
 				(pin passive line
-					(at 0 -17.78 0)
+					(at -7.62 -2.54 0)
 					(length 2.54)
 					(name "8"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "8"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
 				(pin passive line
-					(at 0 -20.32 0)
+					(at -7.62 -5.08 0)
 					(length 2.54)
 					(name "9"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "9"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
-			)
-			(symbol "FH12-12S-0.5SH_55__0_1"
-				(rectangle
-					(start 2.54 2.54)
-					(end 12.7 -30.48)
-					(stroke
-						(width 0.1524)
-						(type default)
+				(pin passive line
+					(at -7.62 -17.78 0)
+					(length 2.54)
+					(name "SHIELD"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
 					)
-					(fill
-						(type none)
+					(number "S1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -7.62 -17.78 0)
+					(length 2.54)
+					(name "SHIELD"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "S2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
 					)
 				)
 			)
@@ -2217,6 +2321,16 @@
 	)
 	(wire
 		(pts
+			(xy 208.28 96.52) (xy 205.74 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0a9b85b7-6ae2-490d-88a5-6431dcd5a9e5")
+	)
+	(wire
+		(pts
 			(xy 271.78 81.28) (xy 274.32 81.28)
 		)
 		(stroke
@@ -2297,6 +2411,26 @@
 	)
 	(wire
 		(pts
+			(xy 205.74 63.5) (xy 208.28 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "22897fa4-93da-4803-b9b1-2eb36ac18f3e")
+	)
+	(wire
+		(pts
+			(xy 205.74 91.44) (xy 208.28 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "25a8e9ef-9a93-4167-b084-2124423e108c")
+	)
+	(wire
+		(pts
 			(xy 50.8 111.76) (xy 50.8 109.22)
 		)
 		(stroke
@@ -2317,6 +2451,16 @@
 	)
 	(wire
 		(pts
+			(xy 162.56 96.52) (xy 160.02 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "46c8cff4-6d8c-4bdd-9ebc-6dd98074792c")
+	)
+	(wire
+		(pts
 			(xy 271.78 91.44) (xy 274.32 91.44)
 		)
 		(stroke
@@ -2334,6 +2478,16 @@
 			(type default)
 		)
 		(uuid "53c2f1f8-a353-4b4a-bdae-9995b448a7dc")
+	)
+	(wire
+		(pts
+			(xy 205.74 73.66) (xy 208.28 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "548e2b09-fe14-49f9-8330-6b31ccfda2b2")
 	)
 	(wire
 		(pts
@@ -2374,6 +2528,16 @@
 			(type default)
 		)
 		(uuid "6210c460-6f8a-47a4-b92f-654218fda02e")
+	)
+	(wire
+		(pts
+			(xy 205.74 86.36) (xy 208.28 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "63d1c66d-916e-45d2-a0d1-eb3e48fdd36f")
 	)
 	(wire
 		(pts
@@ -2497,6 +2661,16 @@
 	)
 	(wire
 		(pts
+			(xy 160.02 96.52) (xy 160.02 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b519dd3-8fee-402e-8210-0410f6ab062d")
+	)
+	(wire
+		(pts
 			(xy 48.26 114.3) (xy 50.8 114.3)
 		)
 		(stroke
@@ -2557,6 +2731,16 @@
 	)
 	(wire
 		(pts
+			(xy 205.74 96.52) (xy 205.74 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ae5526d2-fb2e-49aa-ba19-31767b6bd969")
+	)
+	(wire
+		(pts
 			(xy 271.78 101.6) (xy 274.32 101.6)
 		)
 		(stroke
@@ -2564,6 +2748,16 @@
 			(type default)
 		)
 		(uuid "af85025a-d0b0-4784-842a-034205ac58c8")
+	)
+	(wire
+		(pts
+			(xy 205.74 71.12) (xy 208.28 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b36a7be6-3165-48f3-b9db-6a6e36cb0d2b")
 	)
 	(wire
 		(pts
@@ -2637,6 +2831,26 @@
 	)
 	(wire
 		(pts
+			(xy 200.66 88.9) (xy 200.66 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c812142d-7eea-4d60-8eca-fb5cbf74dd91")
+	)
+	(wire
+		(pts
+			(xy 205.74 76.2) (xy 208.28 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c837c37a-1f36-465d-beda-84f99cd24301")
+	)
+	(wire
+		(pts
 			(xy 66.04 68.58) (xy 66.04 71.12)
 		)
 		(stroke
@@ -2657,6 +2871,16 @@
 	)
 	(wire
 		(pts
+			(xy 205.74 78.74) (xy 208.28 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d2c8f454-72bb-4a23-bada-fd439f38e2a1")
+	)
+	(wire
+		(pts
 			(xy 93.98 68.58) (xy 93.98 71.12)
 		)
 		(stroke
@@ -2664,6 +2888,16 @@
 			(type default)
 		)
 		(uuid "d3cf8519-28b1-4518-9721-f605692f81af")
+	)
+	(wire
+		(pts
+			(xy 205.74 83.82) (xy 208.28 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d6236076-22fe-4726-bee4-68660fcc8e23")
 	)
 	(wire
 		(pts
@@ -2694,6 +2928,16 @@
 			(type default)
 		)
 		(uuid "dba1da3a-0cef-4070-9ba9-1a7f786ad0f1")
+	)
+	(wire
+		(pts
+			(xy 205.74 66.04) (xy 208.28 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ddf86e93-f132-47e3-b25c-3627fc67f361")
 	)
 	(wire
 		(pts
@@ -2747,6 +2991,16 @@
 	)
 	(wire
 		(pts
+			(xy 205.74 81.28) (xy 208.28 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eba088aa-a35f-49c0-9a85-a06e97849670")
+	)
+	(wire
+		(pts
 			(xy 50.8 114.3) (xy 50.8 116.84)
 		)
 		(stroke
@@ -2767,6 +3021,16 @@
 	)
 	(wire
 		(pts
+			(xy 200.66 88.9) (xy 208.28 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fbd107d6-0144-40a0-94ff-313f3b96b7b5")
+	)
+	(wire
+		(pts
 			(xy 160.02 78.74) (xy 162.56 78.74)
 		)
 		(stroke
@@ -2784,6 +3048,16 @@
 			(type default)
 		)
 		(uuid "fd1dc22d-6690-4bd2-8236-d33b392a0109")
+	)
+	(wire
+		(pts
+			(xy 205.74 68.58) (xy 208.28 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fd97ec88-74c0-4adf-88d8-dcc3ff0b9eab")
 	)
 	(wire
 		(pts
@@ -2820,7 +3094,7 @@
 	)
 	(text "For trackpad\nCirque FPC"
 		(exclude_from_sim no)
-		(at 203.2 88.9 0)
+		(at 182.88 53.34 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2841,7 +3115,7 @@
 	)
 	(text "For 3D mouse\nLDC1612"
 		(exclude_from_sim no)
-		(at 203.2 93.98 0)
+		(at 182.88 58.42 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2882,6 +3156,17 @@
 			(justify right bottom)
 		)
 		(uuid "181c581e-8cab-47ed-a1b9-637408c5974f")
+	)
+	(label "SDA"
+		(at 205.74 86.36 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "18fda681-1683-491a-8ba8-1efc1d2bfe27")
 	)
 	(label "VBAT"
 		(at 86.36 139.7 0)
@@ -2993,6 +3278,17 @@
 		)
 		(uuid "3ff1a210-3839-40fb-9a1b-409d79f70615")
 	)
+	(label "SCLK"
+		(at 205.74 63.5 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "40058242-d392-407d-919e-0fd9e030aae7")
+	)
 	(label "CC2"
 		(at 73.66 58.42 0)
 		(fields_autoplaced yes)
@@ -3025,6 +3321,39 @@
 			(justify right bottom)
 		)
 		(uuid "5bc044af-df28-48a9-b925-3f8a608e47be")
+	)
+	(label "MISO"
+		(at 205.74 66.04 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "742a5ff0-230a-4bc2-89e8-5a3b6537eb8b")
+	)
+	(label "GP_CE"
+		(at 205.74 68.58 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "79b35d2f-fcb7-440d-9f5a-1fa996ac3fd1")
+	)
+	(label "DR"
+		(at 205.74 71.12 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "7ad14606-659c-43a7-a6db-28bf8aaa7436")
 	)
 	(label "SCLK"
 		(at 271.78 71.12 180)
@@ -3059,6 +3388,17 @@
 		)
 		(uuid "7e805545-d326-428e-8022-cacf6bed6f2a")
 	)
+	(label "GPIO3"
+		(at 205.74 81.28 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "8652bf2b-7c76-41f2-986e-a8ac1a1a8ac8")
+	)
 	(label "GP_CE"
 		(at 160.02 68.58 180)
 		(fields_autoplaced yes)
@@ -3092,6 +3432,17 @@
 		)
 		(uuid "9e99be5a-933e-4292-98dc-d3a44a7d2f44")
 	)
+	(label "MOSI"
+		(at 205.74 73.66 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "a8d380d3-3967-4374-b7da-d015cc46d80d")
+	)
 	(label "D-"
 		(at 271.78 40.64 180)
 		(fields_autoplaced yes)
@@ -3102,6 +3453,17 @@
 			(justify right bottom)
 		)
 		(uuid "ac2e773e-2737-4d4f-a964-485529000768")
+	)
+	(label "GPIO1"
+		(at 205.74 76.2 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ad66d400-37b6-46a7-9d12-eb2627fa24d7")
 	)
 	(label "MISO"
 		(at 271.78 66.04 180)
@@ -3169,6 +3531,17 @@
 		)
 		(uuid "c5f6897c-7e35-420c-ae1a-62296f68c34b")
 	)
+	(label "SCL"
+		(at 205.74 83.82 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c9e5b127-5919-483b-9cba-cacc48ed7ece")
+	)
 	(label "GPIO2"
 		(at 160.02 78.74 180)
 		(fields_autoplaced yes)
@@ -3180,6 +3553,17 @@
 		)
 		(uuid "d6e5f6df-61ca-4515-9726-008c8d476a3e")
 	)
+	(label "GPIO2"
+		(at 205.74 78.74 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "dad8d373-54e0-4039-8b9b-5b4ba5e19256")
+	)
 	(label "GPIO1"
 		(at 160.02 76.2 180)
 		(fields_autoplaced yes)
@@ -3190,6 +3574,17 @@
 			(justify right bottom)
 		)
 		(uuid "e212da88-0c20-4581-a889-272a27c7f846")
+	)
+	(label "3V3"
+		(at 205.74 91.44 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "fa02a000-69e5-47e6-8edb-f0b2d30fc37d")
 	)
 	(hierarchical_label "D-"
 		(shape bidirectional)
@@ -3384,152 +3779,66 @@
 		(uuid "fbd09fac-d920-48c8-b268-b9dcf5a9bad8")
 	)
 	(symbol
-		(lib_id "Component_lib:FH12-12S-0.5SH_55_")
-		(at 162.56 63.5 0)
+		(lib_id "power:GND")
+		(at 160.02 99.06 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "4035a717-b2f3-4253-80c0-f8f579e9f9ae")
-		(property "Reference" "J304"
-			(at 165.1 55.88 0)
+		(fields_autoplaced yes)
+		(uuid "061b646a-b510-4b1d-9c4f-d50373875943")
+		(property "Reference" "#PWR0207"
+			(at 160.02 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
-			)
-		)
-		(property "Value" "FH12-12S-0.5SH_55_"
-			(at 165.1 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Component_lib:FH12-12S-0.5SH_55_"
-			(at 180.34 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.mouser.ch/ProductDetail/798-FH12-12S-0.5SH55"
-			(at 180.34 66.04 0)
+		(property "Value" "GND"
+			(at 160.02 103.5034 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
-				(hide yes)
 			)
 		)
-		(property "Description" "HIROSE(HRS) - FH12-12S-0.5SH(55) - SOCKET FFC/FPC, ZIF, 0.5MM, 12WAY"
-			(at 180.34 71.12 0)
+		(property "Footprint" ""
+			(at 160.02 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Height" ""
-			(at 166.37 83.82 0)
+		(property "Datasheet" ""
+			(at 160.02 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "798-FH12-12S-0.5SH55"
-			(at 180.34 76.2 0)
+		(property "Description" ""
+			(at 160.02 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 				(hide yes)
 			)
-		)
-		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Hirose-Connector/FH12-12S-0.5SH55?qs=Ux3WWAnHpjA1i1nP49r1%2FQ%3D%3D"
-			(at 180.34 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Name" "Hirose"
-			(at 180.34 81.28 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "FH12-12S-0.5SH(55)"
-			(at 180.34 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(pin "10"
-			(uuid "66040032-a16b-4122-be6c-644931b8d0f7")
-		)
-		(pin "7"
-			(uuid "8337d85d-a91e-40a6-bc67-c3ab41aa9bc4")
 		)
 		(pin "1"
-			(uuid "7292e52f-55c2-4d31-9757-36c233146394")
-		)
-		(pin "6"
-			(uuid "37d58131-1d2b-460d-b10b-34b0c0bbec18")
-		)
-		(pin "8"
-			(uuid "17439f5c-8cba-454a-9038-82eed1230bad")
-		)
-		(pin "11"
-			(uuid "9158b576-b739-41a0-a1bc-6e1c61ed56d8")
-		)
-		(pin "12"
-			(uuid "380e0ace-9ae0-427b-b36a-55cdebe4dab2")
-		)
-		(pin "3"
-			(uuid "fab3df8f-25cf-4f98-987d-42f643f9bfe1")
-		)
-		(pin "5"
-			(uuid "0ff00aac-cd1a-4066-8e9c-8d3f1d8b5ad2")
-		)
-		(pin "9"
-			(uuid "892a59d5-c938-4c3c-8b0d-0d5afbfc0741")
-		)
-		(pin "4"
-			(uuid "69388cff-264e-492a-8086-7b66f4e0d895")
-		)
-		(pin "2"
-			(uuid "9d53ade4-7111-441f-b199-6fca891e27f3")
+			(uuid "10d107a1-c4c9-4028-a385-7af64f5b787b")
 		)
 		(instances
-			(project ""
+			(project "PMK_Keyboard_02.kicad_pro"
 				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
-					(reference "J304")
+					(reference "#PWR0207")
 					(unit 1)
 				)
 			)
@@ -3734,6 +4043,233 @@
 			(project "PMK_Keyboard_02.kicad_pro"
 				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
 					(reference "J302")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Component_lib:FFC2B28-12-G")
+		(at 215.9 78.74 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4e7c773b-0f4f-4ce9-bf33-eb06d8fd55aa")
+		(property "Reference" "J305"
+			(at 222.25 78.7399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "FFC2B28-12-G"
+			(at 222.25 81.2799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Component_lib:GCT_FFC2B28-12-G"
+			(at 213.36 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 215.9 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 215.9 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKey_Part_Number" "2073-FFC2B28-12-GTR-ND"
+			(at 213.36 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MF" "Global Connector Technology"
+			(at 213.36 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MAXIMUM_PACKAGE_HEIGHT" "1.75mm"
+			(at 215.9 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "None"
+			(at 215.9 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/FFC2B28-12-G/Global+Connector+Technology/view-part/?ref=eda"
+			(at 220.98 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "STANDARD" "Manufacturer Recommendations"
+			(at 213.36 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PARTREV" "A"
+			(at 215.9 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/FFC2B28-12-G/Global+Connector+Technology/view-part/?ref=snap"
+			(at 220.98 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "FFC2B28-12-G"
+			(at 215.9 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=4223061&manufacturer=Global Connector Technology&part_name=FFC2B28-12-G&search_term=ffc2b28-12-g"
+			(at 220.98 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "\n12 Position FFC, FPC Connector Contacts, Top and Bottom 0.020 (0.50mm) Surface Mount, Right Angle\n"
+			(at 220.98 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "GCT"
+			(at 215.9 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "9"
+			(uuid "743ee2a8-ad97-43cd-a549-1e2196073cde")
+		)
+		(pin "11"
+			(uuid "6f9ec9a7-d51f-4ba3-bddc-88bc645fa356")
+		)
+		(pin "3"
+			(uuid "9c0c47da-eddc-4710-9772-a788369c2945")
+		)
+		(pin "8"
+			(uuid "0076ad4c-9fbd-4073-97aa-bcb6d76d664a")
+		)
+		(pin "2"
+			(uuid "6eb7303a-7432-4de4-a653-b566a6fd0f36")
+		)
+		(pin "12"
+			(uuid "73b24d01-c6fe-4418-9d4a-a1849138b4ff")
+		)
+		(pin "6"
+			(uuid "50108c16-9f11-4698-918e-61966dd817a5")
+		)
+		(pin "10"
+			(uuid "d6c23404-4b82-4e1d-bccd-e904d3029644")
+		)
+		(pin "4"
+			(uuid "ef277e56-2c9b-4755-a2cb-30ba10041e4a")
+		)
+		(pin "S2"
+			(uuid "902b27c9-cd38-4239-8a3f-d4014c832dd5")
+		)
+		(pin "7"
+			(uuid "28103a56-011a-4225-a920-4daf85d1c810")
+		)
+		(pin "5"
+			(uuid "bc7cc1dd-120f-4b8f-af2d-162a704da611")
+		)
+		(pin "S1"
+			(uuid "4c8bab4a-d514-4016-abfa-f3a46ae33d24")
+		)
+		(pin "1"
+			(uuid "cf64973f-9663-4a9d-8264-d916c3ca4747")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
+					(reference "J305")
 					(unit 1)
 				)
 			)
@@ -4855,6 +5391,299 @@
 		)
 	)
 	(symbol
+		(lib_id "Component_lib:FFC2B28-12-G")
+		(at 170.18 78.74 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "dacfce38-6423-4cb7-a842-ed0aaa0a93ba")
+		(property "Reference" "J304"
+			(at 176.53 78.7399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "FFC2B28-12-G"
+			(at 176.53 81.2799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Component_lib:GCT_FFC2B28-12-G"
+			(at 167.64 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 170.18 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 170.18 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKey_Part_Number" "2073-FFC2B28-12-GTR-ND"
+			(at 167.64 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MF" "Global Connector Technology"
+			(at 167.64 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MAXIMUM_PACKAGE_HEIGHT" "1.75mm"
+			(at 170.18 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "None"
+			(at 170.18 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/FFC2B28-12-G/Global+Connector+Technology/view-part/?ref=eda"
+			(at 175.26 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "STANDARD" "Manufacturer Recommendations"
+			(at 167.64 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PARTREV" "A"
+			(at 170.18 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/FFC2B28-12-G/Global+Connector+Technology/view-part/?ref=snap"
+			(at 175.26 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "FFC2B28-12-G"
+			(at 170.18 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Purchase-URL" "https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=4223061&manufacturer=Global Connector Technology&part_name=FFC2B28-12-G&search_term=ffc2b28-12-g"
+			(at 175.26 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "\n12 Position FFC, FPC Connector Contacts, Top and Bottom 0.020 (0.50mm) Surface Mount, Right Angle\n"
+			(at 175.26 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "GCT"
+			(at 170.18 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "9"
+			(uuid "240c1863-1dee-4692-b062-ba975c517fec")
+		)
+		(pin "11"
+			(uuid "0a87f7f6-0d70-4101-a63b-8a1077566856")
+		)
+		(pin "3"
+			(uuid "231a7919-5555-435b-9fa3-5894730dc0cd")
+		)
+		(pin "8"
+			(uuid "54760567-e640-41e7-9fc2-7e3cf15dac57")
+		)
+		(pin "2"
+			(uuid "37af5f47-2faf-48b4-9f1e-af0e88896eb6")
+		)
+		(pin "12"
+			(uuid "752cd6b9-51d3-40df-86ad-d387ce9a9741")
+		)
+		(pin "6"
+			(uuid "2032900e-4082-414f-b55f-1034219c695d")
+		)
+		(pin "10"
+			(uuid "d486242f-ef49-40f6-994a-edde764e2b71")
+		)
+		(pin "4"
+			(uuid "f97c165f-6682-42a3-94b2-42a3735dc9fd")
+		)
+		(pin "S2"
+			(uuid "ccb4ccd0-4dac-4b0e-b30d-f2f584defc22")
+		)
+		(pin "7"
+			(uuid "c297431f-85e2-48a5-be69-6efe69543e88")
+		)
+		(pin "5"
+			(uuid "82ed6ec7-1f6f-42bd-9873-b7c05fa383dd")
+		)
+		(pin "S1"
+			(uuid "2a66dc40-3ee4-4924-8711-548961a9ea90")
+		)
+		(pin "1"
+			(uuid "e82c2ee1-6c50-47eb-871b-d1b0f7fc2b49")
+		)
+		(instances
+			(project ""
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
+					(reference "J304")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 200.66 91.44 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "dde80c35-6a7b-4fd4-9d06-f7e294c51ad8")
+		(property "Reference" "#PWR0208"
+			(at 200.66 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 200.66 95.8834 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 200.66 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 200.66 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 200.66 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9538de9c-014a-4187-910d-b60528ebd89e")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
+					(reference "#PWR0208")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 50.8 116.84 0)
 		(unit 1)
@@ -4915,6 +5744,72 @@
 			(project "PMK_Keyboard_02.kicad_pro"
 				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
 					(reference "#PWR0211")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 205.74 99.06 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f00edf80-e6d2-42ab-ad64-8b3e02dff572")
+		(property "Reference" "#PWR0223"
+			(at 205.74 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 205.74 103.5034 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 205.74 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 205.74 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 205.74 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6731cf53-55b9-478f-8d39-0faa6fa62cf1")
+		)
+		(instances
+			(project "PMK_Keyboard_02.kicad_pro"
+				(path "/c3b08055-08a5-4979-9bf8-f36ab0917722/cf9fd53d-a626-44ae-9c40-26b02d8cda14"
+					(reference "#PWR0223")
 					(unit 1)
 				)
 			)
