@@ -2,6 +2,4 @@ Schematic:
 	
 Routing:
 	Move SR away from switch (aluminium plate)
-	Move RE up
-	Remove test points from under PSoM
 	
