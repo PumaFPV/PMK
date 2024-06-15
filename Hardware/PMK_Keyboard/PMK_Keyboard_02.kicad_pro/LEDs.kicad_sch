@@ -675,7 +675,7 @@
 	)
 	(wire
 		(pts
-			(xy 88.9 154.94) (xy 88.9 157.48)
+			(xy 231.14 116.84) (xy 231.14 119.38)
 		)
 		(stroke
 			(width 0)
@@ -735,7 +735,7 @@
 	)
 	(wire
 		(pts
-			(xy 231.14 99.06) (xy 231.14 101.6)
+			(xy 248.92 99.06) (xy 248.92 101.6)
 		)
 		(stroke
 			(width 0)
@@ -755,7 +755,7 @@
 	)
 	(wire
 		(pts
-			(xy 256.54 109.22) (xy 259.08 109.22)
+			(xy 274.32 109.22) (xy 276.86 109.22)
 		)
 		(stroke
 			(width 0)
@@ -985,7 +985,7 @@
 	)
 	(wire
 		(pts
-			(xy 231.14 116.84) (xy 231.14 119.38)
+			(xy 248.92 116.84) (xy 248.92 119.38)
 		)
 		(stroke
 			(width 0)
@@ -1195,7 +1195,7 @@
 	)
 	(wire
 		(pts
-			(xy 238.76 109.22) (xy 241.3 109.22)
+			(xy 256.54 109.22) (xy 259.08 109.22)
 		)
 		(stroke
 			(width 0)
@@ -1225,13 +1225,13 @@
 	)
 	(wire
 		(pts
-			(xy 78.74 147.32) (xy 81.28 147.32)
+			(xy 238.76 109.22) (xy 241.3 109.22)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ca6ccdd0-f062-4631-a2e0-8ec7c2980f03")
+		(uuid "c971630b-8b88-4b69-b545-e5daf6b27212")
 	)
 	(wire
 		(pts
@@ -1375,7 +1375,7 @@
 	)
 	(wire
 		(pts
-			(xy 248.92 116.84) (xy 248.92 119.38)
+			(xy 266.7 116.84) (xy 266.7 119.38)
 		)
 		(stroke
 			(width 0)
@@ -1385,7 +1385,7 @@
 	)
 	(wire
 		(pts
-			(xy 248.92 99.06) (xy 248.92 101.6)
+			(xy 266.7 99.06) (xy 266.7 101.6)
 		)
 		(stroke
 			(width 0)
@@ -1405,7 +1405,7 @@
 	)
 	(wire
 		(pts
-			(xy 88.9 137.16) (xy 88.9 139.7)
+			(xy 231.14 99.06) (xy 231.14 101.6)
 		)
 		(stroke
 			(width 0)
@@ -1477,7 +1477,7 @@
 		(uuid "19dd99fb-266e-40d2-a749-35d86361a44c")
 	)
 	(label "LED_26_27"
-		(at 259.08 109.22 0)
+		(at 276.86 109.22 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2553,7 +2553,7 @@
 	)
 	(symbol
 		(lib_id "Component lib:YF923_2020_WS2812_LED")
-		(at 248.92 109.22 0)
+		(at 266.7 109.22 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2561,7 +2561,7 @@
 		(dnp no)
 		(uuid "32120a12-1fad-41af-9d08-cacf118ed77b")
 		(property "Reference" "D526"
-			(at 254 101.6 0)
+			(at 271.78 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2569,7 +2569,7 @@
 			)
 		)
 		(property "Value" "YF923_2020_WS2812_LED"
-			(at 248.92 96.52 0)
+			(at 266.7 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2578,7 +2578,7 @@
 			)
 		)
 		(property "Footprint" "Component_lib:YF923_2020_WS2812_LED_DUALSIDE"
-			(at 250.19 116.84 0)
+			(at 267.97 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2588,7 +2588,7 @@
 			)
 		)
 		(property "Datasheet" "https://fr.aliexpress.com/item/4000770210584.html?spm=a2g0o.order_list.order_list_main.4.702f5e5bJqEWkF&gatewayAdapt=glo2fra"
-			(at 251.46 118.745 0)
+			(at 269.24 118.745 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2598,7 +2598,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 248.92 109.22 0)
+			(at 266.7 109.22 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3045,7 +3045,7 @@
 	)
 	(symbol
 		(lib_id "Component lib:YF923_2020_WS2812_LED")
-		(at 88.9 147.32 0)
+		(at 231.14 109.22 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3053,7 +3053,7 @@
 		(dnp no)
 		(uuid "458b6ed9-8bc2-47b0-b161-7bb7cbdfb08a")
 		(property "Reference" "D530"
-			(at 93.98 139.7 0)
+			(at 236.22 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3061,7 +3061,7 @@
 			)
 		)
 		(property "Value" "YF923_2020_WS2812_LED"
-			(at 88.9 134.62 0)
+			(at 231.14 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3070,7 +3070,7 @@
 			)
 		)
 		(property "Footprint" "Component_lib:YF923_2020_WS2812_LED_DUALSIDE"
-			(at 90.17 154.94 0)
+			(at 232.41 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3080,7 +3080,7 @@
 			)
 		)
 		(property "Datasheet" "https://fr.aliexpress.com/item/4000770210584.html?spm=a2g0o.order_list.order_list_main.4.702f5e5bJqEWkF&gatewayAdapt=glo2fra"
-			(at 91.44 156.845 0)
+			(at 233.68 118.745 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3090,7 +3090,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 88.9 147.32 0)
+			(at 231.14 109.22 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5221,7 +5221,7 @@
 	)
 	(symbol
 		(lib_id "power:VDD")
-		(at 88.9 137.16 0)
+		(at 231.14 99.06 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5230,7 +5230,7 @@
 		(fields_autoplaced yes)
 		(uuid "8fd8ab80-fb83-43d2-b6dc-799a95df697c")
 		(property "Reference" "#PWR0209"
-			(at 88.9 140.97 0)
+			(at 231.14 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5239,7 +5239,7 @@
 			)
 		)
 		(property "Value" "VDD"
-			(at 88.9 133.5842 0)
+			(at 231.14 95.4842 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5247,7 +5247,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 88.9 137.16 0)
+			(at 231.14 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5256,7 +5256,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 88.9 137.16 0)
+			(at 231.14 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5265,7 +5265,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 88.9 137.16 0)
+			(at 231.14 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5779,7 +5779,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 248.92 119.38 0)
+		(at 266.7 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5788,7 +5788,7 @@
 		(fields_autoplaced yes)
 		(uuid "a55882d2-bf84-4d4f-be0a-df5b9f81f951")
 		(property "Reference" "#PWR0554"
-			(at 248.92 125.73 0)
+			(at 266.7 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5797,7 +5797,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 248.92 123.8234 0)
+			(at 266.7 123.8234 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5805,7 +5805,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 248.92 119.38 0)
+			(at 266.7 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5814,7 +5814,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 248.92 119.38 0)
+			(at 266.7 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5823,7 +5823,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 248.92 119.38 0)
+			(at 266.7 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6789,7 +6789,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 231.14 119.38 0)
+		(at 248.92 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6798,7 +6798,7 @@
 		(fields_autoplaced yes)
 		(uuid "dafa51ce-a6aa-46f3-8212-2f8b99f50869")
 		(property "Reference" "#PWR0553"
-			(at 231.14 125.73 0)
+			(at 248.92 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6807,7 +6807,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 231.14 123.8234 0)
+			(at 248.92 123.8234 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6815,7 +6815,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 231.14 119.38 0)
+			(at 248.92 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6824,7 +6824,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 231.14 119.38 0)
+			(at 248.92 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6833,7 +6833,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 231.14 119.38 0)
+			(at 248.92 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6921,7 +6921,7 @@
 	)
 	(symbol
 		(lib_id "power:VDD")
-		(at 231.14 99.06 0)
+		(at 248.92 99.06 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6930,7 +6930,7 @@
 		(fields_autoplaced yes)
 		(uuid "dc360517-6fa5-41bf-9b62-6b56495a50f8")
 		(property "Reference" "#PWR0540"
-			(at 231.14 102.87 0)
+			(at 248.92 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6939,7 +6939,7 @@
 			)
 		)
 		(property "Value" "VDD"
-			(at 231.14 95.4842 0)
+			(at 248.92 95.4842 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6947,7 +6947,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 231.14 99.06 0)
+			(at 248.92 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6956,7 +6956,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 231.14 99.06 0)
+			(at 248.92 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6965,7 +6965,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 231.14 99.06 0)
+			(at 248.92 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7119,7 +7119,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 88.9 157.48 0)
+		(at 231.14 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7128,7 +7128,7 @@
 		(fields_autoplaced yes)
 		(uuid "e1659494-910c-46b1-9127-e0f416b82e36")
 		(property "Reference" "#PWR0210"
-			(at 88.9 163.83 0)
+			(at 231.14 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7137,7 +7137,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 88.9 161.9234 0)
+			(at 231.14 123.8234 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7145,7 +7145,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 88.9 157.48 0)
+			(at 231.14 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7154,7 +7154,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 88.9 157.48 0)
+			(at 231.14 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7163,7 +7163,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 88.9 157.48 0)
+			(at 231.14 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7327,7 +7327,7 @@
 	)
 	(symbol
 		(lib_id "Component lib:YF923_2020_WS2812_LED")
-		(at 231.14 109.22 0)
+		(at 248.92 109.22 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7335,7 +7335,7 @@
 		(dnp no)
 		(uuid "ea00ec1b-f394-42e2-97c0-a2123393ed90")
 		(property "Reference" "D525"
-			(at 236.22 101.6 0)
+			(at 254 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7343,7 +7343,7 @@
 			)
 		)
 		(property "Value" "YF923_2020_WS2812_LED"
-			(at 231.14 96.52 0)
+			(at 248.92 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7352,7 +7352,7 @@
 			)
 		)
 		(property "Footprint" "Component_lib:YF923_2020_WS2812_LED_DUALSIDE"
-			(at 232.41 116.84 0)
+			(at 250.19 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7362,7 +7362,7 @@
 			)
 		)
 		(property "Datasheet" "https://fr.aliexpress.com/item/4000770210584.html?spm=a2g0o.order_list.order_list_main.4.702f5e5bJqEWkF&gatewayAdapt=glo2fra"
-			(at 233.68 118.745 0)
+			(at 251.46 118.745 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7372,7 +7372,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 231.14 109.22 0)
+			(at 248.92 109.22 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7667,7 +7667,7 @@
 	)
 	(symbol
 		(lib_id "power:VDD")
-		(at 248.92 99.06 0)
+		(at 266.7 99.06 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7676,7 +7676,7 @@
 		(fields_autoplaced yes)
 		(uuid "f0ea3dfe-0793-4171-88fd-a4e1d210359d")
 		(property "Reference" "#PWR0541"
-			(at 248.92 102.87 0)
+			(at 266.7 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7685,7 +7685,7 @@
 			)
 		)
 		(property "Value" "VDD"
-			(at 248.92 95.4842 0)
+			(at 266.7 95.4842 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7693,7 +7693,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 248.92 99.06 0)
+			(at 266.7 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7702,7 +7702,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 248.92 99.06 0)
+			(at 266.7 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7711,7 +7711,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 248.92 99.06 0)
+			(at 266.7 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)

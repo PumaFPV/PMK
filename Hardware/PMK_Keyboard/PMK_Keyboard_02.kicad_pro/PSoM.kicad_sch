@@ -4106,7 +4106,7 @@
 		(uuid "959a6241-7214-48bf-9cfb-6b824b7c4b4b")
 	)
 	(label "DB_B"
-		(at 50.8 109.22 180)
+		(at 50.8 106.68 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4183,7 +4183,7 @@
 		(uuid "b0eb5b67-7283-4bf0-93f0-5e66b9fe3c6e")
 	)
 	(label "DB_A"
-		(at 50.8 106.68 180)
+		(at 50.8 109.22 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4293,7 +4293,7 @@
 		(uuid "cece16b7-4812-42cb-b8a2-8f51b30b38b9")
 	)
 	(label "DB_B"
-		(at 121.92 109.22 180)
+		(at 121.92 106.68 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4348,7 +4348,7 @@
 		(uuid "db2b52bd-f76a-4703-99e6-a8dfec6890f7")
 	)
 	(label "DB_A"
-		(at 121.92 106.68 180)
+		(at 121.92 109.22 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
