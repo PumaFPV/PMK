@@ -98889,7 +98889,7 @@
 		(layer "Edge.Cuts")
 		(uuid "fc1a37f4-86b6-48d9-996c-e47fae6e5ff5")
 	)
-	(gr_text "PMK_HW01 inspired from Sofle"
+	(gr_text "PMK_HW02 inspired from Sofle"
 		(at 118.1 146.4 340)
 		(layer "B.SilkS")
 		(uuid "66c2e673-80ee-4ab7-8277-154f28a326d1")
