@@ -104,11 +104,27 @@ Here is the list of supported commands:
 - restart : Restarts the dongle
 - l-1 / l7 : Forces current layer to layer x as specified by lx. Send l-1 to turn off force layer feature (keypress change layer will reset the force layer)
 
-### Serial config - Device to PC (TODO)
+### Serial config - Device to PC
 Before being able to communicate with the dongle, the device has to know the dongle MAC address, and must own a deviceID. You will also need to know the device MAC address to give it to the dongle.
 Here is the list of supported commands:
 - getMacAddress : Returns the device MAC address
 - setDongleMacAddress + dongle MAC address : Set the dongle MAC address in device memory 
 - setDeviceID + deviceID : Give the device its ID used to link to configuration file in the dongle
+
+## Hardware
+### The dongle
+Dongle is still HW00 (first rev), it needs 3 small patches to work properly. A HW01 might be designed in the coming months.
+
+Even a nRF52 dongle might be made... Who knows?
+
+### The keyboard
+Latest keyboard is HW02. 
+Here is the changelog.
+
+| HW rev | change list |
+| ------ | ----------- |
+| HW00   | Based on moonlander layout, integrated ESP32, used as a proof of concept, didn't like the layout in the end |
+| HW01   | Based on Sofle, PSoM connector (swappable uC for futur proofing), added rotary encoder, way better layout in my opinion. Added side connector option for trackpad or space mouse |
+| HW02   | Upgraded version of HW01, added support for kailh choc V2, moved the rotary encoder up, added debouncing for rotary encoder, fixed the side module connector, moved test point to accessible location, updated PSoM pinout for better compatibility |
 
 More info on [Notion](https://swamp-zydeco-907.notion.site/PumaKeyBoard-b41d42fec8c74b02bc73637fae3648d7)
