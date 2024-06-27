@@ -11,6 +11,7 @@ void scanI2c()
     nDevices = 0;
     for(address = 1; address < 127; address++ ) 
     {
+        //Serial.printf("Current address tested: %i\r\n", address);
         Wire.beginTransmission(address);
         error = Wire.endTransmission();
 

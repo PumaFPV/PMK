@@ -245,7 +245,7 @@ void handleUart()
         getdeviceid();
         break;
 
-      case 1: // scan
+      case 2090717482: // scan
         scan();
         break;
 

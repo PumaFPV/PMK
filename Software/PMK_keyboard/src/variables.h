@@ -101,6 +101,8 @@
 static const int i2cClk = 400000; // 400kHz 
 static const int srSpiClk = 10000000; // 1MHz
 
+
+
 //--------------------------------------------------Initialize libraries--------------------------------------------------
 SPIClass * srSpi = NULL;
 SPISettings settingsA(srSpiClk, MSBFIRST, SPI_MODE2);
@@ -115,6 +117,14 @@ telemetryStruct telemetryPacket;
 keyboardStruct keyboardPacket;
 mouseStruct mousePacket;
 knobStruct knobPacket;
+
+//-----Cirque trackpad init
+PinnacleTouchI2C trackpad(DR);
+
+AbsoluteReport data;
+AbsoluteReport prevData;
+
+
 
 //--------------------------------------------------Structs--------------------------------------------------
 struct Func
@@ -140,6 +150,7 @@ Func srTask = {0, 0, 0, 0, 0, 10000, 0, 0};
 Func espnowTask = {0, 0, 0, 0, 0, 5000, 0, 0};
 Func reTask = {0, 0, 0, 0, 0, 100000, 0, 0};
 Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
+Func cirqueTask = {0, 0, 0, 0, 0, 10000, 0, 0};
 
 struct NoDelay
 {
@@ -149,6 +160,7 @@ struct NoDelay
 };
 
 NoDelay pulsarNoDelay = {6, 0, 0};
+
 
 
 //--------------------------------------------------Variables--------------------------------------------------

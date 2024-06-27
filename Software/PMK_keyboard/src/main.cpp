@@ -6,6 +6,7 @@
 #include "esp_now.h"
 #include "FastLED.h"
 #include "EEPROM.h"
+#include "CirquePinnacle.h"
 #include "pmk.h"
 
 #include "variables.h"
@@ -29,8 +30,7 @@ void setup()
 {
   //-----Serial
   Serial.begin(115200);
-  delay(100);
-  //while(!Serial);
+
 
 
   //-----CPU
@@ -46,7 +46,7 @@ void setup()
     srSpi->begin(SR_CLK, SR_MISO, -1, SR_CE);
   #endif
   #ifdef HW02
-    srSpi->begin(SR_CLK, SR_MISO, SPI_MOSI, SR_CE);
+    srSpi->begin(SR_CLK, SR_MISO, SPI_MOSI);
   #endif
   pinMode(srSpi->pinSS(), OUTPUT);
 
@@ -55,7 +55,7 @@ void setup()
   //-----I2C
   #ifdef HW02
     Wire.begin(SDA, SCL, i2cClk);
-    scanI2c();
+    //scanI2c();
   #endif
 
 
@@ -113,6 +113,15 @@ void setup()
   esp_now_register_recv_cb(OnDataRecv);
 
 
+  #ifdef HW02
+    if (!trackpad.begin())
+    {
+      Serial.println(F("Cirque Pinnacle not responding!"));
+    }
+    Serial.println(F("CirquePinnacle/examples/absolute_mode"));
+    trackpad.setDataMode(PINNACLE_ABSOLUTE);
+    trackpad.absoluteModeConfig(1);  // set count of z-idle packets to 1
+  #endif
 
 }
 
@@ -122,6 +131,7 @@ void setup()
 void loop() 
 {
   loopCount();
+
 
 
   //------------------------------------------------------
@@ -157,6 +167,7 @@ void loop()
   }
   
 
+
   //------------------------------------------------------
   //------------------------------------------------------espnowTask
   //------------------------------------------------------
@@ -172,6 +183,8 @@ void loop()
     espnowTask.duration = espnowTask.endTime - espnowTask.beginTime;
 
   }
+
+
 
   //------------------------------------------------------
   //------------------------------------------------------Rotary Encoder Task
@@ -190,6 +203,8 @@ void loop()
 
   }
 
+
+
   //------------------------------------------------------
   //------------------------------------------------------UART Task
   //------------------------------------------------------
@@ -203,8 +218,57 @@ void loop()
     uartTask.endTime = micros();
     uartTask.counter++;
     uartTask.duration = uartTask.endTime - uartTask.beginTime;
-
   }
+
+
+
+  //------------------------------------------------------
+  //------------------------------------------------------cirque Task
+  //------------------------------------------------------
+  #ifdef HW02
+  if(micros() - cirqueTask.beginTime >= cirqueTask.interval)
+  {
+    cirqueTask.beginTime = micros();
+    cirqueTask.inBetweenTime = cirqueTask.beginTime - cirqueTask.endTime;
+
+    if(trackpad.available()) 
+    {
+      trackpad.read(&data);
+
+      // datasheet recommends clamping the axes value to reliable range
+      if(data.z)
+      {  // only clamp values if Z axis is not idle.
+        data.x = data.x > 1920 ? 1920 : (data.x < 128 ? 128 : data.x);  // 128 <= x <= 1920
+        data.y = data.y > 1472 ? 1472 : (data.y < 64 ? 64 : data.y);    //  64 <= y <= 1472
+      }
+
+      mousePacket.x = prevData.x - data.x;
+      mousePacket.y = prevData.y - data.y;
+      esp_now_send(dongleAddress, (uint8_t *) &mousePacket, sizeof(mousePacket));
+
+      prevData = data;
+      //Serial.print(F("B1:"));
+      //Serial.print(data.buttons & 1);
+      //Serial.print(F(" B2:"));
+      //Serial.print(data.buttons & 2);
+      //Serial.print(F(" B3:"));
+      //Serial.print(data.buttons & 4);
+      //Serial.print(F("\tX:"));
+      //Serial.print(data.x);
+      //Serial.print(F("\tY:"));
+      //Serial.print(data.y);
+      //Serial.print(F("\tZ:"));
+      //Serial.println(data.z);
+    }
+    
+
+
+    cirqueTask.endTime = micros();
+    cirqueTask.counter++;
+    cirqueTask.duration = cirqueTask.endTime - cirqueTask.beginTime;
+  }
+  #endif
+
 }
 
 
@@ -257,6 +321,18 @@ void loopCount()
     reTask.frequency = reTask.counter;
     //Serial.println(reTask.counter);
     reTask.counter = 0;
+  }
+
+  //cirqueTask frequency counter
+  if(cirqueTask.counter == 0)
+  {
+    cirqueTask.startCounterTime = micros();
+  }
+  if(micros() - cirqueTask.startCounterTime > 1000000)
+  {
+    cirqueTask.frequency = cirqueTask.counter;
+    //Serial.println(Task.counter);
+    cirqueTask.counter = 0;
   }
 }
 
