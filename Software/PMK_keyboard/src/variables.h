@@ -1,5 +1,5 @@
-#ifndef variables_h
-#define variables_h
+#ifndef VARIABLES_H
+#define VARIABLES_H
 
 
 
@@ -9,7 +9,7 @@
 #include "FastLED.h"
 #include "pmk.h"
 
-
+#ifdef HW01
 //--------------------------------------------------Define--------------------------------------------------
 #define NUMBER_OF_SR 4  //TODO Add to config file
 #define MAX_NUMBER_OF_KEYS 8
@@ -42,12 +42,63 @@
 //---I2C
 
 //---SPI
+
 #define SR_SPI_BUS 1 //Which SPI bus to use for this SPI object
 #define SR_MISO 3
 #define SR_CLK 7
 #define SR_CE 9
 #define SR_PL 5
+#endif
 
+#ifdef HW02
+//--------------------------------------------------Define--------------------------------------------------
+#define NUMBER_OF_SR 4  //TODO Add to config file
+#define MAX_NUMBER_OF_KEYS 8
+#define EEPROM_SIZE 8
+
+#define LEFT_KB 1
+#define RIGHT_KB 2
+//----------Global values
+#define MIRCOS2SECONDS 1000000
+#define NUM_LEDS 29
+
+//----------GPI
+#define RE_B 15
+#define RE_A 16
+#define DR 10
+#define GP_CE 11
+#define GPIO1 12
+#define GPIO2 13
+#define GPIO3 14
+
+//----------GPO
+#define LED_DATA_PIN 21
+
+//----------ADC
+
+//----------PWM
+
+//----------LED
+#define UPDATES_PER_SECOND 30
+
+
+//----------Peripherals
+//---UART
+
+//---I2C
+#define SDA 6
+#define SCL 7
+
+//---SPI
+#define SR_SPI_BUS 1 //Which SPI bus to use for this SPI object
+#define SPI_MOSI 2
+#define SR_MISO 3
+#define SR_CLK 4
+#define SR_CE 5
+#define SR_PL 8
+
+#endif
+static const int i2cClk = 400000; // 400kHz 
 static const int srSpiClk = 10000000; // 1MHz
 
 //--------------------------------------------------Initialize libraries--------------------------------------------------

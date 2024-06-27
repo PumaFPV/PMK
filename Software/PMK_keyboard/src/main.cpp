@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
 #include "SPI.h"
+#include "Wire.h"
 #include "WiFi.h"
 #include "esp_now.h"
 #include "FastLED.h"
@@ -13,6 +14,7 @@
 uint8_t deviceID;
 
 #include "uartHandle.h"
+#include "i2cHandle.h"
 #include "espnowHandle.h"
 #include "ledHandle.h"
 #include "ioHandle.h"
@@ -27,7 +29,8 @@ void setup()
 {
   //-----Serial
   Serial.begin(115200);
-
+  delay(100);
+  while(!Serial);
 
 
   //-----CPU
@@ -39,8 +42,21 @@ void setup()
   pinMode(SR_PL, OUTPUT);
   // Initialize SPI for SR
   srSpi = new SPIClass(SR_SPI_BUS);
-  srSpi->begin(SR_CLK, SR_MISO, -1, SR_CE);
+  #ifdef HW01
+    srSpi->begin(SR_CLK, SR_MISO, -1, SR_CE);
+  #endif
+  #ifdef HW02
+    srSpi->begin(SR_CLK, SR_MISO, SPI_MOSI, SR_CE);
+  #endif
   pinMode(srSpi->pinSS(), OUTPUT);
+
+
+
+  //-----I2C
+  #ifdef HW02
+    Wire.begin(SDA, SCL, i2cClk);
+    scanI2c();
+  #endif
 
 
 

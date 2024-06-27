@@ -3,7 +3,7 @@
 
 #include "Arduino.h"
 #include "WiFi.h"
-
+#include "i2cHandle.h"
 
 
 static bool debug1 = 0;
@@ -50,6 +50,7 @@ void help()
   Serial.printf("   cpu : returns CPU info\r\n");
   Serial.printf("   setcpufreq : set new CPU frequency\r\n");
   Serial.printf("   restart : restart the dongle\r\n");
+  Serial.printf("   scan : Scan for side module presence\r\n");
   Serial.printf("   debug1 / debug2... : Toggle debug output. Different kind of debug available\r\n");
 }
 
@@ -176,6 +177,14 @@ void restart()
 
 
 
+void scan()
+{
+  Serial.printf("Scanning for side module\r\n");
+  scanI2c();
+}
+
+
+
 void handleUart()
 {
   if(Serial.available())
@@ -234,6 +243,10 @@ void handleUart()
 
       case 3080394690:  // getdeviceid
         getdeviceid();
+        break;
+
+      case 1: // scan
+        scan();
         break;
 
       case 4169026269: // debug1
