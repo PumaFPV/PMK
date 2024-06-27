@@ -30,7 +30,7 @@ void setup()
   //-----Serial
   Serial.begin(115200);
   delay(100);
-  while(!Serial);
+  //while(!Serial);
 
 
   //-----CPU

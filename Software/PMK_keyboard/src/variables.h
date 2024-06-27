@@ -60,7 +60,7 @@
 #define RIGHT_KB 2
 //----------Global values
 #define MIRCOS2SECONDS 1000000
-#define NUM_LEDS 29
+#define NUM_LEDS 30
 
 //----------GPI
 #define RE_B 15
