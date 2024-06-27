@@ -151,6 +151,7 @@ Func espnowTask = {0, 0, 0, 0, 0, 5000, 0, 0};
 Func reTask = {0, 0, 0, 0, 0, 100000, 0, 0};
 Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
 Func cirqueTask = {0, 0, 0, 0, 0, 10000, 0, 0};
+Func spaceMouseTask = {0, 0, 0, 0, 0, 10000, 0, 0};
 
 struct NoDelay
 {

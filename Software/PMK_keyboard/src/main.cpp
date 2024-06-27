@@ -269,6 +269,23 @@ void loop()
   }
   #endif
 
+  //------------------------------------------------------
+  //------------------------------------------------------SpaceMouse Task
+  //------------------------------------------------------
+  if(micros() - spaceMouseTask.beginTime >= spaceMouseTask.interval)
+  {
+    spaceMouseTask.beginTime = micros();
+    spaceMouseTask.inBetweenTime = spaceMouseTask.beginTime - spaceMouseTask.endTime;
+
+    
+
+
+    spaceMouseTask.endTime = micros();
+    spaceMouseTask.counter++;
+    spaceMouseTask.duration = spaceMouseTask.endTime - spaceMouseTask.beginTime;
+
+  }
+
 }
 
 
@@ -334,6 +351,19 @@ void loopCount()
     //Serial.println(Task.counter);
     cirqueTask.counter = 0;
   }
+
+  //spaceMouseTask frequency counter
+  if(spaceMouseTask.counter == 0)
+  {
+    spaceMouseTask.startCounterTime = micros();
+  }
+  if(micros() - spaceMouseTask.startCounterTime > 1000000)
+  {
+    spaceMouseTask.frequency = spaceMouseTask.counter;
+    //Serial.println(Task.counter);
+    spaceMouseTask.counter = 0;
+  }
+
 }
 
 /* Typical task outline
