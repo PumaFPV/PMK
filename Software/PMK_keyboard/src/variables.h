@@ -119,6 +119,7 @@ telemetryStruct telemetryPacket;
 keyboardStruct keyboardPacket;
 mouseStruct mousePacket;
 knobStruct knobPacket;
+spaceMouseStr
 
 //-----Cirque trackpad init
 PinnacleTouchI2C trackpad(DR);
