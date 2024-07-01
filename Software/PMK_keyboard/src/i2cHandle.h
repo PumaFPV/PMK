@@ -1,11 +1,11 @@
 #ifndef I2CHANDLE_H
 #define I2CHANDLE_H
 
-void scanI2c()
+uint8_t* scanI2c()
 {
     byte error, address;
     int nDevices;
-
+    uint8_t* slaveAddress = new uint8_t(8);    // Doesnt expect more than 8 slaves on the bus
     Serial.println("Scanning...");
 
     nDevices = 0;
@@ -22,7 +22,7 @@ void scanI2c()
             Serial.print("0");
             Serial.print(address,HEX);
             Serial.println("  !");
-
+            slaveAddress[nDevices] = address;
             nDevices++;
         }
         else if(error==4) 
@@ -40,6 +40,29 @@ void scanI2c()
     else
     {
         Serial.println("done\n");
+    }
+    return slaveAddress;
+}
+
+void checkSideModule()
+{
+    //Check for side module presence
+    uint8_t* slaveAddress = scanI2c();
+    uint8_t sizeSlaveAddress = sizeof(slaveAddress) / sizeof(uint8_t);
+
+    for(uint8_t i = 0; i < sizeSlaveAddress; i++)
+    {
+      if(slaveAddress[i] == LDC1612_ADDRESS)
+      {
+        spacemouseIsPresent = 1;
+      }
+    }
+    for(uint8_t i = 0; i < sizeSlaveAddress; i++)
+    {
+      if((slaveAddress[i] == TRACKPAD_ADDRESS) && !spacemouseIsPresent) //Trackpad and LDC1614 have the same address
+      {
+        trackpadIsPresent = 1;
+      }
     }
 }
 

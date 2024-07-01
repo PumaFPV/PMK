@@ -54,8 +54,11 @@ void setup()
 
   //-----I2C
   #ifdef HW02
+
     Wire.begin(SDA, SCL, i2cClk);
-    //scanI2c();
+
+    checkSideModule();
+    
   #endif
 
 
@@ -226,65 +229,55 @@ void loop()
   //------------------------------------------------------cirque Task
   //------------------------------------------------------
   #ifdef HW02
-  if(micros() - cirqueTask.beginTime >= cirqueTask.interval)
+  if(micros() - sideModuleTask.beginTime >= sideModuleTask.interval)
   {
-    cirqueTask.beginTime = micros();
-    cirqueTask.inBetweenTime = cirqueTask.beginTime - cirqueTask.endTime;
+    sideModuleTask.beginTime = micros();
+    sideModuleTask.inBetweenTime = sideModuleTask.beginTime - sideModuleTask.endTime;
 
-    if(trackpad.available()) 
+    if(trackpadIsPresent)
     {
-      trackpad.read(&data);
+      if(trackpad.available()) 
+      {
+        trackpad.read(&data);
 
-      // datasheet recommends clamping the axes value to reliable range
-      if(data.z)
-      {  // only clamp values if Z axis is not idle.
-        data.x = data.x > 1920 ? 1920 : (data.x < 128 ? 128 : data.x);  // 128 <= x <= 1920
-        data.y = data.y > 1472 ? 1472 : (data.y < 64 ? 64 : data.y);    //  64 <= y <= 1472
+        // datasheet recommends clamping the axes value to reliable range
+        if(data.z)
+        {  // only clamp values if Z axis is not idle.
+          data.x = data.x > 1920 ? 1920 : (data.x < 128 ? 128 : data.x);  // 128 <= x <= 1920
+          data.y = data.y > 1472 ? 1472 : (data.y < 64 ? 64 : data.y);    //  64 <= y <= 1472
+        }
+
+        mousePacket.x = prevData.x - data.x;
+        mousePacket.y = prevData.y - data.y;
+        esp_now_send(dongleAddress, (uint8_t *) &mousePacket, sizeof(mousePacket));
+
+        prevData = data;
+        //Serial.print(F("B1:"));
+        //Serial.print(data.buttons & 1);
+        //Serial.print(F(" B2:"));
+        //Serial.print(data.buttons & 2);
+        //Serial.print(F(" B3:"));
+        //Serial.print(data.buttons & 4);
+        //Serial.print(F("\tX:"));
+        //Serial.print(data.x);
+        //Serial.print(F("\tY:"));
+        //Serial.print(data.y);
+        //Serial.print(F("\tZ:"));
+        //Serial.println(data.z);
       }
-
-      mousePacket.x = prevData.x - data.x;
-      mousePacket.y = prevData.y - data.y;
-      esp_now_send(dongleAddress, (uint8_t *) &mousePacket, sizeof(mousePacket));
-
-      prevData = data;
-      //Serial.print(F("B1:"));
-      //Serial.print(data.buttons & 1);
-      //Serial.print(F(" B2:"));
-      //Serial.print(data.buttons & 2);
-      //Serial.print(F(" B3:"));
-      //Serial.print(data.buttons & 4);
-      //Serial.print(F("\tX:"));
-      //Serial.print(data.x);
-      //Serial.print(F("\tY:"));
-      //Serial.print(data.y);
-      //Serial.print(F("\tZ:"));
-      //Serial.println(data.z);
     }
     
+    
+    if(spacemouseIsPresent)
+    {
 
+    }
 
-    cirqueTask.endTime = micros();
-    cirqueTask.counter++;
-    cirqueTask.duration = cirqueTask.endTime - cirqueTask.beginTime;
+    sideModuleTask.endTime = micros();
+    sideModuleTask.counter++;
+    sideModuleTask.duration = sideModuleTask.endTime - sideModuleTask.beginTime;
   }
   #endif
-
-  //------------------------------------------------------
-  //------------------------------------------------------SpaceMouse Task
-  //------------------------------------------------------
-  if(micros() - spaceMouseTask.beginTime >= spaceMouseTask.interval)
-  {
-    spaceMouseTask.beginTime = micros();
-    spaceMouseTask.inBetweenTime = spaceMouseTask.beginTime - spaceMouseTask.endTime;
-
-    
-
-
-    spaceMouseTask.endTime = micros();
-    spaceMouseTask.counter++;
-    spaceMouseTask.duration = spaceMouseTask.endTime - spaceMouseTask.beginTime;
-
-  }
 
 }
 
@@ -341,27 +334,15 @@ void loopCount()
   }
 
   //cirqueTask frequency counter
-  if(cirqueTask.counter == 0)
+  if(sideModuleTask.counter == 0)
   {
-    cirqueTask.startCounterTime = micros();
+    sideModuleTask.startCounterTime = micros();
   }
-  if(micros() - cirqueTask.startCounterTime > 1000000)
+  if(micros() - sideModuleTask.startCounterTime > 1000000)
   {
-    cirqueTask.frequency = cirqueTask.counter;
+    sideModuleTask.frequency = sideModuleTask.counter;
     //Serial.println(Task.counter);
-    cirqueTask.counter = 0;
-  }
-
-  //spaceMouseTask frequency counter
-  if(spaceMouseTask.counter == 0)
-  {
-    spaceMouseTask.startCounterTime = micros();
-  }
-  if(micros() - spaceMouseTask.startCounterTime > 1000000)
-  {
-    spaceMouseTask.frequency = spaceMouseTask.counter;
-    //Serial.println(Task.counter);
-    spaceMouseTask.counter = 0;
+    sideModuleTask.counter = 0;
   }
 
 }

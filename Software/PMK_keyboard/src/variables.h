@@ -101,7 +101,9 @@
 static const int i2cClk = 400000; // 400kHz 
 static const int srSpiClk = 10000000; // 1MHz
 
-
+#define TRACKPAD_ADDRESS 0x2A
+#define LDC1614_ADDRESS 0x2A
+#define LDC1612_ADDRESS 0x2B
 
 //--------------------------------------------------Initialize libraries--------------------------------------------------
 SPIClass * srSpi = NULL;
@@ -150,8 +152,7 @@ Func srTask = {0, 0, 0, 0, 0, 10000, 0, 0};
 Func espnowTask = {0, 0, 0, 0, 0, 5000, 0, 0};
 Func reTask = {0, 0, 0, 0, 0, 100000, 0, 0};
 Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
-Func cirqueTask = {0, 0, 0, 0, 0, 10000, 0, 0};
-Func spaceMouseTask = {0, 0, 0, 0, 0, 10000, 0, 0};
+Func sideModuleTask = {0, 0, 0, 0, 0, 10000, 0, 0};
 
 struct NoDelay
 {
@@ -182,5 +183,9 @@ uint8_t ledBrightness = 255;
 uint8_t layerID = 0;
 
 uint8_t rotary = 0;
+
+//--------------------------------------------------SideModule
+bool trackpadIsPresent = 0;
+bool spacemouseIsPresent = 0;
 
 #endif
