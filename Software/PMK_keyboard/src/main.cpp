@@ -117,13 +117,22 @@ void setup()
 
 
   #ifdef HW02
-    if (!trackpad.begin())
+    if(trackpadIsPresent)
     {
-      Serial.println(F("Cirque Pinnacle not responding!"));
+      if(!trackpad.begin())
+      {
+        Serial.println(F("Cirque Pinnacle not responding!"));
+      }
+      Serial.println(F("CirquePinnacle/examples/absolute_mode"));
+      trackpad.setDataMode(PINNACLE_ABSOLUTE);
+      trackpad.absoluteModeConfig(1);  // set count of z-idle packets to 1
     }
-    Serial.println(F("CirquePinnacle/examples/absolute_mode"));
-    trackpad.setDataMode(PINNACLE_ABSOLUTE);
-    trackpad.absoluteModeConfig(1);  // set count of z-idle packets to 1
+    
+    if(spacemouseIsPresent)
+    {
+      
+    }
+  
   #endif
 
 }
