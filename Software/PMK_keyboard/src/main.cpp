@@ -7,19 +7,18 @@
 #include "FastLED.h"
 #include "EEPROM.h"
 #include "CirquePinnacle.h"
+#include "spaceMouseHandle.h"
 #include "pmk.h"
 
 #include "variables.h"
 
 #define FIRMWARE_REV "keyboard-dev"
-uint8_t deviceID;
 
 #include "uartHandle.h"
 #include "i2cHandle.h"
 #include "espnowHandle.h"
 #include "ledHandle.h"
 #include "ioHandle.h"
-
 
 
 void loopCount();
@@ -130,7 +129,7 @@ void setup()
     
     if(spacemouseIsPresent)
     {
-      
+      spacemouseSetup();
     }
   
   #endif
@@ -279,7 +278,7 @@ void loop()
     
     if(spacemouseIsPresent)
     {
-
+      spacemouseLoop();
     }
 
     sideModuleTask.endTime = micros();

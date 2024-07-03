@@ -59,7 +59,7 @@ void srLoop()
           }
           if(numberOfPressedKeys == 8)
           {
-            telemetryPacket.error = tooManyKeysPressed;
+            telemetryPacket.error[0] = tooManyKeysPressed;  // TODO deal better with error
             return;
             //Serial.println("Too many keys pressed");
           }

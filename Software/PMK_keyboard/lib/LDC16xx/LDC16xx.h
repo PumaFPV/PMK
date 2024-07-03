@@ -1,6 +1,7 @@
 #ifndef LDC16XX_H
 #define LDC16XX_H
 
+
 #define   LDC16xx_DATA_MSB_CH0          0x00  //  Channel 0 MSB Conversion Result and Error Status
 #define   LDC16xx_DATA_LSB_CH0          0x01  //  Channel 0 LSB Conversion Result. Must be read after Register address 0x00.
 #define   LDC16xx_DATA_MSB_CH1          0x02  //  Channel 1 MSB Conversion Result and Error Status.

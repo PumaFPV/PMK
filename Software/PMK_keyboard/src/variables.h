@@ -115,12 +115,6 @@ TBlendType    currentBlending;
 
 esp_now_peer_info_t peerInfo;
 
-telemetryStruct telemetryPacket;
-keyboardStruct keyboardPacket;
-mouseStruct mousePacket;
-knobStruct knobPacket;
-spaceMouseStr
-
 //-----Cirque trackpad init
 PinnacleTouchI2C trackpad(DR);
 
@@ -179,11 +173,10 @@ uint8_t spiPacket[4] = {0x00, 0x00, 0x00, 0x00};
 uint8_t numberOfPressedKeys = 0;
 
 uint8_t ledNumber = 0;
-uint8_t ledBrightness = 255;
-
-uint8_t layerID = 0;
 
 uint8_t rotary = 0;
+
+uint8_t deviceID;
 
 //--------------------------------------------------SideModule
 bool trackpadIsPresent = 0;

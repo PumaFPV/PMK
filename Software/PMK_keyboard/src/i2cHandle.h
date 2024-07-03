@@ -1,6 +1,9 @@
 #ifndef I2CHANDLE_H
 #define I2CHANDLE_H
 
+#include "variables.h"
+
+
 uint8_t* scanI2c()
 {
     byte error, address;

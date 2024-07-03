@@ -7,15 +7,11 @@
 #include <vector>
 #include <algorithm>
 
-#include "Adafruit_TinyUSB.h"
-#include "variables.h"
-#include "config.h"
-
 int8_t forceLayer = -1;
 
-#include "uartHandle.h"
-
-
+#define DEVICEID_ADDRESS 0
+#define DONGLE_MACADDRESS_ADDRESS 1 // 6 bits long
+#define MAC_ADDRESS_SIZE 6
 
 #define PMK_DEVICE_ID_BYTE 0
 #define PMK_PACKET_TYPE_BYTE 1
@@ -40,7 +36,7 @@ typedef struct packetStruct {
     uint8_t deviceID;
     uint8_t packetType = 255;
     uint8_t data[16];
-}   packetStruct;
+} packetStruct;
 
 
 
@@ -51,7 +47,7 @@ typedef struct telemetryStruct {
     uint8_t temperature;
     uint8_t macAddress[6];
     uint8_t error[5];
-}   telemetryStruct;
+} telemetryStruct;
 
 
 
@@ -59,7 +55,7 @@ typedef struct keyboardStruct {
     uint8_t deviceID;
     const uint8_t packetType = 1;
     uint8_t key[8] = {0};
-}   keyboardStruct;
+} keyboardStruct;
 
 
 
@@ -71,7 +67,7 @@ typedef struct mouseStruct {
     int8_t w;
     int8_t p;
     uint8_t key;  //5 possible buttons, 8 bits be smart u dumbass, dont use an array. (I used an array before)
-}   mouseStruct;
+} mouseStruct;
 
 
 
@@ -86,7 +82,7 @@ typedef struct gamepadStruct {
     int8_t rightTrigger;
     uint8_t dpad;   //0b000ldruc - Left - Down - Right - Up - Center
     uint8_t buttons[4];
-}   gamepadStruct;
+} gamepadStruct;
 
 
 
@@ -99,7 +95,7 @@ typedef struct ledStruct {
     uint8_t red;
     uint8_t green;
     uint8_t blue;
-}   ledStruct;
+} ledStruct;
 
 
 
@@ -107,7 +103,7 @@ typedef struct knobStruct {
     uint8_t deviceID;
     const uint8_t packetType = 5;
     uint8_t knob[8];
-}   knobStruct;
+} knobStruct;
 
 
 
@@ -117,7 +113,7 @@ typedef struct actuatorStruct {
     uint8_t function;   //Can be Torque, Speed, Position, Acceleration
     uint8_t command;    //Sent by Master
     uint8_t position;   //Returned by device
-}   actuatorStruct;
+} actuatorStruct;
 
 
 
@@ -128,7 +124,7 @@ typedef struct displayStruct {
     uint8_t x;
     uint8_t y;
     uint8_t brightness;
-}   displayStruct;
+} displayStruct;
 
 
 
@@ -136,7 +132,7 @@ typedef struct serialStruct {
     uint8_t deviceID;
     const uint8_t packetType = 8;
     uint8_t packet[8];
-}   serialStruct;
+} serialStruct;
 
 
 
@@ -145,7 +141,7 @@ typedef struct spaceMouseStruct {
     const uint8_t packetType = 9;
     int8_t trans[3];
     int8_t rot[3];
-}   spaceMouseStruct;
+} spaceMouseStruct;
 
 
 enum errorID {
@@ -159,11 +155,11 @@ enum errorID {
 
 
 
-keyboardStruct   keyboardPacket[8];
+keyboardStruct   keyboardPacket;
 mouseStruct      mousePacket;
-gamepadStruct    gamepadPacket[8];
+gamepadStruct    gamepadPacket;
 ledStruct        ledPacket;
-knobStruct       knobPacket[8];
+knobStruct       knobPacket;
 actuatorStruct   actuatorPacket;
 displayStruct    displayPacket;
 telemetryStruct  telemetryPacket;
@@ -175,26 +171,7 @@ packetStruct receivedPacket;
 
 
 
-void setupPMK()
-{
-    for(uint8_t deviceID = 0; deviceID < 8; deviceID++)
-    {
-        keyboardPacket[deviceID].deviceID = deviceID;
 
-        for(uint8_t keyID = 0; keyID < 8; keyID++)
-        {
-            keyboardPacket[deviceID].key[keyID] = 0;
-            knobPacket[deviceID].knob[keyID] = 0;   // not really a keyID but you get the idea
-        }
-
-        gamepadPacket[deviceID].rightX = -128;
-        gamepadPacket[deviceID].rightY = -128;
-        gamepadPacket[deviceID].leftX = -128;
-        gamepadPacket[deviceID].leftY = -128;
-        gamepadPacket[deviceID].leftTrigger = -128;
-        gamepadPacket[deviceID].rightTrigger = -128;
-    }
-}
 
 
 
@@ -220,15 +197,15 @@ void convertPacket2Telemetry(packetStruct packet)
 
 void convertPacket2Keyboard(packetStruct packet)
 {
-    keyboardPacket[packet.deviceID].deviceID = packet.deviceID;
-    keyboardPacket[packet.deviceID].key[0] = packet.data[0];
-    keyboardPacket[packet.deviceID].key[1] = packet.data[1];
-    keyboardPacket[packet.deviceID].key[2] = packet.data[2];
-    keyboardPacket[packet.deviceID].key[3] = packet.data[3];
-    keyboardPacket[packet.deviceID].key[4] = packet.data[4];
-    keyboardPacket[packet.deviceID].key[5] = packet.data[5];
-    keyboardPacket[packet.deviceID].key[6] = packet.data[6];
-    keyboardPacket[packet.deviceID].key[7] = packet.data[7];
+    keyboardPacket.deviceID = packet.deviceID;
+    keyboardPacket.key[0] = packet.data[0];
+    keyboardPacket.key[1] = packet.data[1];
+    keyboardPacket.key[2] = packet.data[2];
+    keyboardPacket.key[3] = packet.data[3];
+    keyboardPacket.key[4] = packet.data[4];
+    keyboardPacket.key[5] = packet.data[5];
+    keyboardPacket.key[6] = packet.data[6];
+    keyboardPacket.key[7] = packet.data[7];
 }
 
 
@@ -247,18 +224,18 @@ void convertPacket2Mouse(packetStruct packet)
 
 void convertPacket2Gamepad(packetStruct packet)
 {
-    gamepadPacket[packet.deviceID].deviceID = packet.deviceID;
-    gamepadPacket[packet.deviceID].leftX = packet.data[0];
-    gamepadPacket[packet.deviceID].leftY = packet.data[1];
-    gamepadPacket[packet.deviceID].rightX = packet.data[2];
-    gamepadPacket[packet.deviceID].rightY = packet.data[3];
-    gamepadPacket[packet.deviceID].leftTrigger = packet.data[4];
-    gamepadPacket[packet.deviceID].rightTrigger = packet.data[5];
-    gamepadPacket[packet.deviceID].dpad = packet.data[6];
+    gamepadPacket.deviceID = packet.deviceID;
+    gamepadPacket.leftX = packet.data[0];
+    gamepadPacket.leftY = packet.data[1];
+    gamepadPacket.rightX = packet.data[2];
+    gamepadPacket.rightY = packet.data[3];
+    gamepadPacket.leftTrigger = packet.data[4];
+    gamepadPacket.rightTrigger = packet.data[5];
+    gamepadPacket.dpad = packet.data[6];
 
     for(uint8_t i = 0; i < 4; ++i)
     {
-        gamepadPacket[packet.deviceID].buttons[i] = packet.data[7+i];
+        gamepadPacket.buttons[i] = packet.data[7+i];
     }
 }
 
@@ -277,10 +254,10 @@ void convertPacket2Led(packetStruct packet)
 
 void convertPacket2Knob(packetStruct packet)
 {
-    knobPacket[packet.deviceID].deviceID = packet.deviceID;  
+    knobPacket.deviceID = packet.deviceID;  
     for(uint8_t i = 0; i < 7; ++i)
     {
-      knobPacket[packet.deviceID].knob[i] = packet.data[i];
+      knobPacket.knob[i] = packet.data[i];
     }
 }
 
