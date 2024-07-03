@@ -99,6 +99,8 @@ void spacemouseSetup()
 
     readChannel(LDC1612_ADDRESS, 0, &ldc2_ch0_cal);
     readChannel(LDC1612_ADDRESS, 1, &ldc2_ch1_cal);
+
+    Serial.printf("LDC calibration data: %u %u %u %u %u %u\r\n", ldc1_ch0_cal, ldc1_ch1_cal, ldc1_ch2_cal, ldc1_ch3_cal, ldc2_ch0_cal, ldc2_ch1_cal);
 }
 
 
@@ -196,6 +198,8 @@ void spacemouseLoop()
     rx = RX_SCALE_FACTOR * rx;
     ry = RY_SCALE_FACTOR * ry;
     rz = RZ_SCALE_FACTOR * rz;
+
+    Serial.printf("x: %i, y: %i, z: %i, rx: %i, ry: %i, rz: %i\r\n", x, y, z, rx, ry, rz);
 }
 
 #endif
