@@ -29,7 +29,7 @@ void setup()
 {
   //-----Serial
   Serial.begin(115200);
-
+  //while(!Serial){}
 
 
   //-----CPU

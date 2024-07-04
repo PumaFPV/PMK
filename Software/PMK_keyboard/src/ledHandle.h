@@ -326,6 +326,7 @@ void ledLoop()
   static bool rising = false;
   const uint8_t minBrightness = 20;
   const uint8_t maxBrightness = 120;
+  //ledBrightness = 255;
 
   if(rising) 
   {
