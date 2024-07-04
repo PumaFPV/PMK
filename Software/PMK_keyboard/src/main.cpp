@@ -341,6 +341,18 @@ void loopCount()
     reTask.counter = 0;
   }
 
+  //uartTask frequency counter
+  if(uartTask.counter == 0)
+  {
+    uartTask.startCounterTime = micros();
+  }
+  if(micros() - uartTask.startCounterTime > 1000000)
+  {
+    uartTask.frequency = uartTask.counter;
+    //Serial.println(uartTask.counter);
+    uartTask.counter = 0;
+  }
+
   //cirqueTask frequency counter
   if(sideModuleTask.counter == 0)
   {
@@ -349,7 +361,7 @@ void loopCount()
   if(micros() - sideModuleTask.startCounterTime > 1000000)
   {
     sideModuleTask.frequency = sideModuleTask.counter;
-    //Serial.println(Task.counter);
+    //Serial.println(sideModuleTask.counter);
     sideModuleTask.counter = 0;
   }
 
