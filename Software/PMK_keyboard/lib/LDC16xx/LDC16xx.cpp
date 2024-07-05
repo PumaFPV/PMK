@@ -7,10 +7,16 @@
 // read data from given LDC register
 void readRegister(uint8_t ldcAddr, uint8_t reg, uint16_t *data)
 {
-  uint8_t tmp[2] = {0};
-  Wire.requestFrom(ldcAddr, 0x01);
-  *data = (tmp[0] << 8) | tmp[1];
+  Wire.beginTransmission(ldcAddr);
+  Wire.write(reg);
+  Wire.endTransmission();
 
+  Wire.requestFrom(ldcAddr, 2);
+  uint8_t tmp[2] = {0};
+  tmp[0] = Wire.read();
+  tmp[1] = Wire.read();
+
+  *data = (tmp[0] << 8) | tmp[1];
 }
 
 // write data to given LDC register
@@ -40,7 +46,6 @@ void writeLDCConfig(uint8_t ldcAddr, LDC_configReg cfg)
 // read data for a defined channel (0-3)
 int8_t readChannel(uint8_t ldcAddr, uint8_t channel, uint32_t *data)
 {
-
   uint8_t error = 0;
 
   if(channel > 3)

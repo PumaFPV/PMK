@@ -83,6 +83,7 @@ void setup()
   keyboardPacket.deviceID = deviceID;
   mousePacket.deviceID = deviceID;
   knobPacket.deviceID = deviceID;
+  spaceMousePacket.deviceID = deviceID;
   
   for(uint8_t i = 0; i < MAC_ADDRESS_SIZE; i++)
   {

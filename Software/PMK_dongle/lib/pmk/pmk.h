@@ -590,7 +590,7 @@ void handleSpaceMouse()
     for(uint8_t i = 0; i < 3; i++)
     {
         trans_report[i] = map(spaceMousePacket.trans[i], -128, 127, -1400, 1400);
-        rot_report[i] = map(spaceMousePacket.rot[i], -128, 127, -1400, 1400);
+        rot_report[i] =   map(spaceMousePacket.rot[i],   -128, 127, -1400, 1400);
     }
 
     if(usb_hid.ready())

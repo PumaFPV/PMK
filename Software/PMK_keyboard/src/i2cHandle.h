@@ -49,24 +49,27 @@ uint8_t* scanI2c()
 
 void checkSideModule()
 {
-    //Check for side module presence
-    uint8_t* slaveAddress = scanI2c();
-    uint8_t sizeSlaveAddress = sizeof(slaveAddress) / sizeof(uint8_t);
+  /*
+  //Check for side module presence
+  uint8_t* slaveAddress = scanI2c();
+  uint8_t sizeSlaveAddress = sizeof(slaveAddress) / sizeof(uint8_t);
 
-    for(uint8_t i = 0; i < sizeSlaveAddress; i++)
+  for(uint8_t i = 0; i < sizeSlaveAddress; i++)
+  {
+    if(slaveAddress[i] == LDC1612_ADDRESS)
     {
-      if(slaveAddress[i] == LDC1612_ADDRESS)
-      {
-        spacemouseIsPresent = 1;
-      }
+      spacemouseIsPresent = 1;
     }
-    for(uint8_t i = 0; i < sizeSlaveAddress; i++)
+  }
+  for(uint8_t i = 0; i < sizeSlaveAddress; i++)
+  {
+    if((slaveAddress[i] == TRACKPAD_ADDRESS) && !spacemouseIsPresent) //Trackpad and LDC1614 have the same address
     {
-      if((slaveAddress[i] == TRACKPAD_ADDRESS) && !spacemouseIsPresent) //Trackpad and LDC1614 have the same address
-      {
-        trackpadIsPresent = 1;
-      }
+      trackpadIsPresent = 1;
     }
+  }
+  */
+ spacemouseIsPresent = 1;
 }
 
 #endif

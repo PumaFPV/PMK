@@ -106,7 +106,7 @@ void spacemouseSetup()
 
 void spacemouseLoop()
 {
-     // Grab a new set of values
+    // Grab a new set of values
     readChannel(0x2a, 0, &ldc1_ch0);
     readChannel(0x2a, 1, &ldc1_ch1);
     readChannel(0x2a, 2, &ldc1_ch2);
@@ -122,6 +122,9 @@ void spacemouseLoop()
     ldc1_ch3_dif = ((int32_t)ldc1_ch3_cal - (int32_t)ldc1_ch3) / 125;
     ldc2_ch0_dif = ((int32_t)ldc2_ch0_cal - (int32_t)ldc2_ch0) / 125;
     ldc2_ch1_dif = ((int32_t)ldc2_ch1_cal - (int32_t)ldc2_ch1) / 125;
+
+    //Serial.printf("2a1: %i, 2a2: %i, 2a3: %i, 2a4: %i, 2b1: %i, 2b1: %i\r\n", ldc1_ch0_dif, ldc1_ch1_dif, ldc1_ch2_dif, ldc1_ch3_dif, ldc2_ch0_dif, ldc2_ch1_dif);
+
 
     // Perform honing (if necessary)
     switch (ldc_honing_state){
@@ -166,7 +169,6 @@ void spacemouseLoop()
         break;
     }   
 
-
     // Get sums and differences
     int32_t cm1 = ldc1_ch0_dif+ldc1_ch1_dif;
     int32_t dm1 = ldc1_ch0_dif-ldc1_ch1_dif;
@@ -192,14 +194,59 @@ void spacemouseLoop()
       ry = 0;
     }
 
-    x = X_SCALE_FACTOR * x;
-    y = Y_SCALE_FACTOR * y;
-    z = Z_SCALE_FACTOR * z;
-    rx = RX_SCALE_FACTOR * rx;
-    ry = RY_SCALE_FACTOR * ry;
-    rz = RZ_SCALE_FACTOR * rz;
+    const int8_t deadband = 5;
 
-    Serial.printf("x: %i, y: %i, z: %i, rx: %i, ry: %i, rz: %i\r\n", x, y, z, rx, ry, rz);
+    x = constrain(map(x, -1100, 1100, -127, 127), -127, 127);
+    y = constrain(map(y, -1400, 1400, -127, 127), -127, 127);
+
+    if(z < 0)
+    {
+      z = constrain(map(z, -40000, 0, -127, 0), -127, 0);
+    }
+    else
+    {
+      z = constrain(map(z, 0, 3400, 0, 127), 0, 127);
+    }
+
+    rx = constrain(map(rx, -8000, 8000, -127, 127), -127, 127);
+    ry = constrain(map(ry, -7000, 7000, -127, 127), -127, 127);
+    rz = constrain(map(rz, -3000, 3000, -127, 127), -127, 127);
+    
+    if(-deadband < x && x < deadband)
+    {
+      x = 0;
+    }
+    if(-deadband < y && y < deadband)
+    {
+      y = 0;
+    }
+    if(-deadband < z && z < deadband)
+    {
+      z = 0;
+    }
+    if(-deadband < rx && rx < deadband)
+    {
+      rx = 0;
+    }
+    if(-deadband < ry && ry < deadband)
+    {
+      ry = 0;
+    }
+    if(-deadband < rz && rz < deadband)
+    {
+      rz = 0;
+    }
+
+    //Serial.printf("x: %i, y: %i, z: %i, rx: %i, ry: %i, rz: %i\r\n", x, y, z, rx, ry, rz);
+    
+    spaceMousePacket.trans[0] = -x;
+    spaceMousePacket.trans[1] = -y;
+    spaceMousePacket.trans[2] = -z;
+    spaceMousePacket.rot[0] = -rx;
+    spaceMousePacket.rot[1] = -ry;
+    spaceMousePacket.rot[2] = rz;
+
+    esp_now_send(dongleAddress, (uint8_t *) &spaceMousePacket, sizeof(spaceMousePacket));
 }
 
 #endif
