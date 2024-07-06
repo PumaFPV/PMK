@@ -1,0 +1,6 @@
+Schematic:
+	Update battery connector to molex picoBlade 3 pins
+
+Routing:
+	Fix silkscreen
+	Add center mounting hole
