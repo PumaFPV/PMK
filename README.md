@@ -1,4 +1,4 @@
-# PumaMechaniclKeyboard
+# Puma Mechanical Keyboard
 PMK - a Full wireless HID ecosystem for split keyboards and other fun devices
 
 The goal is to make a suit of wireless devices such as "smart keyboard" (combined mouse and keyboard), LEDs, knobs, display, etc  
