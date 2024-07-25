@@ -13,8 +13,8 @@ void srLoop()
     // Read SPI from shift register
 
     srSpi->beginTransaction(settingsA);
-    digitalWrite(SR_CE, LOW);   //CLK_INH
-    digitalWrite(SR_PL, HIGH);  //SH/_LD
+    gpio_set_level((gpio_num_t)SR_CE, LOW);   //CLK_INH
+    gpio_set_level((gpio_num_t)SR_PL, HIGH);  //SH/_LD
 
     for(uint8_t packet = 0; packet < NUMBER_OF_SR; packet++)
     {
@@ -24,8 +24,8 @@ void srLoop()
     }
     //Serial.println();
 
-    digitalWrite(SR_CE, HIGH);
-    digitalWrite(SR_PL, LOW);
+    gpio_set_level((gpio_num_t)SR_CE, HIGH);
+    gpio_set_level((gpio_num_t)SR_PL, LOW);
     srSpi->endTransaction();
 
     //Read pressed keys

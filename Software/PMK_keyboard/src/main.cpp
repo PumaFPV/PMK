@@ -45,9 +45,10 @@ void setup()
     srSpi->begin(SR_CLK, SR_MISO, -1, SR_CE);
   #endif
   #ifdef HW02
-    srSpi->begin(SR_CLK, SR_MISO, SPI_MOSI);
+    srSpi->begin(SR_CLK, SR_MISO, SPI_MOSI, SR_CE);
   #endif
   pinMode(srSpi->pinSS(), OUTPUT);
+
 
 
 

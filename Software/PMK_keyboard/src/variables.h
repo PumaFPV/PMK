@@ -99,7 +99,7 @@
 
 #endif
 static const int i2cClk = 400000; // 400kHz 
-static const int srSpiClk = 10000000; // 1MHz
+static const int srSpiClk = 10000000; // 10MHz
 
 #define TRACKPAD_ADDRESS 0x2A
 #define LDC1614_ADDRESS 0x2A
