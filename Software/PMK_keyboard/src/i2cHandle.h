@@ -69,7 +69,7 @@ void checkSideModule()
     }
   }
   */
- spacemouseIsPresent = 1;
+ //spacemouseIsPresent = 1;
 }
 
 #endif

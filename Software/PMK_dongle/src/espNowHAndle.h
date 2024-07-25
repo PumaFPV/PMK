@@ -8,6 +8,7 @@ esp_now_peer_info_t peerInfo;
 String success;
 
 
+
 void handleReceivedPacket(packetStruct receivedPacket)
 {
   if(debug1)
@@ -15,6 +16,21 @@ void handleReceivedPacket(packetStruct receivedPacket)
     Serial.printf("Received packet from: %i, type :%i \r\n", receivedPacket.deviceID, receivedPacket.packetType);
   }
   
+  if(debug2)
+  {
+    Serial.printf("Packet data: ");
+    for(uint8_t i = 0; i < 16; i++)
+    {
+      Serial.printf(" %02X", receivedPacket.data[i]);
+    }
+    Serial.printf("\r\n");
+  }
+
+  if(debug3)
+  {
+    Serial.printf("RSSI: %u\r\n", WiFi.RSSI());
+  }
+
   switch(receivedPacket.packetType)
   {
     case 255: 
@@ -59,6 +75,8 @@ void handleReceivedPacket(packetStruct receivedPacket)
   }
 }
 
+
+
 // Callback when data is sent
 void OnEspNowDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) 
 {
@@ -76,14 +94,13 @@ void OnEspNowDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)
   }
 }
 
+
+
 // Callback when data is received
 void OnEspNowDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len) 
 {
   memcpy(&receivedPacket, incomingData, sizeof(receivedPacket));
   handleReceivedPacket(receivedPacket);
-
-  //Serial.printf("RSSI: %u\r\n", WiFi.RSSI());
-  
 }
 
 

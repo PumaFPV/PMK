@@ -48,8 +48,7 @@ void srLoop()
             
             if(debug1)
             {
-              Serial.print("KeyID: 0x");
-              Serial.println(keyboardPacket.key[numberOfPressedKeys], HEX);
+              Serial.printf("KeyID: 0x%02X\r\n", keyboardPacket.key[numberOfPressedKeys]);
             }
             
             numberOfPressedKeys++;

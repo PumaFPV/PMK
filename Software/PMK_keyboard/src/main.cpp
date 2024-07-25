@@ -207,7 +207,7 @@ void loop()
     reTask.inBetweenTime = reTask.beginTime - reTask.endTime;
 
       reLoop();
-      esp_now_send(dongleAddress, (uint8_t *) &knobPacket, sizeof(knobPacket));
+      //esp_now_send(dongleAddress, (uint8_t *) &knobPacket, sizeof(knobPacket));
 
     reTask.endTime = micros();
     reTask.counter++;

@@ -21,8 +21,8 @@ int8_t forceLayer = -1;
 #define PMK_PACKET_TYPE_BYTE 1
 #define PMK_DATA_BYTE 2
 
-#define LAYER_PLUS 0xF1
-#define LAYER_MINUS 0xF0
+#define LAYER_PLUS 0xF1 //Not actually LAYER_PLUS, more like layer 1
+#define LAYER_MINUS 0xF0 //Not actually LAYER_MINUS, more like layer 2
 
 
 
@@ -466,8 +466,11 @@ void handleKeyboard()
             previousMouseTime = millis();
         }
     }
+    if(debug3)
+    {
+        Serial.printf("Report: %02X %02X %02X %02X %02X %02X modifier: %02X\r\n", keycode[0], keycode[1], keycode[2], keycode[3], keycode[4], keycode[5], modifier);
+    }
 
-    //Serial.printf("Report: %02X %02X %02X %02X %02X %02X modifier: %02X\r\n", keycode[0], keycode[1], keycode[2], keycode[3], keycode[4], keycode[5], modifier);
     usb_hid.keyboardReport(RID_KEYBOARD, modifier, keycode);
 
 }
@@ -478,7 +481,10 @@ void handleMouse()
 {
     if(usb_hid.ready())
     {
-        //Serial.printf("x: %i, y: %i, key: %u, wheel: %i, pan: %i", mousePacket.x, mousePacket.y, mousePacket.key,mousePacket.w, mousePacket.p);
+        if(debug3)
+        {
+            Serial.printf("x: %i, y: %i, key: %u, wheel: %i, pan: %i", mousePacket.x, mousePacket.y, mousePacket.key,mousePacket.w, mousePacket.p);
+        }
         usb_hid.mouseReport(RID_MOUSE, mousePacket.key, mousePacket.x*dpi[mousePacket.deviceID][layerID], mousePacket.y*dpi[mousePacket.deviceID][layerID], mousePacket.w, mousePacket.p);
     }
 }
@@ -542,19 +548,22 @@ void handleGamepad()
 
 void handleDeej(uint8_t volume[MAX_NUMBER_OF_DEEJ_KNOBS])
 {
-    String builtString = String("");
-
-    for (int i = 0; i < MAX_NUMBER_OF_DEEJ_KNOBS; i++) 
+    if(deejToggle)
     {
-        builtString += String((int)volume[i]*4);
+        String builtString = String("");
 
-        if (i < MAX_NUMBER_OF_DEEJ_KNOBS - 1)
+        for (int i = 0; i < MAX_NUMBER_OF_DEEJ_KNOBS; i++) 
         {
-            builtString += String("|");
+            builtString += String((int)volume[i]*4);
+
+            if (i < MAX_NUMBER_OF_DEEJ_KNOBS - 1)
+            {
+                builtString += String("|");
+            }
         }
+    
+        Serial.println(builtString);  // TODO only send when different
     }
-  
-  Serial.println(builtString);  // TODO only send when different
 }
 
 
