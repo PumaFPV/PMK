@@ -43,12 +43,12 @@ void setup()
   srSpi = new SPIClass(SR_SPI_BUS);
   #ifdef HW01
     srSpi->begin(SR_CLK, SR_MISO, -1, SR_CE);
-    pinMode(srSpi->pinSS(), OUTPUT);
   #endif
   #ifdef HW02
-    srSpi->begin(SR_CLK, SR_MISO, SPI_MOSI, -1);
-    pinMode(SR_CE, OUTPUT);
+    srSpi->begin(SR_CLK, SR_MISO, SPI_MOSI, SR_CE);
   #endif
+  pinMode(srSpi->pinSS(), OUTPUT);
+
 
 
 
