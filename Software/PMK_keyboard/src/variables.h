@@ -58,6 +58,7 @@
 
 #define LEFT_KB 1
 #define RIGHT_KB 2
+
 //----------Global values
 #define MIRCOS2SECONDS 1000000
 #define NUM_LEDS 30

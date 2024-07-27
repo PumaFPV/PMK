@@ -40,6 +40,7 @@ void help()
 {
   Serial.printf("List of available commands:\r\n");
   Serial.printf("   h / help : returns available commands\r\n");
+  Serial.printf("   info : display all info\r\n");
   Serial.printf("   macaddress : returns device MAC address\r\n");
   Serial.printf("   setdonglemacaddress : update dongle MAC address, be sure to send values in HEX mode\r\n");
   Serial.printf("   getdonglemacaddress : returns the current dongle MAC address\r\n");
@@ -56,7 +57,7 @@ void help()
 
 
 
-void macaddress()
+void printMacAddress()
 {
   Serial.print("Device MAC address is: ");
   Serial.println(WiFi.macAddress());
@@ -90,18 +91,13 @@ void setdonglemacaddress()
 
 
 
-void getdonglemacaddress()
+void printDongleMacAddress()
 {
   Serial.printf("Current dongle MAC address is set to: ");
   for(uint8_t i = 0; i < MAC_ADDRESS_SIZE; i++)
   {
     Serial.print(dongleAddress[i], HEX);
     Serial.printf(" ");
-  }
-  for(uint8_t i = 0; i < MAC_ADDRESS_SIZE; i++)
-  {
-    dongleAddress[i] = EEPROM.read(DONGLE_MACADDRESS_ADDRESS + i);
-    Serial.print(dongleAddress[i], HEX);
   }
   Serial.printf("\r\n");
 }
@@ -123,21 +119,21 @@ void setdeviceid()
 
 
 
-void getdeviceid()
+void printDeviceId()
 {
   Serial.printf("Device ID is set to: %u\r\n", deviceID);
 }
 
 
 
-void version()
+void printVersion()
 {
   Serial.printf("Version: %s build the: %s at %s\r\n", FIRMWARE_REV,  __DATE__, __TIME__);
 }
 
 
 
-void power()
+void printRfPower()
 {
   Serial.printf("WiFi power: ");
   Serial.println(WiFi.getTxPower());
@@ -145,7 +141,7 @@ void power()
 
 
 
-void cpu()
+void printCpuInfo()
 {
   Serial.printf("Chip model: %s, chip revision: %u\r\n", ESP.getChipModel(), ESP.getChipRevision());
   Serial.printf("Proc temp: %.1f °C\r\n", temperatureRead());
@@ -158,7 +154,7 @@ void cpu()
 
 
 
-void setcpufreq()
+void setCpuFreq()
 {
   Serial.printf("Current CPU frequency: %u MHz\r\n", getCpuFrequencyMhz());
   Serial.printf("Enter new frequency in MHz (MUST BE DEC mode):\r\n");
@@ -166,6 +162,13 @@ void setcpufreq()
   while(!Serial.available()){}
   setCpuFrequencyMhz(Serial.read());
   Serial.printf("New CPU frequency set to: %u MHZ\r\n", getCpuFrequencyMhz());
+}
+
+
+
+void printDebugState()
+{
+  Serial.printf("Debug state:\r\ndebug1: %i debug2: %i debug3: %i debug4: %i debug5: %i debug6: %i debug7: %i debug8: %i\r\n", debug1, debug2, debug3, debug4, debug5, debug6, debug7, debug8); 
 }
 
 
@@ -180,7 +183,7 @@ void restart()
 void scan()
 {
   Serial.printf("Scanning for side module\r\n");
-  scanI2c();
+  checkSideModule();
 }
 
 
@@ -198,15 +201,22 @@ void handleUart()
     switch(hashCommand)
     {
       case 177677: // h
-        help();
-        break;
-
       case 2090324718: // help
         help();
         break;
 
+      case 2090370257: // info
+        printVersion();
+        printDeviceId();
+        printDongleMacAddress();
+        printCpuInfo();
+        printRfPower();
+        printMacAddress();
+        printDebugState();
+        break;
+
       case 1311181436: // macaddress
-        macaddress();
+        printMacAddress();
         break;
 
       case 2910204353: // setdonglemacaddress
@@ -214,23 +224,23 @@ void handleUart()
         break;
 
       case 1664706229:  // getdonglemacaddress
-        getdonglemacaddress();
+        printDongleMacAddress();
         break;
 
       case 1929407563:  // version
-        version();
+        printVersion();
         break;
 
       case 271097426: // power
-        power();
+        printRfPower();
         break;
 
       case 193488621: // cpu
-        cpu();
+        printCpuInfo();
         break;
 
       case 3688920455: // setcpufreq
-        setcpufreq();
+        setCpuFreq();
         break;
 
       case 1059716234: // restart
@@ -242,7 +252,7 @@ void handleUart()
         break;
 
       case 3080394690:  // getdeviceid
-        getdeviceid();
+        printDeviceId();
         break;
 
       case 2090717482: // scan

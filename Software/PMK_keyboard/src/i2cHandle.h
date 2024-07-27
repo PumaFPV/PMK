@@ -58,6 +58,7 @@ void checkSideModule()
   if(error == 0)
   {
     //SpaceMouse is present
+    Serial.printf("Detected space mouse\r\n");
     spacemouseIsPresent = 1;
   }
 
@@ -67,6 +68,7 @@ void checkSideModule()
   if (error == 0 && !spacemouseIsPresent)
   {
     // Trackpad is present
+    Serial.printf("Detected trackpad\r\n");
     trackpadIsPresent = 1;
   }
   

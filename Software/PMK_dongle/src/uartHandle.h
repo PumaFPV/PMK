@@ -107,11 +107,14 @@ void help()
 {
   Serial.printf("List of available commands:\r\n");
   Serial.printf("   h / help : display available commands\r\n");
+  Serial.printf("   info : display all info\r\n");
   Serial.printf("   macaddress : display dongle MAC address\r\n");
   Serial.printf("   version : display build date and version\r\n");
   Serial.printf("   power : display RF Tx power\r\n");
+  Serial.printf("   cpu : display cpu info\r\n");
   Serial.printf("   format : format file system\r\n");
   Serial.printf("   restart : restart the dongle\r\n");
+  Serial.printf("   deej : Toggle on / off deej\r\n");
   Serial.printf("   l0 / l1 / l2... : Force the current layer to... If one keybind moves to new layer it will be ignored use l-1 command to reset force layer\r\n");
   Serial.printf("   l-1 : disable forced layer\r\n");
   Serial.printf("   debug1 / debug2... : Toggle debug output. Different kind of debug available\r\n");
