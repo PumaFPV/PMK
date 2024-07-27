@@ -19,6 +19,7 @@
 #include "espnowHandle.h"
 #include "ledHandle.h"
 #include "ioHandle.h"
+#include "trackpad.h"
 
 
 void loopCount();
@@ -117,27 +118,17 @@ void setup()
   esp_now_register_recv_cb(OnDataRecv);
 
 
-  #ifdef HW02
-    if(trackpadIsPresent)
-    {
-      if(!trackpad.begin())
-      {
-        Serial.println(F("Cirque Pinnacle not responding!"));
-      }
-      Serial.println(F("CirquePinnacle/examples/absolute_mode"));
-      trackpad.setDataMode(PINNACLE_ABSOLUTE);
-      trackpad.absoluteModeConfig(1);  // set count of z-idle packets to 1
-    }
-    
-    if(spacemouseIsPresent)
-    {
-      spacemouseSetup();
-    }
+  if(trackpadIsPresent)
+  {
+    trackpadSetup();
+  }
   
-  #endif
-
+  if(spacemouseIsPresent)
+  {
+    spacemouseSetup();
+  }
+  
 }
-
 
 
 
@@ -208,7 +199,7 @@ void loop()
     reTask.inBetweenTime = reTask.beginTime - reTask.endTime;
 
       reLoop();
-      //esp_now_send(dongleAddress, (uint8_t *) &knobPacket, sizeof(knobPacket));
+      esp_now_send(dongleAddress, (uint8_t *) &knobPacket, sizeof(knobPacket));
 
     reTask.endTime = micros();
     reTask.counter++;
@@ -238,57 +229,25 @@ void loop()
   //------------------------------------------------------
   //------------------------------------------------------cirque Task
   //------------------------------------------------------
-  #ifdef HW02
   if(micros() - sideModuleTask.beginTime >= sideModuleTask.interval)
   {
     sideModuleTask.beginTime = micros();
     sideModuleTask.inBetweenTime = sideModuleTask.beginTime - sideModuleTask.endTime;
 
-    if(trackpadIsPresent)
-    {
-      if(trackpad.available()) 
+      if(trackpadIsPresent)
       {
-        trackpad.read(&data);
-
-        // datasheet recommends clamping the axes value to reliable range
-        if(data.z)
-        {  // only clamp values if Z axis is not idle.
-          data.x = data.x > 1920 ? 1920 : (data.x < 128 ? 128 : data.x);  // 128 <= x <= 1920
-          data.y = data.y > 1472 ? 1472 : (data.y < 64 ? 64 : data.y);    //  64 <= y <= 1472
-        }
-
-        mousePacket.x = prevData.x - data.x;
-        mousePacket.y = prevData.y - data.y;
-        esp_now_send(dongleAddress, (uint8_t *) &mousePacket, sizeof(mousePacket));
-
-        prevData = data;
-        //Serial.print(F("B1:"));
-        //Serial.print(data.buttons & 1);
-        //Serial.print(F(" B2:"));
-        //Serial.print(data.buttons & 2);
-        //Serial.print(F(" B3:"));
-        //Serial.print(data.buttons & 4);
-        //Serial.print(F("\tX:"));
-        //Serial.print(data.x);
-        //Serial.print(F("\tY:"));
-        //Serial.print(data.y);
-        //Serial.print(F("\tZ:"));
-        //Serial.println(data.z);
+        trackpadLoop();
       }
-    }
-    
-    
-    if(spacemouseIsPresent)
-    {
-      spacemouseLoop();
-    }
+      
+      if(spacemouseIsPresent)
+      {
+        spacemouseLoop();
+      }
 
     sideModuleTask.endTime = micros();
     sideModuleTask.counter++;
     sideModuleTask.duration = sideModuleTask.endTime - sideModuleTask.beginTime;
   }
-  #endif
-
 }
 
 
