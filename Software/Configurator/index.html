@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>PMK Configurator</title>
+	<style>
+		#key {
+		  width: 50px;
+		  height: 50px;
+		  padding: 10px;
+		  border: 1px solid #a8a8a8;
+		}
+	</style>
+	<script>
+		function allowDrop(ev) {
+		  ev.preventDefault();
+		}
+
+		function drag(ev) {
+		  ev.dataTransfer.setData("text", ev.target.id);
+		}
+
+		function drop(ev) {
+		  ev.preventDefault();
+		  var data = ev.dataTransfer.getData("text");
+		  ev.target.appendChild(document.getElementById(data));
+		}
+	</script>
+</head>
+<body>
+<h1>PMK layout configurator</h1>
+
+<p>Drag the desired function on each keys:</p>
+<form method="post" action="gfg.php">
+<div id="layout_config">
+<table>
+	<tr>
+		<td><div id="key" name="key6" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key5" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key4" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key3" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key2" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key1" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+	</tr>
+	<tr>
+		<td><div id="key" name="key7" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key8" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key12" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key11" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key10" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key9" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+	</tr>
+	<tr>
+		<td><div id="key" name="key13" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key14" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key15" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key16" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key18" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key17" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+	</tr>
+	<tr>
+		<td><div id="key" name="key19" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key20" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key21" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key22" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key23" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key24" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><div id="key" name="key25" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key26" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key27" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key28" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+		<td><div id="key" name="key29" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+	</tr>
+</table>
+
+<br>
+<p id="q" draggable="true" ondragstart="drag(event)" width="50" height="50">Q</p>
+<p id="w" draggable="true" ondragstart="drag(event)" width="50" height="50">W</p>
+<p id="e" draggable="true" ondragstart="drag(event)" width="50" height="50">E</p>
+<p id="r" draggable="true" ondragstart="drag(event)" width="50" height="50">R</p>
+<p id="t" draggable="true" ondragstart="drag(event)" width="50" height="50">T</p>
+<p id="z" draggable="true" ondragstart="drag(event)" width="50" height="50">Z</p>
+<p id="u" draggable="true" ondragstart="drag(event)" width="50" height="50">U</p>
+<p id="i" draggable="true" ondragstart="drag(event)" width="50" height="50">I</p>
+<p id="o" draggable="true" ondragstart="drag(event)" width="50" height="50">O</p>
+<p id="p" draggable="true" ondragstart="drag(event)" width="50" height="50">P</p>
+
+<label for="dongle_address">Dongle MAC address:</label><br>
+<input type="text" id="dongle_address" name="dongle_address"><br><br><br>
+
+<button id="generate_layout" type="submit" onclick="onsubmit()">Generate layout</button>
+</form>
+</body>
+</html>
+
