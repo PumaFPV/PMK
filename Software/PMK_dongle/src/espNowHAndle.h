@@ -16,15 +16,15 @@ void handleReceivedPacket(packetStruct receivedPacket)
     Serial.printf("Received packet from: %i, type :%i \r\n", receivedPacket.deviceID, receivedPacket.packetType);
   }
   
-  if(debug2)
-  {
-    Serial.printf("Packet data: ");
-    for(uint8_t i = 0; i < 16; i++)
-    {
-      Serial.printf(" %02X", receivedPacket.data[i]);
-    }
-    Serial.printf("\r\n");
-  }
+  //if(debug2)  // Can lead to reading unwanted bytes if device sends less than 16 bytes
+  //{
+  //  Serial.printf("Packet data: ");
+  //  for(uint8_t i = 0; i < 16; i++)
+  //  {
+  //    Serial.printf(" %02X", receivedPacket.data[i]);
+  //  }
+  //  Serial.printf("\r\n");
+  //}
 
   if(debug3)
   {
@@ -33,7 +33,7 @@ void handleReceivedPacket(packetStruct receivedPacket)
 
   switch(receivedPacket.packetType)
   {
-    case 255: 
+    case 255:
       //default packet
       break;
     case 0:

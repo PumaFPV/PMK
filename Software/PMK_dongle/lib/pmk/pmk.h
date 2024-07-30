@@ -229,6 +229,17 @@ void convertPacket2Keyboard(packetStruct packet)
     keyboardPacket[packet.deviceID].key[5] = packet.data[5];
     keyboardPacket[packet.deviceID].key[6] = packet.data[6];
     keyboardPacket[packet.deviceID].key[7] = packet.data[7];
+
+    if(debug2)
+    {
+        Serial.printf("Keyboard packet: ");
+        for(uint8_t i = 0; i < 8; i++)
+        {
+            Serial.printf(" %02X", keyboardPacket[packet.deviceID].key[i]);
+        }
+        Serial.printf("\r\n");
+    }
+    
 }
 
 

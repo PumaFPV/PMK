@@ -152,7 +152,7 @@ void setup()
   peerInfo.channel = 0;  
   peerInfo.encrypt = false;
 
-
+ 
   //===========================================
   //====================Config=================
   //===========================================
@@ -314,9 +314,8 @@ void setup()
 
   esp_now_register_recv_cb(OnEspNowDataRecv);
 
-
-
 }
+
 
 
 void loop()
