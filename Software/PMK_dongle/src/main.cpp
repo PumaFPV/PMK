@@ -152,12 +152,12 @@ void setup()
   peerInfo.channel = 0;  
   peerInfo.encrypt = false;
 
- 
   //===========================================
   //====================Config=================
   //===========================================
   //while(!Serial){}  //Optional debug help
-  
+  //delay(100);
+
   uint8_t numberOfDeviceToConfig = getNumberOfDevices();
   Serial.printf("Number of devices to config: %d \r\n\r\n", numberOfDeviceToConfig);
 

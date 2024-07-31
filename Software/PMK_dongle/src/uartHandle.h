@@ -21,7 +21,7 @@
 // const char formatName[] = "PMK Dongle";
 #define DISK_LABEL "PMK Dongle"
 
-static bool deejToggle = 1;
+static bool deejToggle = 0;
 static bool debug1 = 0;
 static bool debug2 = 0;
 static bool debug3 = 0;
