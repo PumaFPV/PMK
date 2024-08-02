@@ -1,11 +1,9 @@
 #ifndef VARIABLE_H
 #define VARIABLE_H
 
-//#include "USB.h"
-//#include "USBHIDKeyboard.h"
-//#include "USBMSC.h"
 #include "WiFi.h"
 #include "esp_now.h"
+
 
 
 //--------------------------------------------------Define--------------------------------------------------
@@ -36,7 +34,7 @@
 
 //--------------------------------------------------Initialize libraries--------------------------------------------------
 
-// USB HID object. For ESP32 these values cannot be changed after this declaration
+// USB HID object
 // desc report, desc len, protocol, interval, use out endpoint
 // Report ID
 enum
@@ -90,7 +88,11 @@ uint8_t const desc_hid_report[] = {
   HID_REPORT_DESC_SPACE_MOUSE
 };
 
+// USB Device
+//Adafruit_USBD_Device usb;
 
+// USB Mass Storage object
+Adafruit_USBD_MSC usb_msc;
 
 // USB HID object
 Adafruit_USBD_HID usb_hid;
@@ -104,9 +106,6 @@ Adafruit_SPIFlash flash(&flashTransport);
 
 // file system object from SdFat
 FatVolume fatfs;
-
-// USB Mass Storage object
-Adafruit_USBD_MSC usb_msc;
 
 bool fs_formatted;  // Check if flash is formatted
 bool fs_changed;    // Set to true when browser write to flash

@@ -1,0 +1,2 @@
+Add the "pmk_dongle_s2.json" file to "C:\Users\<user>\.platformio\platforms\espressif32\boards"
+Add the "pmk_dongle_s2" folder to "C:\Users\<user>\.platformio\packages\framework-arduinoespressif32\variants"
