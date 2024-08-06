@@ -12,6 +12,7 @@
 // Since SdFat doesn't fully support FAT12 such as format a new flash
 // We will use Elm Cham's fatfs f_mkfs() to format
 #include "ff.h"
+#include "ff.c"
 #include "diskio.h"
 
 #include "variables.h"
@@ -57,27 +58,30 @@ void format_fat12(void)
   FATFS elmchamFatfs;
 
   // Make filesystem.
-  FRESULT r = f_mkfs("", FM_FAT, 0, workbuf, sizeof(workbuf));
-  if (r != FR_OK) {
+  FRESULT fresult = f_mkfs("", FM_FAT, 0, workbuf, sizeof(workbuf));
+  if(fresult != FR_OK)
+  {
     Serial.print(F("Error, f_mkfs failed with error code: ")); 
-    Serial.println(r, DEC);
+    Serial.println(fresult, DEC);
     while(1) yield();
   }
 
   // mount to set disk label
-  r = f_mount(&elmchamFatfs, "0:", 1);
-  if (r != FR_OK) {
+  fresult = f_mount(&elmchamFatfs, "0:", 1);
+  if(fresult != FR_OK)
+  {
     Serial.print(F("Error, f_mount failed with error code: ")); 
-    Serial.println(r, DEC);
+    Serial.println(fresult, DEC);
     while(1) yield();
   }
 
   // Setting label
   Serial.printf("Setting disk label to: %c\r\n", DISK_LABEL);
-  // r = f_setlabel(DISK_LABEL);  // TODO to fix...
-  if (r != FR_OK) {
+  fresult = f_setlabel(DISK_LABEL);  // TODO to fix...
+  if(fresult != FR_OK)
+  {
     Serial.print(F("Error, f_setlabel failed with error code: ")); 
-    Serial.println(r, DEC);
+    Serial.println(fresult, DEC);
     while(1) yield();
   }
 
@@ -311,5 +315,7 @@ void handleUart()
     }
   }
 }
+
+
 
 #endif
