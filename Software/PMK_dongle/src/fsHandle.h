@@ -26,6 +26,8 @@ String convertToString(char* a, int size)
     return s;
 }
 
+
+
 void listDir(FatVolume &fs, const char * dirname, uint8_t levels){
     Serial.printf("Listing directory: %s\r\n", dirname);
 
@@ -57,6 +59,8 @@ void listDir(FatVolume &fs, const char * dirname, uint8_t levels){
     }
 }
 
+
+
 void createDir(FatVolume &fs, const char * path){
     Serial.printf("Creating Dir: %s\n", path);
     if(fs.mkdir(path)){
@@ -66,6 +70,8 @@ void createDir(FatVolume &fs, const char * path){
     }
 }
 
+
+
 void removeDir(FatVolume &fs, const char * path){
     Serial.printf("Removing Dir: %s\n", path);
     if(fs.rmdir(path)){
@@ -74,6 +80,8 @@ void removeDir(FatVolume &fs, const char * path){
         Serial.printf("rmdir failed\r\n");
     }
 }
+
+
 
 void readFile(FatVolume &fs, const char * path){
     Serial.printf("Reading file: %s\r\n", path);
@@ -90,6 +98,8 @@ void readFile(FatVolume &fs, const char * path){
     }
     file.close();
 }
+
+
 
 String readFile(FatVolume &fs, String fileName)
 {
@@ -108,6 +118,8 @@ String readFile(FatVolume &fs, String fileName)
     return fileText;
 }
 
+
+
 void writeFile(FatVolume &fs, const char * path, const char * message){
     Serial.printf("Writing file: %s\r\n", path);
 
@@ -123,6 +135,8 @@ void writeFile(FatVolume &fs, const char * path, const char * message){
     }
     file.close();
 }
+
+
 
 void appendFile(FatVolume &fs, const char * path, const char * message){
     Serial.printf("Appending to file: %s\r\n", path);
@@ -140,6 +154,8 @@ void appendFile(FatVolume &fs, const char * path, const char * message){
     file.close();
 }
 
+
+
 void renameFile(FatVolume &fs, const char * path1, const char * path2){
     Serial.printf("Renaming file %s to %s\r\n", path1, path2);
     if (fs.rename(path1, path2)) {
@@ -149,6 +165,8 @@ void renameFile(FatVolume &fs, const char * path1, const char * path2){
     }
 }
 
+
+
 void deleteFile(FatVolume &fs, const char * path){
     Serial.printf("Deleting file: %s\r\n", path);
     if(fs.remove(path)){
@@ -157,6 +175,8 @@ void deleteFile(FatVolume &fs, const char * path){
         Serial.printf("- delete failed\r\n");
     }
 }
+
+
 
 // SPIFFS-like write and delete file, better use #define CONFIG_LITTLEFS_SPIFFS_COMPAT 1
 
@@ -192,6 +212,8 @@ void writeFile2(FatVolume &fs, const char * path, const char * message){
     file.close();
 }
 
+
+
 void deleteFile2(FatVolume &fs, const char * path){
     Serial.printf("Deleting file and empty folders on path: %s\r\n", path);
 
@@ -215,6 +237,8 @@ void deleteFile2(FatVolume &fs, const char * path){
         free(pathStr);
     }
 }
+
+
 
 void testFileIO(FatVolume &fs, const char * path){
     Serial.printf("Testing file I/O with %s\r\n", path);

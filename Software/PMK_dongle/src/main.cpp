@@ -44,10 +44,11 @@ void setup()
 
   Serial.begin(115200);
 
+
+
   //===========================================
   //====================FatFS==================
   //===========================================
-  
   //Initiate flash
   if(!flash.begin())
   {
@@ -69,24 +70,20 @@ void setup()
   usb_msc.setCapacity(flash.size()/512, 512);
 
   // MSC is ready for read/write
-  fs_changed = false;
   usb_msc.setReadyCallback(0, msc_ready_callbacka);
 
   usb_msc.begin();
 
   // Init file system on the flash
-  fs_formatted = fatfs.begin(&flash);
-
-  if (!fs_formatted)
+  while(!fatfs.begin(&flash))
   {
     Serial.printf("Failed to init files system, flash may not be formatted\r\n");
-  }  
-
-
-  //===========================================
-  //====================INIT===================
-  //===========================================
-  //while(!Serial){}  //Optional debug help
+    Serial.printf("Formatting the flash for FatFS use...\r\n");
+    format_fat12();
+    check_fat12();
+    Serial.printf("Flash formatted successfully\r\n");
+    ESP.restart();
+  }
 
   pinMode(LED_DATA_PIN, OUTPUT);
   digitalWrite(LED_DATA_PIN, 1);
@@ -103,11 +100,9 @@ void setup()
   Serial.printf("    \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___| \\__ \\___/  |_|    |_|  |_|_|\\_\\ \r\n\r\n\r\n");
 
 
+
   //===========================================
   //====================USB====================
-  //===========================================
-  //===========================================
-  //====================HID====================
   //===========================================
   // Set up HID
   //usb_hid.setBootProtocol(HID_ITF_PROTOCOL_KEYBOARD);
@@ -128,7 +123,6 @@ void setup()
   //====================================================
   //====================Wifi/ESP Now====================
   //====================================================
-  //while(!Serial){}  //Optional debug help
   Serial.printf("Starting WiFi\r\n");
   WiFi.mode(WIFI_STA);
   WiFi.setTxPower(WIFI_POWER_11dBm);
@@ -136,7 +130,7 @@ void setup()
   Serial.println(WiFi.getTxPower());
   Serial.print("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
 
-  if (esp_now_init() != ESP_OK) 
+  if(esp_now_init() != ESP_OK) 
   {
     Serial.printf("Error initializing ESP-NOW\r\n");
     return;
@@ -148,17 +142,15 @@ void setup()
 
   esp_now_register_send_cb(OnEspNowDataSent);
 
-  
   //Register peer
   peerInfo.channel = 0;  
   peerInfo.encrypt = false;
 
+
+
   //===========================================
   //====================Config=================
   //===========================================
-  //while(!Serial){}  //Optional debug help
-  //delay(100);
-
   uint8_t numberOfDeviceToConfig = getNumberOfDevices();
   Serial.printf("Number of devices to config: %d \r\n\r\n", numberOfDeviceToConfig);
 
@@ -306,7 +298,6 @@ void setup()
     }
 
   }
-
 
 
   configDeej();
@@ -491,5 +482,3 @@ void loopCount()
     telemetryTask.counter = 0;
   }
 }
-
-
