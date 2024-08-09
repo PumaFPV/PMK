@@ -14,13 +14,13 @@
 #include "ff.h"
 #include "ff.c"
 #include "diskio.h"
+#include "fsHandle.h"
+#include "configHandle.h"
 
 #include "variables.h"
 #include "pmk.h"
 
 
-// const char formatName[] = "PMK Dongle";
-#define DISK_LABEL "PMK Dongle"
 
 static bool deejToggle = 0;
 static bool debug1 = 0;
@@ -49,64 +49,6 @@ unsigned long hash(const char *str)
 
 
 
-void format_fat12(void)
-{
-  // Working buffer for f_mkfs.
-  uint8_t workbuf[4096];
-
-  // Elm Cham's fatfs objects
-  FATFS elmchamFatfs;
-
-  // Make filesystem.
-  FRESULT fresult = f_mkfs("", FM_FAT, 0, workbuf, sizeof(workbuf));
-  if(fresult != FR_OK)
-  {
-    Serial.print(F("Error, f_mkfs failed with error code: ")); 
-    Serial.println(fresult, DEC);
-    while(1) yield();
-  }
-
-  // mount to set disk label
-  fresult = f_mount(&elmchamFatfs, "0:", 1);
-  if(fresult != FR_OK)
-  {
-    Serial.print(F("Error, f_mount failed with error code: ")); 
-    Serial.println(fresult, DEC);
-    while(1) yield();
-  }
-
-  // Setting label
-  Serial.printf("Setting disk label to: %c\r\n", DISK_LABEL);
-  fresult = f_setlabel(DISK_LABEL);  // TODO to fix...
-  if(fresult != FR_OK)
-  {
-    Serial.print(F("Error, f_setlabel failed with error code: ")); 
-    Serial.println(fresult, DEC);
-    while(1) yield();
-  }
-
-  // unmount
-  f_unmount("0:");
-
-  // sync to make sure all data is written to flash
-  flash.syncBlocks();
-
-  Serial.println(F("Formatted flash!"));
-}
-
-
-
-void check_fat12(void)
-{
-  // Check new filesystem
-  if (!fatfs.begin(&flash)) {
-    Serial.println(F("Error, failed to mount newly formatted filesystem!"));
-    while(1) delay(1);
-  }
-}
-
-
-
 void help()
 {
   Serial.printf("List of available commands:\r\n");
@@ -119,6 +61,7 @@ void help()
   Serial.printf("   format : format file system\r\n");
   Serial.printf("   restart : restart the dongle\r\n");
   Serial.printf("   deej : Toggle on / off deej\r\n");
+  Serial.printf("   config : Reload configuration\r\n");
   Serial.printf("   l0 / l1 / l2... : Force the current layer to... If one keybind moves to new layer it will be ignored use l-1 command to reset force layer\r\n");
   Serial.printf("   l-1 : disable forced layer\r\n");
   Serial.printf("   debug1 / debug2... : Toggle debug output. Different kind of debug available\r\n");
@@ -226,6 +169,10 @@ void handleUart()
 
       case 2090180733: // deej
         deejToggle = !deejToggle;
+        break;
+      
+      case 4142165115: // config
+        //Serial.printf("Number of devices to config: %d\r\n", getNumberOfDevices());
         break;
         
       case 193496143: //l-1

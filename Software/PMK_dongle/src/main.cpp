@@ -158,9 +158,8 @@ void setup()
 
   for(uint8_t deviceNumber = 0; deviceNumber <= numberOfDeviceToConfig; deviceNumber++)
   {
-
     Serial.printf("Configuring device number %d\r\n", deviceNumber);
-
+    
     File32 deviceDirectory = root.openNextFile();
 
     if(!deviceDirectory.isDirectory())
@@ -174,131 +173,13 @@ void setup()
 
     if(isConfigFolder) //Current folder is a device config folder
     {
-      Serial.printf("Device name to configure: %s \r\n", deviceName);
-
-      File32 configFolder = deviceDirectory.openNextFile();
-
-      //Now inside device config folder
-      while(configFolder)
-      {
-        //Serial.printf("The folder is dir: %i\r\n", configFolderisDir());
-        char name[32];
-        configFolder.getName(name, sizeof(name));
-        Serial.printf("File name: %s\r\n", name);
-
-        char filePath[64] = "\0";
-        strcat(filePath, "/");  // TODO make this clean one day
-        strcat(filePath, deviceName);
-        strcat(filePath, "/");
-        strcat(filePath, deviceName);
-        strcat(filePath, ".json");
-
-        if(!configFolder.isDirectory())
-        {
-          //We are at the config json file that contains MAC address, etc...
-          Serial.printf("File path: %s \r\n", filePath);
-          Serial.printf("Device ID: %s \r\n", getAttribute(filePath, "deviceID"));  //Used to check if we can properly read attributes
-          Serial.printf("Config name: %s \r\n", getAttribute(filePath, "deviceName"));
-          addDeviceAddress(filePath); //Add the device address to the array of ESP-NOW devices
-        }
-        else
-        {
-          //We have a directory, most likely keyboard or led
-          if(strcmp(name, "keyboard") == 0)
-          {
-            //Serial.printf("We have a keyboard config folder\r\n");
-            for(uint8_t currentLayer = 0; currentLayer < MAX_NUMBER_OF_LAYERS; currentLayer++)
-            {
-              char kbLayerFile[64] ="\0";
-              char currentLayerChar[1];
-              sprintf(currentLayerChar, "%hhu", currentLayer);  // TODO make this clean one day
-              strcat(kbLayerFile, "/");
-              strcat(kbLayerFile, deviceName);
-              strcat(kbLayerFile, "/keyboard/kb-l");
-              strcat(kbLayerFile, currentLayerChar);
-              strcat(kbLayerFile, ".json");
-
-              File32 layerFolder;
-              if(layerFolder.open(kbLayerFile))
-              {
-                Serial.printf("Successfully opened %s\r\n", kbLayerFile);
-                uint8_t deviceID = static_cast<uint8_t>(std::atoi(getAttribute(filePath, "deviceID"))); // TODO make this clean one day
-                loadKeyConfig(kbLayerFile, deviceID, currentLayer);
-              }
-              else
-              {
-                //Serial.printf("Couldnt open %s\r\n", kbLayerFile);
-              }
-            }
-          }
-          if(strcmp(name, "led") == 0)
-          {
-            //Serial.printf("We have a led config folder\r\n");
-            for(uint8_t currentLayer = 0; currentLayer < MAX_NUMBER_OF_LAYERS; currentLayer++)
-            {
-              char ledLayerFile[64] ="\0";
-              char currentLayerChar[1];
-              sprintf(currentLayerChar, "%hhu", currentLayer);
-              strcat(ledLayerFile, "/");
-              strcat(ledLayerFile, deviceName);
-              strcat(ledLayerFile, "/led/led-l");
-              strcat(ledLayerFile, currentLayerChar);
-              strcat(ledLayerFile, ".json");
-
-              File32 layerFolder;
-              if(layerFolder.open(ledLayerFile))
-              {
-                Serial.printf("Successfully opened %s\r\n", ledLayerFile);
-                uint8_t deviceID = static_cast<uint8_t>(std::atoi(getAttribute(filePath, "deviceID")));
-                loadLedConfig(ledLayerFile, deviceID, currentLayer);
-              }
-              else
-              {
-                //Serial.printf("Couldnt open %s\r\n", ledLayerFile);
-              }
-            }
-          }
-          if(strcmp(name, "mouse") == 0)
-          {
-            Serial.printf("We have a mouse config folder\r\n");
-            for(uint8_t currentLayer = 0; currentLayer < MAX_NUMBER_OF_LAYERS; currentLayer++)
-            {
-              char mouseLayerFile[64] ="\0";
-              char currentLayerChar[1];
-              sprintf(currentLayerChar, "%hhu", currentLayer);
-              strcat(mouseLayerFile, "/");
-              strcat(mouseLayerFile, deviceName);
-              strcat(mouseLayerFile, "/mouse/m-l");
-              strcat(mouseLayerFile, currentLayerChar);
-              strcat(mouseLayerFile, ".json");
-
-              File32 layerFolder;
-              if(layerFolder.open(mouseLayerFile))
-              {
-                Serial.printf("Successfully opened %s\r\n", mouseLayerFile);
-                uint8_t deviceID = static_cast<uint8_t>(std::atoi(getAttribute(filePath, "deviceID")));
-                loadMouseConfig(mouseLayerFile, deviceID, currentLayer);
-              }
-              else
-              {
-                //Serial.printf("Couldnt open %s\r\n", mouseLayerFile);
-              }
-            }
-          }
-        }
-
-        configFolder = deviceDirectory.openNextFile();
-      }
-      
-      Serial.printf("\n\r");
+      configureDevices(deviceDirectory, deviceName);
     }
     else
     {
       Serial.printf("This is system volume information configFolder.. Skipping config\r\n\r\n");
     }
-
   }
-
 
   configDeej();
 
