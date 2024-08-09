@@ -94,22 +94,41 @@ Devices should send data as simple as possible, keyboard sends key IDs pressed (
 | 0x09 | SpaceMouse | send 3 bytes for translation (x, y, z) and 3 bytes for rotation (x, y, z), signed intergers | 6 | dID 7F 00 00 FF 00 00 | Positive translation on x and negative rotation on x |
 
 ### Serial config - Dongle to PC
-The dongle supports a few serial commands, they only consist on a string, no CR/LF should be send or the command won't be recongnised.
+The dongle supports a few serial commands, they only consist of a string, no CR/LF should be send or the command won't be recongnised. (The received command is hashed into a number then switched cased to the correct function)
 Here is the list of supported commands:
-- getMacAddress : Returns the dongle MAC address
-- cpu : Returns data about CPU (frequencies, flash size...)
-- version : Returns firmware version and build date
-- power : Return WiFi power output in ESP manner
-- format : Format flash in FatFS format
-- restart : Restarts the dongle
-- l-1 / l7 : Forces current layer to layer x as specified by lx. Send l-1 to turn off force layer feature (keypress change layer will reset the force layer)
+  - h / help : display available commands
+  - info : display all info
+  - macaddress : display dongle MAC address
+  - version : display build date and version
+  - power : display RF Tx power
+  - cpu : display cpu info
+  - format : format file system
+  - restart / reboot : restart the dongle
+  - deej : toggle on / off deej
+  - config / load: Reload configuration files
+  - l0 / l1 / l2... : Force the current layer to... If one keybind moves to new layer it will be ignored use l-1 command to reset force layer
+  - l-1 : disable forced layer
+  - debug1 / debug2... : Toggle debug output. Different kind of debug available
+
 
 ### Serial config - Device to PC
 Before being able to communicate with the dongle, the device has to know the dongle MAC address, and must own a deviceID. You will also need to know the device MAC address to give it to the dongle.
 Here is the list of supported commands:
-- getMacAddress : Returns the device MAC address
-- setDongleMacAddress + dongle MAC address : Set the dongle MAC address in device memory 
-- setDeviceID + deviceID : Give the device its ID used to link to configuration file in the dongle
+- h / help : returns available commands
+- info : display all info
+- macaddress : returns device MAC address
+- setdonglemacaddress : update dongle MAC address, be sure to send values in HEX mode
+- getdonglemacaddress : returns the current dongle MAC address
+- setdeviceid : update deviceID to new value
+- getdeviceid : returns currently set devi
+- version : returns build date and version
+- power : returns RF Tx power
+- cpu : returns CPU info
+- setcpufreq : set new CPU frequency
+- restart : restart the dongle
+- scan : Scan for side module presence
+- debug1 / debug2... : Toggle debug output. Different kind of debug available
+
 
 ## Hardware
 ### The dongle
@@ -126,5 +145,14 @@ Here is the changelog.
 | HW00   | Based on moonlander layout, integrated ESP32, used as a proof of concept, didn't like the layout in the end |
 | HW01   | Based on Sofle, PSoM connector (swappable uC for futur proofing), added rotary encoder, way better layout in my opinion. Added side connector option for trackpad or space mouse |
 | HW02   | Upgraded version of HW01, added support for kailh choc V2, moved the rotary encoder up, added debouncing for rotary encoder, fixed the side module connector, moved test point to accessible location, updated PSoM pinout for better compatibility |
+| HW03 (WIP)  | Fixed the silkscreen, Added slot for dongle |
 
 More info on [Notion](https://swamp-zydeco-907.notion.site/PumaKeyBoard-b41d42fec8c74b02bc73637fae3648d7)
+
+# Building 
+This whole project is built using PlatformIO on VS Code / VS Codium. (If using VS Codium note that the marketplace for extensions doesn't really work, you will need to download cpp and platformIO .vsix extension files from https://marketplace.visualstudio.com/vscode)
+
+Once this is installed you can clone PMK's repo ````git clone https://github.com/PumaFPV/PMK````
+and open whichever code you want to build / modify: ````PMK/Software/PMK_keyboard```` with platformIO "Open project".
+
+Once project is opened and loaded (might take a few minutes for the first time) (it needs internet connection to download library and toolchain) you can compile with ````ctrl + shift + B```` or ````ctrl + shift + U```` to compile and upload. 
