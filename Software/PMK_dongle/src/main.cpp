@@ -6,7 +6,7 @@
 //TO DO delete this file
 #include "config.h"
 
-#define FIRMWARE_REV "dongle-dev"
+#define FIRMWARE_REV "dongle-1.0.0"
 
 //Include library
 #include "WiFi.h"
@@ -25,8 +25,6 @@
 #include "fsHandle.h"
 #include "MSCHandle.h"
 #include "uartHandle.h"
-
-// Default USB Settings
 
 
 
