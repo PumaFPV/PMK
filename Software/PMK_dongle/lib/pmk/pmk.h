@@ -1,5 +1,4 @@
-#ifndef pmk_h
-#define pmk_h
+#pragma once
 
 #define MAX_NUMBER_OF_DEEJ_KNOBS 8
 
@@ -13,7 +12,7 @@
 
 int8_t forceLayer = -1;
 
-#include "uartHandle.h"
+//#include "uartHandle.h"
 
 
 
@@ -169,9 +168,6 @@ displayStruct    displayPacket;
 telemetryStruct  telemetryPacket;
 serialStruct     serialPacket;
 spaceMouseStruct spaceMousePacket;
-
-
-packetStruct receivedPacket;
 
 
 
@@ -625,5 +621,3 @@ void handleSpaceMouse()
         delay(10);  // TODO FIX THIS DELAY
     }
 }
-
-#endif

@@ -128,9 +128,8 @@ struct Func
 };
 
 Func ledTask = {0, 0, 0, 0, 0, 10000, 0, 0};
-Func espnowTask = {0, 0, 0, 0, 0, 1000, 0, 0};
-Func keyboardTask = {0, 0, 0, 0, 0, 1000000, 0, 0};
-Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
+Func espnowTask = {0, 0, 0, 0, 0, 100000, 0, 0};
+Func uartTask = {0, 0, 0, 0, 0, 100000, 0, 0};
 Func fsTask = {0, 0, 0, 0, 0, 2000000, 0, 0};
 Func telemetryTask = {0, 0, 0, 0, 0, 2000000, 0, 0};
 
@@ -139,6 +138,16 @@ Func telemetryTask = {0, 0, 0, 0, 0, 2000000, 0, 0};
 //--------------------------------------------------Variables--------------------------------------------------
 
 uint8_t receivedData[16];
+
+static bool deejToggle = 0;
+static bool debug1 = 0;
+static bool debug2 = 0;
+static bool debug3 = 0;
+static bool debug4 = 0;
+static bool debug5 = 0;
+static bool debug6 = 0;
+static bool debug7 = 0;
+static bool debug8 = 0;
 
 #define MAC_ADDRESS_SIZE 6
 

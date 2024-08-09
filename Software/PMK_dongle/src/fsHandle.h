@@ -5,6 +5,8 @@
 
 #define MAX_FILE_SIZE 4096
 
+#define DISK_LABEL "PMK Dongle"
+
 #include "FS.h"
 #include "SdFat.h"
 #include "ArduinoJson.h"
@@ -13,6 +15,8 @@
 #include "ff.h"
 
 #include "configHandle.h"
+
+
 
 // converts character array
 // to string and returns it
@@ -24,6 +28,64 @@ String convertToString(char* a, int size)
         s = s + a[i];
     }
     return s;
+}
+
+
+
+void format_fat12(void)
+{
+  // Working buffer for f_mkfs.
+  uint8_t workbuf[4096];
+
+  // Elm Cham's fatfs objects
+  FATFS elmchamFatfs;
+
+  // Make filesystem.
+  FRESULT fresult = f_mkfs("", FM_FAT, 0, workbuf, sizeof(workbuf));
+  if(fresult != FR_OK)
+  {
+    Serial.print(F("Error, f_mkfs failed with error code: ")); 
+    Serial.println(fresult, DEC);
+    while(1) yield();
+  }
+
+  // mount to set disk label
+  fresult = f_mount(&elmchamFatfs, "0:", 1);
+  if(fresult != FR_OK)
+  {
+    Serial.print(F("Error, f_mount failed with error code: ")); 
+    Serial.println(fresult, DEC);
+    while(1) yield();
+  }
+
+  // Setting label
+  Serial.printf("Setting disk label to: %c\r\n", DISK_LABEL);
+  fresult = f_setlabel(DISK_LABEL);  // TODO to fix...
+  if(fresult != FR_OK)
+  {
+    Serial.print(F("Error, f_setlabel failed with error code: ")); 
+    Serial.println(fresult, DEC);
+    while(1) yield();
+  }
+
+  // unmount
+  f_unmount("0:");
+
+  // sync to make sure all data is written to flash
+  flash.syncBlocks();
+
+  Serial.println(F("Formatted flash!"));
+}
+
+
+
+void check_fat12(void)
+{
+  // Check new filesystem
+  if (!fatfs.begin(&flash)) {
+    Serial.println(F("Error, failed to mount newly formatted filesystem!"));
+    while(1) delay(1);
+  }
 }
 
 

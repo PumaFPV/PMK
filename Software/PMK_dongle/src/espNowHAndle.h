@@ -2,10 +2,13 @@
 #define ESPNOWHANDLE_H
 
 #include "Arduino.h"
+#include "pmk.h"
 
 esp_now_peer_info_t peerInfo;
 
 String success;
+
+packetStruct receivedPacket;
 
 
 
@@ -15,16 +18,6 @@ void handleReceivedPacket(packetStruct receivedPacket)
   {
     Serial.printf("Received packet from: %i, type :%i \r\n", receivedPacket.deviceID, receivedPacket.packetType);
   }
-  
-  //if(debug2)  // Can lead to reading unwanted bytes if device sends less than 16 bytes
-  //{
-  //  Serial.printf("Packet data: ");
-  //  for(uint8_t i = 0; i < 16; i++)
-  //  {
-  //    Serial.printf(" %02X", receivedPacket.data[i]);
-  //  }
-  //  Serial.printf("\r\n");
-  //}
 
   if(debug3)
   {
@@ -80,9 +73,7 @@ void handleReceivedPacket(packetStruct receivedPacket)
 // Callback when data is sent
 void OnEspNowDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) 
 {
-  //USBSerial.print("\r\nLast Packet Send Status:\t");
-  //USBSerial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
-  if (status == 0)
+  if((status == 0) && debug1)
   {
     success = "Delivery Success :)";
     Serial.printf("Delivery Success\r\n");
