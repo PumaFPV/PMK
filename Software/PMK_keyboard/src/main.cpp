@@ -12,7 +12,7 @@
 
 #include "variables.h"
 
-#define FIRMWARE_REV "keyboard-1.0.0"
+#define FIRMWARE_REV "keyboard-dev"
 
 #include "uartHandle.h"
 #include "i2cHandle.h"
@@ -26,7 +26,7 @@ void loopCount();
 
 
 
-void setup() 
+void setup()
 {
   //-----Serial
   Serial.begin(115200);
@@ -180,8 +180,8 @@ void loop()
     espnowTask.beginTime = micros();
     espnowTask.inBetweenTime = espnowTask.beginTime - espnowTask.endTime;
 
-      espnowLoop();
-      
+
+
     espnowTask.endTime = micros();
     espnowTask.counter++;
     espnowTask.duration = espnowTask.endTime - espnowTask.beginTime;

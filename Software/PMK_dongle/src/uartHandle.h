@@ -161,11 +161,13 @@ void handleUart()
       
       case 4142165115: // config
       case 2090478981: // load
-        Serial.printf("Number of devices to config: %d\r\n", getNumberOfDevices());
+        loadConfiguration();
+        configDeej();
         break;
         
       case 193496143: //l-1
         forceLayer = -1;
+        Serial.printf("Forced layer to %i\r\n", forceLayer);
         break;
 
       case 5863521: // l0
