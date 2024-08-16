@@ -1,0 +1,3 @@
+move LED to gpio1 because gpio46 is input only and strapping
+fix button footprint
+add gpio45 a pd for strapping
