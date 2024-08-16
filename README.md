@@ -1,14 +1,14 @@
 # Puma Mechanical Keyboard
 PMK - a Full wireless HID ecosystem for split keyboards and other fun devices
 
-The goal is to make a suit of wireless devices such as "smart keyboard" (combined mouse and keyboard), LEDs, knobs, display, etc  
+The goal is to make a suit of wireless devices such as "smart keyboard" (combined mouse and keyboard), gamepad, LEDs, knobs, display, etc  
 The first step is to make a wireless split keyboard, and then we will see later...
 
 Currently, you can connect up to 8 (software limited) devices per dongle, each of them having up to 8 (software limited) layers. Layers only affect keyboards and LED.
 
 ## Dongle
 The dongle is "master" ESP32S2/S3, appears as HID (keyboard, mouse and joystick) and as Mass Storage device Class with config files inside.
-Maybe also store password manager....
+Maybe also store password manager later...
 
 <img src="/Documentation/Images/Dongle_HW00_recto.jpg" width="231" height="225"><img src="/Documentation/Images/Dongle_HW00_verso.jpg" width="255" height="195"><img src="/Documentation/Images/Dongle_HW00_PCB_bottom.jpg" width="225" height="300">
 
@@ -28,8 +28,13 @@ As the dongle is the master of PMK, it hosts the config files for each devices. 
 		|  |  |- kb-l1.json  
 		|  |  |- kb-l2.json  
 
-		
+Exemple file structure can be found [here](https://github.com/PumaFPV/PMK/tree/main/Software/PMK_dongle/data/leftKB) 
+
 For more details about devices configurations / capabilities check the Protocol chapter.
+
+### Keyboard config file - HID codes
+Check out the "PMK HID keyboard keycodes.md" for more information on which code corresponds to which key.
+
 
 ## Devices
 Can run on any espressif chip that can run ESP-NOW. (Will later add support for nRF52 chips for lower power consumption)
@@ -148,6 +153,9 @@ Here is the changelog.
 | HW03 (WIP)  | Fixed the silkscreen, Added slot for dongle |
 
 More info on [Notion](https://swamp-zydeco-907.notion.site/PumaKeyBoard-b41d42fec8c74b02bc73637fae3648d7)
+
+### Edit the PCBs
+If you want to make your own keyboard, or visualize current dongle, keyboard or other devices you will need KiCAD 8 and Component_lib which is my own components library. It can be found in its [own repo](https://github.com/PumaFPV/Component_lib), information on own to install it can be found there.
 
 # Building 
 This whole project is built using PlatformIO on VS Code / VS Codium. (If using VS Codium note that the marketplace for extensions doesn't really work, you will need to download cpp and platformIO .vsix extension files from https://marketplace.visualstudio.com/vscode)
