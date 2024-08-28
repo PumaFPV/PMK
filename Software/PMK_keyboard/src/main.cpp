@@ -12,7 +12,7 @@
 
 #include "variables.h"
 
-#define FIRMWARE_REV "keyboard-dev"
+#define FIRMWARE_REV "keyboard-dev-1.0.1"
 
 #include "uartHandle.h"
 #include "i2cHandle.h"

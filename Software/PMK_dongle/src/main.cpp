@@ -6,7 +6,7 @@
 //TO DO delete this file
 #include "config.h"
 
-#define FIRMWARE_REV "dongle-dev"
+#define FIRMWARE_REV "dongle-dev-1.0.1"
 
 //Include library
 #include "WiFi.h"
