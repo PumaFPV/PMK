@@ -2,5 +2,7 @@ Schematic:
 	Update battery connector to molex picoBlade 3 pins
 
 Routing:
-	Fix silkscreen
+	Fix silkscreen HW02 -> HW03
 	Add center mounting hole
+	Change battery connector
+	Update kailh v2 footprint
