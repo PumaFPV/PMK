@@ -30,8 +30,13 @@ void handleReceivedPacket(packetStruct receivedPacket)
       //default packet
       break;
     case 0:
-      Serial.printf("Telem Packet\r\n");
+      //Serial.printf("Telem Packet\r\n");
       convertPacket2Telemetry(receivedPacket);
+      if(debug4)
+      {
+        uint32_t calculatedTime = telemetryPacket.error[0] | telemetryPacket.error[1] << 8 | telemetryPacket.error[2] << 16 | telemetryPacket.error[3] << 24;
+        Serial.printf(">Received time: %u\r\n", calculatedTime);
+      }
       break;
     case 1: //Keyboard
       convertPacket2Keyboard(receivedPacket);

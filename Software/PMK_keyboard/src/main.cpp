@@ -180,7 +180,19 @@ void loop()
     espnowTask.beginTime = micros();
     espnowTask.inBetweenTime = espnowTask.beginTime - espnowTask.endTime;
 
+    static uint32_t time = 0;
+    
+    for(uint8_t i = 0; i < 4; i++)
+    {
+      telemetryPacket.error[i] = (time >> (i*8)) & 0xFF;
+      //Serial.printf("%u", telemetryPacket.error[3-i]);
+    }
+    uint32_t calculatedTime = telemetryPacket.error[0] | telemetryPacket.error[1] << 8 | telemetryPacket.error[2] << 16 | telemetryPacket.error[3] << 24;
+    //Serial.printf("time: %u, sent time: %u\r\n", time, calculatedTime);
 
+    esp_now_send(dongleAddress, (uint8_t *) &telemetryPacket, sizeof(telemetryPacket));
+
+    time++;
 
     espnowTask.endTime = micros();
     espnowTask.counter++;
