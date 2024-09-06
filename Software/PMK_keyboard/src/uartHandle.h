@@ -41,7 +41,7 @@ void help()
   Serial.printf("List of available commands:\r\n");
   Serial.printf("   h / help : returns available commands\r\n");
   Serial.printf("   info : display all info\r\n");
-  Serial.printf("   macaddress : returns device MAC address\r\n");
+  Serial.printf("   macaddress / getmacaddress : returns device MAC address\r\n");
   Serial.printf("   setdonglemacaddress : update dongle MAC address, be sure to send values in HEX mode\r\n");
   Serial.printf("   getdonglemacaddress : returns the current dongle MAC address\r\n");
   Serial.printf("   setdeviceid : update deviceID to new value\r\n");
@@ -215,6 +215,7 @@ void handleUart()
         printDebugState();
         break;
 
+      case 1858127548: // getmacaddress
       case 1311181436: // macaddress
         printMacAddress();
         break;

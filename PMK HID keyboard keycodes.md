@@ -1,4 +1,5 @@
 # HID keycodes for PMK keyboard
+Open in raw format
 ## Keys
 HID_KEY_A                         0x04
 HID_KEY_B                         0x05

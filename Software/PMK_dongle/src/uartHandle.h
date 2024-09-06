@@ -41,7 +41,7 @@ void help()
   Serial.printf("List of available commands:\r\n");
   Serial.printf("   h / help : display available commands\r\n");
   Serial.printf("   info : display all info\r\n");
-  Serial.printf("   macaddress : display dongle MAC address\r\n");
+  Serial.printf("   macaddress / getmacaddress : display dongle MAC address\r\n");
   Serial.printf("   version : display build date and version\r\n");
   Serial.printf("   power : display RF Tx power\r\n");
   Serial.printf("   cpu : display cpu info\r\n");
@@ -127,11 +127,12 @@ void handleUart()
         printDebugState();
         break;
 
-      case 2318435644: //macaddress
+      case 1858127548: // getmacaddress
+      case 2318435644: // macaddress
         printMacAddress();
         break;
       
-      case 1929407563:  //version
+      case 1929407563: // version
         printVersion();
         break;
 

@@ -1,5 +1,5 @@
 # Puma Mechanical Keyboard
-PMK - a Full wireless HID ecosystem for split keyboards and other fun devices
+PMK - a full wireless HID ecosystem for split keyboards and other fun devices
 
 The goal is to make a suit of wireless devices such as "smart keyboard" (combined mouse and keyboard), gamepad, LEDs, knobs, display, etc  
 The first step is to make a wireless split keyboard, and then we will see later...
@@ -30,49 +30,52 @@ As the dongle is the master of PMK, it hosts the config files for each devices. 
 
 Exemple file structure can be found [here](https://github.com/PumaFPV/PMK/tree/main/Software/PMK_dongle/data/leftKB) 
 
-For more details about devices configurations / capabilities check the Protocol chapter.
+For more details about devices configurations / capabilities check the [Protocol](https://github.com/PumaFPV/PMK?tab=readme-ov-file#protocols) chapter.
 
 ### Keyboard config file - HID codes
-Check out the "PMK HID keyboard keycodes.md" for more information on which code corresponds to which key.
+Check out the [PMK HID keyboard keycodes.md](https://github.com/PumaFPV/PMK/blob/main/PMK%20HID%20keyboard%20keycodes.md) for more information on which code corresponds to which key.
 
 
 ## Devices
-Can run on any espressif chip that can run ESP-NOW. (Will later add support for nRF52 chips for lower power consumption)
+Can run on any espressif chip that can run ESP-NOW. (I will later add support for nRF52 chips for lower power consumption, but it will be incompatible with ESP32 hardware)
 The plan is to run the simplest firmware on all devices and being able to configure them via their corresponding .json files on the master dongle. 
 Each device should be configurable via UART (set device ID, set dongle MAC address, and read device MAC address). 
-See sample device code for example. (TODO)
+See sample [device code](https://github.com/PumaFPV/PMK/tree/main/Software/PMK_device) for example. (Needs an update)
 
 ### Keyboard
-For example a keyboard would send pressed keys number "0x04, 0xA1", which the dongle then reads in the .json as coordinates for returning desired key "a,b" pr modifier key., if special key is pressed (volume up, brighntess control...) then do the appropriate consummer control action.
+For example a keyboard would send pressed keys number "0x04, 0xA1", which the dongle then reads in the .json as coordinates for returning desired key "a,b", if special key is pressed (volume up, brighntess control...) then do the appropriate consummer control action.
 Keys are read with 74HC165 shift registers so theoratically you could have A LOT of keys per keyboard. Current limitation is the max value of keyID which is 255, so there could be a maximum of 255 keys per keyboard (+8 layers...).
-As of today the keyboard is at the HW01 stage, and uses the sofle layout (which I do like). It uses 29 hot swappable Kailh Choc switches + one rotary encoder. The MCU is a PSoM module (homemade SoM) with an ESP32S2 inside. The SoM allows for quick swap of different MCU to try out different feature. Today the ESP32S2 is used for the ease of software developpement. Its power consumption is bad I am aware. But at least software works. I plan to design a casing + metal grid + foam for it. 
-HW02 will be coming soon too as I have a few adjustements to make. It support module on the thumb side (Circle trackpad and 3D mouse will be the first modules to come).
+For more information about the hardawre, check the [hardware](https://github.com/PumaFPV/PMK/tree/main?tab=readme-ov-file#hardware) section.
+A casing is being designed, it is 3D printable. As foam grid is put inside for better sound (I think it is better?). 
+It support module on the thumb side ([Circle trackpad](https://www.cirque.com/glidepoint-circle-trackpads) and [3D mouse](https://hackaday.io/project/187172-os3m-mouse)). Both modules have been tested and work. See [Space mouse](https://github.com/PumaFPV/PMK/tree/main?tab=readme-ov-file#space-mouse) section for more info.
 
 <img src="/Layout/keyboard-layout.jpg" width="536" height="242">
 
 ### Mouse
 Mouse can send x,y movement, wheel, pan scrolling and mouse buttons (left, middle, right, forward, backward). Each button is encoded as a bit in the "key" byte of the packet.
 No configuration needed on the dongle appart from the DPI setting.
-I plan on retro fitting a wired Logitech G300 with PMK so that it frees up a USB port + becomes wireless. It will be a great first POC.
+I plan on retro fitting a wired Logitech G300 with PMK so that it frees up a USB port + becomes wireless. It will be a great first POC. I also have a M330 laying around. It might also end up as a PMK mouse.
 
 ### Gamepad
 Gamepad can send 2 analog joysticks, 2 analog triggers, dpad buttons, and 32 additionnal buttons. No additionnal configuration needed on the dongle.
-I current upgraded an old thrustmaster sim set (FCS & WCS) from 1992 with PMK. They used to have an ADB port, but now are fully wireless and appears as one gamepad on the computer. The update is a bit crude as it was first though as a POC for trying out the gamepad feature. But since it works fine, I kept it this way.
+I current upgraded an old thrustmaster sim set (FCS & WCS) from 1992 with PMK. They used to have an ADB port, but now both are fully wireless and appear as one gamepad on the computer. The update is a bit crude as it was first though as a POC for trying out the gamepad feature. But since it works fine, I kept it this way.
 
 ### LED
-Hopefully processing key press and led function on dongle and send data to device is fast enough, otherwise we will have to run led function on keyboard. (TODO)
+(For release 1.2.0)
+Hopefully processing key press and led function on dongle and send data to device is fast enough, otherwise I will have to run led function on keyboard. (TODO)
 Buildin keyboard functions: all kb, breath, swipe wave (single color or rainbow), key wave, single key... (TODO / Partially implemented...)
 Uses the WS2812 kind of LED IC.
 
 <img src="/Documentation/Images/PKB_HW00_pulsar.png" width="700" height="394">
 
 ### Knob
-Knobs are in absolute position going from 0 to 255. Could be used for Deej.
+Knobs are in absolute position going from 0 to 255. Could be used for Deej (now only used for deej).
 
-For encoder knobs, this is handled on the device and enumerates as a keyboard pressing one key for clockwise and another for counterclockwise rotation.
+For encoder knobs, this is handled on the device, so it can enumerate as a keyboard pressing one key for clockwise and another for counterclockwise rotation. But it could also be treated as an absolute position depending on the device software.
 
 ### Space mouse
-Mostly inspired from [Magellan](https://github.com/jfedor2/magellan-spacemouse/tree/master) and from reports analysed from a 3DConnexion Space mouse with [hid-tool](https://gitlab.freedesktop.org/libevdev/hid-tools) 
+The software is mostly inspired from [Magellan](https://github.com/jfedor2/magellan-spacemouse/tree/master) and from reports analysed from a 3DConnexion Space mouse with [hid-tool](https://gitlab.freedesktop.org/libevdev/hid-tools). 
+The current electronics and plastics hardware are from [OS3M mouse](https://hackaday.io/project/187172-os3m-mouse) and it works well. The software still needs some adjustements for calibration.
 
 ## Protocols
 
@@ -83,7 +86,10 @@ Packet structure is:
 | ---- | - | - | - |
 | Description | DeviceID | PacketID | Payload |
 
-Devices should send data as simple as possible, keyboard sends key IDs pressed (max 8 at a time) and then the dongle processes the key ID depending on the json configuration
+The goal of this packet strucure is that the dongle knows who is sending data and what kind of data to expect from the payload.
+The deviceID is mostly used for keyboards and mouse to use the corresponding config files.
+
+the payload's goal is to send data as simple as possible, e.g. keyboard sends key IDs pressed (max 8 at a time) and then the dongle processes the key ID depending on the json configuration
 
 | Packet ID | Packet type | Packet information | Number of bytes | Example packet | Example description |
 | --------- | ----------- | ------------------ | --------------- | -------------- | ------------------- |
@@ -103,7 +109,7 @@ The dongle supports a few serial commands, they only consist of a string, no CR/
 Here is the list of supported commands:
   - h / help : display available commands
   - info : display all info
-  - macaddress : display dongle MAC address
+  - macaddress / getmacaddress : display dongle MAC address
   - version : display build date and version
   - power : display RF Tx power
   - cpu : display cpu info
@@ -121,7 +127,7 @@ Before being able to communicate with the dongle, the device has to know the don
 Here is the list of supported commands:
 - h / help : returns available commands
 - info : display all info
-- macaddress : returns device MAC address
+- macaddress / getmacaddress : returns device MAC address
 - setdonglemacaddress : update dongle MAC address, be sure to send values in HEX mode
 - getdonglemacaddress : returns the current dongle MAC address
 - setdeviceid : update deviceID to new value
@@ -137,20 +143,21 @@ Here is the list of supported commands:
 
 ## Hardware
 ### The dongle
-Dongle is still HW00 (first rev), it needs 3 small patches to work properly. A HW01 might be designed in the coming months.
+Dongle is still HW00 (first rev), it needs 3 small patches to work properly. A [HW01](https://github.com/PumaFPV/PMK/tree/main/Hardware/PMK_Dongle/PMK_Dongle_HW01) is designed but hasn't been ordered yet.
+The ESP32S2 has some limitations, so a ESP32S3 dongle is being made too [here](https://github.com/PumaFPV/PMK/tree/main/Hardware/PMK_Dongle/PMK_Dongle_S3_HW00).
 
-Even a nRF52 dongle might be made... Who knows?
+Even a nRF52 dongle might be made... Who knows[?](https://github.com/PumaFPV/PMK/tree/main/Hardware/PMK_Dongle/PMK_Dongle_C_nRF_HW00)
 
 ### The keyboard
-Latest keyboard is HW02. 
+As of today the keyboard is at the HW02 stage, and uses the sofle layout (which I do like). It uses 29 hot swappable Kailh Choc switches + one rotary encoder. The MCU is a [PSoM module](https://github.com/PumaFPV/PSoM) (homemade SoM) with an ESP32S2 inside. The SoM allows for quick swap of different MCU to try out different feature. Today the ESP32S2 is used for the ease of software developpement. Its power consumption is bad I am aware. But at least software works.
 Here is the changelog.
 
 | HW rev | change list |
 | ------ | ----------- |
 | HW00   | Based on moonlander layout, integrated ESP32, used as a proof of concept, didn't like the layout in the end |
 | HW01   | Based on Sofle, PSoM connector (swappable uC for futur proofing), added rotary encoder, way better layout in my opinion. Added side connector option for trackpad or space mouse |
-| HW02   | Upgraded version of HW01, added support for kailh choc V2, moved the rotary encoder up, added debouncing for rotary encoder, fixed the side module connector, moved test point to accessible location, updated PSoM pinout for better compatibility |
-| HW03 (WIP)  | Fixed the silkscreen, Added slot for dongle |
+| HW02   | Still soffle, added support for kailh choc V2 (failed), moved the rotary encoder up, added debouncing for rotary encoder, fixed the side module connector, moved test point to accessible location, updated PSoM pinout for better compatibility |
+| HW03 (WIP)  | Still soffle, fixed the silkscreen, Added slot for dongle, fixed V2 footprint, magnetic pogo module? |
 
 More info on [Notion](https://swamp-zydeco-907.notion.site/PumaKeyBoard-b41d42fec8c74b02bc73637fae3648d7)
 
@@ -163,4 +170,4 @@ This whole project is built using PlatformIO on VS Code / VS Codium. (If using V
 Once this is installed you can clone PMK's repo ````git clone https://github.com/PumaFPV/PMK````
 and open whichever code you want to build / modify: ````PMK/Software/PMK_keyboard```` with platformIO "Open project".
 
-Once project is opened and loaded (might take a few minutes for the first time) (it needs internet connection to download library and toolchain) you can compile with ````ctrl + shift + B```` or ````ctrl + shift + U```` to compile and upload. 
+Once project is opened and loaded (might take a few minutes for the first time) (it needs internet connection to download library and toolchain) you can compile with ````ctrl + shift + B```` or ````ctrl + shift + U```` to compile and upload, or use the bottom ribbon (make sure to select the correct workspace before compiling and uploading). 
