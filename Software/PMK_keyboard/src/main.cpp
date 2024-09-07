@@ -38,6 +38,11 @@ void setup()
 
 
 
+  //-----ADC
+  //analogSetAttenuation(ADC_ATTEN_DB_12);
+  
+
+
   //-----Shift register
   pinMode(SR_PL, OUTPUT);
   // Initialize SPI for SR
@@ -86,6 +91,7 @@ void setup()
   mousePacket.deviceID = deviceID;
   knobPacket.deviceID = deviceID;
   spaceMousePacket.deviceID = deviceID;
+  telemetryPacket.deviceID = deviceID;
   
   for(uint8_t i = 0; i < MAC_ADDRESS_SIZE; i++)
   {
@@ -180,6 +186,8 @@ void loop()
     espnowTask.beginTime = micros();
     espnowTask.inBetweenTime = espnowTask.beginTime - espnowTask.endTime;
 
+
+    /*
     static uint32_t time = 0;
     
     for(uint8_t i = 0; i < 4; i++)
@@ -193,6 +201,8 @@ void loop()
     esp_now_send(dongleAddress, (uint8_t *) &telemetryPacket, sizeof(telemetryPacket));
 
     time++;
+    */
+
 
     espnowTask.endTime = micros();
     espnowTask.counter++;
@@ -259,6 +269,32 @@ void loop()
     sideModuleTask.endTime = micros();
     sideModuleTask.counter++;
     sideModuleTask.duration = sideModuleTask.endTime - sideModuleTask.beginTime;
+  }
+
+
+
+  
+  //------------------------------------------------------
+  //------------------------------------------------------telemetry Task
+  //------------------------------------------------------
+  if(micros() - telemetryTask.beginTime >= telemetryTask.interval)
+  {
+    telemetryTask.beginTime = micros();
+    telemetryTask.inBetweenTime = telemetryTask.beginTime - telemetryTask.endTime;
+
+
+      //uint16_t batteryADC = analogRead(PIN_VBAT);
+      uint32_t batteryVolt = analogReadMilliVolts(PIN_VBAT);
+
+      //telemetryPacket.battery = map(batteryADC, 2789, 3550, 0, 100);
+      telemetryPacket.battery = map(batteryVolt, 2384, 2861, 0, 100);
+      Serial.printf("ADC: %u, %%: %u, mV: %u\r\n", /*batteryADC,*/ telemetryPacket.battery, batteryVolt);
+
+      esp_now_send(dongleAddress, (uint8_t *) &telemetryPacket, sizeof(telemetryPacket));
+
+    telemetryTask.endTime = micros();
+    telemetryTask.counter++;
+    telemetryTask.duration = telemetryTask.endTime - telemetryTask.beginTime;
   }
 }
 
@@ -337,7 +373,18 @@ void loopCount()
     //Serial.println(sideModuleTask.counter);
     sideModuleTask.counter = 0;
   }
-
+  
+  //cirqueTask frequency counter
+  if(telemetryTask.counter == 0)
+  {
+    telemetryTask.startCounterTime = micros();
+  }
+  if(micros() - telemetryTask.startCounterTime > 1000000)
+  {
+    telemetryTask.frequency = telemetryTask.counter;
+    //Serial.println(telemetryTask.counter);
+    telemetryTask.counter = 0;
+  }
 }
 
 /* Typical task outline

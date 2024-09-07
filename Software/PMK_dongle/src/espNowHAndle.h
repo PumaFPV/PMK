@@ -32,6 +32,10 @@ void handleReceivedPacket(packetStruct receivedPacket)
     case 0:
       //Serial.printf("Telem Packet\r\n");
       convertPacket2Telemetry(receivedPacket);
+      if(debug6)
+      {
+        Serial.printf("dId: %u, battery: %u\r\n", telemetryPacket.deviceID, telemetryPacket.battery);
+      }
       if(debug4)
       {
         uint32_t calculatedTime = telemetryPacket.error[0] | telemetryPacket.error[1] << 8 | telemetryPacket.error[2] << 16 | telemetryPacket.error[3] << 24;

@@ -43,7 +43,7 @@ typedef struct packetStruct {
 typedef struct telemetryStruct {
     uint8_t deviceID;
     const uint8_t packetType = 0;
-    uint8_t battery;
+    uint8_t battery;    // in % (value can only from 0d0 to 0d100), 0% is 3.5v, 100% is 4.2v. 
     uint8_t temperature;
     uint8_t macAddress[6];
     uint8_t error[5];
