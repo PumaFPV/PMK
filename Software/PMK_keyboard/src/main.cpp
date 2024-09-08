@@ -42,6 +42,12 @@ void setup()
   //analogSetAttenuation(ADC_ATTEN_DB_12);
   
 
+  
+  //-----GPIO
+  pinMode(BUILDIN_LED, OUTPUT);
+  digitalWrite(BUILDIN_LED, 1);
+
+
 
   //-----Shift register
   pinMode(SR_PL, OUTPUT);
@@ -71,7 +77,7 @@ void setup()
 
   //-----Rotary Encoder
   pinMode(RE_A, INPUT_PULLUP);
-  pinMode(RE_B, INPUT_PULLUP);
+  //pinMode(RE_B, INPUT_PULLUP);
   attachInterrupt(RE_A, rotaryEncoderISR, RISING);
 
 
@@ -287,10 +293,19 @@ void loop()
       uint32_t batteryVolt = analogReadMilliVolts(PIN_VBAT);
 
       //telemetryPacket.battery = map(batteryADC, 2789, 3550, 0, 100);
-      telemetryPacket.battery = map(batteryVolt, 2384, 2861, 0, 100);
-      Serial.printf("ADC: %u, %%: %u, mV: %u\r\n", /*batteryADC,*/ telemetryPacket.battery, batteryVolt);
+      telemetryPacket.battery = map(batteryVolt, 1750, 2100, 0, 100);
+      Serial.printf("%%: %u, mV: %u\r\n", /*batteryADC,*/ telemetryPacket.battery, batteryVolt);
 
       esp_now_send(dongleAddress, (uint8_t *) &telemetryPacket, sizeof(telemetryPacket));
+
+      if(telemetryPacket.battery < LOW_BATTERY_THRESHOLD)
+      {
+        static bool ledStatus = 0;
+
+        digitalWrite(BUILDIN_LED, ledStatus);
+        ledStatus = !ledStatus;
+      }
+      
 
     telemetryTask.endTime = micros();
     telemetryTask.counter++;

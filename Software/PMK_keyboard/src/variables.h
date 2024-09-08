@@ -74,6 +74,7 @@
 
 //----------GPO
 #define LED_DATA_PIN 21
+#define BUILDIN_LED 15
 
 //----------ADC
 #define PIN_VBAT 1
@@ -105,6 +106,8 @@ static const int srSpiClk = 10000000; // 10MHz
 
 #define SECONDS_TO_MICROS 1000000
 #define MILLIS_TO_MICROS 1000
+
+#define LOW_BATTERY_THRESHOLD 15 // in %
 
 #define TRACKPAD_ADDRESS 0x2A
 #define LDC1614_ADDRESS 0x2A
@@ -153,7 +156,7 @@ Func espnowTask = {0, 0, 0, 0, 0, 50000, 0, 0};
 Func reTask = {0, 0, 0, 0, 0, 100000, 0, 0};
 Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
 Func sideModuleTask = {0, 0, 0, 0, 0, 50000, 0, 0};
-Func telemetryTask = {0, 0, 0, 0, 0, 100 * MILLIS_TO_MICROS, 0, 0};
+Func telemetryTask = {0, 0, 0, 0, 0, 1 * SECONDS_TO_MICROS, 0, 0};
 
 struct NoDelay
 {

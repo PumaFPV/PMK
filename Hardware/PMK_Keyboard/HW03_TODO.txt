@@ -1,4 +1,5 @@
 Schematic:
+	Move RE_B to another pim than 15 (buildin_led)
 	Update battery connector to molex picoBlade 3 pins
 
 Routing:
