@@ -107,7 +107,7 @@ static const int srSpiClk = 10000000; // 10MHz
 #define SECONDS_TO_MICROS 1000000
 #define MILLIS_TO_MICROS 1000
 
-#define LOW_BATTERY_THRESHOLD 15 // in %
+#define LOW_BATTERY_THRESHOLD 20 // in %
 
 #define TRACKPAD_ADDRESS 0x2A
 #define LDC1614_ADDRESS 0x2A

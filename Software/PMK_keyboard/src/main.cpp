@@ -279,7 +279,6 @@ void loop()
 
 
 
-  
   //------------------------------------------------------
   //------------------------------------------------------telemetry Task
   //------------------------------------------------------
@@ -294,7 +293,7 @@ void loop()
 
       //telemetryPacket.battery = map(batteryADC, 2789, 3550, 0, 100);
       telemetryPacket.battery = map(batteryVolt, 1750, 2100, 0, 100);
-      Serial.printf("%%: %u, mV: %u\r\n", /*batteryADC,*/ telemetryPacket.battery, batteryVolt);
+      //Serial.printf("%%: %u, mV: %u\r\n", /*batteryADC,*/ telemetryPacket.battery, batteryVolt);
 
       esp_now_send(dongleAddress, (uint8_t *) &telemetryPacket, sizeof(telemetryPacket));
 
