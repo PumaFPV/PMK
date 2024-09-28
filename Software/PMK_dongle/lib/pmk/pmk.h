@@ -20,8 +20,8 @@ int8_t forceLayer = -1;
 #define PMK_PACKET_TYPE_BYTE 1
 #define PMK_DATA_BYTE 2
 
-#define LAYER_MINUS 0xF0 //Not actually LAYER_MINUS, more like layer 1
-#define LAYER_PLUS 0xF1 //Not actually LAYER_PLUS, more like layer 2
+#define LAYER_1 0xF0 //Not actually LAYER_MINUS, more like layer 1
+#define LAYER_2 0xF1 //Not actually LAYER_PLUS, more like layer 2
 
 
 
@@ -353,49 +353,58 @@ uint8_t nonZeroSize(uint8_t arr[])
 
 
 
+bool keycodeIsDifferent(uint8_t prevKeycode[6], uint8_t keycode[6])
+{
+    for(uint8_t i = 0; i < 6; i++)
+    {
+        if(keycode[i] != prevKeycode[i])
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+
+
 void handleKeyboard()
 {
     if(TinyUSBDevice.suspended())
     {
         TinyUSBDevice.remoteWakeup();
     }
-
-    if(!usb_hid.ready())
-    {
-        //Serial.printf("not ready \r\n");
-        return;
-    } 
-    //Serial.printf("usb ready\r\n");
     
     uint8_t keycode[6] = {0};
     uint8_t keycodeNumber = 0;
     uint8_t modifier = 0x00;
     std::vector<uint16_t> keyToPress{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,};
-    uint8_t keyToPressID = 0;
-    layerID = 0;
-
-    //Need to check for layer change key before going further
-    for(uint8_t deviceID = 0; deviceID < 8; deviceID++)
-    {
-        for(uint8_t i = 0; i < 8; i++)
-        {
-            switch(keyIDtoHID(keyboardPacket[deviceID].key[i], layerID, deviceID))
-            {
-                case LAYER_MINUS:
-                    layerID = 1;
-                    forceLayer = -1;
-                    break;
-                case LAYER_PLUS:
-                    layerID = 2;
-                    forceLayer = -1;
-                    break;
-            }
-        }
-    }
 
     if(forceLayer != -1)
     {
         layerID = forceLayer;
+    }
+    else
+    {
+        layerID = 0;  // Needed to have layer keys as press only and to toggle
+        
+        //Need to check for layer change key before going further
+        for(uint8_t deviceID = 0; deviceID < 8; deviceID++)
+        {
+            for(uint8_t i = 0; i < 8; i++)
+            {
+                switch(keyIDtoHID(keyboardPacket[deviceID].key[i], layerID, deviceID))
+                {
+                    case LAYER_1:
+                        layerID = 1;
+                        break;
+                    case LAYER_2:
+                        layerID = 2;
+                        break;
+                }
+            }
+        }
+
     }
     //Serial.printf("Current layer is: %i\r\n", layerID);
 
@@ -417,10 +426,10 @@ void handleKeyboard()
     uint8_t numberOfKeyToPress = std::find(keyToPress.begin(), keyToPress.end(), 0xFFFF) - keyToPress.begin();
     //Serial.printf("Number of keys to press: %i\r\n", numberOfKeyToPress);
 
-    for(uint8_t i = i; i < numberOfKeyToPress; i++) //Add the final keyToPress to the report / deal with modifiers
+    for(uint8_t i = 0; i < numberOfKeyToPress; i++) //Add the final keyToPress to the report / deal with modifiers
     {
         uint16_t HIDKey = keyToPress[i];
-        if(0xDF < HIDKey && HIDKey < 0xE8)  //
+        if(0xDF < HIDKey && HIDKey < 0xE8)
         {
             //We have a modifier
             modifier = modifier | (1 << (HIDKey - 0xE0));   //First modifier is 0xE0 Left control
@@ -478,7 +487,23 @@ void handleKeyboard()
         Serial.printf("Report: %02X %02X %02X %02X %02X %02X modifier: %02X\r\n", keycode[0], keycode[1], keycode[2], keycode[3], keycode[4], keycode[5], modifier);
     }
 
-    usb_hid.keyboardReport(RID_KEYBOARD, modifier, keycode);
+    static uint8_t prevModifier;
+    static uint8_t prevKeycode[6];
+
+    //if(!usb_hid.ready())
+    //{
+    //    Serial.printf("not ready \r\n");
+    //    return;
+    //}
+    //Serial.printf("usb ready\r\n");
+
+    if((prevModifier != modifier) || keycodeIsDifferent(prevKeycode, keycode))
+    {
+        usb_hid.keyboardReport(RID_KEYBOARD, modifier, keycode);
+    }
+
+    prevModifier = modifier;
+    memcpy(prevKeycode, keycode, 6);
 
 }
 

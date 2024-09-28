@@ -44,7 +44,7 @@ void handleReceivedPacket(packetStruct receivedPacket)
       break;
     case 1: //Keyboard
       convertPacket2Keyboard(receivedPacket);
-      handleKeyboard(); //measured at 270us
+      handleKeyboard(); //measured at 180us
       break;
     case 2: //Mouse
       convertPacket2Mouse(receivedPacket);
@@ -99,8 +99,12 @@ void OnEspNowDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)
 // Callback when data is received
 void OnEspNowDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len) 
 {
+  esp_now_unregister_recv_cb();
+
   memcpy(&receivedPacket, incomingData, sizeof(receivedPacket));
   handleReceivedPacket(receivedPacket);
+
+  esp_now_register_recv_cb(OnEspNowDataRecv);
 }
 
 
