@@ -370,6 +370,7 @@ bool keycodeIsDifferent(uint8_t prevKeycode[6], uint8_t keycode[6])
 
 void handleKeyboard()
 {
+
     if(TinyUSBDevice.suspended())
     {
         TinyUSBDevice.remoteWakeup();
@@ -404,7 +405,6 @@ void handleKeyboard()
                 }
             }
         }
-
     }
     //Serial.printf("Current layer is: %i\r\n", layerID);
 
