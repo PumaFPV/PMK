@@ -187,6 +187,9 @@ uint8_t rotary = 0;
 
 uint8_t deviceID;
 
+keyboardStruct previousKeyboardPacket;
+
+
 //--------------------------------------------------SideModule
 bool trackpadIsPresent = 0;
 bool spacemouseIsPresent = 0;

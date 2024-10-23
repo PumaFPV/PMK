@@ -8,6 +8,18 @@
 #include "uartHandle.h"
 
 
+
+bool areArraysEqual(uint8_t* arr1, uint8_t* arr2, int size) {
+    for (int i = 0; i < size; i++) {
+        if (arr1[i] != arr2[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+
 void srLoop()
 {
     // Read SPI from shift register
@@ -64,22 +76,58 @@ void srLoop()
           }
       }
     }
-      
+
+
+
     esp_err_t result;
 
-    result = esp_now_send(dongleAddress, (uint8_t *) &keyboardPacket, sizeof(keyboardPacket));
-  
-    if(debug2)
+    bool keyContentIsEqual = areArraysEqual(keyboardPacket.key, previousKeyboardPacket.key, 8);
+
+    //Serial.printf("Arrays are equals: %u   ", keyContentIsEqual);
+    //Serial.printf("key0: %u, prevKey0: %u\r\n", keyboardPacket.key[0], previousKeyboardPacket.key[0]);
+
+    if(!keyContentIsEqual || (result != ESP_OK))
     {
-      if (result == ESP_OK)
+      result = esp_now_send(dongleAddress, (uint8_t *) &keyboardPacket, sizeof(keyboardPacket));
+      if(debug2)
       {
-        Serial.println("Sent with success");
+        if (result == ESP_OK)
+        {
+          Serial.println("ESP_OK");
+        }
+        else if(result == ESP_ERR_ESPNOW_NOT_INIT)
+        {
+          Serial.println("ESP_ERR_ESPNOW_NOT_INIT");
+        }
+        else if(result == ESP_ERR_ESPNOW_ARG)
+        {
+          Serial.println("ESP_ERR_ESPNOW_ARG");
+        }
+        else if(result == ESP_ERR_ESPNOW_INTERNAL)
+        {
+          Serial.println("ESP_ERR_ESPNOW_INTERNAL");
+        }
+        else if(result == ESP_ERR_ESPNOW_NO_MEM)
+        {
+          Serial.println("ESP_ERR_ESPNOW_NO_MEM");
+        }
+        else if(result == ESP_ERR_ESPNOW_NOT_FOUND)
+        {
+          Serial.println("ESP_ERR_ESPNOW_NOT_FOUND");
+        }
+        else if(result == ESP_ERR_ESPNOW_IF)
+        {
+          Serial.println("ESP_ERR_ESPNOW_IF");
+        }
       }
-      else
+      for(uint8_t i = 0; i < 8; i++)
       {
-        Serial.println("Error sending the data");
-      }
+        previousKeyboardPacket.key[i] = keyboardPacket.key[i];
+      } 
     }
+
+  
+  
 }
 
 
