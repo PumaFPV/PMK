@@ -218,4 +218,15 @@ MOUSE_BUTTON_MIDDLE     0x2004
 MOUSE_BUTTON_BACKWARD   0x2008
 MOUSE_BUTTON_FORWARD    0x2010
 
+## PMK
+Layer_0 0xF0
+Layer_1 0xF1
+Layer_2 0xF2
+Layer_3 0xF3
+Layer_4 0xF4
+Layer_5 0xF5
+Layer_6 0xF6
+Layer_7 0xF7
+
+
 It cannot yet move the mouse.

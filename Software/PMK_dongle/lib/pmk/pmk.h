@@ -20,8 +20,14 @@ int8_t forceLayer = -1;
 #define PMK_PACKET_TYPE_BYTE 1
 #define PMK_DATA_BYTE 2
 
-#define LAYER_1 0xF0 //Not actually LAYER_MINUS, more like layer 1
-#define LAYER_2 0xF1 //Not actually LAYER_PLUS, more like layer 2
+#define LAYER_0 0xF0
+#define LAYER_1 0xF1
+#define LAYER_2 0xF2
+#define LAYER_3 0xF3
+#define LAYER_4 0xF4
+#define LAYER_5 0xF5
+#define LAYER_6 0xF6
+#define LAYER_7 0xF7
 
 
 
