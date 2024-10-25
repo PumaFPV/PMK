@@ -232,6 +232,7 @@ void convertPacket2Keyboard(packetStruct packet)
     keyboardPacket[packet.deviceID].key[6] = packet.data[6];
     keyboardPacket[packet.deviceID].key[7] = packet.data[7];
 
+    #ifdef DEBUG
     if(debug2)
     {
         Serial.printf("Keyboard packet: ");
@@ -241,6 +242,7 @@ void convertPacket2Keyboard(packetStruct packet)
         }
         Serial.printf("\r\n");
     }
+    #endif
     
 }
 
@@ -488,10 +490,13 @@ void handleKeyboard()
             previousMouseTime = millis();
         }
     }
+
+    #ifdef DEBUG
     if(debug3)
     {
         Serial.printf("Report: %02X %02X %02X %02X %02X %02X modifier: %02X\r\n", keycode[0], keycode[1], keycode[2], keycode[3], keycode[4], keycode[5], modifier);
     }
+    #endif
 
     static uint8_t prevModifier;
     static uint8_t prevKeycode[6];
@@ -519,10 +524,12 @@ void handleMouse()
 {
     if(usb_hid.ready())
     {
+        #ifdef DEBUG
         if(debug3)
         {
             Serial.printf("x: %i, y: %i, key: %u, wheel: %i, pan: %i", mousePacket.x, mousePacket.y, mousePacket.key,mousePacket.w, mousePacket.p);
         }
+        #endif
         usb_hid.mouseReport(RID_MOUSE, mousePacket.key, mousePacket.x*dpi[mousePacket.deviceID][layerID], mousePacket.y*dpi[mousePacket.deviceID][layerID], mousePacket.w, mousePacket.p);
     }
 }
