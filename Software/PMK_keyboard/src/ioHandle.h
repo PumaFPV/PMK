@@ -58,10 +58,12 @@ void srLoop()
           {
             keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit + 1; //+1 so we dont have a keyID = 0
             
+            #ifdef DEBUG
             if(debug1)
             {
               Serial.printf("KeyID: 0x%02X\r\n", keyboardPacket.key[numberOfPressedKeys]);
             }
+            #endif
             
             numberOfPressedKeys++;
 
@@ -89,6 +91,8 @@ void srLoop()
     if(!keyContentIsEqual || (result != ESP_OK))
     {
       result = esp_now_send(dongleAddress, (uint8_t *) &keyboardPacket, sizeof(keyboardPacket));
+
+      #ifdef DEBUG
       if(debug2)
       {
         if (result == ESP_OK)
@@ -120,6 +124,8 @@ void srLoop()
           Serial.println("ESP_ERR_ESPNOW_IF");
         }
       }
+      #endif
+
       for(uint8_t i = 0; i < 8; i++)
       {
         previousKeyboardPacket.key[i] = keyboardPacket.key[i];

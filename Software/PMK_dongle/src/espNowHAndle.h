@@ -14,15 +14,20 @@ packetStruct receivedPacket;
 
 void handleReceivedPacket(packetStruct receivedPacket)
 {
+  #ifdef DEBUG
   if(debug1)
   {
     Serial.printf("Received packet from: %i, type :%i \r\n", receivedPacket.deviceID, receivedPacket.packetType);
   }
+  #endif
 
+  #ifdef DEBUG
   if(debug3)
   {
     Serial.printf("RSSI: %u\r\n", WiFi.RSSI());
   }
+  #endif
+
 
   switch(receivedPacket.packetType)
   {
@@ -32,48 +37,62 @@ void handleReceivedPacket(packetStruct receivedPacket)
     case 0:
       //Serial.printf("Telem Packet\r\n");
       convertPacket2Telemetry(receivedPacket);
-      if(debug6)
+      if(battery)
       {
         Serial.printf("dId: %u, battery: %u\r\n", telemetryPacket.deviceID, telemetryPacket.battery);
       }
+
+      #ifdef DEBUG
       if(debug4)
       {
         uint32_t calculatedTime = telemetryPacket.error[0] | telemetryPacket.error[1] << 8 | telemetryPacket.error[2] << 16 | telemetryPacket.error[3] << 24;
         Serial.printf(">Received time: %u\r\n", calculatedTime);
       }
+      #endif
+
       break;
+
     case 1: //Keyboard
       convertPacket2Keyboard(receivedPacket);
       handleKeyboard(); //measured at 180us
       break;
+
     case 2: //Mouse
       convertPacket2Mouse(receivedPacket);
       handleMouse();
       break;
+
     case 3: //GamePad
       convertPacket2Gamepad(receivedPacket);
       handleGamepad();
       break;
+
     case 4: //LED
       convertPacket2Led(receivedPacket);
       break;
+
     case 5: //Knob
       convertPacket2Knob(receivedPacket);
       handleKnob();
       break;
+
     case 6: //Actuator
       convertPacket2Actuator(receivedPacket);
       break;
+
     case 7: //Display
       convertPacket2Display(receivedPacket);
       break;
+
     case 8: //Serial
       convertPacket2Serial(receivedPacket);
       break;
+
     case 9: //SpaceMouse
       convertPacket2SpaceMouse(receivedPacket);
       handleSpaceMouse();
       break;
+      
   }
 }
 

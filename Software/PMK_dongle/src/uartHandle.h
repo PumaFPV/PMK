@@ -48,6 +48,7 @@ void help()
   Serial.printf("   format : format file system\r\n");
   Serial.printf("   restart / reboot : restart the dongle\r\n");
   Serial.printf("   deej : toggle on / off deej\r\n");
+  Serial.printf("   battery / batt : display battery level of all connected devices\r\n");
   Serial.printf("   config / load: Reload configuration files\r\n");
   Serial.printf("   l0 / l1 / l2... : Force the current layer to... If one keybind moves to new layer it will be ignored use l-1 command to reset force layer\r\n");
   Serial.printf("   l-1 : disable forced layer\r\n");
@@ -158,6 +159,11 @@ void handleUart()
 
       case 2090180733: // deej
         deejToggle = !deejToggle;
+        break;
+
+      case 2090105008:  // batt
+      case 1715713920:  // battery
+        battery = !battery;
         break;
       
       case 4142165115: // config

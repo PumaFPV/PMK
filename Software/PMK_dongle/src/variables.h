@@ -148,6 +148,7 @@ static bool debug5 = 0;
 static bool debug6 = 0;
 static bool debug7 = 0;
 static bool debug8 = 0;
+static bool battery = 0;
 
 #define MAC_ADDRESS_SIZE 6
 
