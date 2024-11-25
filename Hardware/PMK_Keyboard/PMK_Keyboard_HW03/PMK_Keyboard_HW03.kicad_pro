@@ -48,7 +48,8 @@
         "silk_text_thickness": 0.15,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "45_degree_only": false,
+          "min_clearance": 0.2
         }
       },
       "diff_pair_dimensions": [
@@ -58,10 +59,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        "clearance|117262412|97192868|ce233b47-576d-459b-b4bb-13b5995f87a8|d9a99e50-d1cb-4022-ad4c-bc3db0c844c6",
-        "clearance|117262424|97206607|ce233b47-576d-459b-b4bb-13b5995f87a8|8573b592-9280-4b8d-bd76-3b2d34f22991"
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },
@@ -118,6 +116,8 @@
         "zones_intersect": "error"
       },
       "rules": {
+        "allow_blind_buried_vias": false,
+        "allow_microvias": false,
         "max_error": 0.005,
         "min_clearance": 0.127,
         "min_connection": 0.127,
@@ -134,6 +134,8 @@
         "min_track_width": 0.127,
         "min_via_annular_width": 0.13,
         "min_via_diameter": 0.56,
+        "solder_mask_clearance": 0.0,
+        "solder_mask_min_width": 0.0,
         "solder_mask_to_copper_clearance": 0.005,
         "use_height_for_length_calcs": true
       },
@@ -237,7 +239,8 @@
           "drill": 0.5
         }
       ],
-      "zones_allow_external_fillets": false
+      "zones_allow_external_fillets": false,
+      "zones_use_no_outline": true
     },
     "ipc2581": {
       "dist": "",
@@ -457,7 +460,7 @@
       "pin_to_pin": "warning",
       "power_pin_not_driven": "error",
       "similar_labels": "warning",
-      "simulation_model_issue": "ignore",
+      "simulation_model_issue": "error",
       "unannotated": "error",
       "unit_value_mismatch": "error",
       "unresolved_variable": "error",
@@ -469,7 +472,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "PMK_SpaceMouse_01.kicad_pro",
+    "filename": "PMK_Keyboard_HW03.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -507,14 +510,14 @@
       "plot": "",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "../../../Mecha/Keyboard/PMK_02/PMK_Keyboard_02.step",
       "svg": "",
       "vrml": ""
     },
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 0,
+    "annotate_start_num": 200,
     "bom_export_filename": "",
     "bom_fmt_presets": [],
     "bom_fmt_settings": {
@@ -601,8 +604,18 @@
       "version": 1
     },
     "net_format_name": "",
+    "ngspice": {
+      "fix_include_paths": true,
+      "fix_passive_vals": false,
+      "meta": {
+        "version": 0
+      },
+      "model_mode": 0,
+      "workbook_filename": ""
+    },
     "page_layout_descr_file": "",
     "plot_directory": "",
+    "spice_adjust_passive_values": false,
     "spice_current_sheet_as_root": false,
     "spice_external_command": "spice \"%I\"",
     "spice_model_current_sheet_as_root": true,
@@ -614,8 +627,24 @@
   },
   "sheets": [
     [
-      "37865f7a-1d42-4306-8aec-ec61120e56ae",
+      "c3b08055-08a5-4979-9bf8-f36ab0917722",
       "Root"
+    ],
+    [
+      "f4bd3789-d94c-4771-8f5c-2a22000e96d6",
+      "200- PSoM"
+    ],
+    [
+      "cf9fd53d-a626-44ae-9c40-26b02d8cda14",
+      "300- Connectors"
+    ],
+    [
+      "2ae89e7d-b59a-451e-9e36-5967d907d91f",
+      "400- Shift Register - Switch"
+    ],
+    [
+      "de772aea-8077-418d-aac4-895dc19d22de",
+      "500- LEDs"
     ]
   ],
   "text_variables": {}
