@@ -1,0 +1,138 @@
+/* Ensure body and html take up full height */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+#heading {
+    font-family: "Roboto Mono", monospace;
+    font-size: 300%;
+    font-style: normal;
+    font-weight: bold;
+}
+
+/* Flex container for keyboard and hid-list */
+#keyboard-container {
+    position: relative;
+    background: url('TopViewWithCasingNoBG.png') no-repeat left center;
+    background-size: contain; /* Ensure image fits inside the container */
+    margin: 0 0; /* Center the container horizontally */
+    /*border: 1px solid #ccc;*/
+}
+
+/* Style for the keyboard keys */
+.key {
+    position: relative;
+    background-color: rgba(193, 193, 193, 0.3);
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10%;
+}
+
+.key:hover {
+    background-color: rgba(201, 201, 201, 0.603);
+}
+
+/* Ensure hid-list stays at the bottom */
+#hid-list {
+    position: relative; /* Fix it to the bottom */
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+/* Style the button */
+#generate-btn {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#generate-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Style the layer input container */
+.layer-input-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Label for layer input */
+.layer-input-container label {
+    font-size: 16px;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+/* Style for the layer input text box */
+.layer-input {
+    width: 50px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.822);
+    transition: border-color 0.3s ease;
+}
+
+/* Focus state for the input box */
+.layer-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Grid for keycodes */
+#keycode-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);  /* Adjust the number of columns */
+    gap: 10px;
+}
+
+.keycode-cell {
+    background-color: #e0e0e0;
+    padding: 1%;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+
+.keycode-cell:hover {
+    background-color: #d0d0d0;
+}
+
+/* Style for keypress button */
+#record-keypress {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#record-keypress:hover {
+    background-color: #0056b3;
+}

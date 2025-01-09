@@ -1,101 +1,71 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>PMK Configurator</title>
-	<style>
-		#key {
-		  width: 50px;
-		  height: 50px;
-		  padding: 10px;
-		  border: 1px solid #a8a8a8;
-		}
-	</style>
-	<script>
-		function allowDrop(ev) {
-		  ev.preventDefault();
-		}
-
-		function drag(ev) {
-		  ev.dataTransfer.setData("text", ev.target.id);
-		}
-
-		function drop(ev) {
-		  ev.preventDefault();
-		  var data = ev.dataTransfer.getData("text");
-		  ev.target.appendChild(document.getElementById(data));
-		}
-	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMK Configurator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="puma.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>PMK layout configurator</h1>
+    <p id="heading">PMK Configurator</p>
+    <div id="keyboard-container">
+        <!-- Example of keys (you will need to adjust positions for your layout) -->
+        <div class="key" data-key="5" style="top: 11%;          left: 3.25%;        width: 11%;      height: 14%;">6</div>
+        <div class="key" data-key="4" style="top: -3%;          left: 15%;          width: 11%;      height: 14%;">5</div>
+        <div class="key" data-key="3" style="top: -21%;         left: 26.5%;        width: 11%;      height: 14%;">4</div>
+        <div class="key" data-key="2" style="top: -37.25%;      left: 38.25%;       width: 11%;      height: 14%;">3</div>
+        <div class="key" data-key="1" style="top: -49%;         left: 49.75%;       width: 11%;      height: 14%;">2</div>
+        <div class="key" data-key="0" style="top: -61%;         left: 61.5%;        width: 11%;      height: 14%;">1</div>
 
-<p>Drag the desired function on each keys:</p>
-<form method="post" action="gfg.php">
-<div id="layout_config">
-<table>
-	<tr>
-		<td><div id="key" name="key6" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key5" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key4" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key3" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key2" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key1" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-	</tr>
-	<tr>
-		<td><div id="key" name="key7" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key8" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key12" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key11" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key10" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key9" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-	</tr>
-	<tr>
-		<td><div id="key" name="key13" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key14" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key15" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key16" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key18" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key17" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-	</tr>
-	<tr>
-		<td><div id="key" name="key19" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key20" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key21" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key22" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key23" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key24" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td></td>
-		<td><div id="key" name="key25" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key26" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key27" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key28" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-		<td><div id="key" name="key29" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-	</tr>
-</table>
+        <div class="key" data-key="6" style="top: -57.5%;       left: 3.25%;        width: 11%;      height: 14%;">7</div>
+        <div class="key" data-key="7" style="top: -71.5%;       left: 15%;          width: 11%;      height: 14%;">8</div>
+        <div class="key" data-key="11" style="top: -89.25%;     left: 26.5%;        width: 11%;      height: 14%;">12</div>
+        <div class="key" data-key="10" style="top: -105.5%;     left: 38.25%;       width: 11%;      height: 14%;">11</div>
+        <div class="key" data-key="9" style="top: -117.5%;      left: 49.75%;       width: 11%;      height: 14%;">10</div>
+        <div class="key" data-key="8" style="top: -129.25%;     left: 61.5%;        width: 11%;      height: 14%;">9</div>
 
-<br>
-<p id="q" draggable="true" ondragstart="drag(event)" width="50" height="50">Q</p>
-<p id="w" draggable="true" ondragstart="drag(event)" width="50" height="50">W</p>
-<p id="e" draggable="true" ondragstart="drag(event)" width="50" height="50">E</p>
-<p id="r" draggable="true" ondragstart="drag(event)" width="50" height="50">R</p>
-<p id="t" draggable="true" ondragstart="drag(event)" width="50" height="50">T</p>
-<p id="z" draggable="true" ondragstart="drag(event)" width="50" height="50">Z</p>
-<p id="u" draggable="true" ondragstart="drag(event)" width="50" height="50">U</p>
-<p id="i" draggable="true" ondragstart="drag(event)" width="50" height="50">I</p>
-<p id="o" draggable="true" ondragstart="drag(event)" width="50" height="50">O</p>
-<p id="p" draggable="true" ondragstart="drag(event)" width="50" height="50">P</p>
+        <div class="key" data-key="12" style="top: -126%;       left: 3.25%;        width: 11%;      height: 14%;">13</div>
+        <div class="key" data-key="13" style="top: -140%;       left: 15%;          width: 11%;      height: 14%;">14</div>
+        <div class="key" data-key="14" style="top: -158%;       left: 26.5%;        width: 11%;      height: 14%;">15</div>
+        <div class="key" data-key="15" style="top: -174%;       left: 38.25%;       width: 11%;      height: 14%;">16</div>
+        <div class="key" data-key="17" style="top: -186%;       left: 49.75%;       width: 11%;      height: 14%;">18</div>
+        <div class="key" data-key="16" style="top: -198%;       left: 61.5%;        width: 11%;      height: 14%;">17</div>
 
-<label for="dongle_address">Dongle MAC address:</label><br>
-<input type="text" id="dongle_address" name="dongle_address"><br><br><br>
+        <div class="key" data-key="18" style="top: -194.5%;     left: 3.25%;        width: 11%;      height: 14%;">19</div>
+        <div class="key" data-key="19" style="top: -208.5%;     left: 15%;          width: 11%;      height: 14%;">20</div>
+        <div class="key" data-key="20" style="top: -226.5%;     left: 26.5%;        width: 11%;      height: 14%;">21</div>
+        <div class="key" data-key="21" style="top: -242.5%;     left: 38.25%;       width: 11%;      height: 14%;">22</div>
+        <div class="key" data-key="22" style="top: -254.5%;     left: 49.75%;       width: 11%;      height: 14%;">23</div>
+        <div class="key" data-key="23" style="top: -266.5%;     left: 61.5%;        width: 11%;      height: 14%;">24</div>
 
-<button id="generate_layout" type="submit" onclick="onsubmit()">Generate layout</button>
-</form>
+        <div class="key" data-key="24" style="top: -267%;       left: 26.5%;        width: 11%;      height: 14%;">25</div>
+        <div class="key" data-key="25" style="top: -283%;       left: 38.25%;       width: 11%;      height: 14%;">26</div>
+        <div class="key" data-key="26" style="top: -295%;       left: 49.75%;       width: 11%;      height: 14%;">27</div>
+        <div class="key" data-key="27" style="top: -305%;       left: 63.25%;       width: 11%;      height: 14%; rotate: 15deg;">28</div>
+        <div class="key" data-key="28" style="top: -315%;       left: 76%;          width: 11%;      height: 14%; rotate: 30deg;">29</div>
+
+        <!-- Add more keys as needed -->
+    </div>
+
+    <div>
+        <h3>Record a Keypress:</h3>
+        <button id="record-keypress">Click to Record Keypress</button>
+        <p id="keypress-display">Press a key...</p>
+    </div>
+
+    <div id="keycode-grid"></div>
+
+    <div id="layer-input-container">
+        <label for="layer-input">Layer: </label>
+        <input type="text" id="layer-input" value="0" size="2" />
+    </div>
+
+    <div>
+        <button id="generate-btn">Generate JSON</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
-
