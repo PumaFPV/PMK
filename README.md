@@ -76,6 +76,7 @@ For encoder knobs, this is handled on the device, so it can enumerate as a keybo
 ### Space mouse
 The software is mostly inspired from [Magellan](https://github.com/jfedor2/magellan-spacemouse/tree/master) and from reports analysed from a 3DConnexion Space mouse with [hid-tool](https://gitlab.freedesktop.org/libevdev/hid-tools). 
 The current electronics and plastics hardware are from [OS3M mouse](https://hackaday.io/project/187172-os3m-mouse) and it works well. The software still needs some adjustements for calibration.
+Note: If standard VIK connector is needed, PCB has to be flipped. No special hardware modifications are needed.
 
 ## Protocols
 
