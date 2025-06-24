@@ -36,7 +36,8 @@ void registerDongle()
   for(uint8_t i = 0; i < 1; i++)  // TODO add support for multiple dongles
   {
     memcpy(peerInfo.peer_addr, dongleAddress, MAC_ADDRESS_SIZE);
-    peerInfo.channel = 0;
+    peerInfo.ifidx = WIFI_IF_STA;
+    peerInfo.channel = 1;
     peerInfo.encrypt = false;
 
     // Add dongle

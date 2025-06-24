@@ -11,6 +11,7 @@
 //Include library
 #include "WiFi.h"
 #include "esp_now.h"
+#include "esp_wifi.h"
 #include "SPI.h"
 #include "SdFat.h"
 #include "Adafruit_SPIFlash.h"
@@ -123,7 +124,7 @@ void setup()
   //====================================================
   Serial.printf("Starting WiFi\r\n");
   WiFi.mode(WIFI_STA);
-  WiFi.setTxPower(WIFI_POWER_11dBm);
+  WiFi.setTxPower(WIFI_POWER_19dBm);
   Serial.printf("New WiFi power: ");
   Serial.println(WiFi.getTxPower());
   Serial.print("Dongle MAC address: " + WiFi.macAddress() + "\r\n");
@@ -142,7 +143,8 @@ void setup()
   //esp_wifi_config_espnow_rate(WIFI_IF_STA, WIFI_PHY_RATE_54M);
 
   //Register peer
-  peerInfo.channel = 0;  
+  peerInfo.ifidx = WIFI_IF_STA;
+  peerInfo.channel = 3;  
   peerInfo.encrypt = false;
 
 

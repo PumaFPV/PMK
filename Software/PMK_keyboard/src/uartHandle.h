@@ -267,37 +267,37 @@ void handleUart()
 
       case 4169026270: // debug2
         debug2 = ! debug2;
-        Serial.printf("debug2 swapped to %i\r\n", debug1);
+        Serial.printf("debug2 swapped to %i\r\n", debug2);
         break;
 
       case 4169026271: // debug3
         debug3 = !debug3;
-        Serial.printf("debug3 swapped to %i\r\n", debug1);
+        Serial.printf("debug3 swapped to %i\r\n", debug3);
         break;
 
       case 4169026272: // debug4
         debug4 = !debug4;
-        Serial.printf("debug4 swapped to %i\r\n", debug1);
+        Serial.printf("debug4 swapped to %i\r\n", debug4);
         break;
 
       case 4169026273: // debug5
         debug5 = !debug5;
-        Serial.printf("debug5 swapped to %i\r\n", debug1);
+        Serial.printf("debug5 swapped to %i\r\n", debug5);
         break;
 
       case 4169026274: // debug6
         debug6 = !debug6;
-        Serial.printf("debug6 swapped to %i\r\n", debug1);
+        Serial.printf("debug6 swapped to %i\r\n", debug6);
         break;
 
       case 4169026275: // debug7
         debug7 = !debug7;
-        Serial.printf("debug7 swapped to %i\r\n", debug1);
+        Serial.printf("debug7 swapped to %i\r\n", debug7);
         break;
 
       case 4169026276: // debug8
         debug8 = !debug8;
-        Serial.printf("debug8 swapped to %i\r\n", debug1);
+        Serial.printf("debug8 swapped to %i\r\n", debug8);
         break;
     }
   }
