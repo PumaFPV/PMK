@@ -412,6 +412,22 @@
     [
       "593534a4-5317-4957-a7cc-7618c0a16adb",
       "Root"
+    ],
+    [
+      "b45e4b93-2f01-44f0-a389-f3367ea4f92c",
+      "Scroll wheel"
+    ],
+    [
+      "ba9d9d2b-f952-44de-bbec-689ad27b8126",
+      "Analog switch"
+    ],
+    [
+      "d481dfe3-31ec-4c7b-939c-4628691a5ff1",
+      "Haptic motor"
+    ],
+    [
+      "1e826700-5ae7-4577-bc1e-d6ce2a1874c2",
+      "Sensor"
     ]
   ],
   "text_variables": {}
