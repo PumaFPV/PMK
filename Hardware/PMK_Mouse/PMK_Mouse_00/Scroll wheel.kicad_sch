@@ -5,435 +5,6 @@
 	(uuid "f734c7f2-cef0-4fcc-b077-6dbd920ac925")
 	(paper "A4")
 	(lib_symbols
-		(symbol "Component_lib:MA702GQ-P"
-			(pin_names
-				(offset 0.762)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at 20.32 10.16 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-				)
-			)
-			(property "Value" "MA702GQ-P"
-				(at 20.32 7.62 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-				)
-			)
-			(property "Footprint" "Component_lib:QFN50P300X300X100-17N-D"
-				(at 31.75 27.94 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.monolithicpower.com/pub/media/document/m/a/ma702_r1.0.pdf"
-				(at 31.75 25.4 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Description" "Board Mount Hall Effect / Magnetic Sensors 12-bit, digital, contactless angle sensor with ABZ incremental & PWM outputs"
-				(at 31.75 22.86 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Height" "1"
-				(at 31.75 20.32 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Mouser Part Number" "946-MA702GQ-P"
-				(at 31.75 17.78 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Monolithic-Power-Systems-MPS/MA702GQ-P?qs=YCa%2FAAYMW00G2PoyJvHwYg%3D%3D"
-				(at 31.75 15.24 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Manufacturer_Name" "Monolithic Power Systems (MPS)"
-				(at 31.75 12.7 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Manufacturer_Part_Number" "MA702GQ-P"
-				(at 31.75 10.16 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(symbol "MA702GQ-P_0_0"
-				(pin passive line
-					(at 0 0 0)
-					(length 2.54)
-					(name "SSD"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 0)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -5.08 0)
-					(length 2.54)
-					(name "Z"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -7.62 0)
-					(length 2.54)
-					(name "MOSI"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 -15.24 90)
-					(length 2.54)
-					(name "CS"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 10.16 7.62 270)
-					(length 2.54)
-					(name "MGH"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "16"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 10.16 -15.24 90)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 12.7 7.62 270)
-					(length 2.54)
-					(name "SSCK"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "15"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 12.7 -15.24 90)
-					(length 2.54)
-					(name "MISO"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin no_connect line
-					(at 15.24 7.62 270)
-					(length 2.54)
-					(name "NC"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "14"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 15.24 -15.24 90)
-					(length 2.54)
-					(name "GND_1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 17.78 7.62 270)
-					(length 2.54)
-					(name "VDD"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "13"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 17.78 -15.24 90)
-					(length 2.54)
-					(name "GND_2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "17"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 27.94 0 180)
-					(length 2.54)
-					(name "SCLK"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "12"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 27.94 -2.54 180)
-					(length 2.54)
-					(name "MGL"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "11"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 27.94 -5.08 180)
-					(length 2.54)
-					(name "TEST"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "10"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 27.94 -7.62 180)
-					(length 2.54)
-					(name "PWM"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "9"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "MA702GQ-P_0_1"
-				(polyline
-					(pts
-						(xy 2.54 5.08) (xy 25.4 5.08) (xy 25.4 -12.7) (xy 2.54 -12.7) (xy 2.54 5.08)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Component_lib:MP6543HGL-P_sch"
 			(pin_names
 				(offset 0.762)
@@ -995,6 +566,437 @@
 				(rectangle
 					(start 2.54 2.54)
 					(end 17.78 -50.8)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Sensor_lib:MA702GQ-P_sch"
+			(pin_names
+				(offset 0.762)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at 15.24 7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Value" "MA702GQ-P"
+				(at 15.24 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "Component_lib:QFN50P300X300X100-17N-D"
+				(at 31.75 27.94 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.mouser.ch/ProductDetail/Monolithic-Power-Systems-MPS/MA702GQ-P?qs=YCa%2FAAYMW00G2PoyJvHwYg%3D%3D"
+				(at 31.75 25.4 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Description" "Board Mount Hall Effect / Magnetic Sensors 12-bit, digital, contactless angle sensor with ABZ incremental & PWM outputs"
+				(at 31.75 22.86 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Height" "1"
+				(at 31.75 20.32 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Mouser Part Number" "946-MA702GQ-P"
+				(at 31.75 17.78 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Monolithic-Power-Systems-MPS/MA702GQ-P?qs=YCa%2FAAYMW00G2PoyJvHwYg%3D%3D"
+				(at 31.75 15.24 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Name" "Monolithic Power Systems (MPS)"
+				(at 31.75 12.7 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Part_Number" "MA702GQ-P"
+				(at 31.75 10.16 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(symbol "MA702GQ-P_sch_0_0"
+				(pin passive line
+					(at 0 0 0)
+					(length 2.54)
+					(name "SCLK"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 0)
+					(length 2.54)
+					(name "MISO"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -5.08 0)
+					(length 2.54)
+					(name "MOSI"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -7.62 0)
+					(length 2.54)
+					(name "CS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -12.7 0)
+					(length 2.54)
+					(name "SSCK"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "15"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -15.24 0)
+					(length 2.54)
+					(name "SSD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -20.32 0)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -22.86 0)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -25.4 0)
+					(length 2.54)
+					(name "Z"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -30.48 0)
+					(length 2.54)
+					(name "PWM"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -35.56 0)
+					(length 2.54)
+					(name "MGL"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -38.1 0)
+					(length 2.54)
+					(name "MGH"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "16"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -43.18 0)
+					(length 2.54)
+					(name "TEST"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 5.08 270)
+					(length 2.54)
+					(name "VDD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -48.26 90)
+					(length 2.54)
+					(hide yes)
+					(name "GND_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "17"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -48.26 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at 15.24 -17.78 270)
+					(length 2.54)
+					(hide yes)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "MA702GQ-P_sch_0_1"
+				(polyline
+					(pts
+						(xy 2.54 2.54) (xy 22.86 2.54) (xy 22.86 -45.72) (xy 2.54 -45.72) (xy 2.54 2.54)
+					)
 					(stroke
 						(width 0.1524)
 						(type default)
@@ -1731,33 +1733,35 @@
 		)
 	)
 	(symbol
-		(lib_id "Component_lib:MA702GQ-P")
-		(at 144.78 111.76 0)
+		(lib_id "Sensor_lib:MA702GQ-P_sch")
+		(at 160.02 76.2 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "7d539ae8-ab12-4b4a-8996-e5be7c360613")
-		(property "Reference" "U5"
-			(at 177.8 105.3398 0)
+		(uuid "deba1a2d-5218-4de6-ae37-821af0227a10")
+		(property "Reference" "U1"
+			(at 184.15 96.5199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Value" "MA702GQ-P"
-			(at 177.8 107.8798 0)
+			(at 184.15 99.0599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" "Component_lib:QFN50P300X300X100-17N-D"
-			(at 176.53 83.82 0)
+			(at 191.77 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1766,8 +1770,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.monolithicpower.com/pub/media/document/m/a/ma702_r1.0.pdf"
-			(at 176.53 86.36 0)
+		(property "Datasheet" "https://www.mouser.ch/ProductDetail/Monolithic-Power-Systems-MPS/MA702GQ-P?qs=YCa%2FAAYMW00G2PoyJvHwYg%3D%3D"
+			(at 191.77 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1777,7 +1781,7 @@
 			)
 		)
 		(property "Description" "Board Mount Hall Effect / Magnetic Sensors 12-bit, digital, contactless angle sensor with ABZ incremental & PWM outputs"
-			(at 176.53 88.9 0)
+			(at 191.77 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1787,7 +1791,7 @@
 			)
 		)
 		(property "Height" "1"
-			(at 176.53 91.44 0)
+			(at 191.77 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1797,7 +1801,7 @@
 			)
 		)
 		(property "Mouser Part Number" "946-MA702GQ-P"
-			(at 176.53 93.98 0)
+			(at 191.77 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1807,7 +1811,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Monolithic-Power-Systems-MPS/MA702GQ-P?qs=YCa%2FAAYMW00G2PoyJvHwYg%3D%3D"
-			(at 176.53 96.52 0)
+			(at 191.77 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1817,7 +1821,7 @@
 			)
 		)
 		(property "Manufacturer_Name" "Monolithic Power Systems (MPS)"
-			(at 176.53 99.06 0)
+			(at 191.77 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1827,7 +1831,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "MA702GQ-P"
-			(at 176.53 101.6 0)
+			(at 191.77 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1836,61 +1840,61 @@
 				(hide yes)
 			)
 		)
-		(pin "12"
-			(uuid "172bee06-8e88-4c0d-b56a-d27cf09a2652")
-		)
-		(pin "13"
-			(uuid "7620f03b-8353-47b2-81f1-4d102cb7c336")
-		)
-		(pin "1"
-			(uuid "864c4d86-480e-425f-bc16-726c4bd2b1fc")
-		)
 		(pin "15"
-			(uuid "27ac83a0-62d8-4fb5-92ed-fbb8c70a06d5")
-		)
-		(pin "4"
-			(uuid "4e7ecc03-19a8-4b73-9aa3-9638d7c25775")
+			(uuid "85061241-a955-4389-b16a-4155f7f9c334")
 		)
 		(pin "16"
-			(uuid "4d635e66-1448-47a8-b1ad-619fcbdffb30")
+			(uuid "f2a9ee47-e9e2-47bb-aef2-2b374320b7f7")
 		)
 		(pin "14"
-			(uuid "3d129b4c-6690-4b52-8d5a-2e082623c0a9")
-		)
-		(pin "10"
-			(uuid "7568258d-a5a5-4a03-a415-e0f5aa71fe38")
-		)
-		(pin "7"
-			(uuid "a0c7f05b-90f9-4488-8f89-c305bd9c38f2")
-		)
-		(pin "17"
-			(uuid "462bbf23-d406-4b7a-ae5d-8d8bbe31b1b4")
-		)
-		(pin "11"
-			(uuid "04c4ee72-0639-43c9-b362-5be2d1e58a37")
-		)
-		(pin "9"
-			(uuid "9fea2fea-ffc1-44ca-b89b-cdd98db1c31d")
-		)
-		(pin "5"
-			(uuid "66fcba87-26aa-4456-9def-a16c1308ce82")
-		)
-		(pin "2"
-			(uuid "ce1169bc-c82b-4771-bdef-eb60d3e9fcd6")
-		)
-		(pin "8"
-			(uuid "6a9922fe-8002-4e2c-a74e-4e5bb619859d")
-		)
-		(pin "3"
-			(uuid "0a62d172-9a72-455b-8d77-3a049ef7c609")
+			(uuid "85c12257-dbf9-45a7-bab0-872c02996be8")
 		)
 		(pin "6"
-			(uuid "0bc6acd5-49a1-4452-b1ee-a38ce436df31")
+			(uuid "8b561450-15a6-4a78-8d34-21b2248cbe09")
+		)
+		(pin "5"
+			(uuid "463bf960-acd8-4296-9db7-63fca6c83eb4")
+		)
+		(pin "17"
+			(uuid "f9b05638-6b8e-4ef3-ac4e-93ad525075f9")
+		)
+		(pin "2"
+			(uuid "31281192-c613-4d60-af64-1f4681a19e1d")
+		)
+		(pin "12"
+			(uuid "ed903c34-8d38-48aa-b1a1-36215fece81e")
+		)
+		(pin "4"
+			(uuid "71912b48-610d-4060-adc2-dcc1200818f6")
+		)
+		(pin "11"
+			(uuid "040bce5a-e38f-454a-8f9b-71412ff5956d")
+		)
+		(pin "10"
+			(uuid "16275d83-9548-44a6-8194-b44fa889640c")
+		)
+		(pin "7"
+			(uuid "e4aa4b0e-2f7c-403d-8ce1-3445c2e504d8")
+		)
+		(pin "1"
+			(uuid "5c66439e-ec2f-496c-9f95-5f76feaf1c3f")
+		)
+		(pin "3"
+			(uuid "f41cf029-84bb-4db2-8176-e1e027900ad1")
+		)
+		(pin "9"
+			(uuid "f4ab675c-b16c-48cc-a43e-4240f127dcc6")
+		)
+		(pin "13"
+			(uuid "1d58ffb3-1543-4f6b-9c2d-ffd81179cd01")
+		)
+		(pin "8"
+			(uuid "646c0718-06c2-48e8-9555-348d9ece2253")
 		)
 		(instances
-			(project "PMK_Mouse_00"
+			(project ""
 				(path "/593534a4-5317-4957-a7cc-7618c0a16adb/b45e4b93-2f01-44f0-a389-f3367ea4f92c"
-					(reference "U5")
+					(reference "U1")
 					(unit 1)
 				)
 			)
