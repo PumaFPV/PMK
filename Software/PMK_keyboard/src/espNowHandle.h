@@ -17,8 +17,11 @@ void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)
 
 
 // Callback when data is received
-void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len)
+void OnDataRecv(const esp_now_recv_info_t * esp_now_info, const uint8_t *incomingData, int len)
 {
+  uint8_t srcAddress = *esp_now_info->src_addr;
+  uint8_t destAddress = *esp_now_info->des_addr;
+  wifi_pkt_rx_ctrl_t espNowPacketInfo = *esp_now_info->rx_ctrl;
   memcpy(&receivedData, incomingData, sizeof(receivedData));
 }
 
