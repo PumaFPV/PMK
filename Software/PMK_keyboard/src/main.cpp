@@ -295,8 +295,6 @@ void loop()
       telemetryPacket.battery = map(batteryVolt, 1750, 2100, 0, 100);
       //Serial.printf("%%: %u, mV: %u\r\n", /*batteryADC,*/ telemetryPacket.battery, batteryVolt);
 
-      esp_now_send(dongleAddress, (uint8_t *) &telemetryPacket, sizeof(telemetryPacket));
-
       if(telemetryPacket.battery < LOW_BATTERY_THRESHOLD)
       {
         static bool ledStatus = 0;
@@ -304,7 +302,16 @@ void loop()
         digitalWrite(BUILDIN_LED, ledStatus);
         ledStatus = !ledStatus;
       }
+
+
+      unsigned long timeSinceLastPacket = millis() - lastSentPacketTime;
+      if(timeSinceLastPacket > ledSleepDelay)
+      {
+        ledSleep = 1;
+      }
+
       
+      esp_now_send(dongleAddress, (uint8_t *) &telemetryPacket, sizeof(telemetryPacket));
 
     telemetryTask.endTime = micros();
     telemetryTask.counter++;

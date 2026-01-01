@@ -91,6 +91,9 @@ void srLoop()
     if(!keyContentIsEqual || (result != ESP_OK))
     {
       result = esp_now_send(dongleAddress, (uint8_t *) &keyboardPacket, sizeof(keyboardPacket));
+      
+      lastSentPacketTime = millis();
+      ledSleep = 0;
 
       #ifdef DEBUG
       if(debug2)

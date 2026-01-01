@@ -105,6 +105,7 @@ static const int i2cClk = 400000; // 400kHz
 static const int srSpiClk = 10000000; // 10MHz
 
 #define SECONDS_TO_MICROS 1000000
+#define SECONDS_TO_MILLIS 1000
 #define MILLIS_TO_MICROS 1000
 
 #define LOW_BATTERY_THRESHOLD 20 // in %
@@ -189,7 +190,10 @@ uint8_t deviceID;
 
 keyboardStruct previousKeyboardPacket;
 
+unsigned long lastSentPacketTime = 0;
 
+bool ledSleep = 0;
+unsigned long ledSleepDelay = 5 * 60 * SECONDS_TO_MILLIS; //5 min
 //--------------------------------------------------SideModule
 bool trackpadIsPresent = 0;
 bool spacemouseIsPresent = 0;

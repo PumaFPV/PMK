@@ -315,14 +315,8 @@ void setLedColorProfile(uint8_t profile)
   }
 };
 
-
-
-void ledLoop()
+void ledBreathingEffect()
 {
-  setLedColorProfile(0);
-
-  //FastLED.setBrightness(ledBrightness);
-  //Serial.printf("Brightness: %i\r\n", ledBrightness);
   static bool rising = false;
   const uint8_t minBrightness = 20;
   const uint8_t maxBrightness = 120;
@@ -351,6 +345,22 @@ void ledLoop()
     }
   }
 
+  FastLED.setBrightness(ledBrightness);
+}
+
+void ledLoop()
+{
+  setLedColorProfile(0);
+
+  #ifndef DEBUG
+  ledBreathingEffect();
+  #else
+  FastLED.setBrightness(10);
+  #endif
+
+  //FastLED.setBrightness(ledBrightness);
+  //Serial.printf("Brightness: %i\r\n", ledBrightness);
+  
   /*leds[ledNumber] = CRGB::pulsarPurple;
   leds[ledNumber-1] = CRGB::pulsarBlue;
   
@@ -376,7 +386,10 @@ void ledLoop()
   //FillLEDsFromPaletteColors( startIndex);
 
   //pulsar();
-  FastLED.setBrightness(ledBrightness);
+  if(ledSleep == 1)
+  {
+    FastLED.setBrightness(0);
+  }
   FastLED.show();
   /*
   if(i == 29)
