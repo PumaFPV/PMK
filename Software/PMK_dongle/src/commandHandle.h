@@ -260,7 +260,7 @@ void layerCallback(cmd* cmdPtr)
 
         if(-1 <= forceLayerArgument && forceLayerArgument <= 7)
         {
-            Serial.printf("Forced layer to %i\r\n\r\n", forceLayer);
+            Serial.printf("Forced layer to %i\r\n\r\n", forceLayerArgument);
             forceLayer = forceLayerArgument;    
         }
         else
