@@ -6,7 +6,7 @@
 //TO DO delete this file
 #include "config.h"
 
-#define FIRMWARE_REV "dongle-dev-1.0.1"
+#define FIRMWARE_REV "dongle-dev-1.0.2"
 
 //Include library
 #include "WiFi.h"
@@ -16,6 +16,7 @@
 #include "SdFat.h"
 #include "Adafruit_SPIFlash.h"
 #include "Adafruit_TinyUSB.h"
+#include "SimpleCLI.h"
 
 //Include files
 #include "variables.h"
@@ -25,7 +26,7 @@
 #include "espNowHandle.h"
 #include "fsHandle.h"
 #include "MSCHandle.h"
-#include "uartHandle.h"
+#include "commandHandle.h"
 
 
 
@@ -42,6 +43,11 @@ void setup()
 {
 
   Serial.begin(115200);
+
+  //===========================================
+  //====================CLI====================
+  //===========================================
+  cliSetup();
 
 
 
@@ -205,7 +211,41 @@ void loop()
     uartTask.inBetweenTime = uartTask.beginTime - uartTask.endTime;
 
     //**functions
-    handleUart();
+      static char receivedCommand[64];
+      static uint8_t i = 0;
+      static String command;
+      
+      uint8_t incominSerial = Serial.read();
+
+      if(incominSerial != 0xFF)
+      {
+        receivedCommand[i] = incominSerial;
+        Serial.printf("%c", incominSerial);
+        if(receivedCommand[i] == 0x0D) // 0x0D = \r
+        {
+          for(uint8_t j = 0; j < i; j++)
+          {
+            command = command + receivedCommand[j];
+          }
+          Serial.printf("\r\n");
+          cli.parse(command);
+          
+          i = 0;
+          command = "";
+        }
+        else if (receivedCommand[i] == 0x1B)
+        {
+          cli.parse("escape");
+          Serial.printf("\r\n");
+
+          i = 0;
+          command = "";
+        }
+        else
+        {
+          i++;
+        }
+      }
 
 
 

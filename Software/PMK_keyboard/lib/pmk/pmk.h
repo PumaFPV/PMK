@@ -12,6 +12,7 @@ int8_t forceLayer = -1;
 #define DEVICEID_ADDRESS 0
 #define DONGLE_MACADDRESS_ADDRESS 1 // 6 bits long
 #define MAC_ADDRESS_SIZE 6
+#define LED_SLEEP_DELAY_ADDRESS 7
 
 #define PMK_DEVICE_ID_BYTE 0
 #define PMK_PACKET_TYPE_BYTE 1

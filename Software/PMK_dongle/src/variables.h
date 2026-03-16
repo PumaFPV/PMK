@@ -138,16 +138,9 @@ Func telemetryTask = {0, 0, 0, 0, 0, 2000000, 0, 0};
 //--------------------------------------------------Variables--------------------------------------------------
 
 uint8_t receivedData[16];
+static bool debug[8] = {0,0,0,0,0,0,0,0};
 
 static bool deejToggle = 0;
-static bool debug1 = 0;
-static bool debug2 = 0;
-static bool debug3 = 0;
-static bool debug4 = 0;
-static bool debug5 = 0;
-static bool debug6 = 0;
-static bool debug7 = 0;
-static bool debug8 = 0;
 static bool battery = 0;
 
 #define MAC_ADDRESS_SIZE 6

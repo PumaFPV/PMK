@@ -49,6 +49,8 @@ uint8_t* scanI2c()
 
 void checkSideModule()
 {
+  Serial.printf("Scanning for side module...\r\n");
+
   //Check for side module presence
   uint8_t error;
 
@@ -72,6 +74,10 @@ void checkSideModule()
     trackpadIsPresent = 1;
   }
   
+  if(!spacemouseIsPresent && !trackpadIsPresent)
+  {
+    Serial.printf("No side modules detected on current device.\r\n\r\n");
+  }
 }
 
 #endif

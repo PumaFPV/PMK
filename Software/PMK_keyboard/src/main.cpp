@@ -9,12 +9,14 @@
 #include "CirquePinnacle.h"
 #include "spaceMouseHandle.h"
 #include "pmk.h"
+#include "SimpleCLI.h"
 
 #include "variables.h"
 
-#define FIRMWARE_REV "keyboard-dev-1.0.1"
+#define FIRMWARE_REV "keyboard-dev-1.0.2"
 
-#include "uartHandle.h"
+//#include "uartHandle.h"
+#include "commandHandle.h"
 #include "i2cHandle.h"
 #include "espnowHandle.h"
 #include "ledHandle.h"
@@ -31,6 +33,9 @@ void setup()
   //-----Serial
   Serial.begin(115200);
   //while(!Serial){}
+
+  //-----CLI
+  cliSetup();
 
 
   //-----CPU
@@ -99,6 +104,7 @@ void setup()
   spaceMousePacket.deviceID = deviceID;
   telemetryPacket.deviceID = deviceID;
   
+  Serial.printf("Loading dongle MAC address from EEPROM: ");
   for(uint8_t i = 0; i < MAC_ADDRESS_SIZE; i++)
   {
     dongleAddress[i] = EEPROM.read(DONGLE_MACADDRESS_ADDRESS + i);
@@ -107,6 +113,7 @@ void setup()
   }
   Serial.printf("\r\n");
 
+  ledSleepDelay = EEPROM.read(LED_SLEEP_DELAY_ADDRESS);
 
 
   //-----ESP NOW
@@ -159,6 +166,13 @@ void loop()
     ledTask.inBetweenTime = ledTask.beginTime - ledTask.endTime;
 
       ledLoop();
+
+      // Turn off LEDs after ledSleepDelay
+      unsigned long timeSinceLastPacket = millis() - lastSentPacketTime;
+      if(timeSinceLastPacket > ledSleepDelay * 60 * SECONDS_TO_MILLIS)
+      {
+        ledSleepStatus = 1;
+      }
 
     ledTask.endTime = micros();
     ledTask.counter++;
@@ -245,7 +259,33 @@ void loop()
     uartTask.beginTime = micros();
     uartTask.inBetweenTime = uartTask.beginTime - uartTask.endTime;
 
-      handleUart();
+      static char receivedCommand[64];
+      static uint8_t i = 0;
+      static String command;
+      
+      uint8_t incominSerial = Serial.read();
+
+      if(incominSerial != 0xFF)
+      {
+        receivedCommand[i] = incominSerial;
+        Serial.printf("%c", incominSerial);
+        if(receivedCommand[i] == 0x0D) // 0x0D = \r
+        {
+          for(uint8_t j = 0; j < i; j++)
+          {
+            command = command + receivedCommand[j];
+          }
+          Serial.printf("\r\n");
+          cli.parse(command);
+          
+          i = 0;
+          command = "";
+        }
+        else
+        {
+          i++;
+        }
+      }
 
     uartTask.endTime = micros();
     uartTask.counter++;
@@ -295,8 +335,6 @@ void loop()
       telemetryPacket.battery = map(batteryVolt, 1750, 2100, 0, 100);
       //Serial.printf("%%: %u, mV: %u\r\n", /*batteryADC,*/ telemetryPacket.battery, batteryVolt);
 
-      esp_now_send(dongleAddress, (uint8_t *) &telemetryPacket, sizeof(telemetryPacket));
-
       if(telemetryPacket.battery < LOW_BATTERY_THRESHOLD)
       {
         static bool ledStatus = 0;
@@ -304,7 +342,8 @@ void loop()
         digitalWrite(BUILDIN_LED, ledStatus);
         ledStatus = !ledStatus;
       }
-      
+
+      esp_now_send(dongleAddress, (uint8_t *) &telemetryPacket, sizeof(telemetryPacket));
 
     telemetryTask.endTime = micros();
     telemetryTask.counter++;

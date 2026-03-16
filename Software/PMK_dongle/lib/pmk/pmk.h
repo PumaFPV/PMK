@@ -233,7 +233,7 @@ void convertPacket2Keyboard(packetStruct packet)
     keyboardPacket[packet.deviceID].key[7] = packet.data[7];
 
     #ifdef DEBUG
-    if(debug2)
+    if(debug[1])
     {
         Serial.printf("Keyboard packet: ");
         for(uint8_t i = 0; i < 8; i++)
@@ -492,7 +492,7 @@ void handleKeyboard()
     }
 
     #ifdef DEBUG
-    if(debug3)
+    if(debug[2])
     {
         Serial.printf("Report: %02X %02X %02X %02X %02X %02X modifier: %02X\r\n", keycode[0], keycode[1], keycode[2], keycode[3], keycode[4], keycode[5], modifier);
     }
@@ -525,7 +525,7 @@ void handleMouse()
     if(usb_hid.ready())
     {
         #ifdef DEBUG
-        if(debug3)
+        if(debug[2])
         {
             Serial.printf("x: %i, y: %i, key: %u, wheel: %i, pan: %i", mousePacket.x, mousePacket.y, mousePacket.key,mousePacket.w, mousePacket.p);
         }

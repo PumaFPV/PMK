@@ -376,6 +376,11 @@ void ledLoop()
   //FillLEDsFromPaletteColors( startIndex);
 
   //pulsar();
+  if(ledSleepStatus == 1)
+  {
+    ledBrightness = 0;
+  }
+
   FastLED.setBrightness(ledBrightness);
   FastLED.show();
   /*

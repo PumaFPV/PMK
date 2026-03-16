@@ -5,7 +5,7 @@
 
 #include "SPI.h"
 #include "variables.h"
-#include "uartHandle.h"
+#include "commandHandle.h"
 
 
 
@@ -59,7 +59,7 @@ void srLoop()
             keyboardPacket.key[numberOfPressedKeys] = (packet * 8) + bit + 1; //+1 so we dont have a keyID = 0
             
             #ifdef DEBUG
-            if(debug1)
+            if(debug[0])
             {
               Serial.printf("KeyID: 0x%02X\r\n", keyboardPacket.key[numberOfPressedKeys]);
             }
@@ -92,8 +92,11 @@ void srLoop()
     {
       result = esp_now_send(dongleAddress, (uint8_t *) &keyboardPacket, sizeof(keyboardPacket));
 
+      lastSentPacketTime = millis();
+      ledSleepStatus = 0;
+
       #ifdef DEBUG
-      if(debug2)
+      if(debug[1])
       {
         if (result == ESP_OK)
         {
