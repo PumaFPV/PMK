@@ -163,7 +163,7 @@ void setup()
 
   loadConfiguration();
 
-  configDeej();
+  //configDeej();
 
   setupPMK();
 

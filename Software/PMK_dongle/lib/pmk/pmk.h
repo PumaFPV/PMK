@@ -37,7 +37,7 @@ uint8_t layerID = 0;
 
 uint8_t keyboardDeviceID = 255;
 
-uint8_t knobIDToDeej[MAX_NUMBER_OF_DEEJ_KNOBS] = {0};
+uint8_t knobIDToDeej[MAX_NUMBER_OF_DEEJ_KNOBS] = {1, 2, 3, 4, 5, 6, 7, 8};
 
 
 
@@ -293,7 +293,7 @@ void convertPacket2Led(packetStruct packet)
 void convertPacket2Knob(packetStruct packet)
 {
     knobPacket[packet.deviceID].deviceID = packet.deviceID;  
-    for(uint8_t i = 0; i < 7; ++i)
+    for(uint8_t i = 0; i < 7; i++)
     {
       knobPacket[packet.deviceID].knob[i] = packet.data[i];
     }
@@ -619,12 +619,14 @@ void handleMidi(uint8_t volume[MAX_NUMBER_OF_DEEJ_KNOBS])
 
     for(int i = 0; i < MAX_NUMBER_OF_DEEJ_KNOBS; i++) 
     {
-        uint8_t midiVolume = abs(volume[i] / 2);
+        //uint8_t midiVolume = abs(volume[i] / 2);
+
+        uint8_t midiVolume = knobPacket[2].knob[i];
+
         usbMIDI.sendControlChange(i, midiVolume, CHANNEL); //send MIDI note ON command
         if(debug[3])
         {
             Serial.printf("Setting knob %i to %i\r\n", i, midiVolume);
-
         }
     }
 }

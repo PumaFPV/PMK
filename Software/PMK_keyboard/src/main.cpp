@@ -13,7 +13,7 @@
 
 #include "variables.h"
 
-#define FIRMWARE_REV "keyboard-dev-1.0.2"
+#define FIRMWARE_REV "keyboard-dev-1.1.0dev"
 
 //#include "uartHandle.h"
 #include "commandHandle.h"
@@ -251,7 +251,19 @@ void loop()
       }
 
       reLoop();
-      esp_now_send(dongleAddress, (uint8_t *) &knobPacket, sizeof(knobPacket));
+
+    bool knobContentIsEqual = areArraysEqual(knobPacket.knob, previousKnobPacket.knob, 8);
+
+
+      if(!knobContentIsEqual)
+      {
+        esp_now_send(dongleAddress, (uint8_t *) &knobPacket, sizeof(knobPacket));
+      }
+
+      for(uint8_t i = 0; i < 8; i++)
+      {
+        previousKnobPacket.knob[i] = knobPacket.knob[i];
+      }
 
     reTask.endTime = micros();
     reTask.counter++;

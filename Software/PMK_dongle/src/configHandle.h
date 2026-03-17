@@ -224,9 +224,10 @@ void configDeej()
   }
 
   size_t size = deejConfigFile.size();
-  std::unique_ptr<char[]> buf(new char[size]);
+  std::unique_ptr<char[]> buf(new char[size+1]);
 
   deejConfigFile.readBytes(buf.get(), size);
+  buf[size] = '\0';
   deejConfigFile.close();
 
   DynamicJsonDocument doc(1024);
@@ -241,10 +242,15 @@ void configDeej()
 
   Serial.printf("Number of knobs configured for deej: %u\r\n", deejJsonArray.size());
   Serial.printf("Knobs to use:");
-  for(int i = 0; i < deejJsonArray.size(); i++) 
+  uint8_t numberOfKnobs = deejJsonArray.size();
+  if(numberOfKnobs > 7)
   {
-    String hexStr = deejJsonArray[i].as<String>();
-    knobIDToDeej[i] = strtoul(hexStr.c_str(), NULL, 16);
+    numberOfKnobs = 7;
+  }
+
+  for(int i = 0; i < numberOfKnobs; i++) 
+  {
+    knobIDToDeej[i] =  deejJsonArray[i];
     Serial.printf(" %u,", knobIDToDeej[i]);
   }
   Serial.printf("\r\n");

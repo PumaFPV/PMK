@@ -189,6 +189,7 @@ uint8_t rotary = 0;
 uint8_t deviceID;
 
 keyboardStruct previousKeyboardPacket;
+knobStruct     previousKnobPacket;
 
 unsigned long lastSentPacketTime = 0;
 
