@@ -597,7 +597,7 @@ void handleDeej(uint8_t volume[MAX_NUMBER_OF_DEEJ_KNOBS])
     {
         String builtString = String("");
 
-        for (int i = 0; i < MAX_NUMBER_OF_DEEJ_KNOBS; i++) 
+        for(int i = 0; i < MAX_NUMBER_OF_DEEJ_KNOBS; i++) 
         {
             builtString += String((int)volume[i]*4);
 
@@ -608,6 +608,24 @@ void handleDeej(uint8_t volume[MAX_NUMBER_OF_DEEJ_KNOBS])
         }
     
         Serial.println(builtString);  // TODO only send when different
+    }
+}
+
+
+
+void handleMidi(uint8_t volume[MAX_NUMBER_OF_DEEJ_KNOBS])
+{
+    const int CHANNEL = 14;
+
+    for(int i = 0; i < MAX_NUMBER_OF_DEEJ_KNOBS; i++) 
+    {
+        uint8_t midiVolume = abs(volume[i] / 2);
+        usbMIDI.sendControlChange(i, midiVolume, CHANNEL); //send MIDI note ON command
+        if(debug[3])
+        {
+            Serial.printf("Setting knob %i to %i\r\n", i, midiVolume);
+
+        }
     }
 }
 
@@ -632,6 +650,7 @@ void handleKnob()
     }
 
     handleDeej(volume);
+    handleMidi(volume);
 }
 
 

@@ -240,6 +240,16 @@ void loop()
     reTask.beginTime = micros();
     reTask.inBetweenTime = reTask.beginTime - reTask.endTime;
 
+
+      for(int i = 0; i < MAX_NUMBER_OF_DEEJ_KNOBS; i++) 
+      {
+          if(debug[3])
+          {
+              Serial.printf("sending knob %i at %i\r\n", i, knobPacket.knob[i]);
+
+          }
+      }
+
       reLoop();
       esp_now_send(dongleAddress, (uint8_t *) &knobPacket, sizeof(knobPacket));
 

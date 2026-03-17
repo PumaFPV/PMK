@@ -30,6 +30,7 @@ Command cmdRestart;
 Command cmdScan;
 Command cmdLedSleep;
 Command cmdDebug;
+Command cmdKnob;
 
 
 
@@ -52,6 +53,7 @@ void helpCallback(cmd* cmdPtr)
     Serial.printf("   restart : restart the dongle\r\n");
     Serial.printf("   scan : Scan for side module presence\r\n");
     Serial.printf("   ledsleep : Set LED sleep time in minutes\r\n");
+    Serial.printf("   knob / midi / deej: arg1: knob number (0-7), arg2: volume value (0-255) \r\n");
     Serial.printf("   debug 1 / 2... : Toggle debug output. Different kind of debug available\r\n\r\n");
 }
 
@@ -423,6 +425,33 @@ void infoCallback(cmd* cmdPtr)
 
 
 
+void knobCallback(cmd* cmdPtr)
+{
+    Command cmd(cmdPtr);
+    Argument knobArgument = cmd.getArgument(0);
+    Argument volumeArgument = cmd.getArgument(1);
+    
+    uint8_t knobValue = knobArgument.getValue().toInt();
+    uint8_t volumeValue = volumeArgument.getValue().toInt();
+
+    if(0 <= knobValue && knobValue < 8)
+    {
+        if (0 <= volumeValue && volumeValue < 256)
+        {
+            Serial.printf("Setting knob %i to %i\r\n", knobValue, volumeValue);
+            knobPacket.knob[knobValue] = volumeValue;
+        }
+        else
+        {
+            Serial.printf("Volume value outside of expected range (0-127)\r\n");
+        }
+    }
+    else
+    {
+        Serial.printf("Knob value outside of expected range (0-7)\r\n");
+    }
+}
+
 void cliSetup()
 {
     cmdHelp = cli.addCommand("help,h", helpCallback);
@@ -440,6 +469,7 @@ void cliSetup()
     cmdScan = cli.addCommand("scan", scanCallback);
     cmdLedSleep = cli.addSingleArgumentCommand("ledsleep", ledsleepCallback);
     cmdDebug = cli.addSingleArgumentCommand("debug", debugCallback);
+    cmdKnob = cli.addBoundlessCommand("deej,knob,midi", knobCallback);
 
     cli.setOnError(errorCallback);
 

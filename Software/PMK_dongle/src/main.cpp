@@ -6,7 +6,7 @@
 //TO DO delete this file
 #include "config.h"
 
-#define FIRMWARE_REV "dongle-dev-1.0.2"
+#define FIRMWARE_REV "dongle-dev-1.1.0dev"
 
 //Include library
 #include "WiFi.h"
@@ -120,10 +120,12 @@ void setup()
   
   usb_hid.begin();
 
+  // Set up midi
+  usbMIDI.begin();
+
+
   //Serial.printf("Waiting for USB HID to be mounted...\r\n");
   while( !TinyUSBDevice.mounted() ) delay(1);
-
-
 
   //====================================================
   //====================Wifi/ESP Now====================

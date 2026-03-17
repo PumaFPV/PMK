@@ -4,6 +4,8 @@
 #include "WiFi.h"
 #include "esp_now.h"
 
+#include "MIDI.h"
+
 
 
 //--------------------------------------------------Define--------------------------------------------------
@@ -98,6 +100,11 @@ Adafruit_USBD_MSC usb_msc;
 Adafruit_USBD_HID usb_hid;
 
 hid_gamepad_report_t gp;
+
+// USB MIDI object
+Adafruit_USBD_MIDI usb_midi;
+
+MIDI_CREATE_INSTANCE(Adafruit_USBD_MIDI, usb_midi, usbMIDI);
 
 // ESP32 use same flash device that store code.
 // Therefore there is no need to specify the SPI and SS
