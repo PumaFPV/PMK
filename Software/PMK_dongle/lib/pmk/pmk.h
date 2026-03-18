@@ -630,7 +630,7 @@ void handleMidi()
             {
                 Serial.printf("inControlNumber: %u, inControlValue: %u, Channel: %u\r\n", knob, midiVolume, device);
             }
-        }    
+        }
     }
 }
 
