@@ -1,5 +1,7 @@
 #pragma once
 
+#define MAX_NUMBER_OF_PMK_DEVICES 8
+#define MAX_NUMBER_OF_KEYS 8
 #define MAX_NUMBER_OF_DEEJ_KNOBS 8
 
 #include "Arduino.h"
@@ -63,7 +65,7 @@ typedef struct telemetryStruct {
 typedef struct keyboardStruct {
     uint8_t deviceID;
     const uint8_t packetType = 1;
-    uint8_t key[8] = {0};
+    uint8_t key[MAX_NUMBER_OF_KEYS] = {0};
 }   keyboardStruct;
 
 
@@ -111,7 +113,7 @@ typedef struct ledStruct {
 typedef struct knobStruct {
     uint8_t deviceID;
     const uint8_t packetType = 5;
-    uint8_t knob[8];
+    uint8_t knob[MAX_NUMBER_OF_DEEJ_KNOBS];
 }   knobStruct;
 
 
@@ -164,11 +166,11 @@ enum errorID {
 
 
 
-keyboardStruct   keyboardPacket[8];
+keyboardStruct   keyboardPacket[MAX_NUMBER_OF_PMK_DEVICES];
 mouseStruct      mousePacket;
-gamepadStruct    gamepadPacket[8];
+gamepadStruct    gamepadPacket[MAX_NUMBER_OF_PMK_DEVICES];
 ledStruct        ledPacket;
-knobStruct       knobPacket[8];
+knobStruct       knobPacket[MAX_NUMBER_OF_PMK_DEVICES];
 actuatorStruct   actuatorPacket;
 displayStruct    displayPacket;
 telemetryStruct  telemetryPacket;
@@ -179,11 +181,11 @@ spaceMouseStruct spaceMousePacket;
 
 void setupPMK()
 {
-    for(uint8_t deviceID = 0; deviceID < 8; deviceID++)
+    for(uint8_t deviceID = 0; deviceID < MAX_NUMBER_OF_PMK_DEVICES; deviceID++)
     {
         keyboardPacket[deviceID].deviceID = deviceID;
 
-        for(uint8_t keyID = 0; keyID < 8; keyID++)
+        for(uint8_t keyID = 0; keyID < MAX_NUMBER_OF_KEYS; keyID++)
         {
             keyboardPacket[deviceID].key[keyID] = 0;
             knobPacket[deviceID].knob[keyID] = 0;   // not really a keyID but you get the idea
@@ -613,21 +615,22 @@ void handleDeej(uint8_t volume[MAX_NUMBER_OF_DEEJ_KNOBS])
 
 
 
-void handleMidi(uint8_t volume[MAX_NUMBER_OF_DEEJ_KNOBS])
+void handleMidi()
 {
-    const int CHANNEL = 14;
-
-    for(int i = 0; i < MAX_NUMBER_OF_DEEJ_KNOBS; i++) 
+    for (uint8_t device = 0; device < MAX_NUMBER_OF_DEVICES; device++)
     {
-        //uint8_t midiVolume = abs(volume[i] / 2);
-
-        uint8_t midiVolume = knobPacket[2].knob[i];
-
-        usbMIDI.sendControlChange(i, midiVolume, CHANNEL); //send MIDI note ON command
-        if(debug[3])
+        for(uint8_t knob = 0; knob < MAX_NUMBER_OF_DEEJ_KNOBS; knob++) 
         {
-            Serial.printf("Setting knob %i to %i\r\n", i, midiVolume);
-        }
+            //uint8_t midiVolume = abs(volume[i] / 2);
+
+            uint8_t midiVolume = constrain(knobPacket[device].knob[knob] / 2, 0, 127); //Midi only takes up to 127, knobPacket goes from 0 to 255 
+
+            usbMIDI.sendControlChange(knob, midiVolume, device); //send MIDI note ON command
+            if(debug[3])
+            {
+                Serial.printf("inControlNumber: %u, inControlValue: %u, Channel: %u\r\n", knob, midiVolume, device);
+            }
+        }    
     }
 }
 
@@ -639,7 +642,7 @@ void handleKnob()
 
     for(uint8_t deviceID = 0; deviceID < MAX_NUMBER_OF_DEVICES; deviceID++)
     {
-        for(uint8_t knobID = 0; knobID < 8; knobID++)
+        for(uint8_t knobID = 0; knobID < MAX_NUMBER_OF_DEEJ_KNOBS; knobID++)
         {
             aggregatedKnobs[deviceID * 8 + knobID] = knobPacket[deviceID+1].knob[knobID];
         }
@@ -652,7 +655,7 @@ void handleKnob()
     }
 
     handleDeej(volume);
-    handleMidi(volume);
+    handleMidi();
 }
 
 

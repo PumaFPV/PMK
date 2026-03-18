@@ -205,8 +205,8 @@ void debugCallback(cmd* cmdPtr)
     {
         if(0 < debugIndex && debugIndex < 9)
         {
-            debug[debugIndex-1] = !debug[debugIndex-1];
-            Serial.printf("debug %i swapped to %i\r\n", debugIndex, debug[debugIndex-1]);
+            debug[debugIndex] = !debug[debugIndex];
+            Serial.printf("debug %i swapped to %i\r\n", debugIndex, debug[debugIndex]);
         }
         else
         {
@@ -214,7 +214,7 @@ void debugCallback(cmd* cmdPtr)
         }
     }
 
-    Serial.printf("Debug state:\r\ndebug1: %i debug2: %i debug3: %i debug4: %i debug5: %i debug6: %i debug7: %i debug8: %i\r\n\r\n", debug[0], debug[1], debug[2], debug[3], debug[4], debug[5], debug[6], debug[7]); 
+    Serial.printf("Debug state:\r\ndebug0: %i debug1: %i debug2: %i debug3: %i debug4: %i debug5: %i debug6: %i debug7: %i\r\n\r\n", debug[0], debug[1], debug[2], debug[3], debug[4], debug[5], debug[6], debug[7]); 
 }
 
 
