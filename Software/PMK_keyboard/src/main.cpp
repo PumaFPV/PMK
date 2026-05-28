@@ -34,9 +34,12 @@ void setup()
   Serial.begin(115200);
   //while(!Serial){}
 
+
+
   //-----CLI
   cliSetup();
 
+  
 
   //-----CPU
   setCpuFrequencyMhz(80);
@@ -255,15 +258,15 @@ void loop()
     bool knobContentIsEqual = areArraysEqual(knobPacket.knob, previousKnobPacket.knob, 8);
 
 
-      if(!knobContentIsEqual)
-      {
-        esp_now_send(dongleAddress, (uint8_t *) &knobPacket, sizeof(knobPacket));
-      }
+    if(!knobContentIsEqual)
+    {
+      esp_now_send(dongleAddress, (uint8_t *) &knobPacket, sizeof(knobPacket));
+    }
 
-      for(uint8_t i = 0; i < 8; i++)
-      {
-        previousKnobPacket.knob[i] = knobPacket.knob[i];
-      }
+    for(uint8_t i = 0; i < 8; i++)
+    {
+      previousKnobPacket.knob[i] = knobPacket.knob[i];
+    }
 
     reTask.endTime = micros();
     reTask.counter++;

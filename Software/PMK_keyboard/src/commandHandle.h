@@ -79,6 +79,9 @@ uint8_t convertTwoChar2Byte(char first, char second)
     {
         switch (character[i])
         {
+            case 48:
+                character[i] = 0x0;
+                break;
             case 49:
                 character[i] = 0x1;
                 break;

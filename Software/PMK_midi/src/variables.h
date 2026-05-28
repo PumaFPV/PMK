@@ -22,6 +22,14 @@
 //----------GPO
 
 //----------ADC
+#define slider1 39
+#define slider2 36
+#define slider3 32
+#define slider4 34
+#define slider5 35
+
+uint8_t sliderPin[5] = {slider1, slider2, slider3, slider4, slider5};
+
 
 //----------PWM
 
@@ -38,7 +46,6 @@
 //--------------------------------------------------Initialize libraries--------------------------------------------------
 esp_now_peer_info_t peerInfo;
 
-telemetryStruct telemetryPacket;
 //DEFINE YOUR DEVICEPACKET HERE
 
 //--------------------------------------------------Structs--------------------------------------------------
@@ -54,7 +61,7 @@ struct Func
   unsigned long inBetweenTime;
 };
 
-Func ioTask = {0, 0, 0, 0, 0, 10000, 0, 0};
+Func ioTask = {0, 0, 0, 0, 0, 100000, 0, 0};
 Func espnowTask = {0, 0, 0, 0, 0, 5000, 0, 0};
 Func uartTask = {0, 0, 0, 0, 0, 20000, 0, 0};
 
@@ -72,6 +79,17 @@ uint8_t dongleAddress[] = {};
 
 uint8_t receivedData[16];
 String success;
+
+
+
+bool areArraysEqual(uint8_t* arr1, uint8_t* arr2, int size) {
+    for (int i = 0; i < size; i++) {
+        if (arr1[i] != arr2[i]) {
+            return false;
+        }
+    }
+    return true;
+}
 
 
 

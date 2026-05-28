@@ -5,7 +5,7 @@
 
 #include "Arduino.h"
 #include "esp_now.h"
-#include "uartHandle.h"
+#include "commandHandle.h"
 
 
 // Callback when data is sent
@@ -30,11 +30,21 @@ void espnowLoop()
 
   esp_err_t result;
 
-  
-  result = esp_now_send(dongleAddress, (uint8_t *) &/*PUT YOUR PACKETHERE*/, sizeof(/*PUT YOUR PACKETHERE*/));
+  bool knobContentIsEqual = areArraysEqual(knobPacket.knob, previousKnobPacket.knob, 8);
+
+  if(!knobContentIsEqual)
+  {
+    result = esp_now_send(dongleAddress, (uint8_t *) &knobPacket, sizeof(knobPacket));
+  }
     
+  for (uint8_t i = 0; i < 8; i++)
+  {
+    previousKnobPacket.knob[i] = knobPacket.knob[i];
+  }
   
-  if(debug2)
+  
+  
+  if(debug[1])
   {
     if (result == ESP_OK) 
     {
@@ -43,6 +53,26 @@ void espnowLoop()
     else 
     {
       Serial.println("Error sending the data");
+    }
+  }
+}
+
+
+
+void registerDongle()
+{
+  for(uint8_t i = 0; i < 1; i++)  // TODO add support for multiple dongles
+  {
+    memcpy(peerInfo.peer_addr, dongleAddress, MAC_ADDRESS_SIZE);
+    peerInfo.ifidx = WIFI_IF_STA;
+    peerInfo.channel = 1;
+    peerInfo.encrypt = false;
+
+    // Add dongle
+    if(esp_now_add_peer(&peerInfo) != ESP_OK)
+    {
+      Serial.printf("Failed to add dongle: %i\r\n", i);
+      return;
     }
   }
 }

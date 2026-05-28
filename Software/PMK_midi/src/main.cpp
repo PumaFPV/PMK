@@ -18,7 +18,7 @@
 #define FIRMWARE_REV "dev"
 uint8_t deviceID;
 
-#include "uartHandle.h"
+#include "commandHandle.h"
 #include "espnowHandle.h"
 #include "ledHandle.h"
 #include "ioHandle.h"
@@ -36,6 +36,11 @@ void setup()
 
 
 
+  //-----CLI
+  cliSetup();
+
+
+
   //-----CPU
   setCpuFrequencyMhz(80);
 
@@ -44,7 +49,7 @@ void setup()
   //-----EEPROM
   EEPROM.begin(EEPROM_SIZE);
   deviceID = EEPROM.read(DEVICEID_ADDRESS);
-  /*PUT YOUR PACKETHERE*/.deviceID = deviceID;
+  knobPacket.deviceID = deviceID;
 
   for(uint8_t i = 0; i < MAC_ADDRESS_SIZE; i++)
   {
@@ -68,19 +73,7 @@ void setup()
   esp_now_register_send_cb(OnDataSent);
 
   // Register dongles
-  for(uint8_t i = 0; i < 3; i++)  // TODO add support for multiple dongles
-  {
-    memcpy(peerInfo.peer_addr, dongleAddress, MAC_ADDRESS_SIZE);
-    peerInfo.channel = 0;  
-    peerInfo.encrypt = false;
-
-    // Add dongle        
-    if(esp_now_add_peer(&peerInfo) != ESP_OK)
-    {
-      Serial.printf("Failed to add dongle: %i\r\n", i);
-      return;
-    }
-  }
+  registerDongle();
 
   // Register for a callback function that will be called when data is received
   esp_now_register_recv_cb(OnDataRecv);
@@ -103,7 +96,20 @@ void loop()
     ioTask.beginTime = micros();
     ioTask.inBetweenTime = ioTask.beginTime - ioTask.endTime;
 
+      for (uint8_t i = 0; i < 5; i++)
+      {
+        knobPacket.knob[i] = map(analogRead(sliderPin[i]), 0, 4095, 0, 255);
+      }
 
+      if (debug[2])
+      {
+        for (uint8_t i = 0; i < 5; i++)
+        {
+          Serial.printf("%u ", analogRead(sliderPin[i]));
+        }
+        Serial.printf("\r\n");
+      }  
+      
 
     ioTask.endTime = micros();
     ioTask.counter++;
@@ -138,7 +144,33 @@ void loop()
     uartTask.beginTime = micros();
     uartTask.inBetweenTime = uartTask.beginTime - uartTask.endTime;
 
-      handleUart();
+      static char receivedCommand[64];
+      static uint8_t i = 0;
+      static String command;
+      
+      uint8_t incominSerial = Serial.read();
+
+      if(incominSerial != 0xFF)
+      {
+        receivedCommand[i] = incominSerial;
+        Serial.printf("%c", incominSerial);
+        if(receivedCommand[i] == 0x0D) // 0x0D = \r
+        {
+          for(uint8_t j = 0; j < i; j++)
+          {
+            command = command + receivedCommand[j];
+          }
+          Serial.printf("\r\n");
+          cli.parse(command);
+          
+          i = 0;
+          command = "";
+        }
+        else
+        {
+          i++;
+        }
+      }
 
     uartTask.endTime = micros();
     uartTask.counter++;

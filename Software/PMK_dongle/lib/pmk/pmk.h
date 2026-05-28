@@ -431,7 +431,10 @@ void handleKeyboard()
     std::sort(keyToPress.begin(), keyToPress.end());
     keyToPress.erase(std::unique(keyToPress.begin(), keyToPress.end()), keyToPress.end());
 
-    //Serial.printf("%02X %02X %02X %02X %02X %02X\r\n", keyToPress[0], keyToPress[1], keyToPress[2], keyToPress[3], keyToPress[4], keyToPress[5]);
+    if(debug[3])
+    {
+        Serial.printf("keyToPress: %02X %02X %02X %02X %02X %02X\r\n", keyToPress[0], keyToPress[1], keyToPress[2], keyToPress[3], keyToPress[4], keyToPress[5]);
+    }
 
     uint8_t numberOfKeyToPress = std::find(keyToPress.begin(), keyToPress.end(), 0xFFFF) - keyToPress.begin();
     //Serial.printf("Number of keys to press: %i\r\n", numberOfKeyToPress);
@@ -445,7 +448,6 @@ void handleKeyboard()
             modifier = modifier | (1 << (HIDKey - 0xE0));   //First modifier is 0xE0 Left control
             //Serial.printf("Modifier is: %02X\r\n", modifier);
         }
-        //Serial.printf("Pressing: 0x%u, on layer: %i, Equivalent HID: %u\r\n", keyboardPacket.key[i], layerID, keyIDtoChar(keyboardPacket.key[i], layerID));
 
         if(HIDKey < 0xA5 )
         {
@@ -629,6 +631,7 @@ void handleMidi()
             if(debug[3])
             {
                 Serial.printf("inControlNumber: %u, inControlValue: %u, Channel: %u\r\n", knob, midiVolume, device);
+                delay(5);
             }
         }
     }
